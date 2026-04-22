@@ -1,0 +1,516 @@
+/* ===================================
+   KEVIN SOLO-OS Landing Page Styles
+   Minimalist Black & White Design
+   =================================== */
+
+/* === CSS Reset & Base === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Typography === */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 64px;
+    letter-spacing: -2px;
+}
+
+h2 {
+    font-size: 48px;
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+p {
+    margin-bottom: 16px;
+}
+
+strong {
+    font-weight: 700;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* === Layout === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+section {
+    padding: 80px 0;
+}
+
+/* === Section Labels === */
+.section-label,
+.hero-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: #666666;
+}
+
+.section-title {
+    margin-bottom: 48px;
+}
+
+/* === Hero Section === */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.hero-title {
+    font-size: 96px;
+    font-weight: 900;
+    letter-spacing: -4px;
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #333333;
+}
+
+.hero-tagline {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 48px;
+    color: #000000;
+}
+
+/* === CTA Buttons === */
+.cta-button {
+    display: inline-block;
+    padding: 16px 48px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #000000;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.cta-button.large {
+    padding: 20px 64px;
+    font-size: 20px;
+}
+
+/* === Problem Section === */
+.problem {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.problem .section-label {
+    color: #999999;
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+}
+
+.problem-item h3 {
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.problem-item p {
+    color: #cccccc;
+    line-height: 1.8;
+}
+
+/* === Solution Section === */
+.solution {
+    text-align: center;
+    background-color: #f5f5f5;
+}
+
+.solution-description {
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* === Benefits Section === */
+.benefits {
+    background-color: #ffffff;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+}
+
+.benefit-item {
+    padding: 32px;
+    border: 2px solid #000000;
+    transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-4px);
+}
+
+.benefit-number {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+}
+
+.benefit-item h3 {
+    margin-bottom: 16px;
+}
+
+.benefit-item p {
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+/* === Preview Section === */
+.preview {
+    background-color: #f5f5f5;
+}
+
+.preview-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.preview-box {
+    background-color: #ffffff;
+    padding: 32px;
+    border: 2px solid #e5e5e5;
+}
+
+.preview-box h3 {
+    margin-bottom: 24px;
+    font-size: 20px;
+}
+
+.preview-text ul {
+    margin: 16px 0;
+}
+
+.preview-text li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.8;
+}
+
+.preview-text li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+}
+
+.preview-note {
+    margin-top: 24px;
+    padding: 16px;
+    background-color: #f5f5f5;
+    border-left: 4px solid #000000;
+    font-weight: 600;
+}
+
+.preview .cta-button {
+    display: block;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* === Pricing Section === */
+.pricing {
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.pricing-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 48px;
+    border: 3px solid #000000;
+    background-color: #ffffff;
+}
+
+.price-tag {
+    margin-bottom: 24px;
+}
+
+.price-amount {
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+.price-period {
+    font-size: 24px;
+    color: #666666;
+}
+
+.pricing-card h3 {
+    font-size: 28px;
+    margin-bottom: 32px;
+}
+
+.pricing-features {
+    text-align: left;
+    margin: 32px 0;
+}
+
+.pricing-features li {
+    padding: 12px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+.pricing-note {
+    font-size: 14px;
+    color: #666666;
+    margin: 24px 0;
+}
+
+/* === Final CTA Section === */
+.final-cta {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+}
+
+.cta-title {
+    color: #ffffff;
+    margin-bottom: 24px;
+}
+
+.cta-description {
+    font-size: 20px;
+    margin-bottom: 48px;
+    color: #cccccc;
+}
+
+.final-cta .cta-button {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.final-cta .cta-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* === Footer === */
+.footer {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 48px 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer p {
+    margin-bottom: 8px;
+    color: #666666;
+}
+
+.footer-tagline {
+    font-weight: 600;
+    color: #000000;
+}
+
+/* === Scroll Reveal Animations === */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.hero.visible {
+    opacity: 1;
+}
+
+/* === Responsive Design === */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 48px;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
+
+    .hero-title {
+        font-size: 72px;
+    }
+
+    .problem-grid,
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+
+    .preview-content {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 64px 0;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    section {
+        padding: 48px 0;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .hero-title {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    .hero-tagline {
+        font-size: 16px;
+    }
+
+    .problem-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .benefit-item {
+        padding: 24px;
+    }
+
+    .benefit-number {
+        font-size: 36px;
+    }
+
+    .preview-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .preview-box {
+        padding: 24px;
+    }
+
+    .pricing-card {
+        padding: 32px 24px;
+    }
+
+    .price-amount {
+        font-size: 56px;
+    }
+
+    .cta-button {
+        padding: 14px 32px;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .cta-button.large {
+        padding: 16px 40px;
+        font-size: 18px;
+    }
+
+    .section-title {
+        margin-bottom: 32px;
+    }
+}
