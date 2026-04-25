@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "playwright": "^1.59.1"
+  },
+  "devDependencies": {
+    "qrcode": "^1.5.4"
   }
 }
