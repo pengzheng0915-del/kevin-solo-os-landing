@@ -1,7 +1,7 @@
 /**
  * KEVIN SOLO-OS Landing Page
- * Interactive Functionality v3.0
- * 视觉层次 + 动效 + 移动端优化
+ * Interactive Functionality v3.1
+ * 修复 FOUC、可访问性、性能优化
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const stickyCtaBar = document.getElementById('stickyCtaBar');
     const faqQuestions = document.querySelectorAll('.faq-question');
     const hero = document.querySelector('.hero');
-    const sections = document.querySelectorAll('section');
-    const revealElements = document.querySelectorAll('.problem-item, .solution-item, .evidence-item, .value-item, .step-item, .audience-item, .comparison-card');
+    const sections = document.querySelectorAll('section:not(.hero)');
+    const revealElements = document.querySelectorAll('.problem-item, .solution-item, .evidence-item, .value-item, .audience-item, .pricing-card-inner');
 
     // 阈值：滚动超过 hero 区域后显示固定栏
     const heroHeight = hero ? hero.offsetHeight : 600;
@@ -91,11 +91,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // 关闭其他项
         document.querySelectorAll('.faq-item').forEach(item => {
             item.classList.remove('active');
+            const btn = item.querySelector('.faq-question');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
         });
 
         // 切换当前项
         if (!isActive) {
             faqItem.classList.add('active');
+            questionElement.setAttribute('aria-expanded', 'true');
         }
     }
 
@@ -106,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         question.setAttribute('aria-expanded', 'false');
     });
 
-    // 滚动动画观察器 - 用于 section
+    // 滚动动画观察器 - 用于 section（无 FOUC：初始可见，进入视口后触发动画）
     const sectionObserverOptions = {
         threshold: 0.08,
         rootMargin: '0px 0px -60px 0px'
@@ -115,18 +118,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const sectionObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.classList.add('fade-in', 'visible');
                 sectionObserver.unobserve(entry.target);
             }
         });
     }, sectionObserverOptions);
 
     sections.forEach(section => {
-        section.classList.add('fade-in');
         sectionObserver.observe(section);
     });
 
-    // 元素交错动画观察器
+    // 元素交错动画观察器（无 FOUC：不预设 opacity:0，进入视口后触发动画）
     const elementObserverOptions = {
         threshold: 0.15,
         rootMargin: '0px 0px -40px 0px'
@@ -146,28 +148,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }, elementObserverOptions);
 
     revealElements.forEach(el => {
-        el.classList.add('reveal');
         elementObserver.observe(el);
     });
 
-    // Hero 动画 - 添加入场动画
+    // Hero 入场动画 - 使用 CSS class 避免 FOUC
     if (hero) {
-        setTimeout(() => {
-            hero.classList.add('visible');
-        }, 100);
-
-        // 为 hero 内的元素添加交错动画
-        const heroElements = hero.querySelectorAll('.hero-title, .hero-subtitle, .hero-tagline, .hero-actions, .value-strip');
-        heroElements.forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-            el.style.transitionDelay = `${0.2 + index * 0.1}s`;
-
-            setTimeout(() => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            }, 150);
+        requestAnimationFrame(() => {
+            hero.classList.add('hero-enter');
         });
     }
 
@@ -218,28 +205,4 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('touch-device');
     }
 
-    // 性能优化：减少动画在不可见页面时的开销
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            // 页面不可见时暂停动画
-            document.body.classList.add('reduce-motion');
-        } else {
-            document.body.classList.remove('reduce-motion');
-        }
-    });
-
-    // 添加触摸激活状态的样式
-    const style = document.createElement('style');
-    style.textContent = `
-        .touch-device .cta-button.touch-active,
-        .touch-device .secondary-button.touch-active,
-        .touch-device .sticky-button.touch-active {
-            transform: scale(0.98);
-            opacity: 0.9;
-        }
-        .touch-device .back-to-top.touch-active {
-            transform: scale(0.95);
-        }
-    `;
-    document.head.appendChild(style);
 });
