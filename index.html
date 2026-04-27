@@ -3,170 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KEVIN SOLO-OS - 一人企业操作系统。我不教你赚钱，我帮你省时间、少走弯路。¥99/年翻译 Dan Koe、Naval 第一手内容。">
-    <meta name="keywords" content="一人企业,个人创业,商业思维,Dan Koe,Naval,知识付费">
-    <title>KEVIN SOLO-OS | 一人企业操作系统</title>
+    <meta name="description" content="KEVIN SOLO-OS：从超级个体到一人公司。Dan Koe、Naval 等海外 Solo 创业一手内容的中文版。99 元/年，先看目录再付钱。">
+    <meta name="keywords" content="一人公司,超级个体,Solo 创业,Dan Koe,Naval,知识库,FlowUs">
+    <meta name="author" content="KEVIN SOLO-OS">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KEVIN SOLO-OS | 99 元看懂海外 Solo 创业方法论">
+    <meta property="og:description" content="不是二手转述，不是暴富话术。是真正能落地的一手内容，翻译、提炼、本地化成能直接上手的版本。">
+    <meta property="og:url" content="https://solo.kevin.life">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KEVIN SOLO-OS | 99 元看懂海外 Solo 创业方法论">
+    <meta name="twitter:description" content="一手内容的中文版，先看目录再决定要不要订阅。">
+
+    <title>KEVIN SOLO-OS | 99 元看懂海外 Solo 创业方法论</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Hero Section -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- 固定顶部CTA栏 -->
+    <div class="sticky-cta-bar" id="stickyCtaBar">
+        <div class="sticky-content">
+            <span class="sticky-brand">SOLO-OS</span>
+            <span class="sticky-tagline">海外一人公司方法论 · 中文版</span>
+            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="sticky-button" target="_blank" rel="noreferrer">看目录 →</a>
+        </div>
+    </div>
+
     <section class="hero">
         <div class="container">
-            <div class="hero-label">SOLO ENTREPRENEUR OS</div>
-            <h1 class="hero-title">KEVIN<br>SOLO-OS</h1>
-            <p class="hero-subtitle">一人企业操作系统</p>
-            <p class="hero-tagline">我不教你赚钱，我帮你省时间、少走弯路</p>
-            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button" target="_blank">立即开始 →</a>
-        </div>
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator" onclick="document.querySelector('.problem').scrollIntoView({ behavior: 'smooth' })">
-            <div class="scroll-arrow">↓</div>
-            <div class="scroll-text">向下滑动</div>
+            <div class="hero-label">从超级个体到一人公司</div>
+            <h1 class="hero-title">SOLO-OS</h1>
+            <p class="hero-subtitle">Dan Koe、Naval 等海外创业者的方法论。<br>翻译、拆解、本地化成能直接上手的版本。</p>
+            <p class="hero-tagline">想做一人公司，但好内容在海外、语言有门槛、落地没方向。<br>这里帮你<strong>省钱、省时间、避免被割韭菜</strong>。</p>
+
+            <div class="hero-actions">
+                <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button pulse" target="_blank" rel="noreferrer">看完整目录</a>
+                <a href="#pricing" class="secondary-button">99元/年</a>
+            </div>
+
+            <!-- 核心价值三要素 -->
+            <div class="value-strip">
+                <div class="value-item">
+                    <span class="value-icon">💰</span>
+                    <div class="value-content">
+                        <strong>省钱</strong>
+                        <span>内容本身免费，你付的是筛选时间</span>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">⏱️</span>
+                    <div class="value-content">
+                        <strong>省时间</strong>
+                        <span>自己找要200+小时，这里直接用</span>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🛡️</span>
+                    <div class="value-content">
+                        <strong>本土落地</strong>
+                        <span>海外方法论转中国打法，不是照搬</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
     <section class="problem">
         <div class="container">
-            <div class="section-label">[PROBLEM]</div>
-            <h2 class="section-title">你是否遇到这些问题？</h2>
+            <div class="section-label">[痛点]</div>
+            <h2 class="section-title">想做一人公司，你遇到的三个坑</h2>
             <div class="problem-grid">
                 <div class="problem-item">
-                    <h3>教你赚钱的都是骗子</h3>
-                    <p>那些万元课程都在教你'赚钱秘籍'，但他们自己就是靠卖课赚钱的。真正厉害的人（Dan Koe、Naval）从不卖课，他们在 Twitter 上免费分享真东西。</p>
+                    <div class="problem-number">01</div>
+                    <h3>被割韭菜</h3>
+                    <p>国内几千块的课程，核心内容本质上是从 Dan Koe、Naval 这些人那里来的。<br>他们免费公开，中间商包装一下就卖高价。<br>你交的不是知识费，是信息差税。</p>
                 </div>
                 <div class="problem-item">
-                    <h3>第一手信息你看不到</h3>
-                    <p>Dan Koe、Naval、Sahil Bloom 每天在 Twitter 上分享他们的思考和方法，但你看不懂英文。等国内'大师'转述给你，早就变味了，还要收你万元学费。</p>
+                    <div class="problem-number">02</div>
+                    <h3>浪费时间</h3>
+                    <p>好内容在海外，但全是英文长视频、长文章、零散推文。<br>自己找、翻、整理，几百小时就没了。<br>时间也是成本。</p>
                 </div>
                 <div class="problem-item">
-                    <h3>自己摸索太费时间</h3>
-                    <p>你可以自己慢慢学英文、慢慢看 Twitter、慢慢试错。但时间成本太高了，几年弯路走下来，机会早就没了。</p>
+                    <div class="problem-number">03</div>
+                    <h3>落地困难</h3>
+                    <p>就算看完原内容，也不知道在中文平台、本土环境怎么执行。<br>看完觉得有道理，然后就没有然后了。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
     <section class="solution">
         <div class="container">
-            <div class="section-label">[SOLUTION]</div>
-            <h2 class="section-title">KEVIN SOLO-OS<br>你的一人企业操作系统</h2>
-            <p class="solution-description">
-                我不是什么大师，也没本事教你赚钱。教人赚钱的都是割韭菜。<br><br>
-                我做的事很简单：<br>
-                • 帮你翻译 Dan Koe、Naval 等人的第一手内容，原汁原味<br>
-                • 帮你节省几年摸索时间，直接看懂大师在说什么<br>
-                • 帮你少走弯路，避开那些我踩过的坑<br>
-                • 让你接触顶级商业思维，扩展眼界<br><br>
-                <strong>仅需 ¥99/年，省下万元学费和几年时间。</strong>
-            </p>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits">
-        <div class="container">
-            <div class="section-label">[CORE VALUE]</div>
-            <h2 class="section-title">三大核心价值</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-number">[01]</div>
-                    <h3>直接看第一手内容</h3>
-                    <p>Dan Koe、Naval 在 Twitter 上说了什么？我帮你翻译成中文，原汁原味，不加水分。你看到的是他们真实的思考，不是二手转述的鸡汤。</p>
+            <div class="section-label">[你能得到什么]</div>
+            <h2 class="section-title">三个价值，帮你真正落地</h2>
+            <div class="solution-grid">
+                <div class="solution-item">
+                    <div class="solution-icon">省钱</div>
+                    <h3>帮你避开高价课的信息差税</h3>
+                    <p>我帮你筛掉了包装加价环节。Dan Koe、Naval 的内容本来就是公开的，99元只是筛选翻译的人工成本，不是"知识的价格"。</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-number">[02]</div>
-                    <h3>省下几年摸索时间</h3>
-                    <p>我花了几年时间关注这些人，踩过很多坑，走过很多弯路。把我整理的清单和经验给你，你可以直接开始，不用重复我的错误。</p>
+                <div class="solution-item">
+                    <div class="solution-icon">省时间</div>
+                    <h3>帮你省掉200+小时的筛选整理</h3>
+                    <p>长视频拆成要点，抽象观点拆成清单，英文内容本地化成中文执行版。拿到就能用，不用自己啃几百小时。</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-number">[03]</div>
-                    <h3>不被割韭菜</h3>
-                    <p>我不教你赚钱，因为教人赚钱的都是骗子。我只是帮你看懂那些真正厉害的人在说什么，扩展你的眼界。剩下的路要你自己走。</p>
+                <div class="solution-item">
+                    <div class="solution-icon">落地</div>
+                    <h3>帮你把海外方法论变成中国本土打法</h3>
+                    <p>每篇内容都标注原始来源，同时给出符合中国平台、文化、用户习惯的落地建议。不是照搬，是翻译+本土化解读。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Preview Section -->
+    <section class="evidence-shell">
+        <div class="container">
+            <div class="section-label">[内容]</div>
+            <h2 class="section-title">你现在能看到的内容</h2>
+            <div class="evidence-grid">
+                <div class="evidence-item">
+                    <div class="evidence-header">
+                        <span class="evidence-icon">📖</span>
+                        <div class="evidence-category">Dan Koe 系列</div>
+                    </div>
+                    <ul class="evidence-list">
+                        <li>《2小时创作者》完整拆解</li>
+                        <li>数字产品定价策略实战框架</li>
+                        <li>从0到10万粉丝的内容路径</li>
+                        <li>创作者变现的3个阶段</li>
+                    </ul>
+                </div>
+                <div class="evidence-item featured">
+                    <div class="evidence-header">
+                        <span class="evidence-icon">💡</span>
+                        <div class="evidence-category">Naval 系列</div>
+                    </div>
+                    <ul class="evidence-list">
+                        <li>财富积累底层逻辑全拆解</li>
+                        <li>如何建立可复利的个人资产</li>
+                        <li>杠杆思维与判断力训练</li>
+                        <li>长期主义的执行方法</li>
+                    </ul>
+                </div>
+                <div class="evidence-item">
+                    <div class="evidence-header">
+                        <span class="evidence-icon">🛠️</span>
+                        <div class="evidence-category">落地工具</div>
+                    </div>
+                    <ul class="evidence-list">
+                        <li>30天冷启动执行清单</li>
+                        <li>内容选题与节奏规划模板</li>
+                        <li>个人定位一句话公式</li>
+                        <li>首批用户转化路径设计</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="evidence-cta">
+                <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button" target="_blank" rel="noreferrer">看完整目录</a>
+                <p class="evidence-note">目录持续更新中，已有 <strong>50+</strong> 篇核心内容</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 试看内容 -->
     <section class="preview">
         <div class="container">
-            <div class="section-label">[FREE PREVIEW]</div>
-            <h2 class="section-title">免费试看内容</h2>
-            <div class="preview-content">
-                <div class="preview-box">
-                    <h3>🎯 Dan Koe 的内容创作框架</h3>
-                    <div class="preview-text">
-                        <p><strong>核心理念：</strong>内容即产品，产品即内容</p>
-                        <ul>
-                            <li><strong>第一步：</strong>确定你的利基市场（Niche）- 不是选择行业，而是选择你想解决的问题</li>
-                            <li><strong>第二步：</strong>建立个人品牌 - 通过持续输出有价值的内容建立信任</li>
-                            <li><strong>第三步：</strong>创造数字产品 - 将你的知识和经验打包成可售卖的产品</li>
-                            <li><strong>第四步：</strong>构建销售漏斗 - 从免费内容到付费产品的自然转化路径</li>
-                        </ul>
-                        <p class="preview-note">💡 这只是冰山一角。完整版包含 50+ 个实战框架和清单。</p>
-                    </div>
+            <div class="section-label">[试看]</div>
+            <h2 class="section-title">内容长什么样？看一段就知道</h2>
+            <div class="preview-card">
+                <div class="preview-meta">
+                    <span class="preview-series">Dan Koe 系列</span>
+                    <span class="preview-tag">节选</span>
                 </div>
-                <div class="preview-box">
-                    <h3>📋 本地化执行清单示例</h3>
-                    <div class="preview-text">
-                        <p><strong>30天个人品牌冷启动清单：</strong></p>
-                        <ul>
-                            <li>✅ 第1-7天：确定定位，撰写个人简介，设计视觉风格</li>
-                            <li>✅ 第8-14天：在小红书/公众号发布 10 篇内容，测试反馈</li>
-                            <li>✅ 第15-21天：优化高互动内容，建立内容模板库</li>
-                            <li>✅ 第22-30天：设计引流产品，搭建付费转化路径</li>
-                        </ul>
-                        <p class="preview-note">💡 订阅后获取完整的 100+ 项执行清单。</p>
-                    </div>
+                <h3 class="preview-title">数字产品定价策略 — 核心要点</h3>
+                <div class="preview-body">
+                    <p><strong>原意提炼：</strong><br>定价不是成本加利润，而是价值感知的锚定。<br>Dan Koe 提出三个定价层次——</p>
+                    <ol class="preview-list">
+                        <li><strong>入口产品（$0-50）</strong>：建立信任，让用户用最低成本认识你。不是"便宜"，是"低决策门槛"。</li>
+                        <li><strong>核心产品（$50-500）</strong>：交付明确结果。用户买的是"我能做到这件事"，不是"我学到了知识"。</li>
+                        <li><strong>深度产品（$500+）</strong>：个性化指导或社区。定价锚定的是"时间节省"和"决策确定性"。</li>
+                    </ol>
+                    <p class="preview-insight"><strong>落地思考：</strong>中文环境下，入口产品建议9.9-49元，核心产品99-399元。关键不是照搬数字，而是理解"定价=用户心理预期 × 价值交付信心"。</p>
+                </div>
+                <div class="preview-fade">
+                    <p>订阅后查看完整框架 + 执行清单 + 适用场景分析</p>
                 </div>
             </div>
-            <p class="preview-note" style="text-align: center; margin-top: 40px; font-size: 16px;">💡 <strong>说明：</strong>我不教你怎么赚钱，我只是把大师的方法翻译给你看。能不能成功，要看你自己的执行力和运气。</p>
-            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button" target="_blank">查看完整内容 →</a>
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing">
+    <section class="audience">
         <div class="container">
-            <div class="section-label">[PRICING]</div>
-            <h2 class="section-title">简单透明的定价</h2>
-            <div class="pricing-card">
-                <div class="price-tag">
-                    <span class="price-amount">¥99</span>
-                    <span class="price-period">/年</span>
+            <div class="section-label">[适合谁]</div>
+            <h2 class="section-title">如果你符合以下情况</h2>
+            <div class="audience-grid">
+                <div class="audience-item fit">
+                    <span class="audience-mark">适合</span>
+                    <p>想开始做个人品牌，但不知道内容怎么和商业连接</p>
                 </div>
-                <h3>核心库订阅</h3>
-                <ul class="pricing-features">
-                    <li>✓ 完整翻译内容库访问权限</li>
-                    <li>✓ 每周更新最新商业思维</li>
-                    <li>✓ FlowUs 知识库永久访问</li>
-                    <li>✓ 50+ 实战框架和清单</li>
-                    <li>✓ 100+ 本地化执行指南</li>
-                </ul>
-                <p class="pricing-note">相当于每天 ¥0.27，省下万元学费和几年弯路</p>
-                <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button" target="_blank">立即订阅 →</a>
+                <div class="audience-item fit">
+                    <span class="audience-mark">适合</span>
+                    <p>想做小而美业务，不想靠大团队起步</p>
+                </div>
+                <div class="audience-item fit">
+                    <span class="audience-mark">适合</span>
+                    <p>不想被高价课收割，想自己判断、自己执行</p>
+                </div>
+                <div class="audience-item unfit">
+                    <span class="audience-mark">不适合</span>
+                    <p>想要万能模板、照抄就能出结果（这种东西不存在）</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-label">[价格对比]</div>
+            <h2 class="section-title">同样是这些内容，你愿意怎么付费？</h2>
+
+            <!-- 价格对比表 -->
+            <div class="price-comparison">
+                <div class="comparison-card other">
+                    <div class="comparison-header">国内高价课</div>
+                    <div class="comparison-price">
+                        <span class="price-big">¥2000-5000</span>
+                        <span class="price-note">甚至更多</span>
+                    </div>
+                    <ul class="comparison-list">
+                        <li class="bad">✗ 内容来源不透明</li>
+                        <li class="bad">✗ 本质是二手包装</li>
+                        <li class="bad">✗ 制造焦虑促成交</li>
+                        <li class="bad">✗ 一次性交付，更新另收费</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card highlight">
+                    <div class="comparison-badge">限时优惠</div>
+                    <div class="comparison-header">SOLO-OS</div>
+                    <div class="comparison-price">
+                        <span class="price-original">¥999</span>
+                        <span class="price-currency">¥</span>
+                        <span class="price-big">99</span>
+                        <span class="price-note">/ 年</span>
+                    </div>
+                    <ul class="comparison-list">
+                        <li class="good">✓ 源头内容公开透明</li>
+                        <li class="good">✓ 原汁原味翻译本地化</li>
+                        <li class="good">✓ 不搞限时优惠套路</li>
+                        <li class="good">✓ 持续更新，不加价</li>
+                    </ul>
+                    <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button" target="_blank" rel="noreferrer">先看目录，再决定</a>
+                </div>
+
+                <div class="comparison-card other">
+                    <div class="comparison-header">自己找+翻译</div>
+                    <div class="comparison-price">
+                        <span class="price-big">200+ 小时</span>
+                        <span class="price-note">时间成本</span>
+                    </div>
+                    <ul class="comparison-list">
+                        <li class="neutral">○ 内容零散难整理</li>
+                        <li class="neutral">○ 需要英文背景知识</li>
+                        <li class="neutral">○ 本地化要自己摸索</li>
+                        <li class="neutral">○ 未必能找到核心内容</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pricing-footer">
+                <p><strong>算一笔账：</strong><br>假设你时薪50元，200小时就是10000元。<br>SOLO-OS 只要99元，相当于你花 <strong>1%</strong> 的钱，拿到同样的核心内容。</p>
+                <p class="pricing-note">目录免费看，内容来源透明。先确认适合自己再订阅。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于Kevin -->
+    <section class="about-kevin">
+        <div class="container">
+            <div class="section-label">[关于]</div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>我是 Kevin，为什么做这个？</h2>
+                    <p>从2020年开始研究海外独立创作者。<br>发现 Dan Koe、Naval、Pieter Levels 这些人真正把一人公司跑通了。<br>但他们的方法论在国内几乎找不到系统的中文版本。</p>
+                    <p>我不想当知识贩子。<br>所以决定做一件简单的事：<strong>把真正能落地的方法论，翻译、拆解、本地化</strong>。<br>然后以接近成本的价格交付。</p>
+                    <p>99元/年，本质上是我筛选和翻译的时间成本。<br>你付的是"省时间"的钱。<br>拿到的是能直接执行的东西。</p>
+                </div>
+                <div class="about-credentials">
+                    <div class="credential-item">
+                        <span class="credential-num">5+</span>
+                        <span class="credential-label">年研究海外创作者</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="credential-num">1000+</span>
+                        <span class="credential-label">篇英文内容筛选</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="credential-num">持续</span>
+                        <span class="credential-label">更新中，不是一次性交付</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 订阅流程 -->
+    <section class="how-to">
+        <div class="container">
+            <div class="section-label">[订阅流程]</div>
+            <h2 class="section-title">怎么订阅？</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <h3>看目录</h3>
+                    <p>点击"看完整目录"，浏览 FlowUs 知识库里的所有内容</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <h3>扫码支付</h3>
+                    <p>在 FlowUs 页面底部找到订阅入口，扫码支付 99 元</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <h3>开始阅读</h3>
+                    <p>支付成功后自动开通权限，手机电脑都能看</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <div class="section-label">[FAQ]</div>
+            <h2 class="section-title">常见问题</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>和几千块的课程有什么区别？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>那些课程的核心内容，本质上就是 Dan Koe、Naval 等人公开的内容。<br>他们包装一下、加点"独家解读"，就卖几千块。<br>SOLO-OS 直接告诉你源头在哪。<br>不制造信息差，不包装二手内容。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>99元能买到什么？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>不是买"知识"，而是买<strong>省下来的时间</strong>。<br>我花了200+小时筛选、翻译、提炼、本地化。<br>你付的是这个人工成本。<br>内容本身是免费的，你也可以自己去找。<br>但你会花更多时间。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>内容来源透明吗？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>完全透明。<br>每篇内容都标注原始来源（视频链接、文章地址、推文账号）。<br>你可以自己去验证、去补充。<br>我不做"独家内幕"，只做翻译和本地化。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>英文一般能看懂吗？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>可以。<br>内容保留原意，但以中文阅读和执行为主。<br>长视频拆成要点，抽象观点拆成清单。<br>不需要先补英文。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>怎么访问？不满意能退款吗？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>FlowUs 知识库，手机电脑都能看。<br>订阅前建议先看免费目录，确认内容适合自己再订阅。<br>虚拟内容一经订阅不支持退款。<br>所以我不设计冲动消费页面——先看再买。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="final-cta">
         <div class="container">
-            <h2 class="cta-title">准备好开始你的一人企业了吗？</h2>
-            <p class="cta-description">加入 KEVIN SOLO-OS，获取顶级商业思维的本地化指南</p>
-            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button large" target="_blank">立即开始 →</a>
+            <h2 class="cta-title">想做一人公司，从源头内容开始</h2>
+            <p class="cta-description">99 元/年，省掉筛选和翻译的时间。每周更新，持续交付价值。</p>
+            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button large" target="_blank" rel="noreferrer">看完整目录</a>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 KEVIN SOLO-OS. 一人企业操作系统.</p>
-            <p class="footer-tagline">我不教你赚钱，我帮你省时间、少走弯路</p>
+            <div class="footer-content">
+                <p class="footer-brand">SOLO-OS</p>
+                <p class="footer-tagline">一人公司方法论 · 中文版</p>
+            </div>
         </div>
     </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="返回顶部">
+        <span>↑</span>
+    </button>
 
     <script src="js/script.js"></script>
 </body>
