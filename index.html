@@ -30,6 +30,15 @@
     <!-- 跳转到主要内容，供辅助技术使用 -->
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
 
+    <!-- 手机端底部固定 CTA 栏 -->
+    <div class="mobile-bottom-bar">
+        <div class="mobile-bottom-price">
+            <strong>¥99 <span>/ 年</span></strong>
+            别人卖一万
+        </div>
+        <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="mobile-bottom-btn" target="_blank" rel="noreferrer">¥99 立即订阅</a>
+    </div>
+
     <div class="progress-bar" id="progressBar"></div>
 
     <!-- 固定顶部CTA栏 -->
@@ -343,5 +352,25 @@
     </button>
 
     <script src="js/script.js"></script>
+    <script>
+        (function() {
+            var bar = document.querySelector('.mobile-bottom-bar');
+            if (!bar) return;
+            var visible = true;
+            window.addEventListener('scroll', function() {
+                var scrollBottom = window.scrollY + window.innerHeight;
+                var distToBottom = document.body.scrollHeight - scrollBottom;
+                if (distToBottom < 500 && visible) {
+                    bar.style.transform = 'translateY(100%)';
+                    bar.style.opacity = '0';
+                    visible = false;
+                } else if (distToBottom >= 500 && !visible) {
+                    bar.style.transform = 'translateY(0)';
+                    bar.style.opacity = '1';
+                    visible = true;
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
