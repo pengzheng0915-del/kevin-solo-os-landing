@@ -1,6 +1,6 @@
 /**
  * KEVIN SOLO-OS Landing Page
- * v5.0 — 路径优化 & 移动端优先
+ * v5.1 — 真实用户体验修复
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -183,5 +183,77 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
         document.body.classList.add('touch-device');
+    }
+
+    // —— v5.1: Copy link + Toast + Mobile overlay —— //
+
+    var toast = document.getElementById('toast');
+    var toastTimer = null;
+
+    function showToast(message) {
+        if (!toast) return;
+        if (toastTimer) clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add('show');
+        toastTimer = setTimeout(function() {
+            toast.classList.remove('show');
+            toastTimer = null;
+        }, 2000);
+    }
+
+    // Copy link buttons
+    var copyButtons = document.querySelectorAll('.copy-link-btn');
+    copyButtons.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var url = this.getAttribute('data-copy');
+            if (!url) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(url).then(function() {
+                    showToast('已复制，请粘贴到浏览器打开');
+                }).catch(function() {
+                    fallbackCopy(url);
+                });
+            } else {
+                fallbackCopy(url);
+            }
+        });
+    });
+
+    function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast('已复制，请粘贴到浏览器打开'); } catch (e) { showToast('复制失败，请手动复制'); }
+        document.body.removeChild(ta);
+    }
+
+    // Mobile bottom bar "看目录" → overlay
+    var mobileDirBtns = document.querySelectorAll('.mobile-bottom-btn.primary');
+    var overlay = document.getElementById('mobileDirOverlay');
+
+    if (overlay) {
+        mobileDirBtns.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                overlay.classList.add('active');
+            });
+        });
+
+        // Close overlay
+        var closeBtn = document.getElementById('mobileDirClose');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                overlay.classList.remove('active');
+            });
+        }
+
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
     }
 });

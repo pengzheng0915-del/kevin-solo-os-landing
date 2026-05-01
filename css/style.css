@@ -1,6 +1,6 @@
 /* ===================================
    KEVIN SOLO-OS Landing Page Styles
-   v5.0 — 路径优化 & 移动端优先
+   v5.1 — 真实用户体验修复
    =================================== */
 
 :root {
@@ -106,6 +106,9 @@ section { padding: 72px 0; }
 }
 .nav-brand { display: flex; flex-direction: column; gap: 2px; }
 .nav-brand-name { font-weight: 800; font-size: 16px; color: var(--color-white); letter-spacing: -0.02em; }
+.nav-brand-full { display: none; }
+.nav-brand-short { display: inline; }
+@media (min-width: 640px) { .nav-brand-full { display: inline; } .nav-brand-short { display: none; } }
 .nav-brand-sub { color: var(--text-muted-dark); font-size: 12px; display: none; }
 @media (min-width: 640px) { .nav-brand-sub { display: block; } }
 
@@ -175,6 +178,52 @@ section { padding: 72px 0; }
     border: 1.5px solid rgba(var(--rgb-gold), 0.4);
 }
 .mobile-bottom-btn.secondary-outline:hover { background: rgba(var(--rgb-gold), 0.1); opacity: 1; }
+
+/* ===== Mobile Directory Overlay ===== */
+.mobile-dir-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(var(--rgb-dark), 0.6);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    align-items: flex-end; justify-content: center;
+}
+.mobile-dir-overlay.active { display: flex; }
+
+.mobile-dir-panel {
+    width: 100%; max-width: 420px;
+    background: var(--color-white); border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 32px 24px calc(24px + env(safe-area-inset-bottom));
+    position: relative; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+.mobile-dir-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: none; background: rgba(var(--rgb-dark), 0.04);
+    font-size: 22px; color: var(--text-muted); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s ease; line-height: 1;
+}
+.mobile-dir-close:hover { background: rgba(var(--rgb-dark), 0.08); color: var(--color-dark); }
+
+.mobile-dir-title { font-size: 20px; font-weight: 700; color: var(--color-dark); margin-bottom: 8px; }
+.mobile-dir-hint { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5; }
+
+.mobile-dir-btn { width: 100%; justify-content: center; margin-bottom: 10px; }
+.mobile-dir-btn:last-child { margin-bottom: 0; }
+
+/* ===== Toast Notification ===== */
+.toast {
+    position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--color-dark); color: var(--color-white);
+    padding: 12px 24px; border-radius: var(--radius-button);
+    font-size: 14px; font-weight: 600; white-space: nowrap;
+    opacity: 0; pointer-events: none; z-index: 3000;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 28px rgba(var(--rgb-dark), 0.3);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* ===== Progress Bar ===== */
 .progress-bar {
@@ -270,6 +319,23 @@ section { padding: 72px 0; }
     max-width: 520px; margin: 0 auto;
     font-size: 13px; color: var(--text-muted); line-height: 1.6;
 }
+
+/* Hero sub actions — copy link */
+.hero-sub-actions {
+    display: flex; justify-content: center; margin-bottom: 16px;
+}
+
+/* Copy link button */
+.copy-link-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 8px 20px; font-size: 13px; font-weight: 600;
+    color: var(--text-muted); background: transparent;
+    border: 1px solid rgba(var(--rgb-dark), 0.08); border-radius: var(--radius-button);
+    cursor: pointer; font-family: inherit;
+    transition: all 0.2s ease;
+}
+.copy-link-btn:hover { color: var(--color-gold); border-color: rgba(var(--rgb-gold), 0.3); }
+.copy-link-btn:active { background: rgba(var(--rgb-gold), 0.06); }
 
 /* ===== 2. Problem ===== */
 .problem, .audience { background-color: var(--color-dark); color: var(--color-white); }
@@ -370,6 +436,9 @@ section { padding: 72px 0; }
 .kb-features li::before { content: "✓"; position: absolute; left: 0; color: #2d6a4f; font-weight: 700; }
 .kb-btn { width: 100%; }
 
+/* KB copy button */
+.kb-copy-btn { width: 100%; margin-top: 12px; }
+
 .flowus-tip-bar {
     max-width: 480px; margin: 24px auto 0; padding: 14px 20px;
     background: rgba(var(--rgb-gold), 0.06); border: 1px solid rgba(var(--rgb-gold), 0.15);
@@ -407,6 +476,10 @@ section { padding: 72px 0; }
     box-shadow: 0 8px 24px rgba(var(--rgb-dark), 0.06);
 }
 .qr-label { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+
+.wechat-id-fallback {
+    margin-top: 10px; font-size: 13px; color: var(--text-muted); text-align: center; line-height: 1.6;
+}
 
 .wechat-inline-action { text-align: center; }
 .wechat-copy-hint {

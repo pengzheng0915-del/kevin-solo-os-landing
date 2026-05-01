@@ -31,7 +31,7 @@
     <header class="top-nav" id="topNav">
         <div class="nav-content">
             <div class="nav-brand">
-                <span class="nav-brand-name">KEVIN 经验产品化</span>
+                <span class="nav-brand-name"><span class="nav-brand-full">KEVIN 经验产品化</span><span class="nav-brand-short">KEVIN</span></span>
                 <span class="nav-brand-sub">把经验变成内容产品</span>
             </div>
             <nav class="nav-actions">
@@ -61,7 +61,13 @@
                 <a href="#wechat-contact" class="secondary-button hero-secondary">加微信问问</a>
             </div>
 
-            <p class="hero-flowus-note">如果 FlowUs 打不开，添加微信发送「知识库」，我直接发你入口。</p>
+            <div class="hero-sub-actions">
+                <button class="copy-link-btn" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">
+                    复制目录链接
+                </button>
+            </div>
+
+            <p class="hero-flowus-note">如果目录打不开，加微信发送「知识库」，我直接发你入口。</p>
         </div>
 
         <div class="scroll-indicator" aria-label="向下滚动">
@@ -201,10 +207,13 @@
                     <li>每周持续更新</li>
                 </ul>
                 <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button kb-btn" target="_blank" rel="noreferrer">查看完整目录和试看内容</a>
+                <button class="copy-link-btn kb-copy-btn" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">
+                    复制目录链接
+                </button>
             </div>
 
             <div class="flowus-tip-bar">
-                <p>如果 FlowUs 打不开，请<strong>复制链接到浏览器</strong>打开，或<strong>添加微信发送「知识库」</strong>，我直接发你。</p>
+                <p>如果目录打不开，<strong>复制上方链接到浏览器</strong>，或<strong>加微信发送「知识库」</strong>，我直接发你入口。</p>
             </div>
         </div>
     </section>
@@ -228,6 +237,7 @@
                         <div class="qr-placeholder">
                             <span class="qr-label">微信扫码添加</span>
                         </div>
+                        <p class="wechat-id-fallback">微信号：kevinpeng09<br>长按复制微信号</p>
                     </div>
                 </div>
                 <div class="wechat-inline-action">
@@ -313,23 +323,23 @@
                         <li>判断适合的内容产品形态</li>
                         <li>给出具体的下一步行动建议</li>
                     </ul>
-                    <a href="#wechat-contact" class="cta-button advanced-btn">预约诊断</a>
+                    <a href="#wechat-contact" class="cta-button advanced-btn">加微信，发送「经验产品化」</a>
                 </div>
                 <!-- 9800 陪跑（视觉弱化） -->
                 <div class="advanced-card advanced-subdued">
                     <div class="advanced-tier">深度陪跑</div>
                     <h3>45 天私教陪跑</h3>
-                    <p class="advanced-desc">适合已经决定系统推进的人。从定位到产品到转化，45 天手把手出成果。</p>
+                    <p class="advanced-desc">适合已经决定系统推进的人。从定位、内容系统、知识库产品到私域转化路径，陪你完整走一遍。</p>
                     <ul class="advanced-features">
                         <li>内容创作系统和选题库搭建</li>
                         <li>知识库产品设计和迭代</li>
                         <li>私域流量和转化路径搭建</li>
                     </ul>
                     <div class="advanced-subdued-price">价格：申请沟通后确认</div>
-                    <a href="#wechat-contact" class="secondary-button advanced-btn-weak">申请沟通</a>
+                    <a href="#wechat-contact" class="secondary-button advanced-btn-weak">加微信，发送「经验产品化」</a>
                 </div>
             </div>
-            <p class="advanced-note">不确定选哪个？先加微信聊聊你的情况，我帮你判断当前最适合的起点。</p>
+            <p class="advanced-note">不确定选哪个？加微信发送「经验产品化」，我帮你判断当前最适合的起点。</p>
         </div>
     </section>
 
@@ -403,7 +413,7 @@
             <p class="cta-description">值不值得继续投入，你自己判断。</p>
             <div class="final-cta-actions">
                 <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button large" target="_blank" rel="noreferrer">看完整目录和试看内容</a>
-                <a href="#wechat-contact" class="secondary-button final-secondary">添加微信咨询</a>
+                <a href="#wechat-contact" class="secondary-button final-secondary">加微信，发送「经验产品化」</a>
             </div>
         </div>
     </section>
@@ -416,6 +426,20 @@
             </div>
         </div>
     </footer>
+
+    <!-- 手机端目录选项弹层 -->
+    <div class="mobile-dir-overlay" id="mobileDirOverlay">
+        <div class="mobile-dir-panel">
+            <button class="mobile-dir-close" id="mobileDirClose">×</button>
+            <h3 class="mobile-dir-title">查看知识库目录</h3>
+            <p class="mobile-dir-hint">如果 FlowUs 打不开，请复制链接到浏览器</p>
+            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button mobile-dir-btn" target="_blank" rel="noreferrer">打开 FlowUs 目录</a>
+            <button class="secondary-button mobile-dir-btn mobile-dir-copy" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">复制目录链接</button>
+        </div>
+    </div>
+
+    <!-- Toast 提示 -->
+    <div class="toast" id="toast">已复制，请粘贴到浏览器打开</div>
 
     <script src="js/script.js"></script>
 </body>
