@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>35+副业定位诊断｜Kevin 彭峥</title>
+  <meta name="description" content="5分钟测出你更适合靠什么赚钱：知识产品、咨询服务、内容IP、模板工具，还是本地服务。" />
+
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --card: #fffaf2;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --line: #e4d8c9;
+      --primary: #1e1a17;
+      --accent: #b8874a;
+      --accent-dark: #875f32;
+      --soft: #efe4d3;
+      --radius: 22px;
+      --shadow: 0 22px 70px rgba(53, 40, 25, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(184, 135, 74, 0.2), transparent 35%),
+        linear-gradient(180deg, #f8f1e7 0%, #f7f2ea 45%, #fbf7f0 100%);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 242, 234, 0.86);
+      border-bottom: 1px solid rgba(228, 216, 201, 0.75);
+    }
+
+    .nav-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 44px;
+      align-items: center;
+      padding: 72px 0 54px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, 0.76);
+      color: var(--accent-dark);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 22px 0 18px;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.04;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-sub {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .hero-sub strong {
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 15px 22px;
+      font-size: 16px;
+      font-weight: 900;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(31, 26, 23, 0.12);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 250, 242, 0.82);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .btn[disabled] {
+      opacity: .42;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .trust-pill {
+      padding: 7px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, .6);
+    }
+
+    .hero-card {
+      background: rgba(255, 250, 242, 0.9);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: rgba(184, 135, 74, 0.12);
+    }
+
+    .mini-title {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .preview-list {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .preview-item {
+      padding: 17px;
+      background: #fffdf8;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    .preview-item b {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .preview-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      color: var(--accent-dark);
+      font-weight: 900;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 17px;
+      margin-top: 12px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255, 250, 242, 0.88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 14px 42px rgba(53, 40, 25, 0.06);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 21px;
+      line-height: 1.28;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .number {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .quiz-wrap {
+      background: rgba(255, 250, 242, 0.92);
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .quiz-top {
+      padding: 24px 26px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .progress-text {
+      font-weight: 900;
+      color: var(--accent-dark);
+    }
+
+    .progress-bar {
+      flex: 1;
+      height: 9px;
+      background: var(--soft);
+      border-radius: 999px;
+      overflow: hidden;
+      max-width: 360px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 12.5%;
+      background: var(--accent);
+      border-radius: 999px;
+      transition: width .22s ease;
+    }
+
+    .quiz-body {
+      padding: 30px;
+    }
+
+    .question-title {
+      font-size: clamp(24px, 4vw, 36px);
+      line-height: 1.22;
+      letter-spacing: -0.035em;
+      margin: 0 0 8px;
+    }
+
+    .question-help {
+      margin: 0 0 24px;
+      color: var(--muted);
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      border: 1px solid var(--line);
+      background: #fffdf8;
+      border-radius: 18px;
+      padding: 17px 18px;
+      cursor: pointer;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: border .18s ease, background .18s ease, transform .18s ease;
+    }
+
+    .option:hover {
+      transform: translateY(-1px);
+      border-color: rgba(184, 135, 74, 0.65);
+    }
+
+    .option.active {
+      border-color: var(--accent);
+      background: #fff6e7;
+    }
+
+    .option-dot {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--line);
+      border-radius: 50%;
+      flex: 0 0 auto;
+      margin-top: 2px;
+      position: relative;
+    }
+
+    .option.active .option-dot {
+      border-color: var(--accent);
+    }
+
+    .option.active .option-dot::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .option strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .option span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .quiz-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .result {
+      display: none;
+      padding: 30px;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, #fffaf2, #f6ebdb);
+    }
+
+    .result.show {
+      display: block;
+    }
+
+    .result-card {
+      background: #fffdf8;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 26px;
+    }
+
+    .result-type {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .result h3 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+    }
+
+    .result p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .result-box {
+      background: #fff8ed;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .result-box b {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .result-box span {
+      color: var(--muted);
+    }
+
+    .result-box ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .result-cta {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .offer {
+      border: 1px solid var(--line);
+      background: #fffdf8;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .offer .tag {
+      font-size: 13px;
+      color: var(--accent-dark);
+      font-weight: 900;
+    }
+
+    .offer h4 {
+      margin: 6px 0 5px;
+      font-size: 19px;
+    }
+
+    .offer p {
+      font-size: 14px;
+      min-height: 48px;
+    }
+
+    .offer .btn {
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .avatar-card {
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        linear-gradient(145deg, rgba(31, 26, 23, .94), rgba(90, 66, 38, .92)),
+        radial-gradient(circle at top right, rgba(184, 135, 74, .52), transparent 42%);
+      color: #fff;
+    }
+
+    .avatar-name {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    .avatar-desc {
+      color: rgba(255,255,255,.74);
+      margin-top: 12px;
+    }
+
+    .proof-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 18px;
+    }
+
+    .proof-item {
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fffdf8;
+    }
+
+    .proof-item b {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .proof-item span {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .not-fit {
+      background: rgba(31, 26, 23, .95);
+      color: #fff;
+      border-radius: 34px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .not-fit h2 {
+      color: #fff;
+    }
+
+    .not-fit p,
+    .not-fit li {
+      color: rgba(255,255,255,.74);
+    }
+
+    .not-fit ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 58px 24px 72px;
+    }
+
+    .final-cta h2 {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .final-cta p {
+      max-width: 640px;
+      margin: 16px auto 24px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(31, 26, 23, .94);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 200;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .hero,
+      .about,
+      .not-fit {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .grid-3,
+      .result-grid,
+      .result-cta {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .progress-bar {
+        width: 100%;
+        max-width: none;
+      }
+
+      .quiz-body,
+      .result {
+        padding: 22px;
+      }
+
+      .quiz-actions {
+        position: sticky;
+        bottom: 0;
+        background: rgba(255, 250, 242, .94);
+        backdrop-filter: blur(14px);
+        padding: 12px 0 0;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .nav-inner {
+        height: 60px;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">K</span>
+        <span>Kevin 彭峥｜35+副业定位诊断</span>
+      </a>
+      <a class="nav-cta" href="#quiz">开始测试</a>
+    </div>
+  </nav>
+
+  <main id="top" class="page">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">35+职场人第二收入定位测试</div>
+        <h1>别再盲目副业，先测清你靠什么赚钱</h1>
+        <p class="hero-sub">
+          5分钟，8道题。根据你的<strong>职业经验、时间状态、表达能力、交付能力和收入压力</strong>，
+          判断你更适合做知识产品、咨询服务、内容IP、模板工具，还是本地服务。
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#quiz">开始测试，生成我的副业方向</a>
+          <a class="btn btn-ghost" href="#method">先看判断逻辑</a>
+        </div>
+
+        <div class="trust-row">
+          <span class="trust-pill">无需登录</span>
+          <span class="trust-pill">不推暴富项目</span>
+          <span class="trust-pill">适合35+低成本验证</span>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="mini-title">测完你会得到</div>
+        <div class="preview-list">
+          <div class="preview-item">
+            <b>你的副业类型</b>
+            <span>判断你更适合靠经验、表达、工具、服务还是资源变现。</span>
+          </div>
+          <div class="preview-item">
+            <b>你的当前卡点</b>
+            <span>看清是方向不清、产品不清、不会成交，还是行动太散。</span>
+          </div>
+          <div class="preview-item">
+            <b>7天启动建议</b>
+            <span>给出一个今天就能开始的小动作，而不是继续空想。</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-kicker">为什么你总是开始不了</div>
+        <h2>多数副业失败，不是因为你不努力</h2>
+        <p class="section-desc">真正的问题通常不是没有项目，而是没有把自己的经验变成一个可交付、可验证、可收费的起点。</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>方向太散</h3>
+          <p>看到项目就心动，但不知道哪个适合自己，最后什么都试一点，什么都没做深。</p>
+        </div>
+        <div class="card">
+          <h3>经验没产品化</h3>
+          <p>明明做过很多事，却说不清楚别人为什么要为你的经验付费。</p>
+        </div>
+        <div class="card">
+          <h3>只学习不成交</h3>
+          <p>课程越买越多，笔记越记越厚，但真正发布、报价、收款迟迟没开始。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="section-head">
+        <div class="section-kicker">解决方案</div>
+        <h2>先定位，再启动，不靠运气试错</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="number">01</span>
+          <h3>识别经验资产</h3>
+          <p>从职业、能力、时间、收入压力里找出真正可复用的部分。</p>
+        </div>
+        <div class="card">
+          <span class="number">02</span>
+          <h3>匹配副业类型</h3>
+          <p>判断你更适合知识产品、咨询服务、内容IP、模板工具还是本地服务。</p>
+        </div>
+        <div class="card">
+          <span class="number">03</span>
+          <h3>给出下一步路径</h3>
+          <p>把"想做副业"变成一个可以在7天内启动的小动作。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <div class="section-head">
+        <div class="section-kicker">开始测试</div>
+        <h2>8道题，测出你的第二收入启动方向</h2>
+        <p class="section-desc">每题只选最接近你当前状态的一项。不要选理想状态，选真实状态。</p>
+      </div>
+
+      <div class="quiz-wrap">
+        <div class="quiz-top">
+          <div class="progress-text" id="progressText">第 1 / 8 题</div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="quiz-body" id="quizBody"></div>
+
+        <div class="result" id="result"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="about">
+        <div class="card avatar-card">
+          <div>
+            <div class="avatar-name">Kevin 彭峥</div>
+            <div class="avatar-desc">46岁离开职场后，重新搭建自己的第二收入系统。</div>
+          </div>
+          <div class="avatar-desc">
+            不教暴富项目，不推荐乱七八糟的风口。只帮35+职场人把经验、能力和资源拆成能交付、能验证、能收费的产品或服务。
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-kicker">个人IP信任区</div>
+          <h2>这不是算命，是一次低成本试错前的方向判断</h2>
+          <p class="section-desc">
+            你不需要马上辞职，也不需要盲目跟风。先找到你最容易启动、最容易验证、最不容易半途而废的路径。
+          </p>
+
+          <div class="proof-list">
+            <div class="proof-item">
+              <b>35+人群定位</b>
+              <span>面向有经验、有压力、有转型需求的人，不面向幻想一夜暴富的人。</span>
+            </div>
+            <div class="proof-item">
+              <b>经验变现路径</b>
+              <span>不是追风口，而是把你已有的能力拆成产品、服务或内容。</span>
+            </div>
+            <div class="proof-item">
+              <b>轻启动验证</b>
+              <span>先做最小交付，先验证真实需求，再决定是否投入更多。</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="not-fit">
+        <div>
+          <div class="section-kicker">先说清楚</div>
+          <h2>这个测试不适合所有人</h2>
+          <p>越敢说不适合谁，越能筛选出真正需要的人。</p>
+        </div>
+        <div>
+          <ul>
+            <li>想找一夜暴富项目的人，不适合。</li>
+            <li>完全不愿意输出内容或服务的人，不适合。</li>
+            <li>只想收藏方法、不愿意行动的人，不适合。</li>
+            <li>希望别人替你赚钱的人，不适合。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div class="section-kicker">产品阶梯</div>
+        <h2>测完后，你可以按阶段选择</h2>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="number">入门</span>
+          <h3>9.9 完整报告</h3>
+          <p>适合想先看清方向的人。拿到更完整的副业类型、卡点和启动建议。</p>
+        </div>
+        <div class="card">
+          <span class="number">诊断</span>
+          <h3>199 人工诊断</h3>
+          <p>适合已经卡住、想让人帮你拆出第一个可卖产品的人。</p>
+        </div>
+        <div class="card">
+          <span class="number">陪跑</span>
+          <h3>45天私教陪跑</h3>
+          <p>适合想真正做出产品、持续发内容、开始获得成交反馈的人。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <h2>先用5分钟，少走3个月弯路</h2>
+      <p>不要再凭感觉选项目。先看清你适合什么，再决定要不要投入时间和钱。</p>
+      <a class="btn btn-primary" href="#quiz">立即开始测试</a>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">已复制</div>
+
+  <script>
+    /*
+      你只需要改这里：
+      如果你有真实付款链接，就把下面 3 个链接替换掉。
+      如果没有，就先保持默认，它会跳到 /wechat/ 页面。
+    */
+    const OFFER_LINKS = {
+      report: "/wechat/?product=9.9完整报告",
+      diagnose: "/wechat/?product=199人工诊断",
+      coach: "/wechat/?product=45天私教陪跑"
+    };
+
+    const questions = [
+      {
+        title: "过去3年里，别人最常向你请教哪类问题？",
+        help: "这能判断你的经验资产在哪里。",
+        options: [
+          { label: "职场经验、管理、行业判断", desc: "别人会问你怎么处理工作、团队、职业选择。", scores: { consulting: 3, knowledge: 2 } },
+          { label: "技术工具、效率方法、流程模板", desc: "别人会问你工具怎么用、流程怎么搭、表格怎么做。", scores: { template: 3, knowledge: 2 } },
+          { label: "表达、写作、账号、内容运营", desc: "别人会问你怎么写、怎么发、怎么做内容。", scores: { content: 3, knowledge: 1 } },
+          { label: "本地资源、人脉、具体服务", desc: "别人会问你找谁、怎么买、怎么对接。", scores: { local: 3, consulting: 1 } },
+          { label: "暂时没人请教我", desc: "你还需要先挖掘可被他人需要的经验。", scores: { knowledge: 1 } }
+        ]
+      },
+      {
+        title: "你现在每周能稳定投入多少时间？",
+        help: "时间决定你适合轻启动，还是深度项目。",
+        options: [
+          { label: "每周少于3小时", desc: "适合先做低维护、轻交付的小产品。", scores: { template: 3, knowledge: 2 } },
+          { label: "每周3-7小时", desc: "适合内容验证或小型咨询。", scores: { content: 2, consulting: 2, knowledge: 1 } },
+          { label: "每周7-15小时", desc: "可以做连续内容、咨询服务或系统产品。", scores: { content: 2, consulting: 2, knowledge: 2 } },
+          { label: "每周15小时以上", desc: "可以尝试较完整的个人IP和服务闭环。", scores: { content: 3, consulting: 2, local: 1 } }
+        ]
+      },
+      {
+        title: "你对公开表达的接受程度如何？",
+        help: "这决定你是否适合做内容IP。",
+        options: [
+          { label: "愿意露脸、愿意持续表达", desc: "适合做个人IP和内容转化。", scores: { content: 4 } },
+          { label: "可以写文章，但不想露脸", desc: "适合图文、公众号、小红书、知识产品。", scores: { knowledge: 3, content: 2 } },
+          { label: "只想低调输出文档或模板", desc: "适合模板工具、资料包、知识库。", scores: { template: 4, knowledge: 2 } },
+          { label: "不想公开表达，只想私下成交", desc: "适合熟人咨询、本地服务、小范围转介绍。", scores: { consulting: 2, local: 3 } }
+        ]
+      },
+      {
+        title: "你最能接受哪种交付方式？",
+        help: "副业不是想法，最终要交付。",
+        options: [
+          { label: "一对一沟通，帮别人分析问题", desc: "适合咨询诊断类服务。", scores: { consulting: 4 } },
+          { label: "做一份资料、课程、知识库", desc: "适合知识产品。", scores: { knowledge: 4 } },
+          { label: "做模板、表格、工具包", desc: "适合模板工具类产品。", scores: { template: 4 } },
+          { label: "持续发内容吸引客户", desc: "适合内容IP。", scores: { content: 4 } },
+          { label: "帮人对接资源或完成具体事务", desc: "适合本地服务或资源型副业。", scores: { local: 4 } }
+        ]
+      },
+      {
+        title: "你现在最大的卡点是什么？",
+        help: "卡点不同，下一步完全不同。",
+        options: [
+          { label: "不知道自己适合什么方向", desc: "需要先定位，不要急着做产品。", scores: { knowledge: 1, consulting: 1, template: 1 } },
+          { label: "有方向，但不知道做成什么产品", desc: "需要产品化拆解。", scores: { knowledge: 3, template: 2 } },
+          { label: "有产品，但不知道怎么获客", desc: "需要内容和信任建设。", scores: { content: 3, consulting: 1 } },
+          { label: "有人问，但我不敢报价", desc: "需要咨询成交路径。", scores: { consulting: 3 } },
+          { label: "我有资源，但不会包装", desc: "适合资源服务化。", scores: { local: 3 } }
+        ]
+      },
+      {
+        title: "你希望第一笔副业收入来自哪里？",
+        help: "这会影响你的启动路径。",
+        options: [
+          { label: "卖一份低价资料或报告", desc: "适合知识产品冷启动。", scores: { knowledge: 4 } },
+          { label: "收一笔咨询或诊断费", desc: "适合专家经验变现。", scores: { consulting: 4 } },
+          { label: "通过内容吸引客户私信", desc: "适合内容IP路径。", scores: { content: 4 } },
+          { label: "卖模板、工具、清单", desc: "适合工具模板变现。", scores: { template: 4 } },
+          { label: "帮身边人解决具体问题", desc: "适合本地服务或熟人服务。", scores: { local: 4 } }
+        ]
+      },
+      {
+        title: "你目前最接近哪种资源状态？",
+        help: "资源决定冷启动难度。",
+        options: [
+          { label: "有行业经验，但没有客户池", desc: "先做内容和低价产品验证。", scores: { knowledge: 2, content: 2 } },
+          { label: "有熟人圈，但没正式卖过", desc: "适合从小范围诊断或服务开始。", scores: { consulting: 3, local: 2 } },
+          { label: "有工具能力，能做模板或流程", desc: "适合先做可复制交付。", scores: { template: 4 } },
+          { label: "有表达能力，但没有产品", desc: "适合内容先行，再反推产品。", scores: { content: 3, knowledge: 1 } },
+          { label: "有本地资源或供应链", desc: "适合本地服务切入。", scores: { local: 4 } }
+        ]
+      },
+      {
+        title: "你最想避免哪种副业状态？",
+        help: "避坑比冲动开始更重要。",
+        options: [
+          { label: "每天发内容，但没人买", desc: "需要更强产品化和成交设计。", scores: { knowledge: 2, consulting: 2 } },
+          { label: "做了一堆资料，但没人看见", desc: "需要内容获客。", scores: { content: 3 } },
+          { label: "一直服务别人，把自己累死", desc: "需要产品化和模板化。", scores: { template: 3, knowledge: 2 } },
+          { label: "不敢报价，一直免费帮忙", desc: "需要咨询收费结构。", scores: { consulting: 3 } },
+          { label: "跟风项目，最后又放弃", desc: "需要先从已有资源开始。", scores: { local: 2, knowledge: 1 } }
+        ]
+      }
+    ];
+
+    const resultMap = {
+      knowledge: {
+        type: "知识产品型",
+        title: "你适合先把经验做成一份可交付的知识产品",
+        summary: "你的优势不是体力和流量，而是过去多年积累的经验。你应该先做一个小而清晰的产品，比如清单、报告、知识库、训练营大纲，而不是一上来做大课程。",
+        stuck: "容易想得太大，产品范围过宽，最后迟迟不能上线。",
+        path: "先做一个99元以内的小产品，用真实反馈验证需求。",
+        actions: [
+          "列出你过去3年最常解决的10个问题。",
+          "从中选一个最具体、最痛的问题做成小产品。",
+          "写一篇文章或朋友圈，测试是否有人愿意私信。"
+        ],
+        recommend: "优先查看9.9完整报告，看清你的产品切口。"
+      },
+      consulting: {
+        type: "咨询服务型",
+        title: "你适合从一次人工诊断或咨询服务开始",
+        summary: "你真正值钱的是判断力和解决问题的能力。相比先做课程，你更适合先通过一对一诊断验证客户愿不愿意为你的经验付费。",
+        stuck: "容易免费帮忙，不敢报价，或者不知道怎么把一次聊天变成一次正式服务。",
+        path: "先设计一个明确边界的199元诊断服务。",
+        actions: [
+          "写清楚你能帮谁解决什么问题。",
+          "设计一个60分钟诊断流程，不要无限服务。",
+          "找3个熟人或潜在客户测试报价。"
+        ],
+        recommend: "优先预约199人工诊断，帮你拆出第一个可卖服务。"
+      },
+      content: {
+        type: "内容IP型",
+        title: "你适合通过持续内容建立信任，再转化产品或服务",
+        summary: "你的优势在表达、观点和持续影响他人。你不应该只做工具或资料，而应该用内容让别人先相信你，再购买你的产品或服务。",
+        stuck: "容易只追热点，内容很多但没有人设、产品和转化路径。",
+        path: "先固定一个人群、一个问题、一个内容栏目，连续输出14天。",
+        actions: [
+          "确定你的目标人群：35+职场人、转型者或副业探索者。",
+          "设计3个固定栏目，比如误区、案例、行动建议。",
+          "每条内容都引导用户做测试或私信。"
+        ],
+        recommend: "适合申请45天陪跑，把内容、产品、成交一起打通。"
+      },
+      template: {
+        type: "模板工具型",
+        title: "你适合做模板、清单、流程表或AI工具包",
+        summary: "你适合把复杂经验整理成可复用工具。相比天天直播或大量社交，你可以先做低维护、可复制、标准化交付的产品。",
+        stuck: "容易做得太散，工具很多，但没有围绕一个明确场景解决问题。",
+        path: "先做一个解决单一问题的模板工具包。",
+        actions: [
+          "选一个你最熟悉的高频场景。",
+          "做一个模板、表格或提示词包。",
+          "找5个人试用，收集他们卡在哪里。"
+        ],
+        recommend: "优先查看9.9完整报告，确认你的模板产品方向。"
+      },
+      local: {
+        type: "本地服务型",
+        title: "你适合从熟人圈、本地资源或具体服务开始变现",
+        summary: "你的优势可能不是互联网表达，而是资源、人脉、线下信任或具体执行。你不必强行做IP，可以先从身边真实需求切入。",
+        stuck: "容易低估自己的资源价值，也容易把服务做得太杂。",
+        path: "先设计一个小范围、明确交付、可转介绍的服务。",
+        actions: [
+          "列出身边人最近愿意花钱解决的5个问题。",
+          "选一个你能交付或能对接资源的问题。",
+          "设计一个清晰报价和服务边界。"
+        ],
+        recommend: "优先预约199人工诊断，帮你把资源包装成可收费服务。"
+      }
+    };
+
+    let current = 0;
+    let answers = [];
+
+    const quizBody = document.getElementById("quizBody");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    const resultEl = document.getElementById("result");
+    const toast = document.getElementById("toast");
+
+    function renderQuestion() {
+      const q = questions[current];
+      const selectedIndex = answers[current];
+
+      progressText.textContent = `第 ${current + 1} / ${questions.length} 题`;
+      progressFill.style.width = `${((current + 1) / questions.length) * 100}%`;
+
+      quizBody.innerHTML = `
+        <h3 class="question-title">${q.title}</h3>
+        <p class="question-help">${q.help}</p>
+
+        <div class="options">
+          ${q.options.map((option, index) => `
+            <div class="option ${selectedIndex === index ? "active" : ""}" data-index="${index}">
+              <span class="option-dot"></span>
+              <div>
+                <strong>${option.label}</strong>
+                <span>${option.desc}</span>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+
+        <div class="quiz-actions">
+          <button class="btn btn-ghost" id="prevBtn" ${current === 0 ? "disabled" : ""}>上一题</button>
+          <button class="btn btn-primary" id="nextBtn" ${selectedIndex === undefined ? "disabled" : ""}>
+            ${current === questions.length - 1 ? "生成我的诊断结果" : "下一题"}
+          </button>
+        </div>
+      `;
+
+      document.querySelectorAll(".option").forEach(optionEl => {
+        optionEl.addEventListener("click", () => {
+          answers[current] = Number(optionEl.dataset.index);
+          renderQuestion();
+        });
+      });
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        if (current > 0) {
+          current--;
+          renderQuestion();
+        }
+      });
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        if (answers[current] === undefined) return;
+
+        if (current < questions.length - 1) {
+          current++;
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      });
+    }
+
+    function calculateResult() {
+      const scores = {
+        knowledge: 0,
+        consulting: 0,
+        content: 0,
+        template: 0,
+        local: 0
+      };
+
+      answers.forEach((answerIndex, qIndex) => {
+        const selected = questions[qIndex].options[answerIndex];
+        Object.entries(selected.scores).forEach(([key, value]) => {
+          scores[key] += value;
+        });
+      });
+
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+      return {
+        winner: sorted[0][0],
+        second: sorted[1][0],
+        scores,
+        data: resultMap[sorted[0][0]],
+        secondData: resultMap[sorted[1][0]]
+      };
+    }
+
+    function showResult() {
+      const { data, secondData } = calculateResult();
+
+      resultEl.classList.add("show");
+      resultEl.innerHTML = `
+        <div class="result-card" id="resultCard">
+          <div class="result-type">${data.type}</div>
+          <h3>${data.title}</h3>
+          <p>${data.summary}</p>
+
+          <div class="result-grid">
+            <div class="result-box">
+              <b>你的当前卡点</b>
+              <span>${data.stuck}</span>
+            </div>
+
+            <div class="result-box">
+              <b>建议启动路径</b>
+              <span>${data.path}</span>
+            </div>
+
+            <div class="result-box">
+              <b>7天行动建议</b>
+              <ul>
+                ${data.actions.map(action => `<li>${action}</li>`).join("")}
+              </ul>
+            </div>
+
+            <div class="result-box">
+              <b>辅助方向</b>
+              <span>你的第二匹配方向是：${secondData.type}。说明你可以用它作为辅助能力，但不要一开始就分散精力。</span>
+            </div>
+          </div>
+
+          <div class="result-box" style="margin-top:14px;">
+            <b>我的建议</b>
+            <span>${data.recommend}</span>
+          </div>
+
+          <div class="result-cta">
+            <div class="offer">
+              <div class="tag">入门</div>
+              <h4>9.9完整报告</h4>
+              <p>看清你的完整副业类型、卡点和启动路径。</p>
+              <button class="btn btn-ghost" onclick="goOffer('report')">查看完整报告</button>
+            </div>
+
+            <div class="offer">
+              <div class="tag">诊断</div>
+              <h4>199人工诊断</h4>
+              <p>我帮你拆出第一个可卖产品或服务。</p>
+              <button class="btn btn-primary" onclick="goOffer('diagnose')">预约人工诊断</button>
+            </div>
+
+            <div class="offer">
+              <div class="tag">陪跑</div>
+              <h4>45天私教陪跑</h4>
+              <p>从定位、产品、内容到成交，一起落地。</p>
+              <button class="btn btn-ghost" onclick="goOffer('coach')">申请陪跑</button>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+            <button class="btn btn-primary" onclick="copyResult()">复制我的测试结果</button>
+            <button class="btn btn-ghost" onclick="restartQuiz()">重新测试</button>
+          </div>
+        </div>
+      `;
+
+      resultEl.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function goOffer(type) {
+      const url = OFFER_LINKS[type];
+
+      if (!url) {
+        showToast("链接未配置");
+        return;
+      }
+
+      window.location.href = url;
+    }
+
+    function copyResult() {
+      const { data, secondData } = calculateResult();
+
+      const text = `我的35+副业定位测试结果：${data.type}
+
+${data.title}
+
+当前卡点：
+${data.stuck}
+
+建议路径：
+${data.path}
+
+7天行动：
+1. ${data.actions[0]}
+2. ${data.actions[1]}
+3. ${data.actions[2]}
+
+辅助方向：
+${secondData.type}
+
+测试入口：
+https://kevinsolo.cn/fuye/`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("已复制结果文案");
+      }).catch(() => {
+        showToast("复制失败，请手动截图保存");
+      });
+    }
+
+    function restartQuiz() {
+      current = 0;
+      answers = [];
+      resultEl.classList.remove("show");
+      resultEl.innerHTML = "";
+      renderQuestion();
+      document.getElementById("quiz").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2100);
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
