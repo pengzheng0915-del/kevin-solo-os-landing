@@ -1,22 +1,22 @@
 /**
  * KEVIN SOLO-OS Landing Page
- * Interactive Functionality v4.0
- * Round 3: Updated for new HTML structure
+ * v5.0 — 路径优化 & 移动端优先
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    const progressBar = document.getElementById('progressBar');
-    const topNav = document.getElementById('topNav');
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    const hero = document.querySelector('.hero');
-    const sections = document.querySelectorAll('section:not(.hero)');
-    const revealElements = document.querySelectorAll(
-        '.problem-item, .solution-card, .kb-card, .sample-card, .advanced-card, .credential-item, .audience-col'
+    var progressBar = document.getElementById('progressBar');
+    var topNav = document.getElementById('topNav');
+    var faqQuestions = document.querySelectorAll('.faq-question');
+    var hero = document.querySelector('.hero');
+    var sections = document.querySelectorAll('section:not(.hero)');
+    var revealElements = document.querySelectorAll(
+        '.problem-item, .kb-card, .sample-card, .advanced-card, .credential-item, .audience-col'
     );
+    var mobileBar = document.querySelector('.mobile-bottom-bar');
 
-    const heroHeight = hero ? hero.offsetHeight : 600;
-    let lastScrollY = 0;
-    let ticking = false;
+    var heroHeight = hero ? hero.offsetHeight : 600;
+    var lastScrollY = 0;
+    var ticking = false;
 
     function onScroll() {
         lastScrollY = window.scrollY;
@@ -31,15 +31,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateUI() {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((lastScrollY / docHeight) * 100, 100);
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var scrollPercent = Math.min((lastScrollY / docHeight) * 100, 100);
         progressBar.style.width = scrollPercent + '%';
 
-        // Show/hide top nav
-        if (lastScrollY > heroHeight * 0.5) {
+        // Top nav visibility
+        if (lastScrollY > heroHeight * 0.4) {
             topNav.classList.add('visible');
         } else {
             topNav.classList.remove('visible');
+        }
+
+        // Mobile bottom bar: hide near footer
+        if (mobileBar) {
+            var scrollBottom = lastScrollY + window.innerHeight;
+            var distToBottom = document.body.scrollHeight - scrollBottom;
+            if (distToBottom < 400) {
+                mobileBar.style.transform = 'translateY(120%)';
+                mobileBar.style.opacity = '0';
+                mobileBar.style.pointerEvents = 'none';
+            } else {
+                mobileBar.style.transform = 'translateY(0)';
+                mobileBar.style.opacity = '1';
+                mobileBar.style.pointerEvents = 'auto';
+            }
         }
 
         ticking = false;
@@ -54,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleFaq(this);
         });
 
-        // Keyboard support
         question.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -75,23 +89,23 @@ document.addEventListener('DOMContentLoaded', function() {
             if (btn) btn.setAttribute('aria-expanded', 'false');
         });
 
-        // Toggle current
+        // Toggle current (only if it wasn't already active)
         if (!isActive) {
             faqItem.classList.add('active');
             questionElement.setAttribute('aria-expanded', 'true');
         }
     }
 
-    // Set initial aria-expanded on FAQ buttons
+    // Ensure aria-expanded matches initial active state (first item is active in HTML)
     faqQuestions.forEach(function(q) {
-        q.setAttribute('aria-expanded', 'false');
+        var item = q.closest('.faq-item');
+        if (item && !item.classList.contains('active')) {
+            q.setAttribute('aria-expanded', 'false');
+        }
     });
 
     // Section fade-in observer
-    var sectionObserverOptions = {
-        threshold: 0.08,
-        rootMargin: '0px 0px -60px 0px'
-    };
+    var sectionObserverOptions = { threshold: 0.06, rootMargin: '0px 0px -60px 0px' };
 
     var sectionObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
@@ -107,15 +121,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Element reveal observer
-    var elementObserverOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
-    };
+    var elementObserverOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
 
     var elementObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry, index) {
             if (entry.isIntersecting) {
-                var delay = index * 80;
+                var delay = Math.min(index, 4) * 80;
                 setTimeout(function() {
                     entry.target.classList.add('reveal', 'visible');
                 }, delay);
@@ -128,14 +139,14 @@ document.addEventListener('DOMContentLoaded', function() {
         elementObserver.observe(el);
     });
 
-    // Hero entrance animation
+    // Hero entrance
     if (hero) {
         requestAnimationFrame(function() {
             hero.classList.add('hero-enter');
         });
     }
 
-    // Smooth scroll for anchor links
+    // Smooth scroll anchors
     var anchorLinks = document.querySelectorAll('a[href^="#"]');
     anchorLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
@@ -144,16 +155,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 var targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             }
         });
     });
 
-    // Touch device optimizations
+    // Touch device detection
     var touchStartY = 0;
 
     document.addEventListener('touchstart', function(e) {
@@ -162,10 +170,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('touchend', function(e) {
         var touchEndY = e.changedTouches[0].clientY;
-        var diff = Math.abs(touchEndY - touchStartY);
-
-        if (diff < 10) {
-            var target = e.target.closest('.cta-button, .secondary-button, .nav-btn');
+        if (Math.abs(touchEndY - touchStartY) < 10) {
+            var target = e.target.closest('.cta-button, .secondary-button, .nav-btn, .mobile-bottom-btn');
             if (target) {
                 target.classList.add('touch-active');
                 setTimeout(function() {
@@ -175,9 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, { passive: true });
 
-    // Detect touch device
-    var isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
         document.body.classList.add('touch-device');
     }
 });
