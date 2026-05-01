@@ -35,7 +35,7 @@
                 <span class="nav-brand-sub">把经验变成内容产品</span>
             </div>
             <nav class="nav-actions">
-                <a href="#knowledge-base" class="nav-btn">查看目录</a>
+                <a href="javascript:void(0)" class="nav-btn dir-overlay-trigger">查看目录</a>
                 <a href="#wechat-contact" class="nav-btn nav-btn-outline">加微信</a>
             </nav>
         </div>
@@ -43,7 +43,7 @@
 
     <!-- 手机端底部固定 CTA -->
     <div class="mobile-bottom-bar">
-        <a href="#knowledge-base" class="mobile-bottom-btn primary">看目录</a>
+        <a href="javascript:void(0)" class="mobile-bottom-btn primary dir-overlay-trigger">看目录</a>
         <a href="#wechat-contact" class="mobile-bottom-btn secondary-outline">加微信</a>
     </div>
 
@@ -57,17 +57,9 @@
             <p class="hero-description">不教暴富，不承诺结果。我帮你看源头、拆框架、避高价课，用更低成本理解个人品牌、数字产品和一人公司的底层方法。</p>
 
             <div class="hero-actions">
-                <a href="#knowledge-base" class="cta-button">先看知识库目录</a>
+                <a href="javascript:void(0)" class="cta-button dir-overlay-trigger">先看知识库目录</a>
                 <a href="#wechat-contact" class="secondary-button hero-secondary">加微信问问</a>
             </div>
-
-            <div class="hero-sub-actions">
-                <button class="copy-link-btn" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">
-                    复制目录链接
-                </button>
-            </div>
-
-            <p class="hero-flowus-note">如果目录打不开，加微信发送「知识库」，我直接发你入口。</p>
         </div>
 
         <div class="scroll-indicator" aria-label="向下滚动">
@@ -206,10 +198,7 @@
                     <li>FlowUs 知识库，手机电脑都能看</li>
                     <li>每周持续更新</li>
                 </ul>
-                <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button kb-btn" target="_blank" rel="noreferrer">查看完整目录和试看内容</a>
-                <button class="copy-link-btn kb-copy-btn" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">
-                    复制目录链接
-                </button>
+                <a href="javascript:void(0)" class="cta-button kb-btn dir-overlay-trigger">查看完整目录和试看内容</a>
             </div>
 
             <div class="flowus-tip-bar">
@@ -412,7 +401,7 @@
             <h2 class="cta-title">在你花几千上万报课之前<br>先用 99 元看清楚源头内容</h2>
             <p class="cta-description">值不值得继续投入，你自己判断。</p>
             <div class="final-cta-actions">
-                <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button large" target="_blank" rel="noreferrer">看完整目录和试看内容</a>
+                <a href="javascript:void(0)" class="cta-button large dir-overlay-trigger">看完整目录和试看内容</a>
                 <a href="#wechat-contact" class="secondary-button final-secondary">加微信，发送「经验产品化」</a>
             </div>
         </div>
@@ -427,14 +416,15 @@
         </div>
     </footer>
 
-    <!-- 手机端目录选项弹层 -->
-    <div class="mobile-dir-overlay" id="mobileDirOverlay">
-        <div class="mobile-dir-panel">
-            <button class="mobile-dir-close" id="mobileDirClose">×</button>
-            <h3 class="mobile-dir-title">查看知识库目录</h3>
-            <p class="mobile-dir-hint">如果 FlowUs 打不开，请复制链接到浏览器</p>
-            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button mobile-dir-btn" target="_blank" rel="noreferrer">打开 FlowUs 目录</a>
-            <button class="secondary-button mobile-dir-btn mobile-dir-copy" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">复制目录链接</button>
+    <!-- 目录选项弹层（手机+电脑通用） -->
+    <div class="dir-overlay" id="dirOverlay">
+        <div class="dir-panel">
+            <button class="dir-close" id="dirClose">×</button>
+            <h3 class="dir-title">查看知识库目录</h3>
+            <p class="dir-hint">如果 FlowUs 能正常打开，可以直接查看目录。<br>如果打不开，可以复制链接到浏览器，或加微信发送「知识库」。</p>
+            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button dir-btn" target="_blank" rel="noreferrer">打开 FlowUs 目录</a>
+            <button class="secondary-button dir-btn dir-btn-copy" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">复制目录链接</button>
+            <a href="#wechat-contact" class="secondary-button dir-btn dir-btn-wechat dir-close-trigger">加微信发送「知识库」</a>
         </div>
     </div>
 

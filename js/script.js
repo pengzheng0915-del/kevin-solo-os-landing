@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.add('touch-device');
     }
 
-    // —— v5.1: Copy link + Toast + Mobile overlay —— //
+    // —— v5.2: Directory overlay + Copy + Toast —— //
 
     var toast = document.getElementById('toast');
     var toastTimer = null;
@@ -201,10 +201,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     }
 
-    // Copy link buttons
-    var copyButtons = document.querySelectorAll('.copy-link-btn');
-    copyButtons.forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
+    // ── Directory overlay ──
+    var overlay = document.getElementById('dirOverlay');
+    if (overlay) {
+
+        // All "查看目录" buttons → open overlay
+        var dirTriggers = document.querySelectorAll('.dir-overlay-trigger');
+        dirTriggers.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                overlay.classList.add('active');
+            });
+        });
+
+        // Close: × button
+        var closeBtn = document.getElementById('dirClose');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                overlay.classList.remove('active');
+            });
+        }
+
+        // Close: backdrop click
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+            }
+        });
+
+        // Close: "加微信" button inside overlay
+        var closeTriggers = overlay.querySelectorAll('.dir-close-trigger');
+        closeTriggers.forEach(function(el) {
+            el.addEventListener('click', function() {
+                overlay.classList.remove('active');
+            });
+        });
+    }
+
+    // ── Copy button (inside overlay) ──
+    var copyBtn = document.querySelector('.dir-btn-copy');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', function(e) {
             e.preventDefault();
             var url = this.getAttribute('data-copy');
             if (!url) return;
@@ -218,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 fallbackCopy(url);
             }
         });
-    });
+    }
 
     function fallbackCopy(text) {
         var ta = document.createElement('textarea');
@@ -228,32 +265,5 @@ document.addEventListener('DOMContentLoaded', function() {
         ta.select();
         try { document.execCommand('copy'); showToast('已复制，请粘贴到浏览器打开'); } catch (e) { showToast('复制失败，请手动复制'); }
         document.body.removeChild(ta);
-    }
-
-    // Mobile bottom bar "看目录" → overlay
-    var mobileDirBtns = document.querySelectorAll('.mobile-bottom-btn.primary');
-    var overlay = document.getElementById('mobileDirOverlay');
-
-    if (overlay) {
-        mobileDirBtns.forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                overlay.classList.add('active');
-            });
-        });
-
-        // Close overlay
-        var closeBtn = document.getElementById('mobileDirClose');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                overlay.classList.remove('active');
-            });
-        }
-
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) {
-                overlay.classList.remove('active');
-            }
-        });
     }
 });
