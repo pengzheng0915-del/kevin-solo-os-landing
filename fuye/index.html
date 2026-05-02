@@ -7,8 +7,8 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <title>35+副业定位诊断｜Kevin 彭峥</title>
-  <meta name="description" content="5分钟测出你更适合靠什么赚钱：知识产品、咨询服务、内容IP、模板工具，还是本地服务。" />
+  <title>经验资产诊断｜你缺的不是副业项目，而是方向｜Kevin 彭峥</title>
+  <meta name="description" content="5分钟8道题，帮你判断你的职业经验更适合变成内容、知识产品、咨询诊断、模板工具还是陪跑交付。先看清方向，再决定要不要投入时间和钱。" />
 
   <style>
     :root {
@@ -80,6 +80,8 @@
       font-size: 17px;
       font-weight: 900;
     }
+    .nav-brand-text { display: none; }
+    @media (min-width: 640px) { .nav-brand-text { display: inline; } }
     .nav-cta {
       padding: 10px 16px;
       border-radius: 999px;
@@ -142,6 +144,7 @@
       align-items: center;
       gap: 8px;
       text-align: center;
+      text-decoration: none;
     }
     .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(31, 26, 23, 0.12); }
     .btn-primary { background: var(--primary); color: #fff; }
@@ -199,6 +202,11 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
     .card {
       background: rgba(255, 250, 242, 0.88);
       border: 1px solid var(--line);
@@ -209,175 +217,6 @@
     .card h3 { margin: 0 0 8px; font-size: 21px; line-height: 1.28; }
     .card p { margin: 0; color: var(--muted); }
     .number { color: var(--accent); font-size: 14px; font-weight: 900; margin-bottom: 10px; display: block; }
-
-    /* ── Quiz ── */
-    .quiz-wrap {
-      background: rgba(255, 250, 242, 0.92);
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .quiz-top {
-      padding: 24px 26px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: center;
-    }
-    .progress-text { font-weight: 900; color: var(--accent-dark); }
-    .progress-bar {
-      flex: 1;
-      height: 9px;
-      background: var(--soft);
-      border-radius: 999px;
-      overflow: hidden;
-      max-width: 360px;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      border-radius: 999px;
-      transition: width .22s ease;
-    }
-    .quiz-body { padding: 30px; }
-    .quiz-step { display: none; }
-    .quiz-step.active {
-      display: block;
-      margin-bottom: 30px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .q-title {
-      font-size: clamp(24px, 4vw, 36px);
-      line-height: 1.22;
-      letter-spacing: -0.035em;
-      margin: 0 0 8px;
-    }
-    .q-help { margin: 0 0 24px; color: var(--muted); }
-
-    .options { display: grid; gap: 12px; }
-    .option {
-      border: 1px solid var(--line);
-      background: #fffdf8;
-      border-radius: 18px;
-      padding: 17px 18px;
-      cursor: pointer;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      transition: border .18s ease, background .18s ease, transform .18s ease;
-      position: relative;
-    }
-    .option:hover { transform: translateY(-1px); border-color: rgba(184, 135, 74, 0.65); }
-    .option input {
-      margin-top: 6px;
-      transform: scale(1.2);
-      accent-color: var(--accent);
-    }
-    .option.selected {
-      border-color: var(--accent);
-      background: #fff6e7;
-    }
-    .option strong { display: block; font-size: 16px; margin-bottom: 2px; }
-    .option span { display: block; color: var(--muted); font-size: 14px; }
-
-    .quiz-nav {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 0 30px 30px;
-    }
-
-    /* ── Result ── */
-    .result-wrap { display: none; padding: 30px; border-top: 1px solid var(--line); background: linear-gradient(180deg, #fffaf2, #f6ebdb); }
-    .result-wrap.show { display: block; }
-
-    .result-card {
-      background: #fffdf8;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 26px;
-    }
-    .result-header { text-align: center; margin-bottom: 18px; }
-    .result-type {
-      display: inline-flex;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-    .result-score {
-      font-size: 48px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      margin-bottom: 2px;
-    }
-    .result-score small { font-size: 18px; color: var(--muted); font-weight: 600; }
-    .result-card h3 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 32px); line-height: 1.2; letter-spacing: -0.03em; text-align: center; }
-    .result-card p { color: var(--muted); margin: 0 0 12px; font-size: 15px; line-height: 1.7; }
-
-    .result-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin: 18px 0;
-    }
-    .result-box {
-      background: #fff8ed;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-    }
-    .result-box b { display: block; margin-bottom: 5px; font-size: 15px; }
-    .result-box span { color: var(--muted); font-size: 14px; line-height: 1.5; }
-
-    .highlight {
-      background: #fffbf3;
-      border-left: 3px solid var(--accent);
-      padding: 16px 18px;
-      border-radius: 0 14px 14px 0;
-      margin: 16px 0;
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--accent-dark);
-    }
-
-    /* ── Paid ── */
-    .paid-section {
-      margin-top: 24px;
-      background: linear-gradient(180deg, #fffdf8 0%, #f8f1e7 100%);
-      border: 1.5px solid var(--accent);
-      border-radius: 22px;
-      padding: 28px 22px;
-      text-align: center;
-    }
-    .paid-section h4 { font-size: 20px; margin: 0 0 6px; }
-    .paid-section .paid-sub { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
-    .paid-list { text-align: left; display: inline-block; margin-bottom: 18px; }
-    .paid-list li { padding: 4px 0; font-size: 14px; color: var(--muted); list-style: none; }
-    .paid-list li::before { content: "✓ "; color: var(--accent); font-weight: 900; }
-    .wechat-box {
-      margin-top: 16px;
-      padding: 16px;
-      background: #f6f0e5;
-      border-radius: 14px;
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-    .wechat-box strong { color: var(--text); font-size: 16px; display: block; margin-bottom: 4px; }
-
-    .restart-row { text-align: center; margin-top: 20px; }
-    .restart-link { font-size: 14px; color: var(--muted); cursor: pointer; border-bottom: 1px dashed var(--line); padding-bottom: 2px; }
-    .restart-link:hover { color: var(--text); }
 
     /* ── About ── */
     .about {
@@ -396,61 +235,75 @@
       color: #fff;
     }
     .avatar-name { font-size: 34px; font-weight: 900; letter-spacing: -0.05em; line-height: 1.1; }
-    .avatar-desc { color: rgba(255,255,255,.74); margin-top: 12px; }
+    .avatar-desc { color: rgba(255,255,255,.74); margin-top: 12px; line-height: 1.7; }
     .proof-list { display: grid; gap: 13px; margin-top: 18px; }
     .proof-item { padding: 17px; border: 1px solid var(--line); border-radius: 18px; background: #fffdf8; }
     .proof-item b { display: block; margin-bottom: 3px; }
     .proof-item span { color: var(--muted); font-size: 15px; }
 
-    .not-fit {
-      background: rgba(31, 26, 23, .95);
-      color: #fff;
-      border-radius: 34px;
-      padding: 32px;
+    .audience-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
-    .not-fit h2 { color: #fff; }
-    .not-fit p, .not-fit li { color: rgba(255,255,255,.74); }
-    .not-fit ul { margin: 0; padding-left: 18px; }
+    .audience-col {
+      background: rgba(255, 250, 242, 0.88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .audience-col-header {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .fit-col .audience-col-header { background: rgba(184, 135, 74, 0.12); color: var(--accent-dark); }
+    .unfit-col .audience-col-header { background: rgba(180, 60, 60, 0.1); color: #a05050; }
+    .audience-col ul { padding-left: 0; list-style: none; }
+    .audience-col li { padding: 10px 0; font-size: 15px; color: var(--muted); border-bottom: 1px solid rgba(228, 216, 201, 0.4); line-height: 1.6; }
+    .audience-col li:last-child { border-bottom: none; }
 
     .final-cta { text-align: center; padding: 58px 24px 72px; }
     .final-cta h2 { max-width: 720px; margin: 0 auto; }
     .final-cta p { max-width: 640px; margin: 16px auto 24px; color: var(--muted); font-size: 17px; }
 
-    /* ── Toast ── */
-    .toast {
-      position: fixed; left: 50%; bottom: 24px;
-      transform: translateX(-50%) translateY(20px);
-      background: rgba(31, 26, 23, .94);
-      color: #fff; padding: 12px 20px;
-      border-radius: 999px;
-      opacity: 0; pointer-events: none;
-      transition: .2s ease; z-index: 200;
-      font-size: 14px; white-space: nowrap;
+    /* ── Flow steps ── */
+    .flow-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .flow-step {
+      text-align: center;
+      padding: 18px 14px;
+      background: #fffdf8;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      min-width: 130px;
+      flex: 1;
+      max-width: 180px;
+    }
+    .flow-step .flow-icon { font-size: 28px; margin-bottom: 8px; }
+    .flow-step .flow-label { font-weight: 800; font-size: 14px; }
+    .flow-arrow { color: var(--accent); font-size: 20px; font-weight: 900; }
 
     @media (max-width: 860px) {
-      .hero, .about, .not-fit { grid-template-columns: 1fr; }
+      .hero, .about { grid-template-columns: 1fr; }
       .hero { padding-top: 46px; }
-      .grid-3, .result-grid { grid-template-columns: 1fr; }
-      .quiz-top { align-items: flex-start; flex-direction: column; }
-      .progress-bar { width: 100%; max-width: none; }
-      .quiz-body { padding: 22px; }
-      .quiz-nav {
-        position: sticky; bottom: 0;
-        background: rgba(255, 250, 242, .94);
-        backdrop-filter: blur(14px);
-        padding: 12px 22px 22px;
-      }
-      .result-wrap { padding: 22px; }
+      .grid-3, .grid-2, .audience-split { grid-template-columns: 1fr; }
       .btn { width: 100%; }
       .hero-actions { flex-direction: column; }
       .nav-inner { height: 60px; }
-      .brand span { display: none; }
       h1 { font-size: 42px; }
+      .flow-row { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); }
     }
   </style>
 </head>
@@ -458,475 +311,181 @@
 <body>
   <nav class="nav">
     <div class="nav-inner">
-      <a class="brand" href="#top">
+      <a class="brand" href="/">
         <span class="brand-mark">K</span>
-        <span>Kevin 彭峥｜35+副业定位诊断</span>
+        <span class="nav-brand-text">Kevin 彭峥｜经验资产诊断</span>
       </a>
-      <a class="nav-cta" href="#quiz">开始测试</a>
+      <a class="nav-cta" href="/fuye/quiz/">开始诊断</a>
     </div>
   </nav>
 
   <main id="top" class="page">
-    <!-- Hero -->
+    <!-- ===== 1. Hero：副业钩子 + 经验资产认知升级 ===== -->
     <section class="hero">
       <div>
-        <div class="eyebrow">35+职场人第二收入定位测试</div>
-        <h1>别再盲目副业，先测清你靠什么赚钱</h1>
+        <div class="eyebrow">35+ 职场人经验资产诊断</div>
+        <h1>你不是缺副业项目<br>而是还没看清自己的经验值多少钱</h1>
         <p class="hero-sub">
-          5分钟，8道题。根据你的<strong>经验类型、输出偏好、时间状态和当前障碍</strong>，
-          判断你更适合做知识产品、咨询服务、内容输出，还是社群陪跑。
+          5分钟，8道题。<br>
+          帮你判断你的职业经验更适合变成<strong>内容、知识产品、咨询诊断、模板工具、资源服务，还是陪跑交付</strong>。<br>
+          先看清方向，再决定要不要投入时间和钱。
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#quiz">开始测试，生成我的副业方向</a>
-          <a class="btn btn-ghost" href="#method">先看判断逻辑</a>
+          <a class="btn btn-primary" href="/fuye/quiz/">开始经验资产诊断</a>
+          <a class="btn btn-ghost" href="#audience">先看看适合谁</a>
         </div>
         <div class="trust-row">
           <span class="trust-pill">无需登录</span>
           <span class="trust-pill">不推暴富项目</span>
-          <span class="trust-pill">适合35+低成本验证</span>
+          <span class="trust-pill">不卖焦虑</span>
+          <span class="trust-pill">面向有经验的人</span>
         </div>
       </div>
       <aside class="hero-card">
         <div class="section-kicker">测完你会得到</div>
         <div class="preview-list">
-          <div class="preview-item"><b>你的副业类型</b><span>判断你更适合靠经验、表达、工具、服务还是资源变现。</span></div>
-          <div class="preview-item"><b>你的当前卡点</b><span>看清是方向不清、产品不清、不会成交，还是行动太散。</span></div>
-          <div class="preview-item"><b>7天启动建议</b><span>给出一个今天就能开始的小动作，而不是继续空想。</span></div>
+          <div class="preview-item"><b>你的经验资产类型</b><span>判断你的经验更适合变成内容、知识产品、咨询还是陪跑服务。</span></div>
+          <div class="preview-item"><b>你的核心优势和当前卡点</b><span>看清是你的经验没产品化，还是方向太散，还是不敢定价。</span></div>
+          <div class="preview-item"><b>7天内可执行的第一步</b><span>不是空想，而是一个你今天就能开始的小动作。</span></div>
         </div>
       </aside>
     </section>
 
-    <!-- Pain -->
-    <section>
+    <!-- ===== 2. 测完你会得到什么 ===== -->
+    <section id="outcome">
       <div class="section-head">
-        <div class="section-kicker">为什么你总是开始不了</div>
-        <h2>多数副业失败，不是因为你不努力</h2>
-        <p class="section-desc">真正的问题通常不是没有项目，而是没有把自己的经验变成一个可交付、可验证、可收费的起点。</p>
+        <div class="section-kicker">诊断输出</div>
+        <h2>测完这8道题，你会得到什么</h2>
+        <p class="section-desc">这不是一个泛泛的性格测试，而是针对你有十几年以上职业经验的人，判断你的经验资产该怎么变现。</p>
       </div>
       <div class="grid-3">
-        <div class="card"><h3>方向太散</h3><p>看到项目就心动，但不知道哪个适合自己，最后什么都试一点，什么都没做深。</p></div>
-        <div class="card"><h3>经验没产品化</h3><p>明明做过很多事，却说不清楚别人为什么要为你的经验付费。</p></div>
-        <div class="card"><h3>只学习不成交</h3><p>课程越买越多，笔记越记越厚，但真正发布、报价、收款迟迟没开始。</p></div>
+        <div class="card">
+          <span class="number">🎯</span>
+          <h3>经验资产类型判定</h3>
+          <p>6种路径中哪条最适合你：内容表达型、咨询诊断型、知识产品型、模板工具型、资源服务型还是陪跑交付型。</p>
+        </div>
+        <div class="card">
+          <span class="number">⚠️</span>
+          <h3>当前最大卡点</h3>
+          <p>是方向不清、经验没产品化、不敢定价、还是获客方式不对——让你知道该先解决什么问题。</p>
+        </div>
+        <div class="card">
+          <span class="number">📋</span>
+          <h3>7天可执行动作</h3>
+          <p>不是另一个收藏夹里的清单。是一个具体到本周就能做完的小步骤，让你从"想"到"做"。</p>
+        </div>
       </div>
     </section>
 
-    <!-- Method -->
+    <!-- ===== 3. 为什么很多人开始不了 ===== -->
+    <section id="pain">
+      <div class="section-head">
+        <div class="section-kicker">核心问题</div>
+        <h2>多数人没开始，不是因为没能力</h2>
+        <p class="section-desc">你工作了十几年，经验肯定有。真正的问题不是缺项目，而是经验没有被整理成可交付、可验证、可收费的资产。</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>方向太散</h3><p>看到什么火就想做什么，但不知道哪个最适合自己的经验积累。最怕的是：试了很多，哪个都没做深。</p></div>
+        <div class="card"><h3>经验没产品化</h3><p>明明做过很多事，却说不清楚"别人为什么要为我的经验付费"——没有把经验拆成明确可交付的结果。</p></div>
+        <div class="card"><h3>只学习不成交</h3><p>课程越买越多，笔记越记越厚，但真正发布、报价、收款迟迟没开始。知识在脑子里积累，价值没有出过口。</p></div>
+      </div>
+    </section>
+
+    <!-- ===== 4. Kevin 的判断逻辑 ===== -->
     <section id="method">
-      <div class="section-head">
-        <div class="section-kicker">解决方案</div>
-        <h2>先定位，再启动，不靠运气试错</h2>
-      </div>
-      <div class="grid-3">
-        <div class="card"><span class="number">01</span><h3>识别经验资产</h3><p>从职业、能力、时间、收入压力里找出真正可复用的部分。</p></div>
-        <div class="card"><span class="number">02</span><h3>匹配副业类型</h3><p>判断你更适合知识产品、咨询服务、内容输出还是社群陪跑。</p></div>
-        <div class="card"><span class="number">03</span><h3>给出下一步路径</h3><p>把"想做副业"变成一个可以在7天内启动的小动作。</p></div>
-      </div>
-    </section>
-
-    <!-- Quiz -->
-    <section id="quiz">
-      <div class="section-head">
-        <div class="section-kicker">开始测试</div>
-        <h2>8道题，测出你的第二收入启动方向</h2>
-        <p class="section-desc">每题只选最接近你当前状态的一项。不要选理想状态，选真实状态。</p>
-      </div>
-
-      <div class="quiz-wrap">
-        <div class="quiz-top">
-          <div class="progress-text" id="progressText">第 1 / 8 题</div>
-          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        </div>
-
-        <div class="quiz-body" id="quizBody">
-          <!-- Q1 -->
-          <div class="quiz-step" data-step="0">
-            <h3 class="q-title">你现在最想解决的问题是什么？</h3>
-            <p class="q-help">这决定了你的启动方向和优先级。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q0" value="A"><div><strong>A. 不知道副业做什么</strong><span>需要先做方向判断，而不是急着做产品。</span></div></label>
-              <label class="option"><input type="radio" name="q0" value="B"><div><strong>B. 有经验但不知道怎么变现</strong><span>需要把经验拆成可交付的产品或服务。</span></div></label>
-              <label class="option"><input type="radio" name="q0" value="C"><div><strong>C. 想做内容但没有方向</strong><span>需要找到你的内容定位和输出形式。</span></div></label>
-              <label class="option"><input type="radio" name="q0" value="D"><div><strong>D. 已经做了但没人买</strong><span>需要回到产品和获客两端重新检查。</span></div></label>
-            </div>
-          </div>
-          <!-- Q2 -->
-          <div class="quiz-step" data-step="1">
-            <h3 class="q-title">你过去最有积累的是哪类经验？</h3>
-            <p class="q-help">经验类型决定了你的变现路径。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q1" value="A"><div><strong>A. 行业专业经验</strong><span>适合做知识产品、报告、知识库。</span></div></label>
-              <label class="option"><input type="radio" name="q1" value="B"><div><strong>B. 管理/带团队经验</strong><span>适合做咨询诊断、管理辅导。</span></div></label>
-              <label class="option"><input type="radio" name="q1" value="C"><div><strong>C. 销售/客户/成交经验</strong><span>适合做陪跑服务、社群成交。</span></div></label>
-              <label class="option"><input type="radio" name="q1" value="D"><div><strong>D. 运营/项目/执行经验</strong><span>适合做模板工具、流程外包。</span></div></label>
-            </div>
-          </div>
-          <!-- Q3 -->
-          <div class="quiz-step" data-step="2">
-            <h3 class="q-title">你更愿意用哪种方式输出？</h3>
-            <p class="q-help">输出方式决定你的内容形态和交付形式。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q2" value="A"><div><strong>A. 写文章/知识库</strong><span>适合图文类知识产品。</span></div></label>
-              <label class="option"><input type="radio" name="q2" value="B"><div><strong>B. 做短视频/直播</strong><span>适合内容IP和流量型变现。</span></div></label>
-              <label class="option"><input type="radio" name="q2" value="C"><div><strong>C. 一对一咨询</strong><span>适合咨询诊断类服务。</span></div></label>
-              <label class="option"><input type="radio" name="q2" value="D"><div><strong>D. 做社群/训练营</strong><span>适合陪跑和社群型变现。</span></div></label>
-            </div>
-          </div>
-          <!-- Q4 -->
-          <div class="quiz-step" data-step="3">
-            <h3 class="q-title">你现在最大阻碍是什么？</h3>
-            <p class="q-help">卡点不同，下一步完全不同。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q3" value="A"><div><strong>A. 不知道定位</strong><span>需要先判断自己的优势方向。</span></div></label>
-              <label class="option"><input type="radio" name="q3" value="B"><div><strong>B. 不敢公开表达</strong><span>需要找到低心理成本的输出方式。</span></div></label>
-              <label class="option"><input type="radio" name="q3" value="C"><div><strong>C. 不知道卖什么</strong><span>需要把经验拆成明确的产品。</span></div></label>
-              <label class="option"><input type="radio" name="q3" value="D"><div><strong>D. 不知道怎么获客</strong><span>需要搭建内容吸引和转介绍路径。</span></div></label>
-            </div>
-          </div>
-          <!-- Q5 -->
-          <div class="quiz-step" data-step="4">
-            <h3 class="q-title">你每周能投入多少时间？</h3>
-            <p class="q-help">时间决定你适合轻启动，还是深度项目。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q4" value="A"><div><strong>A. 1-3 小时</strong><span>适合做低价轻交付的知识产品。</span></div></label>
-              <label class="option"><input type="radio" name="q4" value="B"><div><strong>B. 3-5 小时</strong><span>适合做内容输出或小型咨询。</span></div></label>
-              <label class="option"><input type="radio" name="q4" value="C"><div><strong>C. 5-10 小时</strong><span>可以做社群、陪跑或系列内容。</span></div></label>
-              <label class="option"><input type="radio" name="q4" value="D"><div><strong>D. 10 小时以上</strong><span>可以尝试完整的个人IP和服务体系。</span></div></label>
-            </div>
-          </div>
-          <!-- Q6 -->
-          <div class="quiz-step" data-step="5">
-            <h3 class="q-title">你现在有没有可复用的案例？</h3>
-            <p class="q-help">案例决定了你的冷启动难度。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q5" value="A"><div><strong>A. 没有</strong><span>需要从建立第一个案例开始。</span></div></label>
-              <label class="option"><input type="radio" name="q5" value="B"><div><strong>B. 有一些，但没整理</strong><span>需要先把经验结构化输出。</span></div></label>
-              <label class="option"><input type="radio" name="q5" value="C"><div><strong>C. 有明确案例</strong><span>可以围绕案例设计产品。</span></div></label>
-              <label class="option"><input type="radio" name="q5" value="D"><div><strong>D. 有客户/项目成果</strong><span>可以直接包装成服务或产品。</span></div></label>
-            </div>
-          </div>
-          <!-- Q7 -->
-          <div class="quiz-step" data-step="6">
-            <h3 class="q-title">你更适合哪种变现方式？</h3>
-            <p class="q-help">选择与你性格和能力匹配的方式更不容易放弃。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q6" value="A"><div><strong>A. 低价资料/知识库</strong><span>一次制作，多次销售。</span></div></label>
-              <label class="option"><input type="radio" name="q6" value="B"><div><strong>B. 一对一诊断</strong><span>高客单价，重交付。</span></div></label>
-              <label class="option"><input type="radio" name="q6" value="C"><div><strong>C. 陪跑服务</strong><span>持续服务，稳定收入。</span></div></label>
-              <label class="option"><input type="radio" name="q6" value="D"><div><strong>D. 社群/课程</strong><span>规模化交付，一对多。</span></div></label>
-            </div>
-          </div>
-          <!-- Q8 -->
-          <div class="quiz-step" data-step="7">
-            <h3 class="q-title">你目前最需要什么？</h3>
-            <p class="q-help">这决定了你接下来的首要行动。</p>
-            <div class="options">
-              <label class="option"><input type="radio" name="q7" value="A"><div><strong>A. 找方向</strong><span>需要先明确你的变现路径。</span></div></label>
-              <label class="option"><input type="radio" name="q7" value="B"><div><strong>B. 搭内容系统</strong><span>需要建立持续输出的框架。</span></div></label>
-              <label class="option"><input type="radio" name="q7" value="C"><div><strong>C. 做第一个产品</strong><span>需要把经验打包成可卖的东西。</span></div></label>
-              <label class="option"><input type="radio" name="q7" value="D"><div><strong>D. 找客户成交</strong><span>需要行动起来，完成第一次收费。</span></div></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="quiz-nav">
-          <button class="btn btn-ghost" id="prevBtn" onclick="prevStep()" disabled>上一题</button>
-          <button class="btn btn-primary" id="nextBtn" onclick="nextStep()" disabled>下一题</button>
-        </div>
-
-        <div class="result-wrap" id="resultWrap"></div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section>
       <div class="about">
         <div class="card avatar-card">
           <div>
             <div class="avatar-name">Kevin 彭峥</div>
-            <div class="avatar-desc">46岁离开职场后，重新搭建自己的第二收入系统。</div>
+            <div class="avatar-desc">离开职场后，重新搭建自己的个人价值系统。</div>
           </div>
-          <div class="avatar-desc">不教暴富项目，不推荐乱七八糟的风口。只帮35+职场人把经验、能力和资源拆成能交付、能验证、能收费的产品或服务。</div>
+          <div class="avatar-desc">不教暴富项目，不推荐风口。只帮有十年以上职业经验的人，把经验、能力和资源拆成能交付、能验证、能收费的产品或服务。</div>
         </div>
         <div class="card">
-          <div class="section-kicker">个人IP信任区</div>
-          <h2>这不是算命，是一次低成本试错前的方向判断</h2>
+          <div class="section-kicker">我的判断逻辑</div>
+          <h2>先盘点，再定位，最后给一条能走的路</h2>
           <p class="section-desc">你不需要马上辞职，也不需要盲目跟风。先找到你最容易启动、最容易验证、最不容易半途而废的路径。</p>
           <div class="proof-list">
-            <div class="proof-item"><b>35+人群定位</b><span>面向有经验、有压力、有转型需求的人，不面向幻想一夜暴富的人。</span></div>
-            <div class="proof-item"><b>经验变现路径</b><span>不是追风口，而是把你已有的能力拆成产品、服务或内容。</span></div>
-            <div class="proof-item"><b>轻启动验证</b><span>先做最小交付，先验证真实需求，再决定是否投入更多。</span></div>
+            <div class="proof-item"><b>经验盘点</b><span>从你的职业经历、能力积累、时间状态中识别真正可复用的资产。</span></div>
+            <div class="proof-item"><b>路径匹配</b><span>判断你更适合做内容表达、知识产品、咨询诊断，还是陪跑交付。</span></div>
+            <div class="proof-item"><b>轻启动建议</b><span>先做最小交付，先验证真实需求，再决定是否投入更多。</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Not fit -->
+    <!-- ===== 5. 这不是算命，也不是暴富项目 ===== -->
     <section>
-      <div class="not-fit">
-        <div>
-          <div class="section-kicker">先说清楚</div>
-          <h2>这个测试不适合所有人</h2>
-          <p>越敢说不适合谁，越能筛选出真正需要的人。</p>
+      <div class="section-head">
+        <div class="section-kicker">先说实话</div>
+        <h2>这个诊断不承诺任何捷径</h2>
+        <p class="section-desc">它只是帮你把心里模糊的"我想做点什么"变成"我可以从这里开始"。下面这些才是真实情况：</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>这不是算命</h3>
+          <p>诊断基于你的真实状态（经验类型、输出偏好、时间投入、当前卡点），不靠星座不靠性格分类。你会得到一个基于你回答的方向判断和建议。</p>
         </div>
-        <div>
+        <div class="card">
+          <h3>这不承诺暴富</h3>
+          <p>没有人能保证你"测完就月入过万"。但如果你认真做了这8道题，你会比90%的人更清楚自己该从哪里开始——少走很多弯路。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. 适合谁 / 不适合谁 ===== -->
+    <section id="audience">
+      <div class="section-head">
+        <div class="section-kicker">筛选说明</div>
+        <h2>这个诊断适合谁 / 不适合谁</h2>
+        <p class="section-desc">越敢说不适合谁，越能帮到真正需要的人。</p>
+      </div>
+      <div class="audience-split">
+        <div class="audience-col fit-col">
+          <div class="audience-col-header">✅ 适合</div>
           <ul>
-            <li>想找一夜暴富项目的人，不适合。</li>
-            <li>完全不愿意输出内容或服务的人，不适合。</li>
-            <li>只想收藏方法、不愿意行动的人，不适合。</li>
-            <li>希望别人替你赚钱的人，不适合。</li>
+            <li>35岁以后，想给自己多一条路，但不清楚该从哪开始</li>
+            <li>工作十年以上有积累，经验值钱但不知道怎么变现</li>
+            <li>被高价课割过，想先低成本验证方向</li>
+            <li>想做个人品牌、数字产品或服务，需要系统判断</li>
+          </ul>
+        </div>
+        <div class="audience-col unfit-col">
+          <div class="audience-col-header">❌ 不适合</div>
+          <ul>
+            <li>想找一夜暴富项目的人</li>
+            <li>完全不愿意输出内容或服务的人</li>
+            <li>只想收藏方法、不愿意动手的人</li>
+            <li>希望别人替你赚钱的人</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Product ladder -->
-    <section>
+    <!-- ===== 7. 测完后的产品阶梯 ===== -->
+    <section id="ladder">
       <div class="section-head">
         <div class="section-kicker">产品阶梯</div>
-        <h2>测完后，你可以按阶段选择</h2>
+        <h2>测完后，你可以按阶段继续</h2>
+        <p class="section-desc">从免费诊断到深度陪跑，每一步都不需要你盲目做决定。</p>
       </div>
       <div class="grid-3">
-        <div class="card"><span class="number">入门</span><h3>9.9 完整报告</h3><p>适合想先看清方向的人。拿到更完整的副业类型、卡点和启动建议。</p></div>
-        <div class="card"><span class="number">诊断</span><h3>199 人工诊断</h3><p>适合已经卡住、想让人帮你拆出第一个可卖产品的人。</p></div>
-        <div class="card"><span class="number">陪跑</span><h3>45天私教陪跑</h3><p>适合想真正做出产品、持续发内容、开始获得成交反馈的人。</p></div>
+        <div class="card"><span class="number">免费</span><h3>经验资产诊断</h3><p>5分钟8道题，看清你的经验资产类型、核心优势和卡点，拿到7天内可执行的第一步。</p></div>
+        <div class="card"><span class="number">¥9.9</span><h3>完整诊断报告</h3><p>适合想看到完整路径的人。解锁详细经验转化方向、产品化建议和30天行动计划。</p></div>
+        <div class="card"><span class="number">¥99/年</span><h3>经验产品化知识库</h3><p>50+框架，100+执行清单，源头内容中文整理。适合自己研究、自己消化、自己落地。</p></div>
+      </div>
+      <div class="grid-2" style="margin-top:18px;">
+        <div class="card"><span class="number">¥199</span><h3>60分钟人工诊断</h3><p>适合已经卡住、需要一对一帮你拆出第一个可卖产品或服务的下一步。</p></div>
+        <div class="card"><span class="number">私教</span><h3>45天私教陪跑</h3><p>适合想真正做出产品、持续发内容、开始获得成交反馈的人。申请沟通后确认。</p></div>
       </div>
     </section>
 
-    <!-- Final CTA -->
+    <!-- ===== 8. 最终 CTA ===== -->
     <section class="final-cta">
       <h2>先用5分钟，少走3个月弯路</h2>
-      <p>不要再凭感觉选项目。先看清你适合什么，再决定要不要投入时间和钱。</p>
-      <a class="btn btn-primary" href="#quiz">立即开始测试</a>
+      <p>不要再凭感觉选方向。先看清你的经验适合怎么变成价值，再决定要不要投入时间和钱。</p>
+      <a class="btn btn-primary btn-lg" href="/fuye/quiz/">开始经验资产诊断</a>
     </section>
   </main>
-
-  <div class="toast" id="toast"></div>
-
-  <script>
-    const TOTAL = 8;
-    let currentStep = 0;
-    let answers = {};
-
-    const steps = Array.from(document.querySelectorAll('.quiz-step'));
-    const progressText = document.getElementById('progressText');
-    const progressFill = document.getElementById('progressFill');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const resultWrap = document.getElementById('resultWrap');
-
-    function updateStep() {
-      steps.forEach((s, i) => s.classList.toggle('active', i === currentStep));
-      progressText.textContent = '第 ' + (currentStep + 1) + ' / ' + TOTAL + ' 题';
-      progressFill.style.width = (currentStep / TOTAL * 100) + '%';
-      prevBtn.disabled = currentStep === 0;
-
-      if (currentStep === TOTAL - 1) {
-        nextBtn.textContent = '生成诊断结果';
-      } else {
-        nextBtn.textContent = '下一题';
-      }
-
-      const radio = steps[currentStep].querySelector('input[type=radio]:checked');
-      if (radio) {
-        answers[currentStep] = radio.value;
-        nextBtn.disabled = false;
-        highlightOption(radio);
-      } else {
-        nextBtn.disabled = true;
-      }
-    }
-
-    function highlightOption(radio) {
-      const step = radio.closest('.quiz-step');
-      step.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-      const label = radio.closest('.option');
-      if (label) label.classList.add('selected');
-    }
-
-    function nextStep() {
-      if (currentStep < TOTAL - 1) {
-        currentStep++;
-        updateStep();
-      } else {
-        showResult();
-      }
-    }
-
-    function prevStep() {
-      if (currentStep > 0) {
-        currentStep--;
-        updateStep();
-      }
-    }
-
-    // Radio change listeners
-    document.getElementById('quizBody').addEventListener('change', function(e) {
-      if (e.target.type !== 'radio') return;
-      const step = e.target.closest('.quiz-step');
-      const stepIdx = parseInt(step.dataset.step);
-      if (stepIdx !== currentStep) return;
-      answers[stepIdx] = e.target.value;
-      nextBtn.disabled = false;
-      highlightOption(e.target);
-    });
-
-    // ──── Scoring ────
-    function computeResult() {
-      const typeMap = {
-        A: 'knowledge',
-        B: 'consulting',
-        C: 'content',
-        D: 'community'
-      };
-      const scores = { knowledge: 0, consulting: 0, content: 0, community: 0 };
-
-      for (let i = 0; i < TOTAL; i++) {
-        const a = answers[i];
-        if (a && typeMap[a]) scores[typeMap[a]] += 1;
-      }
-
-      let topType = 'knowledge';
-      let topScore = 0;
-      for (const [t, s] of Object.entries(scores)) {
-        if (s > topScore) { topScore = s; topType = t; }
-      }
-      const score = Math.min(95, Math.max(35, Math.round((topScore / TOTAL) * 100) + 15));
-
-      return { type: topType, score, scores };
-    }
-
-    function showResult() {
-      const r = computeResult();
-      const qBody = document.getElementById('quizBody');
-      qBody.style.display = 'none';
-      const qNav = document.querySelector('.quiz-nav');
-      qNav.style.display = 'none';
-      const qTop = document.querySelector('.quiz-top');
-      // Also hide progress top
-      document.querySelector('.quiz-wrap').querySelector('.quiz-top').style.display = 'none';
-
-      const data = {
-        knowledge: {
-          name: '经验整理型',
-          desc: '你不是完全从零开始。你过去的工作经验、项目经历和踩坑经验，都有机会整理成内容、知识库或咨询服务。你当前最大的问题不是没能力，而是经验还没有被产品化——你知道很多，但还没有把它拆成别人愿意购买的结果。',
-          advantage: '行业经验丰富，有系统化知识积累',
-          block: '经验未产品化：知道很多但没拆成可交付的结果',
-          advice: '你不适合一上来做大课，也不适合盲目直播。更适合先做一个低价知识库或诊断型服务，用低成本验证方向。'
-        },
-        consulting: {
-          name: '咨询诊断型',
-          desc: '你的核心价值在于判断力和经验。别人遇到问题时愿意找你聊，说明你的认知和判断是有市场的。你不是靠体力或内容取胜，而是靠你对问题的精准理解和解决方案的输出能力。你现在需要的是把这种能力包装成一个明确的服务。',
-          advantage: '判断力强，善于分析问题并给出解决方案',
-          block: '服务未定价：免费给了太多建议，没有形成收费闭环',
-          advice: '你适合从一对一轻咨询开始。先定价、先收钱、先交付，用真实案例倒逼产品化。不要先做内容，先完成第一次收费。'
-        },
-        content: {
-          name: '内容输出型',
-          desc: '你有表达的意愿和能力，也愿意持续输出——这是做副业的重要基础。你现在面临的挑战是如何让内容不仅被看到，还能被付费。你不需要追求巨大流量，而是要找到一个小而精准的人群，持续为他们输出有价值的内容。',
-          advantage: '表达能力强，愿意持续公开输出',
-          block: '内容没变现：写了/拍了但没有转化为付费产品',
-          advice: '你适合先找到一个细分话题，持续输出30天，同时设计一个低价信息产品（清单/模板/知识库），用内容引流、用产品变现。'
-        },
-        community: {
-          name: '社群陪跑型',
-          desc: '你善于组织和带领，也愿意花时间陪人成长。你的核心优势不是单次交付，而是持续陪伴的能力。你做副业的方向不应该是卖一个静态的产品，而是卖一个动态的陪伴过程。你更容易通过社群、训练营、陪跑服务获得持续收入。',
-          advantage: '组织力强，善于带领和陪伴他人成长',
-          block: '产品边界模糊：什么都想做导致什么都没做透',
-          advice: '你适合先做一个7天小训练营，收费99元以内，用真实交付验证你的陪跑能力，再决定是否升级为更长的服务周期。'
-        }
-      };
-
-      const d = data[r.type];
-
-      resultWrap.innerHTML = `
-        <div class="result-card">
-          <div class="result-header">
-            <div class="result-type">${d.name}副业选手</div>
-            <div class="result-score">${r.score}<small> / 100</small></div>
-            <p style="color:var(--muted);margin-top:-4px;font-size:14px;">适合度评分</p>
-          </div>
-
-          <h3>你的初步诊断结果</h3>
-          <p>${d.desc}</p>
-
-          <div class="highlight">${d.advice}</div>
-
-          <div class="result-grid">
-            <div class="result-box"><b>核心优势</b><span>${d.advantage}</span></div>
-            <div class="result-box"><b>当前卡点</b><span>${d.block}</span></div>
-          </div>
-
-          <div class="paid-section">
-            <h4>完整报告已生成</h4>
-            <p class="paid-sub">解锁后你将看到更完整的个人副业定位方案</p>
-            <ul class="paid-list">
-              <li>你的完整副业定位分析</li>
-              <li>最适合你的 3 条变现路径</li>
-              <li>你暂时不适合做的副业类型</li>
-              <li>你的内容发布方向</li>
-              <li>你的第一个低价产品建议</li>
-              <li>7 天启动行动计划</li>
-              <li>是否适合预约 199 元诊断</li>
-            </ul>
-
-            <div class="wechat-box">
-              <strong>微信号：kevin0915</strong>
-              添加微信后发送「完整报告」<br>
-              我会发你支付方式和完整报告领取方式。
-            </div>
-
-            <button class="btn btn-accent btn-block btn-lg" onclick="copyWechat()" style="margin-top:16px;">
-              复制微信号，加微信解锁完整报告 9.9 元
-            </button>
-          </div>
-        </div>
-
-        <div class="restart-row">
-          <span class="restart-link" onclick="restartQuiz()">重新测试</span>
-        </div>
-      `;
-
-      resultWrap.classList.add('show');
-      resultWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function copyWechat() {
-      navigator.clipboard.writeText('kevin0915').then(() => {
-        showToast('微信号已复制，打开微信添加好友');
-      }).catch(() => {
-        showToast('微信号：kevin0915');
-      });
-    }
-
-    function restartQuiz() {
-      resultWrap.classList.remove('show');
-      resultWrap.innerHTML = '';
-      document.getElementById('quizBody').style.display = '';
-      document.querySelector('.quiz-nav').style.display = '';
-      document.querySelector('.quiz-wrap .quiz-top').style.display = '';
-      currentStep = 0;
-      answers = {};
-      steps.forEach(s => {
-        const radio = s.querySelector('input[type=radio]');
-        if (radio) {
-          s.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
-        }
-        s.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
-      });
-      updateStep();
-      document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById('toast');
-      t.textContent = msg;
-      t.classList.add('show');
-      clearTimeout(t._tid);
-      t._tid = setTimeout(() => t.classList.remove('show'), 2500);
-    }
-
-    // Init
-    updateStep();
-  </script>
 </body>
 </html>

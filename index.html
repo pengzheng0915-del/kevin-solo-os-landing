@@ -3,26 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KEVIN 经验产品化 — 帮 35-45 岁职场人把工作经验拆成可发布、可交付、可变现的内容产品。">
-    <meta name="keywords" content="经验产品化,第二收入,超级个体,一人公司,副业,知识库,35岁,Dan Koe,Naval">
-    <meta name="author" content="Kevin">
+    <meta name="description" content="Kevin 彭峥 — 帮助35岁以后、有十年以上职业经验的人，把过去的经验重新整理成方向、内容、产品、服务和新的增长可能。">
+    <meta name="keywords" content="经验资产,个人价值系统,职业下半场,第二增长曲线,经验产品化,一人公司,知识库,35岁,Kevin">
+    <meta name="author" content="Kevin 彭峥">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://kevinsolo.cn">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="35-45 岁职场人的经验产品化入口 | KEVIN">
-    <meta property="og:description" content="把你工作十几年的经验，拆成能发布、能交付、能变现的内容产品。">
+    <meta property="og:title" content="35岁以后，重新看懂你的职业经验 | KEVIN">
+    <meta property="og:description" content="把过去十几年的经验重新整理成方向、内容、产品、服务和新的增长可能。">
     <meta property="og:url" content="https://kevinsolo.cn">
     <meta property="og:locale" content="zh_CN">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="35-45 岁职场人的经验产品化入口 | KEVIN">
-    <meta name="twitter:description" content="把你工作十几年的经验，拆成能发布、能交付、能变现的内容产品。">
+    <meta name="twitter:title" content="35岁以后，重新看懂你的职业经验 | KEVIN">
+    <meta name="twitter:description" content="把过去十几年的经验重新整理成方向、内容、产品、服务和新的增长可能。">
 
-    <title>35-45 岁职场人的经验产品化入口 | KEVIN</title>
+    <title>35岁以后，重新看懂你的职业经验 | KEVIN</title>
 
     <link rel="preconnect" href="https://flowus.cn">
     <link rel="dns-prefetch" href="https://flowus.cn">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- 新增模块专用样式 -->
+    <style>
+        /* 解决方案流程 */
+        .solution-flow {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .flow-step {
+            text-align: center;
+            background: var(--color-white);
+            border: 1px solid rgba(var(--rgb-dark), 0.08);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            min-width: 140px;
+            flex: 1;
+            transition: all 0.25s ease;
+        }
+        .flow-step:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(var(--rgb-dark), 0.08); }
+        .flow-step .flow-num {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: var(--color-dark);
+            color: var(--color-white);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .flow-step .flow-label { font-weight: 800; font-size: 15px; color: var(--color-dark); display: block; margin-bottom: 4px; }
+        .flow-step .flow-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+        .flow-arrow {
+            color: var(--color-gold);
+            font-size: 22px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 免费测评 CTA spotlight */
+        .spotlight-cta {
+            background: linear-gradient(135deg, #1a1816 0%, #2a2520 100%);
+            color: var(--color-white);
+            text-align: center;
+            padding: 72px 0;
+        }
+        .spotlight-cta .section-title { color: var(--color-white); }
+        .spotlight-card {
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+        .spotlight-card h3 { color: var(--color-white); font-size: 22px; margin-bottom: 12px; }
+        .spotlight-card p { color: var(--text-muted-dark); font-size: 15px; margin-bottom: 24px; line-height: 1.7; }
+        .spotlight-card .spotlight-features {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .spotlight-feature {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-gold-light);
+        }
+        .spotlight-feature .check { color: var(--color-gold); font-weight: 900; }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .solution-flow { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            .flow-step { width: 100%; max-width: 300px; }
+            .spotlight-card { padding: 28px 20px; }
+        }
+    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
@@ -32,10 +121,10 @@
         <div class="nav-content">
             <div class="nav-brand">
                 <span class="nav-brand-name"><span class="nav-brand-full">KEVIN 经验产品化</span><span class="nav-brand-short">KEVIN</span></span>
-                <span class="nav-brand-sub">把经验变成内容产品</span>
+                <span class="nav-brand-sub">经验资产 · 个人价值系统</span>
             </div>
             <nav class="nav-actions">
-                <a href="javascript:void(0)" class="nav-btn dir-overlay-trigger">查看目录</a>
+                <a href="javascript:void(0)" class="nav-btn dir-overlay-trigger">查看知识库</a>
                 <a href="#wechat-contact" class="nav-btn nav-btn-outline">加微信</a>
             </nav>
         </div>
@@ -43,22 +132,22 @@
 
     <!-- 手机端底部固定 CTA -->
     <div class="mobile-bottom-bar">
-        <a href="javascript:void(0)" class="mobile-bottom-btn primary dir-overlay-trigger">看目录</a>
+        <a href="/fuye/" class="mobile-bottom-btn primary">免费测经验资产</a>
         <a href="#wechat-contact" class="mobile-bottom-btn secondary-outline">加微信</a>
     </div>
 
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- ===== 1. 首屏 Hero ===== -->
+    <!-- ===== 1. 第一屏：战略定位 ===== -->
     <section class="hero" id="main-content">
         <div class="container">
-            <h1 class="hero-title">35-45 岁职场人的<br>经验产品化入口</h1>
-            <p class="hero-subtitle">把你工作十几年的经验，拆成能发布、能交付、能变现的内容产品。</p>
-            <p class="hero-description">不教暴富，不承诺结果。我帮你看源头、拆框架、避高价课，用更低成本理解个人品牌、数字产品和一人公司的底层方法。</p>
+            <h1 class="hero-title">35岁以后<br>重新看懂你的职业经验</h1>
+            <p class="hero-subtitle">我帮助有十年以上工作经验的人，把过去的经验重新整理成方向、内容、产品、服务和新的增长可能。</p>
+            <p class="hero-description">不是教你追风口，也不是承诺暴富，而是帮你建立属于自己的经验资产和个人价值系统。</p>
 
             <div class="hero-actions">
-                <a href="javascript:void(0)" class="cta-button dir-overlay-trigger">先看知识库目录</a>
-                <a href="#wechat-contact" class="secondary-button hero-secondary">加微信问问</a>
+                <a href="/fuye/" class="cta-button">免费测一测：我的经验适合怎么变成价值</a>
+                <a href="javascript:void(0)" class="secondary-button hero-secondary dir-overlay-trigger">查看经验产品化知识库</a>
             </div>
         </div>
 
@@ -67,123 +156,89 @@
         </div>
     </section>
 
-    <!-- ===== 2. 痛点 ===== -->
+    <!-- ===== 2. 用户痛点：不是你没经验，而是经验还没有被资产化 ===== -->
     <section class="problem">
         <div class="container">
-            <h2 class="section-title">三件事，在阻止你开启第二收入</h2>
+            <h2 class="section-title">三件事，在阻止你把经验变成资产</h2>
             <div class="problem-grid">
                 <div class="problem-item">
                     <div class="problem-number">01</div>
-                    <h3>信息差</h3>
-                    <p>真正有价值的内容很多在英文网络，普通职场人接触成本高，甚至不知道这些信息存在。</p>
+                    <h3>不知道自己有什么</h3>
+                    <p>工作十几年做了很多事，但从来没有系统盘点过自己积累了什么。经验在脑子里是散的，说不清楚、用不起来。</p>
                 </div>
                 <div class="problem-item">
                     <div class="problem-number">02</div>
-                    <h3>怕被割</h3>
-                    <p>市面上很多课程包装很重，但核心内容高度重复，用户很难判断值不值。</p>
+                    <h3>不知道怎么变成价值</h3>
+                    <p>知道自己的经验有用，但不知道怎么拆成内容、产品、咨询或服务——更不知道怎么定价和交付。</p>
                 </div>
                 <div class="problem-item">
                     <div class="problem-number">03</div>
-                    <h3>没路径</h3>
-                    <p>工作十几年有经验，但不知道怎么把经验变成内容、产品和服务。</p>
+                    <h3>不敢迈出第一步</h3>
+                    <p>市面上信息太多太杂，高价课包装很重，被割怕了。与其再踩坑，不如先低成本验证一下方向。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== 3. 知识库样张 ===== -->
+    <!-- ===== 3. 解决方案：经验转化路径 ===== -->
     <section class="samples">
         <div class="container">
-            <h2 class="section-title">你会看到什么？先看三个样张</h2>
-            <div class="samples-grid">
-                <!-- 样张1：目录结构 -->
-                <div class="sample-card">
-                    <div class="sample-card-label">目录结构</div>
-                    <div class="sample-mock toc-mock">
-                        <div class="toc-sidebar">
-                            <div class="toc-group-label">经验产品化</div>
-                            <div class="toc-item active">一人公司模型</div>
-                            <div class="toc-item">个人品牌搭建</div>
-                            <div class="toc-item">内容系统设计</div>
-                            <div class="toc-item">数字产品开发</div>
-                            <div class="toc-item">私域转化路径</div>
-                            <div class="toc-item">定价与交付</div>
-                        </div>
-                        <div class="toc-main">
-                            <div class="toc-main-title">一人公司模型</div>
-                            <div class="toc-main-lines">
-                                <span class="toc-line"></span>
-                                <span class="toc-line short"></span>
-                                <span class="toc-line"></span>
-                                <span class="toc-line short"></span>
-                            </div>
-                        </div>
-                    </div>
+            <h2 class="section-title">五步，把经验从模糊感觉<br>变成可交付、可积累的资产</h2>
+            <div class="solution-flow">
+                <div class="flow-step">
+                    <span class="flow-num">1</span>
+                    <span class="flow-label">经验盘点</span>
+                    <span class="flow-desc">系统梳理你过去积累了什么</span>
                 </div>
-                <!-- 样张2：内容整理 -->
-                <div class="sample-card">
-                    <div class="sample-card-label">内容整理</div>
-                    <div class="sample-mock content-mock">
-                        <div class="content-block">
-                            <span class="content-tag tag-original">原文要点</span>
-                            <p class="content-text">一句话概括 Dan Koe / Naval 等源头作者的核心观点，保留原意不添油加醋。</p>
-                        </div>
-                        <div class="content-block">
-                            <span class="content-tag tag-translate">中文解释</span>
-                            <p class="content-text">用中文语境重新转述，消除英文直译的生硬感，确保你能读懂。</p>
-                        </div>
-                        <div class="content-block">
-                            <span class="content-tag tag-localize">本地化理解</span>
-                            <p class="content-text">把方法论套用到你的场景：国内职场、中文平台、你的行业经验。</p>
-                        </div>
-                        <div class="content-block">
-                            <span class="content-tag tag-action">行动建议</span>
-                            <p class="content-text">看完马上能做的一件事，降低执行门槛。</p>
-                        </div>
-                    </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <span class="flow-num">2</span>
+                    <span class="flow-label">方向诊断</span>
+                    <span class="flow-desc">判断你的经验适合怎么变现</span>
                 </div>
-                <!-- 样张3：执行清单 -->
-                <div class="sample-card">
-                    <div class="sample-card-label">执行清单</div>
-                    <div class="sample-mock checklist-mock">
-                        <div class="checklist-item">
-                            <span class="check-box checked">✓</span>
-                            <div>
-                                <span class="check-title">确定你的经验主题</span>
-                                <span class="check-desc">从十几年工作中提炼出可表达的领域</span>
-                            </div>
-                        </div>
-                        <div class="checklist-item">
-                            <span class="check-box checked">✓</span>
-                            <div>
-                                <span class="check-title">写出一句话定位</span>
-                                <span class="check-desc">帮谁 + 解决什么问题 + 用什么方式</span>
-                            </div>
-                        </div>
-                        <div class="checklist-item">
-                            <span class="check-box">03</span>
-                            <div>
-                                <span class="check-title">拆出 10 个选题</span>
-                                <span class="check-desc">围绕定位拆出第一批可发布的内容方向</span>
-                            </div>
-                        </div>
-                        <div class="checklist-item">
-                            <span class="check-box">04</span>
-                            <div>
-                                <span class="check-title">做第一个低价产品</span>
-                                <span class="check-desc">从清单、模板或知识库开始定价</span>
-                            </div>
-                        </div>
-                    </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <span class="flow-num">3</span>
+                    <span class="flow-label">内容输出</span>
+                    <span class="flow-desc">把经验变成可传播的内容</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <span class="flow-num">4</span>
+                    <span class="flow-label">产品设计</span>
+                    <span class="flow-desc">把内容打包成可卖的产品或服务</span>
+                </div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-step">
+                    <span class="flow-num">5</span>
+                    <span class="flow-label">转化验证</span>
+                    <span class="flow-desc">用真实付费反馈迭代方向</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== 4. 99元知识库 ===== -->
+    <!-- ===== 4. 免费测评入口 ===== -->
+    <section class="spotlight-cta">
+        <div class="container">
+            <h2 class="section-title">先看清方向，再决定怎么走</h2>
+            <div class="spotlight-card">
+                <h3>免费经验资产诊断</h3>
+                <p>5分钟，8道题。帮你判断你的职业经验更适合变成内容、知识产品、咨询诊断、模板工具，还是陪跑交付。</p>
+                <div class="spotlight-features">
+                    <span class="spotlight-feature"><span class="check">✓</span> 无需登录</span>
+                    <span class="spotlight-feature"><span class="check">✓</span> 不推暴富项目</span>
+                    <span class="spotlight-feature"><span class="check">✓</span> 即时出结果</span>
+                </div>
+                <a href="/fuye/" class="cta-button" style="background: var(--color-gold); border-color: var(--color-gold);">免费测一测 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 5. 99元/年经验产品化知识库 ===== -->
     <section class="kb-hero" id="knowledge-base">
         <div class="container">
-            <h2 class="section-title">先用 99 元，看清楚源头内容和经验产品化路径</h2>
+            <h2 class="section-title">先用 99 元/年，建立你的经验产品化认知体系</h2>
 
             <div class="kb-card">
                 <div class="kb-card-label">经验产品化知识库</div>
@@ -207,7 +262,158 @@
         </div>
     </section>
 
-    <!-- ===== 5. 加微信问问 ===== -->
+    <!-- ===== 6. 199元/60分钟诊断咨询 ===== -->
+    <section class="advanced" id="diagnosis-199">
+        <div class="container">
+            <h2 class="section-title">如果你想一对一理清现状</h2>
+            <div class="advanced-grid" style="max-width:540px;">
+                <div class="advanced-card">
+                    <div class="advanced-tier">一对一诊断</div>
+                    <div class="advanced-price">
+                        <span class="advanced-amount">¥199</span>
+                        <span class="advanced-period">/ 次 · 60分钟</span>
+                    </div>
+                    <h3>经验资产诊断咨询</h3>
+                    <p class="advanced-desc">60分钟一对一沟通，帮你判断你的经验能不能产品化、从哪里开始、当前最该优先做什么、以及哪些坑不要碰。</p>
+                    <ul class="advanced-features">
+                        <li>梳理你的经验资产和转化潜力</li>
+                        <li>判断适合的内容产品形态</li>
+                        <li>给出具体的下一步行动建议</li>
+                    </ul>
+                    <a href="#wechat-contact" class="cta-button advanced-btn">加微信，发送「经验产品化」</a>
+                </div>
+            </div>
+            <p class="advanced-note">不确定选哪个？加微信发送「经验产品化」，我帮你判断当前最适合的起点。</p>
+        </div>
+    </section>
+
+    <!-- ===== 7. 45天私教陪跑（弱化视觉） ===== -->
+    <section class="advanced" style="background-color:#faf8f4;">
+        <div class="container">
+            <div class="advanced-grid" style="max-width:540px;">
+                <div class="advanced-card advanced-subdued">
+                    <div class="advanced-tier">深度陪跑</div>
+                    <h3>45 天私教陪跑</h3>
+                    <p class="advanced-desc">适合已经决定系统推进的人。从定位、内容系统、知识库产品到转化路径，陪你完整走一遍。</p>
+                    <ul class="advanced-features">
+                        <li>内容创作系统和选题库搭建</li>
+                        <li>知识库产品设计和迭代</li>
+                        <li>私域流量和转化路径搭建</li>
+                    </ul>
+                    <div class="advanced-subdued-price">价格：申请沟通后确认</div>
+                    <a href="#wechat-contact" class="secondary-button advanced-btn-weak">加微信，发送「经验产品化」</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 8. 关于 Kevin ===== -->
+    <section class="about-kevin">
+        <div class="container">
+            <h2 class="section-title">一个普通职场人，能不能把经验变成可积累的资产</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>你好，我是 Kevin。</p>
+                    <p>我不是来包装成功学的。</p>
+                    <p>我做过职场，也经历过转型的焦虑。</p>
+                    <p>我更关心的是：<strong>一个工作了十年以上的人，能不能把过去积累的经验，变成一套可表达、可交付、可积累的资产。</strong></p>
+                    <p>所以这个入口不是鸡血课，也不是暴富课。</p>
+                    <p>它更像一个低成本入口：帮你先看懂自己的经验资产，再判断该走哪条路。</p>
+                </div>
+                <div class="about-credentials">
+                    <div class="credential-item">
+                        <span class="credential-num">50+</span>
+                        <span class="credential-label">源头内容已整理</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="credential-num">100+</span>
+                        <span class="credential-label">执行清单已本地化</span>
+                    </div>
+                    <div class="credential-item">
+                        <span class="credential-num">每周更新</span>
+                        <span class="credential-label">持续追踪源头内容</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 9. 常见问题 ===== -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <button class="faq-question" aria-expanded="true">
+                        <span class="faq-q-text">经验资产诊断收费吗？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>8道题的在线诊断完全免费，即时出结果。如果你想要更完整的分析报告，可以花9.9元解锁完整版，或者预约199元的60分钟人工诊断。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-q-text">99元知识库和199元诊断有什么区别？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>知识库是通用内容——源头方法论、框架、清单，适合自己看自己消化。诊断咨询是针对你个人情况的60分钟一对一沟通，帮你判断你的经验能不能产品化、从哪开始。相当于「买本书自己看」vs「找个教练梳理现状」。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-q-text">我已经有经验了，为什么还需要诊断？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>有经验和把经验变成价值是两回事。很多人卡在"知道自己有用，但不知道从哪变现"。诊断帮你把十几年的模糊经验，转成一条清晰的转化路径。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-q-text">英文不好能看知识库吗？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>能。内容是中文版，保留原意，以中文阅读和执行为主。不需要先学英文再使用。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-q-text">FlowUs 打不开怎么办？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>复制链接到浏览器地址栏打开。如果仍然打不开，添加微信发送「知识库」，我直接把内容发给你。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-q-text">陪跑和诊断有什么区别？</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>诊断是帮你「看清现状和方向」，60分钟搞定。陪跑是「45天手把手推进」——帮你实际搭建内容系统、打磨产品、建立转化路径，每周2次深度辅导。前者适合还在犹豫的人，后者适合已经决定要做的人。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 10. 最终 CTA ===== -->
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="cta-title">在你花几千上万报课之前<br>先免费看懂自己的经验值多少钱</h2>
+            <p class="cta-description">5分钟，8道题。值不值得继续投入，你先自己判断。</p>
+            <div class="final-cta-actions">
+                <a href="/fuye/" class="cta-button large">免费测一测：经验资产诊断</a>
+                <a href="#wechat-contact" class="secondary-button final-secondary">加微信，发送「经验产品化」</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 加微信 inline（保留在页尾附近，作为锚点） ===== -->
     <section class="wechat-inline" id="wechat-contact">
         <div class="container">
             <div class="wechat-inline-card">
@@ -236,187 +442,16 @@
         </div>
     </section>
 
-    <!-- ===== 6. Kevin 为什么做这件事 ===== -->
-    <section class="about-kevin">
-        <div class="container">
-            <h2 class="section-title">一个普通职场人，能不能把经验变成可积累的资产</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>你好，我是 Kevin。</p>
-                    <p>我不是来包装成功学的。</p>
-                    <p>我做过职场，也经历过中年转型的焦虑。</p>
-                    <p>我更关心的是：<strong>一个普通职场人，能不能把过去十几年的经验，变成一套可表达、可交付、可积累的资产。</strong></p>
-                    <p>所以这个知识库不是鸡血课，也不是暴富课。</p>
-                    <p>它更像一个低成本入口：帮你先看懂源头内容，再判断自己到底适不适合做经验产品化。</p>
-                </div>
-                <div class="about-credentials">
-                    <div class="credential-item">
-                        <span class="credential-num">50+</span>
-                        <span class="credential-label">源头内容已整理</span>
-                    </div>
-                    <div class="credential-item">
-                        <span class="credential-num">100+</span>
-                        <span class="credential-label">执行清单已本地化</span>
-                    </div>
-                    <div class="credential-item">
-                        <span class="credential-num">每周更新</span>
-                        <span class="credential-label">持续追踪源头内容</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 7. 适合谁 / 不适合谁 ===== -->
-    <section class="audience">
-        <div class="container">
-            <h2 class="section-title">适合谁 / 不适合谁</h2>
-            <div class="audience-split">
-                <div class="audience-col fit-col">
-                    <div class="audience-col-header">适合</div>
-                    <ul class="audience-list">
-                        <li>35-45 岁，职场天花板越来越近，想给自己多一条路</li>
-                        <li>工作十几年有积累，想做副业但不知道怎么启动</li>
-                        <li>被高价课割过，想直接看源头内容</li>
-                        <li>想做个人品牌、数字产品、一人公司，需要系统框架</li>
-                    </ul>
-                </div>
-                <div class="audience-col unfit-col">
-                    <div class="audience-col-header">不适合</div>
-                    <ul class="audience-list">
-                        <li>想要照着做就月入过万的人</li>
-                        <li>不愿意执行，只想听方法论的人</li>
-                        <li>没有真实经验，却想包装大师人设的人</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 8. 进阶服务 ===== -->
-    <section class="advanced" id="advanced">
-        <div class="container">
-            <h2 class="section-title">如果你不想一个人摸索，可以继续往下走</h2>
-            <div class="advanced-grid">
-                <!-- 199 诊断 -->
-                <div class="advanced-card">
-                    <div class="advanced-tier">一对一诊断</div>
-                    <div class="advanced-price">
-                        <span class="advanced-amount">¥199</span>
-                        <span class="advanced-period">/ 次</span>
-                    </div>
-                    <h3>经验变现诊断</h3>
-                    <p class="advanced-desc">60 分钟一对一沟通，帮你判断你的经验能不能产品化、从哪里开始、避开哪些坑。</p>
-                    <ul class="advanced-features">
-                        <li>梳理你的经验资产和变现潜力</li>
-                        <li>判断适合的内容产品形态</li>
-                        <li>给出具体的下一步行动建议</li>
-                    </ul>
-                    <a href="#wechat-contact" class="cta-button advanced-btn">加微信，发送「经验产品化」</a>
-                </div>
-                <!-- 9800 陪跑（视觉弱化） -->
-                <div class="advanced-card advanced-subdued">
-                    <div class="advanced-tier">深度陪跑</div>
-                    <h3>45 天私教陪跑</h3>
-                    <p class="advanced-desc">适合已经决定系统推进的人。从定位、内容系统、知识库产品到私域转化路径，陪你完整走一遍。</p>
-                    <ul class="advanced-features">
-                        <li>内容创作系统和选题库搭建</li>
-                        <li>知识库产品设计和迭代</li>
-                        <li>私域流量和转化路径搭建</li>
-                    </ul>
-                    <div class="advanced-subdued-price">价格：申请沟通后确认</div>
-                    <a href="#wechat-contact" class="secondary-button advanced-btn-weak">加微信，发送「经验产品化」</a>
-                </div>
-            </div>
-            <p class="advanced-note">不确定选哪个？加微信发送「经验产品化」，我帮你判断当前最适合的起点。</p>
-        </div>
-    </section>
-
-    <!-- ===== 9. FAQ ===== -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">常见问题</h2>
-            <div class="faq-list">
-                <div class="faq-item active">
-                    <button class="faq-question" aria-expanded="true">
-                        <span class="faq-q-text">和几千块的课有什么区别？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>高价课卖的是「承诺」，我提供的是源头内容的翻译、整理和本地化。不是帮你做梦，是帮你更快接触到真正有价值的信息。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">99 元知识库和 199 元诊断有什么区别？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>知识库是通用内容——源头方法论、框架、清单，适合自己看自己消化。诊断咨询是针对你个人情况的 60 分钟一对一沟通，帮你判断你的经验能不能产品化、从哪开始。相当于「买本书自己看」vs「找个教练梳理现状」。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">英文不好能看吗？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>能。内容是中文版，保留原意，以中文阅读和执行为主。不需要先学英文再使用。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">订阅后怎么看？更新频率多少？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>通过 FlowUs 知识库，手机电脑都能看。每周更新 2-3 篇，持续补充到同一个知识库。如果 FlowUs 打不开，复制链接到浏览器，或加微信我直接发你。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">FlowUs 打不开怎么办？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>复制链接到浏览器地址栏打开，如果仍然打不开，添加微信发送「知识库」，我直接把内容发给你。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">陪跑和诊断有什么区别？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>诊断是帮你「看清现状和方向」，60分钟搞定。陪跑是「45天手把手推进」——帮你实际搭建内容系统、打磨产品、建立转化路径，每周 2 次深度辅导。前者适合还在犹豫的人，后者适合已经决定要做的人。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 10. 底部 CTA ===== -->
-    <section class="final-cta">
-        <div class="container">
-            <h2 class="cta-title">在你花几千上万报课之前<br>先用 99 元看清楚源头内容</h2>
-            <p class="cta-description">值不值得继续投入，你自己判断。</p>
-            <div class="final-cta-actions">
-                <a href="javascript:void(0)" class="cta-button large dir-overlay-trigger">看完整目录和试看内容</a>
-                <a href="#wechat-contact" class="secondary-button final-secondary">加微信，发送「经验产品化」</a>
-            </div>
-        </div>
-    </section>
-
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <p class="footer-brand">KEVIN 经验产品化</p>
-                <p class="footer-tagline">把经验变成内容产品</p>
+                <p class="footer-tagline">把经验变成可积累的资产</p>
             </div>
         </div>
     </footer>
 
-    <!-- 目录选项弹层（手机+电脑通用） -->
+    <!-- 目录选项弹层 -->
     <div class="dir-overlay" id="dirOverlay">
         <div class="dir-panel">
             <button class="dir-close" id="dirClose">×</button>
