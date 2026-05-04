@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>完整诊断报告 ¥9.9｜看清你的经验适合怎么变成价值｜Kevin 彭峥</title>
+  <meta name="description" content="¥9.9解锁完整经验资产诊断报告，含类型判定、适合度评分、核心优势、当前卡点、转化方向和30天行动计划。" />
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --card: #fffaf2;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --accent: #b8874a;
+      --accent-deep: #875f32;
+      --line: #e4d8c9;
+      --teal: #2F6F73;
+      --radius: 22px;
+      --shadow: 0 8px 30px rgba(30, 26, 23, 0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg) 0%, #ece6dc 100%);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .container { max-width: 720px; margin: 0 auto; }
+
+    /* Header */
+    .page-header {
+      text-align: center;
+      padding: 28px 0 18px;
+    }
+    .page-header .badge {
+      display: inline-flex;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+    }
+    .header-sub {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Price banner */
+    .price-banner {
+      text-align: center;
+      margin: 18px 0 28px;
+    }
+    .price-tag {
+      display: inline-block;
+      padding: 12px 32px;
+      border: 2px solid var(--accent);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--accent);
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .price-tag .yuan { font-size: 22px; }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    @media (max-width: 600px) {
+      .card { padding: 22px 18px; }
+    }
+
+    h2 {
+      font-size: clamp(22px, 4vw, 32px);
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+    }
+    h3 {
+      font-size: 20px;
+      margin: 20px 0 10px;
+      letter-spacing: -0.02em;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+    }
+    p { color: var(--muted); margin: 0 0 10px; font-size: 15px; line-height: 1.7; }
+
+    /* What's included */
+    .benefit-list {
+      display: grid;
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .benefit-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px;
+      background: rgba(198, 161, 91, 0.04);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .benefit-item .icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .benefit-item h4 { font-size: 16px; margin: 0 0 4px; color: var(--text); }
+    .benefit-item p { margin: 0; font-size: 14px; }
+
+    /* Types preview */
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (max-width: 600px) {
+      .type-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .type-chip {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      text-align: center;
+      background: var(--card);
+      font-size: 14px;
+    }
+    .type-chip .t-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+    .type-chip .t-name { font-weight: 800; color: var(--text); display: block; margin-bottom: 2px; }
+
+    /* Sample report preview */
+    .preview-block {
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(198, 161, 91, 0.02);
+    }
+    .preview-block .score {
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 4px;
+      color: var(--accent);
+    }
+    .preview-block .score small { font-size: 16px; color: var(--muted); font-weight: 600; }
+
+    .highlight {
+      background: rgba(198, 161, 91, 0.06);
+      border-left: 3px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 0 12px 12px 0;
+      margin: 14px 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--accent-deep);
+    }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .mini-box {
+      padding: 12px;
+      background: rgba(198, 161, 91, 0.04);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 13px;
+    }
+    .mini-box b { display: block; margin-bottom: 4px; font-size: 14px; }
+    .mini-box span { color: var(--muted); }
+    .blur-mask {
+      filter: blur(6px);
+      user-select: none;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .blur-label {
+      text-align: center;
+      font-weight: 800;
+      color: var(--accent);
+      font-size: 15px;
+      padding: 10px 0;
+      margin-top: -8px;
+    }
+
+    /* Steps preview */
+    .step-preview {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .step-preview li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .step-preview li:last-child { border-bottom: none; }
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--text);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 28px 0 8px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 16px 32px;
+      font-size: 17px;
+      font-weight: 900;
+      text-decoration: none;
+      color: #fff;
+      background: var(--accent);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 24px rgba(30, 26, 23, 0.1); }
+    .btn-ghost {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .btn-block { width: 100%; }
+
+    .wechat-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+      text-align: center;
+    }
+    .wechat-box .wx-id {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--accent);
+      margin: 8px 0;
+    }
+    .wechat-box img {
+      display: block;
+      max-width: 160px;
+      margin: 12px auto;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(30, 26, 23, .94);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 200;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .faq-link {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .faq-link a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+    .faq-link a:hover { color: var(--accent-deep); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <div class="badge">完整诊断报告</div>
+      <h1>你的经验资产完整分析</h1>
+      <p class="header-sub">之前测完诊断题，这里是你拿到的完整版本——更详细的分析、更具体的路径、30天可执行计划。</p>
+    </div>
+
+    <div class="price-banner">
+      <div class="price-tag"><span class="yuan">¥</span>9.9</div>
+      <p style="margin-top:8px;color:var(--muted);font-size:14px;">解锁完整报告，看清你的经验适合怎么变成价值</p>
+    </div>
+
+    <!-- What you get -->
+    <div class="card">
+      <h2>完整报告包含什么？</h2>
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <span class="icon">🎯</span>
+          <div>
+            <h4>经验资产类型判定</h4>
+            <p>6种路径中你是哪一种——内容表达型、咨询诊断型、知识产品型、模板工具型、资源服务型还是陪跑交付型。</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="icon">📊</span>
+          <div>
+            <h4>经验资产适合度评分</h4>
+            <p>0-100分量化你的经验与转化方向的匹配程度，给一个客观的参考框架。</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="icon">💪</span>
+          <div>
+            <h4>核心优势 + 当前卡点</h4>
+            <p>不是泛泛的性格分析，而是基于你8道题的回答，指出你的经验优势在哪、当前最卡住的地方是什么。</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="icon">🗺️</span>
+          <div>
+            <h4>转化方向建议</h4>
+            <p>从"想"到"做"的具体路径——先做什么、怎么验证、如何避免最常见的坑。</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="icon">📋</span>
+          <div>
+            <h4>30天分阶段行动计划</h4>
+            <p>4个阶段、每周一个主要任务，具体到你本周就能开始做的小步骤。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What 6 types exist -->
+    <div class="card">
+      <h2>6种经验资产类型</h2>
+      <p style="margin-bottom:12px;">以下是诊断覆盖的全部6种类型。完整报告会告诉你：你是哪一种，以及为什么。</p>
+      <div class="type-grid">
+        <div class="type-chip"><span class="t-icon">📝</span><span class="t-name">内容表达型</span>适合用内容积累影响力</div>
+        <div class="type-chip"><span class="t-icon">🎯</span><span class="t-name">咨询诊断型</span>适合用判断力变现</div>
+        <div class="type-chip"><span class="t-icon">📚</span><span class="t-name">知识产品型</span>适合做结构化知识付费</div>
+        <div class="type-chip"><span class="t-icon">🔧</span><span class="t-name">模板工具型</span>适合做拿来即用的工具</div>
+        <div class="type-chip"><span class="t-icon">🤝</span><span class="t-name">资源服务型</span>适合做资源撮合和交付</div>
+        <div class="type-chip"><span class="t-icon">🏃</span><span class="t-name">陪跑交付型</span>适合做持续陪伴类服务</div>
+      </div>
+    </div>
+
+    <!-- Sample preview -->
+    <div class="card">
+      <h2>报告长什么样？（预览）</h2>
+      <p style="margin-bottom:16px;">以下是完整报告的结构展示。付费解锁后，你会看到属于你自己的完整内容，而不是这个模糊预览。</p>
+
+      <div class="preview-block">
+        <div class="score">78<small> / 100</small></div>
+        <p style="font-size:14px;color:var(--muted);margin-top:-2px;">经验资产适合度评分</p>
+
+        <h3>你的初步诊断结果</h3>
+
+        <div class="highlight blur-mask">
+          先找到一个细分话题，持续输出30天，同时设计一个低价信息产品，用内容建立信任、用产品获得反馈。不需要追求大流量，需要在精准人群里建立信任。
+        </div>
+
+        <div class="mini-grid">
+          <div class="mini-box blur-mask"><b>核心优势</b><span>表达能力强，愿意持续公开输出</span></div>
+          <div class="mini-box blur-mask"><b>当前卡点</b><span>内容没收到真实反馈和验证</span></div>
+        </div>
+
+        <div class="blur-label">📋 以上为模糊预览，付费解锁后显示你的真实结果</div>
+      </div>
+
+      <h3 style="margin-top:20px;">📋 30天行动计划结构</h3>
+      <ul class="step-preview blur-mask">
+        <li><span class="step-num">1</span><span>第1-7天：阶段一任务</span></li>
+        <li><span class="step-num">2</span><span>第8-14天：阶段二任务</span></li>
+        <li><span class="step-num">3</span><span>第15-21天：阶段三任务</span></li>
+        <li><span class="step-num">4</span><span>第22-30天：阶段四任务</span></li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <button class="btn btn-block" id="unlockBtn">¥9.9 加微信解锁完整报告</button>
+
+      <div class="wechat-box" id="wechatBox">
+        <p style="font-size:14px;">扫码或搜索微信号添加，发送「完整报告」</p>
+        <img src="/assets/wechat-qr.jpg" alt="微信二维码" />
+        <div class="wx-id">kevin0915</div>
+        <button class="btn btn-ghost" id="copyBtn" style="font-size:15px;padding:10px 20px;">复制微信号</button>
+        <p style="font-size:13px;margin-top:8px;">添加后发送你的诊断截图，确认支付后解锁完整报告。</p>
+      </div>
+
+      <div class="faq-link">
+        <p>不确定是否适合？<a href="/fuye/">返回查看诊断说明</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    document.getElementById('unlockBtn').addEventListener('click', function() {
+      document.getElementById('wechatBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      navigator.clipboard.writeText('kevin0915').then(function() {
+        showToast('已复制微信号：kevin0915');
+      }).catch(function() {
+        showToast('微信号：kevin0915');
+      });
+    });
+
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._tid);
+      t._tid = setTimeout(function() { t.classList.remove('show'); }, 2500);
+    }
+  </script>
+</body>
+</html>

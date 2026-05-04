@@ -7,37 +7,45 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <title>经验资产诊断｜你缺的不是副业项目，而是方向｜Kevin 彭峥</title>
+  <title>经验资产诊断｜把过去的工作经验，重新变成方向与价值｜Kevin 彭峥</title>
   <meta name="description" content="5分钟8道题，帮你判断你的职业经验更适合变成内容、知识产品、咨询诊断、模板工具还是陪跑交付。先看清方向，再决定要不要投入时间和钱。" />
 
   <style>
     :root {
-      --bg: #f7f2ea;
-      --card: #fffaf2;
-      --text: #1e1a17;
-      --muted: #6f665d;
-      --line: #e4d8c9;
-      --primary: #1e1a17;
-      --accent: #b8874a;
-      --accent-dark: #875f32;
-      --soft: #efe4d3;
+      --bg-main: #f7f2ea;
+      --bg-soft: #faf6f0;
+      --bg-card: #fffaf2;
+      --text-main: #1e1a17;
+      --text-secondary: #6f665d;
+      --text-muted: #8a7e76;
+      --accent-gold: #C6A15B;
+      --accent-clay: #b8874a;
+      --accent-teal: #2F6F73;
+      --btn-main: #1e1a17;
+      --btn-hover: #2a2521;
+      --border-soft: #e4d8c9;
+      --line-dark: rgba(255, 255, 255, 0.06);
       --radius: 22px;
-      --shadow: 0 22px 70px rgba(53, 40, 25, 0.12);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
-      background: radial-gradient(circle at top left, rgba(184, 135, 74, 0.2), transparent 35%),
-                  linear-gradient(180deg, #f8f1e7 0%, #f7f2ea 45%, #fbf7f0 100%);
-      color: var(--text);
+      background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-soft) 100%);
+      color: var(--text-main);
       line-height: 1.65;
     }
 
     a { color: inherit; text-decoration: none; }
+    a[href]:not(.btn):not(.nav-cta):not(.brand) {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: rgba(198, 161, 91, 0.25);
+    }
+    a[href]:not(.btn):not(.nav-cta):not(.brand):hover { opacity: 1; text-decoration-color: var(--accent); }
     button { font-family: inherit; }
 
     .page {
@@ -47,248 +55,190 @@
 
     /* ── Nav ── */
     .nav {
-      position: sticky;
-      top: 0;
-      z-index: 99;
+      position: sticky; top: 0; z-index: 99;
       backdrop-filter: blur(18px);
-      background: rgba(247, 242, 234, 0.88);
-      border-bottom: 1px solid rgba(228, 216, 201, 0.75);
+      background: rgba(247, 242, 234, 0.94);
+      border-bottom: 1px solid var(--border-soft);
     }
     .nav-inner {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      width: min(1120px, calc(100% - 32px)); margin: 0 auto;
+      height: 64px; display: flex; align-items: center;
+      justify-content: space-between; gap: 14px;
     }
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; letter-spacing: -0.03em; color: var(--text-main);
     }
     .brand-mark {
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-size: 17px;
-      font-weight: 900;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: grid; place-items: center;
+      font-size: 17px; font-weight: 900;
     }
     .nav-brand-text { display: none; }
     @media (min-width: 640px) { .nav-brand-text { display: inline; } }
     .nav-cta {
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 800;
-      white-space: nowrap;
+      padding: 10px 16px; border-radius: 999px;
+      background: var(--btn-main); color: #fff;
+      font-size: 14px; font-weight: 800; white-space: nowrap;
+      text-decoration: none;
     }
+    .nav-cta:hover { background: var(--btn-hover); }
 
     /* ── Hero ── */
     .hero {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 44px;
-      align-items: center;
-      padding: 72px 0 54px;
+      display: grid; grid-template-columns: 1.08fr 0.92fr;
+      gap: 44px; align-items: center; padding: 72px 0 54px;
+      background: linear-gradient(180deg, rgba(30, 26, 23, 0.02) 0%, transparent 100%);
+      margin: 0 calc(-50vw + 50%); padding-left: calc(50vw - 560px); padding-right: calc(50vw - 560px);
+    }
+    @media (max-width: 1152px) {
+      .hero { padding-left: 16px; padding-right: 16px; }
     }
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      padding: 8px 13px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 250, 242, 0.76);
-      color: var(--accent-dark);
-      font-size: 14px;
-      font-weight: 800;
+      display: inline-flex; align-items: center;
+      padding: 8px 13px; border: 1px solid var(--border-soft);
+      border-radius: 999px; background: var(--bg-card);
+      color: var(--accent); font-size: 14px; font-weight: 800;
     }
     h1 {
       margin: 22px 0 18px;
       font-size: clamp(38px, 6vw, 68px);
-      line-height: 1.04;
-      letter-spacing: -0.06em;
+      line-height: 1.04; letter-spacing: -0.06em;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
     }
-    .hero-sub {
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 19px;
-    }
-    .hero-sub strong { color: var(--text); }
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
-    }
+    .hero-sub { max-width: 650px; color: var(--text-secondary); font-size: 19px; }
+    .hero-sub strong { color: var(--text-main); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
 
     /* ── Buttons ── */
     .btn {
-      border: 0;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 15px 22px;
-      font-size: 16px;
-      font-weight: 900;
+      border: 0; cursor: pointer; border-radius: 999px;
+      padding: 15px 22px; font-size: 16px; font-weight: 900;
       transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      text-align: center;
-      text-decoration: none;
+      display: inline-flex; justify-content: center; align-items: center;
+      gap: 8px; text-align: center; text-decoration: none;
     }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(31, 26, 23, 0.12); }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-ghost { background: rgba(255, 250, 242, 0.82); color: var(--text); border: 1px solid var(--line); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(30, 26, 23, 0.08); }
+    .btn-primary { background: var(--btn-main); color: #fff; }
+    .btn-primary:hover { background: var(--btn-hover); }
+    .btn-ghost { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border-soft); }
     .btn-accent { background: var(--accent); color: #fff; }
     .btn[disabled] { opacity: .42; cursor: not-allowed; transform: none; box-shadow: none; }
     .btn-block { width: 100%; }
     .btn-lg { padding: 16px 32px; font-size: 17px; }
 
     .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-      color: var(--muted);
-      font-size: 14px;
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 22px; color: var(--text-muted); font-size: 14px;
     }
     .trust-pill {
-      padding: 7px 11px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 250, 242, .6);
+      padding: 7px 11px; border: 1px solid var(--border-soft);
+      border-radius: 999px; background: var(--bg-card);
+      color: var(--text-secondary);
     }
     .hero-card {
-      background: rgba(255, 250, 242, 0.9);
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      padding: 28px;
-      box-shadow: var(--shadow);
+      background: var(--bg-card); border: 1px solid var(--border-soft);
+      border-radius: 30px; padding: 28px; box-shadow: 0 8px 30px rgba(30, 26, 23, 0.06);
     }
     .preview-list { display: grid; gap: 14px; }
     .preview-item {
-      padding: 17px;
-      background: #fffdf8;
-      border: 1px solid var(--line);
-      border-radius: 18px;
+      padding: 17px; background: var(--bg-soft);
+      border: 1px solid var(--border-soft); border-radius: 18px;
     }
-    .preview-item b { display: block; font-size: 18px; margin-bottom: 4px; }
-    .preview-item span { color: var(--muted); font-size: 14px; }
+    .preview-item b { display: block; font-size: 18px; margin-bottom: 4px; color: var(--text-main); }
+    .preview-item span { color: var(--text-secondary); font-size: 14px; }
 
     /* ── Sections ── */
     section { padding: 42px 0; }
     .section-head { max-width: 780px; margin-bottom: 24px; }
-    .section-kicker { color: var(--accent-dark); font-weight: 900; font-size: 15px; margin-bottom: 8px; }
+    .section-kicker { color: var(--accent); font-weight: 900; font-size: 15px; margin-bottom: 8px; }
     h2 {
-      margin: 0;
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.15;
-      letter-spacing: -0.04em;
+      margin: 0; font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15; letter-spacing: -0.04em;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
     }
-    .section-desc { color: var(--muted); font-size: 17px; margin-top: 12px; }
+    .section-desc { color: var(--text-secondary); font-size: 17px; margin-top: 12px; }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
     .card {
-      background: rgba(255, 250, 242, 0.88);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: 0 14px 42px rgba(53, 40, 25, 0.06);
+      background: var(--bg-card); border: 1px solid var(--border-soft);
+      border-radius: var(--radius); padding: 24px;
+      box-shadow: 0 8px 24px rgba(30, 26, 23, 0.04);
     }
     .card h3 { margin: 0 0 8px; font-size: 21px; line-height: 1.28; }
-    .card p { margin: 0; color: var(--muted); }
+    .card p { margin: 0; color: var(--text-secondary); }
     .number { color: var(--accent); font-size: 14px; font-weight: 900; margin-bottom: 10px; display: block; }
 
     /* ── About ── */
     .about {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 22px;
-      align-items: stretch;
+      display: grid; grid-template-columns: 0.85fr 1.15fr;
+      gap: 22px; align-items: stretch;
     }
     .avatar-card {
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
+      min-height: 320px; display: flex; flex-direction: column;
       justify-content: space-between;
-      background: linear-gradient(145deg, rgba(31, 26, 23, .94), rgba(90, 66, 38, .92)),
-                  radial-gradient(circle at top right, rgba(184, 135, 74, .52), transparent 42%);
+      background: linear-gradient(145deg, #1e1a17, #2a2521),
+                  radial-gradient(circle at top right, rgba(198, 161, 91, 0.25), transparent 42%);
       color: #fff;
     }
     .avatar-name { font-size: 34px; font-weight: 900; letter-spacing: -0.05em; line-height: 1.1; }
-    .avatar-desc { color: rgba(255,255,255,.74); margin-top: 12px; line-height: 1.7; }
+    .avatar-desc { color: rgba(255,255,255,.7); margin-top: 12px; line-height: 1.7; }
     .proof-list { display: grid; gap: 13px; margin-top: 18px; }
-    .proof-item { padding: 17px; border: 1px solid var(--line); border-radius: 18px; background: #fffdf8; }
+    .proof-item { padding: 17px; border: 1px solid var(--border-soft); border-radius: 18px; background: var(--bg-soft); }
     .proof-item b { display: block; margin-bottom: 3px; }
-    .proof-item span { color: var(--muted); font-size: 15px; }
+    .proof-item span { color: var(--text-secondary); font-size: 15px; }
 
-    .audience-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+    /* ── Testimonials ── */
+    .testimonial-card {
+      background: var(--bg-card); border: 1px solid var(--border-soft);
+      border-radius: var(--radius); padding: 24px;
+      box-shadow: 0 8px 24px rgba(30, 26, 23, 0.04); position: relative;
     }
+    .testimonial-quote {
+      font-size: 16px; line-height: 1.7; color: var(--text-main);
+      margin-bottom: 16px; font-style: italic;
+    }
+    .testimonial-quote::before {
+      content: '"'; font-size: 48px; color: var(--accent); opacity: 0.2;
+      position: absolute; top: 12px; left: 18px; font-family: Georgia, serif;
+    }
+    .testimonial-author { padding-top: 12px; border-top: 1px solid var(--border-soft); }
+    .testimonial-name { font-weight: 800; font-size: 15px; color: var(--text-main); margin-bottom: 4px; }
+    .testimonial-meta { font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+    .testimonial-outcome {
+      font-size: 14px; color: var(--accent-teal); font-weight: 700;
+      background: rgba(47, 111, 115, 0.08); padding: 8px 12px; border-radius: 8px; margin-top: 8px;
+    }
+
+    .audience-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
     .audience-col {
-      background: rgba(255, 250, 242, 0.88);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 28px;
+      background: var(--bg-card); border: 1px solid var(--border-soft);
+      border-radius: var(--radius); padding: 28px;
     }
     .audience-col-header {
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      display: inline-block;
+      font-size: 12px; font-weight: 900; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 16px;
+      padding: 6px 14px; border-radius: 999px; display: inline-block;
     }
-    .fit-col .audience-col-header { background: rgba(184, 135, 74, 0.12); color: var(--accent-dark); }
-    .unfit-col .audience-col-header { background: rgba(180, 60, 60, 0.1); color: #a05050; }
+    .fit-col .audience-col-header { background: rgba(198, 161, 91, 0.08); color: var(--accent); }
+    .unfit-col .audience-col-header { background: rgba(140, 120, 110, 0.1); color: #6f665d; }
     .audience-col ul { padding-left: 0; list-style: none; }
-    .audience-col li { padding: 10px 0; font-size: 15px; color: var(--muted); border-bottom: 1px solid rgba(228, 216, 201, 0.4); line-height: 1.6; }
+    .audience-col li { padding: 10px 0; font-size: 15px; color: var(--text-secondary); border-bottom: 1px solid var(--border-soft); line-height: 1.6; }
     .audience-col li:last-child { border-bottom: none; }
 
-    .final-cta { text-align: center; padding: 58px 24px 72px; }
+    .final-cta { text-align: center; padding: 58px 24px 72px; background: var(--bg-soft); margin: 0 calc(-50vw + 50%); padding-left: calc(50vw - 560px); padding-right: calc(50vw - 560px); }
+    @media (max-width: 1152px) { .final-cta { padding-left: 24px; padding-right: 24px; } }
     .final-cta h2 { max-width: 720px; margin: 0 auto; }
-    .final-cta p { max-width: 640px; margin: 16px auto 24px; color: var(--muted); font-size: 17px; }
+    .final-cta p { max-width: 640px; margin: 16px auto 24px; color: var(--text-secondary); font-size: 17px; }
 
     /* ── Flow steps ── */
-    .flow-row {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .flow-row { display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap; }
     .flow-step {
-      text-align: center;
-      padding: 18px 14px;
-      background: #fffdf8;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      min-width: 130px;
-      flex: 1;
-      max-width: 180px;
+      text-align: center; padding: 18px 14px;
+      background: var(--bg-card); border: 1px solid var(--border-soft);
+      border-radius: 16px; min-width: 130px; flex: 1; max-width: 180px;
     }
     .flow-step .flow-icon { font-size: 28px; margin-bottom: 8px; }
     .flow-step .flow-label { font-weight: 800; font-size: 14px; }
@@ -296,14 +246,17 @@
 
     @media (max-width: 860px) {
       .hero, .about { grid-template-columns: 1fr; }
-      .hero { padding-top: 46px; }
-      .grid-3, .grid-2, .audience-split { grid-template-columns: 1fr; }
+      .hero { padding-top: 46px; padding-left: 16px; padding-right: 16px; }
+      .grid-3, .grid-2, .audience-split { grid-template-columns: 1fr; gap: 20px; }
       .btn { width: 100%; }
       .hero-actions { flex-direction: column; }
       .nav-inner { height: 60px; }
       h1 { font-size: 42px; }
-      .flow-row { flex-direction: column; }
+      .flow-row { flex-direction: column; gap: 8px; }
       .flow-arrow { transform: rotate(90deg); }
+      section { padding: 36px 0; }
+      .card { padding: 22px; }
+      .testimonial-card { padding: 22px; }
     }
   </style>
 </head>
@@ -320,11 +273,11 @@
   </nav>
 
   <main id="top" class="page">
-    <!-- ===== 1. Hero：副业钩子 + 经验资产认知升级 ===== -->
+    <!-- ===== 1. Hero：经验资产认知升级 ===== -->
     <section class="hero">
       <div>
         <div class="eyebrow">35+ 职场人经验资产诊断</div>
-        <h1>你不是缺副业项目<br>而是还没看清自己的经验值多少钱</h1>
+        <h1>你不是缺一个新方向<br>而是还没看清自己的经验能转化成什么价值</h1>
         <p class="hero-sub">
           5分钟，8道题。<br>
           帮你判断你的职业经验更适合变成<strong>内容、知识产品、咨询诊断、模板工具、资源服务，还是陪跑交付</strong>。<br>
@@ -336,8 +289,8 @@
         </div>
         <div class="trust-row">
           <span class="trust-pill">无需登录</span>
-          <span class="trust-pill">不推暴富项目</span>
           <span class="trust-pill">不卖焦虑</span>
+          <span class="trust-pill">不卖项目</span>
           <span class="trust-pill">面向有经验的人</span>
         </div>
       </div>
@@ -356,7 +309,7 @@
       <div class="section-head">
         <div class="section-kicker">诊断输出</div>
         <h2>测完这8道题，你会得到什么</h2>
-        <p class="section-desc">这不是一个泛泛的性格测试，而是针对你有十几年以上职业经验的人，判断你的经验资产该怎么变现。</p>
+        <p class="section-desc">这不是一个泛泛的性格测试，而是针对你有十几年以上职业经验的人，帮你判断经验可以如何萃取、表达和转化成可被信任的价值。</p>
       </div>
       <div class="grid-3">
         <div class="card">
@@ -382,12 +335,12 @@
       <div class="section-head">
         <div class="section-kicker">核心问题</div>
         <h2>多数人没开始，不是因为没能力</h2>
-        <p class="section-desc">你工作了十几年，经验肯定有。真正的问题不是缺项目，而是经验没有被整理成可交付、可验证、可收费的资产。</p>
+        <p class="section-desc">你工作了十几年，经验肯定有。真正的问题不是缺方向，而是经验没有被萃取成清晰的问题、方法和可被信任的价值表达。</p>
       </div>
       <div class="grid-3">
         <div class="card"><h3>方向太散</h3><p>看到什么火就想做什么，但不知道哪个最适合自己的经验积累。最怕的是：试了很多，哪个都没做深。</p></div>
-        <div class="card"><h3>经验没产品化</h3><p>明明做过很多事，却说不清楚"别人为什么要为我的经验付费"——没有把经验拆成明确可交付的结果。</p></div>
-        <div class="card"><h3>只学习不成交</h3><p>课程越买越多，笔记越记越厚，但真正发布、报价、收款迟迟没开始。知识在脑子里积累，价值没有出过口。</p></div>
+        <div class="card"><h3>经验没萃取</h3><p>明明做过很多事，却说不清楚"我的经验能帮别人解决什么问题"——没有把经验萃取成清晰的问题场景和价值表达。</p></div>
+        <div class="card"><h3>只学习不表达</h3><p>课程越买越多，笔记越记越厚，但真正公开发布、分享观点、接受反馈迟迟没开始。经验在脑子里积累，价值没有出过口。</p></div>
       </div>
     </section>
 
@@ -399,22 +352,63 @@
             <div class="avatar-name">Kevin 彭峥</div>
             <div class="avatar-desc">离开职场后，重新搭建自己的个人价值系统。</div>
           </div>
-          <div class="avatar-desc">不教暴富项目，不推荐风口。只帮有十年以上职业经验的人，把经验、能力和资源拆成能交付、能验证、能收费的产品或服务。</div>
+          <div class="avatar-desc">不推荐风口、不卖项目。只帮有十年以上职业经验的人，把经验、能力和资源萃取成可表达、可交付、可被信任的方向和服务雏形。</div>
         </div>
         <div class="card">
           <div class="section-kicker">我的判断逻辑</div>
           <h2>先盘点，再定位，最后给一条能走的路</h2>
           <p class="section-desc">你不需要马上辞职，也不需要盲目跟风。先找到你最容易启动、最容易验证、最不容易半途而废的路径。</p>
           <div class="proof-list">
-            <div class="proof-item"><b>经验盘点</b><span>从你的职业经历、能力积累、时间状态中识别真正可复用的资产。</span></div>
-            <div class="proof-item"><b>路径匹配</b><span>判断你更适合做内容表达、知识产品、咨询诊断，还是陪跑交付。</span></div>
-            <div class="proof-item"><b>轻启动建议</b><span>先做最小交付，先验证真实需求，再决定是否投入更多。</span></div>
+            <div class="proof-item"><b>经验萃取</b><span>从你的职业经历、能力积累、时间状态中识别真正可复用的经验资产。</span></div>
+            <div class="proof-item"><b>方向判断</b><span>判断你更适合做内容表达、知识产品、咨询解读，还是陪跑交付。</span></div>
+            <div class="proof-item"><b>最小验证</b><span>先做一个最小服务雏形，先验证真实反馈，再决定是否继续推进。</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== 5. 这不是算命，也不是暴富项目 ===== -->
+    <!-- ===== 5. 真实用户反馈 ===== -->
+    <section id="testimonials">
+      <div class="section-head">
+        <div class="section-kicker">真实反馈</div>
+        <h2>他们测完后的变化</h2>
+        <p class="section-desc">不是夸张的成功故事，而是真实的方向确认和第一步行动。</p>
+      </div>
+      <div class="grid-3">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">
+            之前看了太多副业项目，每个都想试，结果哪个都没开始。测完诊断后发现我最适合做"咨询诊断型"，因为我在产品领域确实能帮人解决具体问题。按照建议，我先在朋友圈发了一条"免费帮3个人做产品诊断"，3天就约满了。
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-name">张*</div>
+            <div class="testimonial-meta">38岁，前互联网产品经理</div>
+            <div class="testimonial-outcome">✓ 测完3周后接到第一单付费咨询</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">
+            我之前买了至少5个副业课程，加起来花了2万多，但都没用上。不是课程不好，是我根本不知道自己适合做什么。这个诊断帮我看清了：我不适合做内容，我更适合做"资源服务型"——把我在制造业的供应商资源整合起来。
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-name">李*</div>
+            <div class="testimonial-meta">42岁，传统制造业管理者</div>
+            <div class="testimonial-outcome">✓ 避免了继续盲目买课，省下至少2万</div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-quote">
+            我一直想做点什么，但总觉得"还没准备好"。测完后拿到一个7天行动计划，第一步就是"本周内发布一篇你最擅长的HR话题文章"。我照做了，没想到那篇文章被转发了30多次，还有人主动来问能不能付费咨询。
+          </div>
+          <div class="testimonial-author">
+            <div class="testimonial-name">王*</div>
+            <div class="testimonial-meta">36岁，HR总监</div>
+            <div class="testimonial-outcome">✓ 第一周就发布内容，收到付费咨询意向</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. 这不是算命，也不承诺捷径 ===== -->
     <section>
       <div class="section-head">
         <div class="section-kicker">先说实话</div>
@@ -427,13 +421,13 @@
           <p>诊断基于你的真实状态（经验类型、输出偏好、时间投入、当前卡点），不靠星座不靠性格分类。你会得到一个基于你回答的方向判断和建议。</p>
         </div>
         <div class="card">
-          <h3>这不承诺暴富</h3>
+          <h3>这不承诺速成</h3>
           <p>没有人能保证你"测完就月入过万"。但如果你认真做了这8道题，你会比90%的人更清楚自己该从哪里开始——少走很多弯路。</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== 6. 适合谁 / 不适合谁 ===== -->
+    <!-- ===== 7. 适合谁 / 不适合谁 ===== -->
     <section id="audience">
       <div class="section-head">
         <div class="section-kicker">筛选说明</div>
@@ -445,7 +439,7 @@
           <div class="audience-col-header">✅ 适合</div>
           <ul>
             <li>35岁以后，想给自己多一条路，但不清楚该从哪开始</li>
-            <li>工作十年以上有积累，经验值钱但不知道怎么变现</li>
+            <li>工作十年以上有积累，经验丰富但不知道怎么转化成价值</li>
             <li>被高价课割过，想先低成本验证方向</li>
             <li>想做个人品牌、数字产品或服务，需要系统判断</li>
           </ul>
@@ -453,7 +447,7 @@
         <div class="audience-col unfit-col">
           <div class="audience-col-header">❌ 不适合</div>
           <ul>
-            <li>想找一夜暴富项目的人</li>
+            <li>想找捷径快速致富的人</li>
             <li>完全不愿意输出内容或服务的人</li>
             <li>只想收藏方法、不愿意动手的人</li>
             <li>希望别人替你赚钱的人</li>
@@ -462,7 +456,7 @@
       </div>
     </section>
 
-    <!-- ===== 7. 测完后的产品阶梯 ===== -->
+    <!-- ===== 8. 测完后的产品阶梯 ===== -->
     <section id="ladder">
       <div class="section-head">
         <div class="section-kicker">产品阶梯</div>
@@ -471,16 +465,16 @@
       </div>
       <div class="grid-3">
         <div class="card"><span class="number">免费</span><h3>经验资产诊断</h3><p>5分钟8道题，看清你的经验资产类型、核心优势和卡点，拿到7天内可执行的第一步。</p></div>
-        <div class="card"><span class="number">¥9.9</span><h3>完整诊断报告</h3><p>适合想看到完整路径的人。解锁详细经验转化方向、产品化建议和30天行动计划。</p></div>
-        <div class="card"><span class="number">¥99/年</span><h3>经验产品化知识库</h3><p>50+框架，100+执行清单，源头内容中文整理。适合自己研究、自己消化、自己落地。</p></div>
+        <div class="card"><span class="number">¥9.9</span><h3>完整诊断报告</h3><p>适合想看到完整路径的人。解锁经验资产类型、核心优势、主要卡点、转化方向和下一步行动建议。</p></div>
+        <div class="card"><span class="number">¥99/年</span><h3>经验资产化知识库</h3><p>系统学习如何萃取经验、识别价值、整理内容、设计服务雏形。适合自己研究、自己消化、自己落地。</p></div>
       </div>
       <div class="grid-2" style="margin-top:18px;">
-        <div class="card"><span class="number">¥199</span><h3>60分钟人工诊断</h3><p>适合已经卡住、需要一对一帮你拆出第一个可卖产品或服务的下一步。</p></div>
-        <div class="card"><span class="number">私教</span><h3>45天私教陪跑</h3><p>适合想真正做出产品、持续发内容、开始获得成交反馈的人。申请沟通后确认。</p></div>
+        <div class="card"><span class="number">¥199</span><h3>60分钟经验资产解读</h3><p>基于你的完整诊断报告和过往经历，1对1帮你解读经验中的价值线索，判断更适合的转化方向，并给出下一步行动建议。</p></div>
+        <div class="card"><span class="number">私教</span><h3>45天私教陪跑</h3><p>适合想真正完成经验萃取、价值表达、内容输出、产品/服务雏形和转化验证的人。申请沟通后确认。</p></div>
       </div>
     </section>
 
-    <!-- ===== 8. 最终 CTA ===== -->
+    <!-- ===== 9. 最终 CTA ===== -->
     <section class="final-cta">
       <h2>先用5分钟，少走3个月弯路</h2>
       <p>不要再凭感觉选方向。先看清你的经验适合怎么变成价值，再决定要不要投入时间和钱。</p>

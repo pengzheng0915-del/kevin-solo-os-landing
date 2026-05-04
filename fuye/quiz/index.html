@@ -17,13 +17,15 @@
       --text: #1e1a17;
       --muted: #6f665d;
       --line: #e4d8c9;
+      --line-dark: rgba(255, 255, 255, 0.06);
+      --link: #b8874a;
       --primary: #1e1a17;
       --accent: #b8874a;
       --accent-dark: #875f32;
-      --soft: #efe4d3;
+      --soft: rgba(30, 26, 23, 0.05);
+      --teal: #2F6F73;
       --radius: 22px;
-      --shadow: 0 22px 70px rgba(53, 40, 25, 0.12);
-      --green: #2d6a4f;
+      --shadow: 0 8px 30px rgba(30, 26, 23, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,13 +33,19 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
-      background: radial-gradient(circle at top left, rgba(184, 135, 74, 0.2), transparent 35%),
-                  linear-gradient(180deg, #f8f1e7 0%, #f7f2ea 45%, #fbf7f0 100%);
+      background: linear-gradient(180deg, var(--bg) 0%, #ece6dc 100%);
       color: var(--text);
       line-height: 1.65;
     }
 
     a { color: inherit; text-decoration: none; }
+    a[href]:not(.btn):not(.nav-back):not(.brand) {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      text-decoration-color: rgba(198, 161, 91, 0.25);
+    }
+    a[href]:not(.btn):not(.nav-back):not(.brand):hover { opacity: 1; text-decoration-color: var(--accent); }
     button { font-family: inherit; }
 
     .page {
@@ -51,8 +59,8 @@
       top: 0;
       z-index: 99;
       backdrop-filter: blur(18px);
-      background: rgba(247, 242, 234, 0.88);
-      border-bottom: 1px solid rgba(228, 216, 201, 0.75);
+      background: rgba(247, 242, 234, 0.94);
+      border-bottom: 1px solid var(--line);
     }
     .nav-inner {
       width: min(780px, calc(100% - 32px));
@@ -69,11 +77,12 @@
       gap: 10px;
       font-weight: 800;
       letter-spacing: -0.03em;
+      color: var(--text);
     }
     .brand-mark {
       width: 34px; height: 34px;
       border-radius: 50%;
-      background: var(--primary);
+      background: var(--accent);
       color: #fff;
       display: grid;
       place-items: center;
@@ -89,6 +98,7 @@
       font-weight: 800;
       white-space: nowrap;
     }
+    .nav-back:hover { background: #2a2521; }
 
     /* ── Buttons ── */
     .btn {
@@ -106,30 +116,32 @@
       text-align: center;
       text-decoration: none;
     }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(31, 26, 23, 0.12); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 28px rgba(30, 26, 23, 0.08); }
     .btn-primary { background: var(--primary); color: #fff; }
-    .btn-ghost { background: rgba(255, 250, 242, 0.82); color: var(--text); border: 1px solid var(--line); }
+    .btn-primary:hover { background: #2a2521; }
+    .btn-ghost { background: var(--card); color: var(--text); border: 1px solid var(--line); }
     .btn-accent { background: var(--accent); color: #fff; }
-    .btn-outline { background: transparent; color: var(--accent-dark); border: 1.5px solid var(--accent); }
-    .btn-green { background: var(--green); color: #fff; }
+    .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn-green { background: var(--teal); color: #fff; }
     .btn[disabled] { opacity: .42; cursor: not-allowed; transform: none; box-shadow: none; }
     .btn-block { width: 100%; }
     .btn-lg { padding: 16px 32px; font-size: 17px; }
 
     section { padding: 42px 0; }
     .section-head { max-width: 780px; margin-bottom: 24px; }
-    .section-kicker { color: var(--accent-dark); font-weight: 900; font-size: 15px; margin-bottom: 8px; }
+    .section-kicker { color: var(--accent); font-weight: 900; font-size: 15px; margin-bottom: 8px; }
     h2 {
       margin: 0;
       font-size: clamp(28px, 4vw, 44px);
       line-height: 1.15;
       letter-spacing: -0.04em;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
     }
     .section-desc { color: var(--muted); font-size: 17px; margin-top: 12px; }
 
     /* ── Quiz ── */
     .quiz-wrap {
-      background: rgba(255, 250, 242, 0.92);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--line);
       border-radius: 34px;
       box-shadow: var(--shadow);
@@ -143,7 +155,7 @@
       gap: 18px;
       align-items: center;
     }
-    .progress-text { font-weight: 900; color: var(--accent-dark); white-space: nowrap; }
+    .progress-text { font-weight: 900; color: var(--accent); white-space: nowrap; }
     .progress-bar {
       flex: 1;
       height: 9px;
@@ -155,7 +167,7 @@
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: var(--accent);
+      background: var(--teal);
       border-radius: 999px;
       transition: width .22s ease;
     }
@@ -173,6 +185,7 @@
       font-size: clamp(24px, 4vw, 36px);
       line-height: 1.22;
       letter-spacing: -0.035em;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
       margin: 0 0 8px;
     }
     .q-help { margin: 0 0 24px; color: var(--muted); }
@@ -180,7 +193,7 @@
     .options { display: grid; gap: 12px; }
     .option {
       border: 1px solid var(--line);
-      background: #fffdf8;
+      background: var(--card);
       border-radius: 18px;
       padding: 17px 18px;
       cursor: pointer;
@@ -190,7 +203,7 @@
       transition: border .18s ease, background .18s ease, transform .18s ease;
       position: relative;
     }
-    .option:hover { transform: translateY(-1px); border-color: rgba(184, 135, 74, 0.65); }
+    .option:hover { transform: translateY(-1px); border-color: rgba(198, 161, 91, 0.4); }
     .option input {
       margin-top: 6px;
       transform: scale(1.2);
@@ -198,7 +211,7 @@
     }
     .option.selected {
       border-color: var(--accent);
-      background: #fff6e7;
+      background: rgba(198, 161, 91, 0.06);
     }
     .option strong { display: block; font-size: 16px; margin-bottom: 2px; }
     .option span { display: block; color: var(--muted); font-size: 14px; }
@@ -211,11 +224,11 @@
     }
 
     /* ── Result ── */
-    .result-wrap { display: none; padding: 30px; border-top: 1px solid var(--line); background: linear-gradient(180deg, #fffaf2, #f6ebdb); }
+    .result-wrap { display: none; padding: 30px; border-top: 1px solid var(--line); background: linear-gradient(180deg, #fffaf2, var(--bg)); }
     .result-wrap.show { display: block; }
 
     .result-card {
-      background: #fffdf8;
+      background: var(--card);
       border: 1px solid var(--line);
       border-radius: 26px;
       padding: 26px;
@@ -225,7 +238,7 @@
       display: inline-flex;
       padding: 8px 16px;
       border-radius: 999px;
-      background: var(--primary);
+      background: var(--text);
       color: #fff;
       font-size: 15px;
       font-weight: 900;
@@ -239,7 +252,7 @@
       margin-bottom: 2px;
     }
     .result-score small { font-size: 18px; color: var(--muted); font-weight: 600; }
-    .result-card h3 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 32px); line-height: 1.2; letter-spacing: -0.03em; text-align: center; }
+    .result-card h3 { margin: 0 0 8px; font-size: clamp(24px, 4vw, 32px); line-height: 1.2; letter-spacing: -0.03em; text-align: center; font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; }
     .result-card p { color: var(--muted); margin: 0 0 12px; font-size: 15px; line-height: 1.7; }
 
     .result-grid {
@@ -249,7 +262,7 @@
       margin: 18px 0;
     }
     .result-box {
-      background: #fff8ed;
+      background: rgba(198, 161, 91, 0.05);
       border: 1px solid var(--line);
       border-radius: 18px;
       padding: 18px;
@@ -258,7 +271,7 @@
     .result-box span { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
     .highlight {
-      background: #fffbf3;
+      background: rgba(198, 161, 91, 0.06);
       border-left: 3px solid var(--accent);
       padding: 16px 18px;
       border-radius: 0 14px 14px 0;
@@ -269,15 +282,15 @@
     }
 
     .action-card {
-      background: #f0f9f4;
-      border: 1px solid #c3e6d0;
+      background: rgba(47, 111, 115, 0.06);
+      border: 1px solid rgba(47, 111, 115, 0.15);
       border-radius: 18px;
       padding: 18px;
       margin: 16px 0;
       font-size: 15px;
       line-height: 1.7;
     }
-    .action-card b { color: var(--green); }
+    .action-card b { color: var(--teal); }
 
     /* ── Conversion exits ── */
     .exit-section {
@@ -294,7 +307,7 @@
       gap: 12px;
     }
     .exit-card {
-      background: #fffdf8;
+      background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 18px;
@@ -302,19 +315,20 @@
       transition: border .18s ease, transform .18s ease;
     }
     .exit-card:hover { transform: translateY(-1px); border-color: var(--accent); }
-    .exit-card .exit-label { font-size: 12px; font-weight: 700; color: var(--accent-dark); margin-bottom: 6px; letter-spacing: 0.04em; }
+    .exit-card .exit-label { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 6px; letter-spacing: 0.04em; }
     .exit-card h5 { font-size: 17px; margin: 0 0 4px; }
     .exit-card .exit-desc { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
 
     .exit-full {
-      background: linear-gradient(135deg, #fffdf8, #f8f1e7);
+      background: linear-gradient(135deg, var(--card), rgba(198, 161, 91, 0.04));
       border: 1.5px solid var(--accent);
     }
 
     .wechat-box {
       margin-top: 16px;
       padding: 16px;
-      background: #f6f0e5;
+      background: var(--bg);
+      border: 1px solid var(--line);
       border-radius: 14px;
       font-size: 14px;
       color: var(--muted);
@@ -330,7 +344,7 @@
     .toast {
       position: fixed; left: 50%; bottom: 24px;
       transform: translateX(-50%) translateY(20px);
-      background: rgba(31, 26, 23, .94);
+      background: rgba(30, 26, 23, .94);
       color: #fff; padding: 12px 20px;
       border-radius: 999px;
       opacity: 0; pointer-events: none;
@@ -340,18 +354,22 @@
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 860px) {
-      .result-grid { grid-template-columns: 1fr; }
-      .exit-grid { grid-template-columns: 1fr; }
-      .quiz-top { align-items: flex-start; flex-direction: column; }
+      .result-grid { grid-template-columns: 1fr; gap: 16px; }
+      .exit-grid { grid-template-columns: 1fr; gap: 16px; }
+      .quiz-top { align-items: flex-start; flex-direction: column; gap: 8px; }
       .progress-bar { width: 100%; max-width: none; }
       .quiz-body { padding: 22px; }
       .quiz-nav {
         position: sticky; bottom: 0;
-        background: rgba(255, 250, 242, .94);
+        background: rgba(247, 242, 234, .94);
         backdrop-filter: blur(14px);
         padding: 12px 22px 22px;
+        border-top: 1px solid var(--line);
       }
       .result-wrap { padding: 22px; }
+      .result-card { padding: 22px; }
+      .exit-card { padding: 16px; }
+      section { padding: 32px 0; }
       .btn { width: 100%; }
       .nav-inner { height: 56px; }
       .brand span { display: none; }
@@ -392,9 +410,9 @@
             <p class="q-help">这决定了你经验转化的优先级。</p>
             <div class="options">
               <label class="option"><input type="radio" name="q0" value="A"><div><strong>A. 不知道经验能怎么用</strong><span>需要先判断经验能变成什么，而不是急着做产品。</span></div></label>
-              <label class="option"><input type="radio" name="q0" value="B"><div><strong>B. 有经验但不知道如何变现</strong><span>需要把经验拆成可交付的产品或服务。</span></div></label>
+              <label class="option"><input type="radio" name="q0" value="B"><div><strong>B. 有经验但不知道如何转化成价值</strong><span>需要先把经验萃取成清晰的问题、方法和价值表达。</span></div></label>
               <label class="option"><input type="radio" name="q0" value="C"><div><strong>C. 想做内容但没有方向</strong><span>需要找到你的内容定位和输出形式。</span></div></label>
-              <label class="option"><input type="radio" name="q0" value="D"><div><strong>D. 已经做了但没人买</strong><span>需要回到产品和获客两端重新检查。</span></div></label>
+              <label class="option"><input type="radio" name="q0" value="D"><div><strong>D. 已经尝试表达，但反馈不明显</strong><span>需要回到价值表达和验证路径重新检查。</span></div></label>
             </div>
           </div>
           <!-- Q2 -->
@@ -404,7 +422,7 @@
             <div class="options">
               <label class="option"><input type="radio" name="q1" value="A"><div><strong>A. 行业专业经验</strong><span>适合做知识产品、报告、知识库。</span></div></label>
               <label class="option"><input type="radio" name="q1" value="B"><div><strong>B. 管理/带团队经验</strong><span>适合做咨询诊断、管理辅导。</span></div></label>
-              <label class="option"><input type="radio" name="q1" value="C"><div><strong>C. 销售/客户/成交经验</strong><span>适合做陪跑服务、社群成交。</span></div></label>
+              <label class="option"><input type="radio" name="q1" value="C"><div><strong>C. 客户沟通/销售/服务经验</strong><span>适合做咨询解读、服务设计或陪跑交付。</span></div></label>
               <label class="option"><input type="radio" name="q1" value="D"><div><strong>D. 运营/项目/执行经验</strong><span>适合做模板工具、流程外包。</span></div></label>
             </div>
           </div>
@@ -426,8 +444,8 @@
             <div class="options">
               <label class="option"><input type="radio" name="q3" value="A"><div><strong>A. 不知道定位</strong><span>需要先判断自己的优势方向。</span></div></label>
               <label class="option"><input type="radio" name="q3" value="B"><div><strong>B. 不敢公开表达</strong><span>需要找到低心理成本的输出方式。</span></div></label>
-              <label class="option"><input type="radio" name="q3" value="C"><div><strong>C. 不知道卖什么</strong><span>需要把经验拆成明确的产品。</span></div></label>
-              <label class="option"><input type="radio" name="q3" value="D"><div><strong>D. 不知道怎么获客</strong><span>需要搭建内容吸引和转介绍路径。</span></div></label>
+              <label class="option"><input type="radio" name="q3" value="C"><div><strong>C. 不知道经验能解决谁的问题</strong><span>需要先把经验萃取成清晰的问题场景和价值表达。</span></div></label>
+              <label class="option"><input type="radio" name="q3" value="D"><div><strong>D. 不知道如何获得真实反馈</strong><span>需要先找到低成本表达、测试和转介绍路径。</span></div></label>
             </div>
           </div>
           <!-- Q5 -->
@@ -448,8 +466,8 @@
             <div class="options">
               <label class="option"><input type="radio" name="q5" value="A"><div><strong>A. 没有</strong><span>需要从建立第一个案例开始。</span></div></label>
               <label class="option"><input type="radio" name="q5" value="B"><div><strong>B. 有一些，但没整理</strong><span>需要先把经验结构化输出。</span></div></label>
-              <label class="option"><input type="radio" name="q5" value="C"><div><strong>C. 有明确案例</strong><span>可以围绕案例设计产品。</span></div></label>
-              <label class="option"><input type="radio" name="q5" value="D"><div><strong>D. 有客户/项目成果</strong><span>可以直接包装成服务或产品。</span></div></label>
+              <label class="option"><input type="radio" name="q5" value="C"><div><strong>C. 有明确案例</strong><span>可以围绕案例萃取方法、问题场景和服务雏形。</span></div></label>
+              <label class="option"><input type="radio" name="q5" value="D"><div><strong>D. 有客户/项目成果</strong><span>可以进一步整理成可表达、可验证、可交付的经验资产。</span></div></label>
             </div>
           </div>
           <!-- Q7 -->
@@ -457,10 +475,10 @@
             <h3 class="q-title">你更适合哪种转化方式？</h3>
             <p class="q-help">选择与你性格和能力匹配的方式更不容易放弃。</p>
             <div class="options">
-              <label class="option"><input type="radio" name="q6" value="A"><div><strong>A. 低价资料/知识库</strong><span>一次制作，多次销售。</span></div></label>
-              <label class="option"><input type="radio" name="q6" value="B"><div><strong>B. 一对一诊断</strong><span>高客单价，重交付。</span></div></label>
-              <label class="option"><input type="radio" name="q6" value="C"><div><strong>C. 陪跑服务</strong><span>持续服务，稳定收入。</span></div></label>
-              <label class="option"><input type="radio" name="q6" value="D"><div><strong>D. 社群/训练营</strong><span>规模化交付，一对多。</span></div></label>
+              <label class="option"><input type="radio" name="q6" value="A"><div><strong>A. 资料/知识库</strong><span>适合把经验整理成可反复使用的内容资产。</span></div></label>
+              <label class="option"><input type="radio" name="q6" value="B"><div><strong>B. 一对一解读/诊断</strong><span>适合把判断力和经验方法转化为个性化建议。</span></div></label>
+              <label class="option"><input type="radio" name="q6" value="C"><div><strong>C. 陪跑服务</strong><span>适合陪客户从经验梳理走到行动验证。</span></div></label>
+              <label class="option"><input type="radio" name="q6" value="D"><div><strong>D. 社群/训练营</strong><span>适合把方法论整理成一对多的学习和行动系统。</span></div></label>
             </div>
           </div>
           <!-- Q8 -->
@@ -470,8 +488,8 @@
             <div class="options">
               <label class="option"><input type="radio" name="q7" value="A"><div><strong>A. 找方向</strong><span>需要先明确你的经验转化路径。</span></div></label>
               <label class="option"><input type="radio" name="q7" value="B"><div><strong>B. 搭内容系统</strong><span>需要建立持续输出的框架。</span></div></label>
-              <label class="option"><input type="radio" name="q7" value="C"><div><strong>C. 做第一个产品</strong><span>需要把经验打包成可卖的东西。</span></div></label>
-              <label class="option"><input type="radio" name="q7" value="D"><div><strong>D. 找客户成交</strong><span>需要行动起来，完成第一次收费。</span></div></label>
+              <label class="option"><input type="radio" name="q7" value="C"><div><strong>C. 做第一个服务雏形</strong><span>需要把经验整理成一个可表达、可验证的小交付。</span></div></label>
+              <label class="option"><input type="radio" name="q7" value="D"><div><strong>D. 找到第一个真实反馈</strong><span>需要让目标用户看见你的表达，并完成一次反馈或小额验证。</span></div></label>
             </div>
           </div>
         </div>
@@ -490,6 +508,7 @@
 
   <script>
     const TOTAL = 8;
+    const VERSION = 'A';
     let currentStep = 0;
     let answers = {};
 
@@ -619,8 +638,8 @@
           icon: '📝',
           desc: '你有表达的意愿和能力，也愿意持续输出。你适合把职业经验转化为内容——文章、视频、播客——持续建立个人影响力和信任。你的核心路径是：用内容吸引精准人群，再通过低价产品转化。',
           advantage: '表达能力强，愿意持续公开输出，有内容积累习惯',
-          block: '内容没变现：写了/拍了但没有转化为付费产品',
-          suggestion: '先找到一个细分话题，持续输出30天，同时设计一个低价信息产品（清单/模板/知识库），用内容引流、用产品变现。不需要追求大流量，需要在精准人群里建立信任。',
+          block: '内容没转化：写了/拍了但没有收到真实反馈和验证',
+          suggestion: '先找到一个细分话题，持续输出30天，同时设计一个低价信息产品（清单/模板/知识库），用内容建立信任、用产品获得反馈。不需要追求大流量，需要在精准人群里建立信任。',
           action: '本周内选定一个细分话题，写出第一篇文章或拍出第一条短视频并公开发布。'
         },
         consulting: {
@@ -637,7 +656,7 @@
           icon: '📚',
           desc: '你过去的行业经验、项目经历和踩坑经验都有机会整理成结构化知识产品——知识库、报告、检查清单、SOP文档。你的优势在于系统化思考和归纳总结，适合做"一次制作、多次销售"的付费内容。',
           advantage: '行业经验丰富，有系统化知识积累和归纳能力',
-          block: '经验未产品化：知道很多但没拆成可交付、可收费的结果',
+          block: '经验未萃取：知道很多但还没有整理成清晰的问题场景和可被信任的价值表达',
           suggestion: '你不适合一上来做大课，也不适合盲目直播。更适合先做一个低价知识库或诊断型服务，用99元左右的价格验证需求，再用反馈升级产品。',
           action: '本周内列出你可以写出来的10个知识点或问题，从中选一个写成一篇1000字左右的内容。'
         },
@@ -708,34 +727,34 @@
           <div class="exit-grid">
             <div class="exit-card">
               <div class="exit-label">免费</div>
-              <h5>加微信领完整分析建议</h5>
-              <p class="exit-desc">发送你的诊断结果截图，我给你3条个性化建议</p>
-              <button class="btn btn-accent btn-block" onclick="copyWechat()">复制微信号</button>
+              <h5>加微信领3条初步建议</h5>
+              <p class="exit-desc">发送你的诊断结果截图，我帮你快速判断：你的方向是否靠谱、当前最大卡点是什么、下一步先做什么。</p>
+              <button class="btn btn-outline btn-block" onclick="copyWechat('初步建议')">复制微信号</button>
             </div>
             <div class="exit-card exit-full">
               <div class="exit-label" style="color:var(--accent);">¥9.9</div>
               <h5>解锁完整诊断报告</h5>
-              <p class="exit-desc">完整经验转化路径、3条详细方向、产品化建议、30天行动计划</p>
-              <button class="btn btn-primary btn-block" onclick="copyWechat()">加微信解锁报告</button>
+              <p class="exit-desc">查看你的经验资产类型、适合度评分、核心优势、主要卡点、转化方向和下一步行动建议。</p>
+              <button class="btn btn-primary btn-block" onclick="copyWechat('完整报告')">加微信解锁完整报告</button>
             </div>
             <div class="exit-card">
               <div class="exit-label">¥99/年</div>
-              <h5>经验产品化知识库</h5>
-              <p class="exit-desc">50+框架，100+执行清单，源头内容中文整理，每周更新</p>
-              <a class="btn btn-outline btn-block" href="/" target="_blank">查看知识库目录</a>
+              <h5>经验资产化知识库</h5>
+              <p class="exit-desc">系统学习如何萃取经验、识别价值、整理内容、设计服务雏形，并降低试错成本。</p>
+              <a class="btn btn-outline btn-block" href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" target="_blank">了解知识库</a>
             </div>
             <div class="exit-card">
               <div class="exit-label">¥199</div>
-              <h5>60分钟人工诊断</h5>
-              <p class="exit-desc">一对一帮你梳理经验资产，设计第一个可卖的服务或产品</p>
-              <a class="btn btn-outline btn-block" href="/#wechat-contact">预约诊断咨询</a>
+              <h5>60分钟经验资产解读</h5>
+              <p class="exit-desc">基于你的完整诊断报告和过往经历，1对1帮你解读经验中的价值线索，判断更适合的转化方向，指出当前核心卡点，并给出下一步行动建议。</p>
+              <button class="btn btn-outline btn-block" onclick="copyWechat('经验资产解读')">加微信预约解读</button>
             </div>
           </div>
 
           <div class="wechat-box">
             <strong>微信号：kevin0915</strong>
             <img src="/assets/wechat-qr.jpg" alt="微信二维码" style="display:block;max-width:180px;margin:10px auto;border-radius:10px;border:1px solid var(--line);">
-            添加微信后发送「完整报告」，我会发你支付方式和报告领取方式。
+            添加微信后发送你的诊断截图，解锁完整报告或领取初步建议。
           </div>
         </div>
 
@@ -746,11 +765,32 @@
 
       resultWrap.classList.add('show');
       resultWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Submit to backend (fire and forget)
+      submitResult(r);
     }
 
-    function copyWechat() {
+    async function submitResult(r) {
+      try {
+        await fetch('/api/saveQuiz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            version: VERSION,
+            answers: answers,
+            result_type: r.type,
+            result_score: r.score,
+            result_scores: r.scores
+          })
+        });
+      } catch (e) {
+        // Silent fail — don't block the user experience
+      }
+    }
+
+    function copyWechat(remark) {
       navigator.clipboard.writeText('kevin0915').then(() => {
-        showToast('微信号已复制，打开微信添加好友');
+        showToast(remark ? '已复制微信号，请到微信添加，并备注"' + remark + '"' : '微信号已复制，打开微信添加好友');
       }).catch(() => {
         showToast('微信号：kevin0915');
       });

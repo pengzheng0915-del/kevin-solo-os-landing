@@ -1,483 +1,796 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kevin 彭峥 — 帮助35岁以后、有十年以上职业经验的人，把过去的经验重新整理成方向、内容、产品、服务和新的增长可能。">
-    <meta name="keywords" content="经验资产,个人价值系统,职业下半场,第二增长曲线,经验产品化,一人公司,知识库,35岁,Kevin">
-    <meta name="author" content="Kevin 彭峥">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://kevinsolo.cn">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>经验资产化 | 帮助35岁以后的人，把过去的工作经验重新变成价值 | Kevin 彭峥</title>
+  <meta name="description" content="帮助有十年以上职业经验的人，把过去的工作经历、判断力、方法和资源，重新整理成方向、内容、产品、服务和新的增长可能。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="经验资产化 | Kevin 彭峥" />
+  <meta property="og:description" content="帮助有十年以上职业经验的人，把过去的工作经验重新整理成方向、内容、产品、服务和新的增长可能。" />
+  <meta property="og:url" content="https://kevinsolo.cn" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="经验资产化 | Kevin 彭峥" />
+  <meta name="twitter:description" content="帮助有十年以上职业经验的人，把过去的工作经验重新整理成方向、内容、产品、服务和新的增长可能。" />
+  <link rel="canonical" href="https://kevinsolo.cn" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%231e1a17'/><text x='50' y='72' text-anchor='middle' font-size='56' font-weight='bold' fill='white' font-family='system-ui'>K</text></svg>" />
+  <meta name="theme-color" content="#f7f2ea" />
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="35岁以后，重新看懂你的职业经验 | KEVIN">
-    <meta property="og:description" content="把过去十几年的经验重新整理成方向、内容、产品、服务和新的增长可能。">
-    <meta property="og:url" content="https://kevinsolo.cn">
-    <meta property="og:locale" content="zh_CN">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="35岁以后，重新看懂你的职业经验 | KEVIN">
-    <meta name="twitter:description" content="把过去十几年的经验重新整理成方向、内容、产品、服务和新的增长可能。">
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --bg-soft: #faf6f0;
+      --card: #fffaf2;
+      --card-hover: #fffdf8;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --soft: #8a7e76;
+      --accent: #b8874a;
+      --accent-deep: #875f32;
+      --deep: #1e1a17;
+      --line: #e4d8c9;
+      --line-soft: rgba(30, 26, 23, 0.06);
+      --paper: #fffdf8;
+      --shadow: 0 20px 56px rgba(30, 26, 23, 0.07);
+      --shadow-sm: 0 12px 32px rgba(30, 26, 23, 0.04);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --max: 1120px;
+    }
 
-    <title>35岁以后，重新看懂你的职业经验 | KEVIN</title>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-    <link rel="preconnect" href="https://flowus.cn">
-    <link rel="dns-prefetch" href="https://flowus.cn">
-    <link rel="stylesheet" href="css/style.css">
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      letter-spacing: -0.01em;
+    }
 
-    <!-- 新增模块专用样式 -->
-    <style>
-        /* 解决方案流程 */
-        .solution-flow {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-        .flow-step {
-            text-align: center;
-            background: var(--color-white);
-            border: 1px solid rgba(var(--rgb-dark), 0.08);
-            border-radius: var(--radius-lg);
-            padding: 24px 16px;
-            min-width: 140px;
-            flex: 1;
-            transition: all 0.25s ease;
-        }
-        .flow-step:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(var(--rgb-dark), 0.08); }
-        .flow-step .flow-num {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            background: var(--color-dark);
-            color: var(--color-white);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-        .flow-step .flow-label { font-weight: 800; font-size: 15px; color: var(--color-dark); display: block; margin-bottom: 4px; }
-        .flow-step .flow-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-        .flow-arrow {
-            color: var(--color-gold);
-            font-size: 22px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-        }
+    a { color: inherit; text-decoration: none; }
 
-        /* 免费测评 CTA spotlight */
-        .spotlight-cta {
-            background: linear-gradient(135deg, #1a1816 0%, #2a2520 100%);
-            color: var(--color-white);
-            text-align: center;
-            padding: 72px 0;
-        }
-        .spotlight-cta .section-title { color: var(--color-white); }
-        .spotlight-card {
-            max-width: 540px;
-            margin: 0 auto;
-            padding: 40px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: var(--radius-lg);
-            text-align: center;
-        }
-        .spotlight-card h3 { color: var(--color-white); font-size: 22px; margin-bottom: 12px; }
-        .spotlight-card p { color: var(--text-muted-dark); font-size: 15px; margin-bottom: 24px; line-height: 1.7; }
-        .spotlight-card .spotlight-features {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 24px;
-        }
-        .spotlight-feature {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 13px;
-            color: var(--text-gold-light);
-        }
-        .spotlight-feature .check { color: var(--color-gold); font-weight: 900; }
+    .page { overflow-x: clip; }
 
-        /* 响应式 */
-        @media (max-width: 768px) {
-            .solution-flow { flex-direction: column; }
-            .flow-arrow { transform: rotate(90deg); }
-            .flow-step { width: 100%; max-width: 300px; }
-            .spotlight-card { padding: 28px 20px; }
-        }
-    </style>
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 242, 234, 0.86);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 18px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { display: flex; flex-direction: column; gap: 2px; }
+    .brand strong { font-size: 17px; font-weight: 700; color: var(--text); }
+    .brand span { font-size: 13px; color: var(--muted); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: 0 24px; border-radius: 999px;
+      font-size: 15px; font-weight: 680;
+      transition: all 0.22s ease; white-space: nowrap; cursor: pointer;
+      touch-action: manipulation; border: none;
+    }
+    .btn-primary {
+      background: var(--text); color: #fff;
+      box-shadow: 0 12px 28px rgba(30, 26, 23, 0.14);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px); background: #0f0d0b;
+      box-shadow: 0 16px 34px rgba(30, 26, 23, 0.18);
+    }
+    .btn-accent {
+      background: var(--accent); color: #fff;
+      box-shadow: 0 14px 30px rgba(184, 135, 74, 0.22);
+    }
+    .btn-accent:hover {
+      transform: translateY(-2px); background: var(--accent-deep);
+      box-shadow: 0 18px 38px rgba(184, 135, 74, 0.28);
+    }
+    .btn-ghost {
+      border: 1px solid var(--line); background: rgba(255, 255, 255, 0.55); color: var(--text);
+    }
+    .btn-ghost:hover {
+      background: #fff; transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(30, 26, 23, 0.05);
+    }
+
+    /* ── Section ── */
+    .section { max-width: var(--max); margin: 0 auto; padding: 96px 24px; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative; padding-top: 96px; padding-bottom: 88px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; top: -140px; right: -200px;
+      width: 480px; height: 480px;
+      background: radial-gradient(circle, rgba(184, 135, 74, 0.10), rgba(184, 135, 74, 0));
+      z-index: -1;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; align-items: center; gap: 58px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border: 1px solid var(--line);
+      border-radius: 999px; background: rgba(255, 255, 255, 0.55);
+      color: var(--soft); font-size: 14px; font-weight: 680; margin-bottom: 24px;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+    h1 {
+      font-family: "Songti SC", "Noto Serif SC", "STSong", "SimSun", serif;
+      font-size: clamp(40px, 5.6vw, 66px);
+      line-height: 1.14; letter-spacing: -0.03em;
+      margin-bottom: 26px; font-weight: 700;
+    }
+    h2 {
+      font-family: "Songti SC", "Noto Serif SC", "STSong", "SimSun", serif;
+      font-size: clamp(30px, 3.8vw, 46px);
+      line-height: 1.18; letter-spacing: -0.02em;
+      margin-bottom: 20px; font-weight: 700;
+    }
+    h3 {
+      font-family: "Songti SC", "Noto Serif SC", "STSong", "SimSun", serif;
+      font-size: 20px; line-height: 1.4; margin-bottom: 12px; font-weight: 680;
+    }
+
+    .lead {
+      font-size: clamp(17px, 1.9vw, 20px); color: var(--muted);
+      line-height: 1.78; max-width: 680px; margin-bottom: 20px;
+    }
+    .strong-line { color: var(--text); font-weight: 680; }
+
+    .path-line {
+      margin: 24px 0 30px; padding: 16px 20px;
+      border: 1px solid var(--line); border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.55); color: var(--text);
+      font-size: 15px; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-top: 28px; }
+    .hero-note { margin-top: 16px; color: var(--muted); font-size: 14px; }
+
+    /* ── Hero card (right) ── */
+    .hero-card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 24px; padding: 30px;
+      box-shadow: var(--shadow); position: relative;
+    }
+    .hero-card .report-tag {
+      position: absolute; top: -1px; right: 24px;
+      padding: 5px 10px; border-radius: 0 0 8px 8px;
+      background: var(--deep); color: rgba(255,255,255,0.8);
+      font-size: 11px; font-weight: 680; letter-spacing: 0.06em;
+    }
+    .diagnosis-preview { position: relative; z-index: 2; }
+    .preview-top { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 24px; }
+    .preview-top span {
+      display: inline-flex; padding: 6px 10px; border-radius: 999px;
+      background: rgba(184, 135, 74, 0.08); color: var(--accent-deep);
+      font-size: 12px; font-weight: 700;
+    }
+    .score { font-size: 50px; line-height: 1; letter-spacing: -0.03em; font-weight: 780; color: var(--text); margin: 10px 0 4px; }
+    .score small { font-size: 17px; color: var(--muted); font-weight: 600; }
+    .preview-list { display: grid; gap: 12px; margin-top: 20px; }
+    .preview-item {
+      padding: 14px 16px; border-radius: 14px;
+      background: rgba(255, 250, 242, 0.8); border: 1px solid rgba(228, 216, 201, 0.7);
+    }
+    .preview-item b { display: block; font-size: 13px; color: var(--soft); margin-bottom: 4px; }
+    .preview-item span { color: var(--text); font-size: 14px; }
+
+    /* ── Center ── */
+    .center { text-align: center; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .muted { color: var(--muted); }
+
+    /* ── Grids ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius-lg); padding: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+    .card p { color: var(--muted); margin-bottom: 0; font-size: 15px; }
+    .number {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(184, 135, 74, 0.10); color: var(--accent-deep);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-weight: 760; margin-bottom: 16px; font-size: 14px;
+    }
+
+    /* ── Dark band ── */
+    .dark-band { background: var(--deep); color: #fff; margin: 0; }
+    .dark-band .section { padding-top: 88px; padding-bottom: 88px; }
+    .dark-band h2 { color: rgba(255,255,255,0.94); }
+    .dark-band p { color: rgba(255,255,255,0.68); }
+    .dark-band .strong-line { color: #fff; }
+
+    /* ── Pathway Map ── */
+    .pathway-flow {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: nowrap; margin-top: 48px;
+    }
+    .path-node { text-align: center; flex-shrink: 0; }
+    .path-node-circle {
+      width: 80px; height: 80px; border-radius: 20px;
+      background: var(--card); border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--text);
+      margin: 0 auto 10px;
+      box-shadow: var(--shadow-sm);
+      letter-spacing: 0.02em; line-height: 1.3;
+    }
+    .path-node-label {
+      font-size: 13px; color: var(--soft); font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .path-arrow {
+      display: flex; align-items: center; padding: 0 6px;
+      color: var(--accent); font-size: 18px; font-weight: 700;
+      flex-shrink: 0; margin-bottom: 36px;
+    }
+
+    /* ── About ── */
+    .about { display: grid; grid-template-columns: 0.72fr 1.28fr; gap: 42px; align-items: start; }
+    .profile-card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 24px; padding: 28px; box-shadow: var(--shadow-sm);
+    }
+    .avatar-mark {
+      width: 72px; height: 72px; border-radius: 20px;
+      background: var(--deep); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 760; margin-bottom: 20px;
+      letter-spacing: -0.03em;
+    }
+    .profile-card p { color: var(--muted); margin-bottom: 0; }
+
+    /* ── Split ── */
+    .split-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+    .no-card {
+      background: rgba(184, 135, 74, 0.04); border: 1px solid rgba(184, 135, 74, 0.10);
+      border-radius: 24px; padding: 26px;
+    }
+    .yes-card {
+      background: rgba(184, 135, 74, 0.05); border: 1px solid rgba(184, 135, 74, 0.16);
+      border-radius: 24px; padding: 26px;
+    }
+    .plain-list { padding-left: 18px; margin-bottom: 0; color: var(--muted); }
+    .plain-list li { margin: 10px 0; }
+
+    /* ── Pricing ── */
+    .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .price-card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 24px; padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .price-card.featured {
+      border-color: rgba(184, 135, 74, 0.4);
+      box-shadow: 0 20px 48px rgba(184, 135, 74, 0.10);
+    }
+    .price { font-size: 32px; letter-spacing: -0.03em; font-weight: 780; margin: 12px 0 12px; }
+    .tag {
+      display: inline-flex; padding: 5px 10px; border-radius: 999px;
+      background: rgba(184, 135, 74, 0.08); color: var(--accent-deep);
+      font-size: 12px; font-weight: 700; margin-bottom: 14px;
+    }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 720px; margin: 36px auto 0; }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0; background: none; border: none;
+      font-family: inherit; font-size: inherit; cursor: pointer;
+      transition: padding 0.25s ease; text-align: left; color: var(--text);
+    }
+    .faq-question:hover { padding-left: 12px; }
+    .faq-q-text { font-size: clamp(16px, 2vw, 18px); font-weight: 700; color: var(--text); flex: 1; padding-right: 16px; line-height: 1.4; }
+    .faq-question:hover .faq-q-text { color: var(--accent); }
+    .faq-icon {
+      font-size: 24px; font-weight: 300; color: var(--muted);
+      transition: transform 0.3s ease, color 0.25s ease;
+      min-width: 24px; text-align: center; line-height: 1;
+    }
+    .faq-question:hover .faq-icon { color: var(--accent); }
+    .faq-item.active .faq-q-text { color: var(--accent); }
+    .faq-item.active .faq-icon { transform: rotate(45deg); color: var(--accent); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-item.active .faq-answer { max-height: 400px; padding-bottom: 24px; }
+    .faq-answer p { font-size: 15px; line-height: 1.8; color: var(--muted); margin-bottom: 0; }
+
+    /* ── WeChat Contact ── */
+    .wechat-contact {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 40px;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .wechat-id-display {
+      display: inline-flex; align-items: center; gap: 12px;
+      margin: 20px auto;
+      padding: 14px 24px;
+      border: 1.5px solid var(--accent);
+      border-radius: 12px;
+      background: var(--card);
+      font-size: 20px;
+      font-weight: 780;
+      letter-spacing: 0.03em;
+    }
+    .wechat-id-display .copy-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+    .wechat-id-display .copy-btn:hover { background: var(--accent-deep); }
+    .wechat-steps { text-align: left; font-size: 15px; color: var(--muted); line-height: 1.75; max-width: 480px; margin: 16px auto 0; }
+
+    /* ── Final ── */
+    .final { padding-bottom: 110px; }
+    .final-box {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 32px; padding: 52px; text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .final-box h2 { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .final-box p { max-width: 640px; margin-left: auto; margin-right: auto; color: var(--muted); font-size: 17px; margin-bottom: 12px; }
+
+    /* ── Footer ── */
+    .footer { border-top: 1px solid var(--line); padding: 28px 24px; color: var(--muted); font-size: 14px; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed; left: 50%; bottom: 80px;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--deep); color: #fff;
+      padding: 12px 24px; border-radius: 999px;
+      opacity: 0; pointer-events: none; z-index: 3000;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      font-size: 14px; font-weight: 600; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── Mobile (≤900px) ── */
+    @media (max-width: 900px) {
+      .nav-inner { padding: 14px 18px; }
+      .brand span { display: none; }
+      .nav-actions .btn-ghost { display: none; }
+      .section { padding: 64px 20px; }
+      .hero { padding-top: 52px; padding-bottom: 60px; }
+      .hero::before { display: none; }
+      .hero-grid, .about { grid-template-columns: 1fr; gap: 32px; }
+      .grid-3, .pricing, .split-list { grid-template-columns: 1fr; }
+      h1 { font-size: 34px; }
+      h2 { font-size: 28px; }
+      .lead { font-size: 17px; }
+      .hero-card, .final-box { padding: 24px; border-radius: 22px; }
+      .wechat-contact { padding: 28px 20px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      .score { font-size: 42px; }
+      .pathway-flow { flex-direction: column; gap: 4px; align-items: center; }
+      .path-node { width: 100%; max-width: 260px; }
+      .path-arrow { transform: rotate(90deg); padding: 4px 0; margin-bottom: 0; font-size: 20px; color: var(--soft); }
+    }
+
+    @media (max-width: 520px) {
+      .nav-inner { padding: 12px 16px; }
+      .nav-actions .btn-primary { min-height: 42px; padding: 0 14px; font-size: 13px; }
+      .brand strong { font-size: 15px; }
+      .eyebrow { font-size: 13px; padding: 6px 12px; }
+      h1 { font-size: 28px; }
+      h2 { font-size: 24px; }
+      h3 { font-size: 18px; }
+      .lead { font-size: 16px; }
+      .section { padding: 56px 16px; }
+      .hero { padding-top: 36px; padding-bottom: 44px; }
+      .hero-card { padding: 20px; border-radius: 20px; }
+      .hero-card .report-tag { right: 16px; }
+      .card, .price-card { padding: 20px; }
+      .final-box { padding: 28px 20px; }
+      .wechat-contact { padding: 24px 16px; }
+      .profile-card { padding: 22px; }
+      .path-line { padding: 14px 16px; font-size: 14px; }
+      .hero-note { font-size: 13px; }
+      .path-node { max-width: 220px; }
+      .path-node-circle { width: 64px; height: 64px; font-size: 12px; border-radius: 16px; }
+      .path-node-label { font-size: 12px; }
+      .footer-inner { flex-direction: column; text-align: center; gap: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
 </head>
-<body>
-    <a href="#main-content" class="skip-link">跳转到主要内容</a>
 
-    <!-- 顶部导航 -->
-    <header class="top-nav" id="topNav">
-        <div class="nav-content">
-            <div class="nav-brand">
-                <span class="nav-brand-name"><span class="nav-brand-full">KEVIN 经验产品化</span><span class="nav-brand-short">KEVIN</span></span>
-                <span class="nav-brand-sub">经验资产 · 个人价值系统</span>
-            </div>
-            <nav class="nav-actions">
-                <a href="javascript:void(0)" class="nav-btn dir-overlay-trigger">查看知识库</a>
-                <a href="#wechat-contact" class="nav-btn nav-btn-outline">加微信</a>
-            </nav>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <strong>Kevin 彭峥</strong>
+          <span>经验资产化 &#183; 职业下半场 &#183; 第二增长曲线</span>
+        </a>
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="/fuye/">先看看我适合哪条路径</a>
+          <a class="btn btn-primary" href="/fuye/quiz/">开始经验资产诊断</a>
         </div>
+      </div>
     </header>
 
-    <!-- 手机端底部固定 CTA -->
-    <div class="mobile-bottom-bar">
-        <a href="/fuye/" class="mobile-bottom-btn primary">免费测经验资产</a>
-        <a href="#wechat-contact" class="mobile-bottom-btn secondary-outline">加微信</a>
-    </div>
-
-    <div class="progress-bar" id="progressBar"></div>
-
-    <!-- ===== 1. 第一屏：战略定位 ===== -->
-    <section class="hero" id="main-content">
-        <div class="container">
-            <h1 class="hero-title">35岁以后<br>重新看懂你的职业经验</h1>
-            <p class="hero-subtitle">我帮助有十年以上工作经验的人，把过去的经验重新整理成方向、内容、产品、服务和新的增长可能。</p>
-            <p class="hero-description">不是教你追风口，也不是承诺暴富，而是帮你建立属于自己的经验资产和个人价值系统。</p>
-
+    <main>
+      <!-- ===== 1. Hero ===== -->
+      <section class="section hero">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow"><span class="dot"></span> 给十年以上经验的人</div>
+            <h1>35岁以后，你真正要盘点的，<br>不是简历，而是经验资产</h1>
+            <p class="lead">
+              我帮助有十年以上职业经验的人，把过去的工作经历、判断力、方法和资源，重新整理成方向、内容、产品、服务和新的增长可能。
+            </p>
+            <div class="path-line">
+              5分钟，8道题，初步判断你的经验更适合走哪条路径：<br />
+              <strong>内容表达 / 知识产品 / 咨询诊断 / 模板工具 / 陪跑交付</strong>
+            </div>
             <div class="hero-actions">
-                <a href="/fuye/" class="cta-button">免费测一测：我的经验适合怎么变成价值</a>
-                <a href="javascript:void(0)" class="secondary-button hero-secondary dir-overlay-trigger">查看经验产品化知识库</a>
+              <a class="btn btn-accent" href="/fuye/quiz/">开始我的经验资产诊断</a>
+              <a class="btn btn-ghost" href="/fuye/">先看看我适合哪条路径</a>
             </div>
+            <div class="hero-note">
+              免费诊断。不需要登录。不卖焦虑。先看清方向，再决定下一步。
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="report-tag">诊断报告样例</div>
+            <div class="diagnosis-preview">
+              <div class="preview-top">
+                <div>
+                  <span>经验资产类型</span>
+                  <h3 style="margin-top:14px;">咨询诊断型</h3>
+                  <p class="muted" style="margin-bottom:0;font-size:14px;">适合把经验转化为判断、分析、建议和解决方案。</p>
+                </div>
+                <div>
+                  <div class="score">78<small>/100</small></div>
+                  <p class="muted" style="font-size:12px;margin:0;">经验资产适合度评分</p>
+                </div>
+              </div>
+              <div class="preview-list">
+                <div class="preview-item">
+                  <b>核心优势</b>
+                  <span>判断力强，能帮别人看清问题本质。</span>
+                </div>
+                <div class="preview-item">
+                  <b>主要卡点</b>
+                  <span>经验还没有被萃取成清晰的问题、方法和价值表达。</span>
+                </div>
+                <div class="preview-item">
+                  <b>初步建议</b>
+                  <span>先从一个真实问题开始，整理出你的判断方法和可验证的服务雏形。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. Three Problems ===== -->
+      <section class="section">
+        <div class="center">
+          <h2>35岁以后真正卡住人的，往往不是能力</h2>
+          <p class="lead">你有经验、有判断、有解决问题的能力，但离开原来的组织系统后，这些东西变得难以被看见。</p>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="number">1</div>
+            <h3>有经验，但说不清价值</h3>
+            <p>你有行业判断、项目经验和解决问题的能力，但不知道离开岗位、公司和头衔后，这些东西还能不能变成新的机会。</p>
+          </div>
+          <div class="card">
+            <div class="number">2</div>
+            <h3>有能力，但不知道适合走哪条新路径</h3>
+            <p>你知道自己还有很多可能性，但不知道从内容、知识产品、咨询、服务还是别的什么开始。</p>
+          </div>
+          <div class="card">
+            <div class="number">3</div>
+            <h3>想转型，但不知道如何把经验变成内容、产品或服务</h3>
+            <p>你有想法也有沉淀，但把它们整理成能被别人理解、信任、购买的东西，中间隔着一大段认知鸿沟。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. Dark band ===== -->
+      <section class="dark-band">
+        <div class="section center">
+          <h2>35岁以后，真正的机会 <br>不是从零开始追风口</h2>
+          <p class="lead">
+            而是把你过去十多年积累下来的经验、判断力、方法和行业理解，重新整理成别人愿意信任、愿意购买、愿意持续跟随的价值。
+          </p>
+          <p class="lead strong-line">
+            你首先需要看清：你的经验，到底适合被整理成什么。
+          </p>
+        </div>
+      </section>
+
+      <!-- ===== 4. Six-Step Pathway ===== -->
+      <section class="section">
+        <div class="center">
+          <h2>经验资产化，不是再学一个项目，<br>而是把经验拆成可行动的路径</h2>
+
+          <div class="pathway-flow">
+            <div class="path-node">
+              <div class="path-node-circle">经验<br>盘点</div>
+              <div class="path-node-label">Step 1</div>
+            </div>
+            <div class="path-arrow">→</div>
+            <div class="path-node">
+              <div class="path-node-circle">方向<br>诊断</div>
+              <div class="path-node-label">Step 2</div>
+            </div>
+            <div class="path-arrow">→</div>
+            <div class="path-node">
+              <div class="path-node-circle">AI<br>拆解</div>
+              <div class="path-node-label">Step 3</div>
+            </div>
+            <div class="path-arrow">→</div>
+            <div class="path-node">
+              <div class="path-node-circle">内容<br>输出</div>
+              <div class="path-node-label">Step 4</div>
+            </div>
+            <div class="path-arrow">→</div>
+            <div class="path-node">
+              <div class="path-node-circle">产品<br>设计</div>
+              <div class="path-node-label">Step 5</div>
+            </div>
+            <div class="path-arrow">→</div>
+            <div class="path-node">
+              <div class="path-node-circle">转化<br>验证</div>
+              <div class="path-node-label">Step 6</div>
+            </div>
+          </div>
         </div>
 
-        <div class="scroll-indicator" aria-label="向下滚动">
-            <span class="scroll-arrow">↓</span>
-        </div>
-    </section>
+        <p class="lead" style="text-align:center;max-width:640px;margin:44px auto 0;">
+          多数人失败，不是因为没有能力，而是直接跳到了"卖东西"，却没有先完成经验盘点、方向诊断和价值拆解。
+        </p>
+      </section>
 
-    <!-- ===== 2. 用户痛点：不是你没经验，而是经验还没有被资产化 ===== -->
-    <section class="problem">
-        <div class="container">
-            <h2 class="section-title">三件事，在阻止你把经验变成资产</h2>
-            <div class="problem-grid">
-                <div class="problem-item">
-                    <div class="problem-number">01</div>
-                    <h3>不知道自己有什么</h3>
-                    <p>工作十几年做了很多事，但从来没有系统盘点过自己积累了什么。经验在脑子里是散的，说不清楚、用不起来。</p>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-number">02</div>
-                    <h3>不知道怎么变成价值</h3>
-                    <p>知道自己的经验有用，但不知道怎么拆成内容、产品、咨询或服务——更不知道怎么定价和交付。</p>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-number">03</div>
-                    <h3>不敢迈出第一步</h3>
-                    <p>市面上信息太多太杂，高价课包装很重，被割怕了。与其再踩坑，不如先低成本验证一下方向。</p>
-                </div>
-            </div>
-            <p style="text-align:center; margin-top:28px;">
-                <a href="/fuye/" style="color:var(--color-gold); font-weight:700; font-size:15px; text-decoration:none; border-bottom:1px dashed var(--color-gold); padding-bottom:2px;">测一测，看看你的经验卡在哪一步 →</a>
+      <!-- ===== 5. Free Diagnosis Entry ===== -->
+      <section class="section">
+        <div class="final-box">
+          <div class="eyebrow" style="margin:0 auto 16px;display:inline-flex;"><span class="dot"></span> 免费诊断</div>
+          <h2>先别急着报课，先花5分钟看清自己</h2>
+          <p>这份《经验资产诊断》，适合有多年经验、正在寻找新方向的人。</p>
+          <p style="margin-top:12px;">完成诊断后，你会看到：经验资产类型、适合度评分、核心优势、主要卡点、初步行动建议。</p>
+          <div class="hero-actions" style="justify-content:center;margin-top:28px;">
+            <a class="btn btn-accent" href="/fuye/quiz/">开始我的经验资产诊断</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 6. Kevin Trust ===== -->
+      <section class="section">
+        <div class="about">
+          <div class="profile-card">
+            <div class="avatar-mark">K</div>
+            <h3>Kevin 彭峥</h3>
+            <p>有二十多年职场经历，也经历过职业下半场的重新选择。现在做的不是教人追风口，而是帮助有多年经验的人，把过去积累过的判断、方法、案例和资源，重新整理成能被看见、被信任、被购买的价值。</p>
+          </div>
+          <div>
+            <h2>我不是站在旁边教你转型，我是从职业下半场里走出来的人</h2>
+            <p class="lead">
+              我经历过离开组织之后，重新理解自己、整理经验、寻找新可能的过程。
             </p>
-        </div>
-    </section>
-
-    <!-- ===== 3. 解决方案：经验转化路径 ===== -->
-    <section class="samples">
-        <div class="container">
-            <h2 class="section-title">五步，把经验从模糊感觉<br>变成可交付、可积累的资产</h2>
-            <div class="solution-flow">
-                <div class="flow-step">
-                    <span class="flow-num">1</span>
-                    <span class="flow-label">经验盘点</span>
-                    <span class="flow-desc">系统梳理你过去积累了什么</span>
-                </div>
-                <span class="flow-arrow">→</span>
-                <div class="flow-step">
-                    <span class="flow-num">2</span>
-                    <span class="flow-label">方向诊断</span>
-                    <span class="flow-desc">判断你的经验适合怎么变现</span>
-                </div>
-                <span class="flow-arrow">→</span>
-                <div class="flow-step">
-                    <span class="flow-num">3</span>
-                    <span class="flow-label">内容输出</span>
-                    <span class="flow-desc">把经验变成可传播的内容</span>
-                </div>
-                <span class="flow-arrow">→</span>
-                <div class="flow-step">
-                    <span class="flow-num">4</span>
-                    <span class="flow-label">产品设计</span>
-                    <span class="flow-desc">把内容打包成可卖的产品或服务</span>
-                </div>
-                <span class="flow-arrow">→</span>
-                <div class="flow-step">
-                    <span class="flow-num">5</span>
-                    <span class="flow-label">转化验证</span>
-                    <span class="flow-desc">用真实付费反馈迭代方向</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 4. 免费测评入口 ===== -->
-    <section class="spotlight-cta">
-        <div class="container">
-            <h2 class="section-title">先看清方向，再决定怎么走</h2>
-            <div class="spotlight-card">
-                <h3>免费经验资产诊断</h3>
-                <p>5分钟，8道题。帮你判断你的职业经验更适合变成内容、知识产品、咨询诊断、模板工具，还是陪跑交付。</p>
-                <div class="spotlight-features">
-                    <span class="spotlight-feature"><span class="check">✓</span> 无需登录</span>
-                    <span class="spotlight-feature"><span class="check">✓</span> 不推暴富项目</span>
-                    <span class="spotlight-feature"><span class="check">✓</span> 即时出结果</span>
-                </div>
-                <a href="/fuye/" class="cta-button" style="background: var(--color-gold); border-color: var(--color-gold);">免费测一测 →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 5. 99元/年经验产品化知识库 ===== -->
-    <section class="kb-hero" id="knowledge-base">
-        <div class="container">
-            <h2 class="section-title">先用 99 元/年，建立你的经验产品化认知体系</h2>
-
-            <div class="kb-card">
-                <div class="kb-card-label">经验产品化知识库</div>
-                <div class="kb-price">
-                    <span class="kb-amount">¥99</span>
-                    <span class="kb-period">/ 年</span>
-                </div>
-                <ul class="kb-features">
-                    <li>Dan Koe、Naval 等源头内容中文整理</li>
-                    <li>50+ 实战框架与方法</li>
-                    <li>100+ 本地化执行清单</li>
-                    <li>FlowUs 知识库，手机电脑都能看</li>
-                    <li>每周持续更新</li>
-                </ul>
-                <a href="javascript:void(0)" class="cta-button kb-btn dir-overlay-trigger">查看完整目录和试看内容</a>
-            </div>
-
-            <div class="flowus-tip-bar">
-                <p>如果目录打不开，<strong>复制上方链接到浏览器</strong>，或<strong>加微信发送「知识库」</strong>，我直接发你入口。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 6. 199元/60分钟诊断咨询 ===== -->
-    <section class="advanced" id="diagnosis-199">
-        <div class="container">
-            <h2 class="section-title">如果你想一对一理清现状</h2>
-            <div class="advanced-grid" style="max-width:540px;">
-                <div class="advanced-card">
-                    <div class="advanced-tier">一对一诊断</div>
-                    <div class="advanced-price">
-                        <span class="advanced-amount">¥199</span>
-                        <span class="advanced-period">/ 次 · 60分钟</span>
-                    </div>
-                    <h3>经验资产诊断咨询</h3>
-                    <p class="advanced-desc">60分钟一对一沟通，帮你判断你的经验能不能产品化、从哪里开始、当前最该优先做什么、以及哪些坑不要碰。</p>
-                    <ul class="advanced-features">
-                        <li>梳理你的经验资产和转化潜力</li>
-                        <li>判断适合的内容产品形态</li>
-                        <li>给出具体的下一步行动建议</li>
-                    </ul>
-                    <a href="#wechat-contact" class="cta-button advanced-btn">加微信，发送「经验产品化」</a>
-                </div>
-            </div>
-            <p class="advanced-note">不确定选哪个？加微信发送「经验产品化」，我帮你判断当前最适合的起点。</p>
-        </div>
-    </section>
-
-    <!-- ===== 7. 45天私教陪跑（弱化视觉） ===== -->
-    <section class="advanced" style="background-color:#faf8f4;">
-        <div class="container">
-            <div class="advanced-grid" style="max-width:540px;">
-                <div class="advanced-card advanced-subdued">
-                    <div class="advanced-tier">深度陪跑</div>
-                    <h3>45 天私教陪跑</h3>
-                    <p class="advanced-desc">适合已经决定系统推进的人。从定位、内容系统、知识库产品到转化路径，陪你完整走一遍。</p>
-                    <ul class="advanced-features">
-                        <li>内容创作系统和选题库搭建</li>
-                        <li>知识库产品设计和迭代</li>
-                        <li>私域流量和转化路径搭建</li>
-                    </ul>
-                    <div class="advanced-subdued-price">价格：申请沟通后确认</div>
-                    <a href="#wechat-contact" class="secondary-button advanced-btn-weak">加微信，发送「经验产品化」</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 8. 关于 Kevin ===== -->
-    <section class="about-kevin">
-        <div class="container">
-            <h2 class="section-title">一个普通职场人，能不能把经验变成可积累的资产</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>你好，我是 Kevin。</p>
-                    <p>我不是来包装成功学的。</p>
-                    <p>我做过职场，也经历过转型的焦虑。</p>
-                    <p>我更关心的是：<strong>一个工作了十年以上的人，能不能把过去积累的经验，变成一套可表达、可交付、可积累的资产。</strong></p>
-                    <p>所以这个入口不是鸡血课，也不是暴富课。</p>
-                    <p>它更像一个低成本入口：帮你先看懂自己的经验资产，再判断该走哪条路。</p>
-                </div>
-                <div class="about-credentials">
-                    <div class="credential-item">
-                        <span class="credential-num">50+</span>
-                        <span class="credential-label">源头内容已整理</span>
-                    </div>
-                    <div class="credential-item">
-                        <span class="credential-num">100+</span>
-                        <span class="credential-label">执行清单已本地化</span>
-                    </div>
-                    <div class="credential-item">
-                        <span class="credential-num">每周更新</span>
-                        <span class="credential-label">持续追踪源头内容</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 9. 常见问题 ===== -->
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title">常见问题</h2>
-            <div class="faq-list">
-                <div class="faq-item active">
-                    <button class="faq-question" aria-expanded="true">
-                        <span class="faq-q-text">经验资产诊断收费吗？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>8道题的在线诊断完全免费，即时出结果。如果你想要更完整的分析报告，可以花9.9元解锁完整版，或者预约199元的60分钟人工诊断。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">99元知识库和199元诊断有什么区别？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>知识库是通用内容——源头方法论、框架、清单，适合自己看自己消化。诊断咨询是针对你个人情况的60分钟一对一沟通，帮你判断你的经验能不能产品化、从哪开始。相当于「买本书自己看」vs「找个教练梳理现状」。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">我已经有经验了，为什么还需要诊断？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>有经验和把经验变成价值是两回事。很多人卡在"知道自己有用，但不知道从哪变现"。诊断帮你把十几年的模糊经验，转成一条清晰的转化路径。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">英文不好能看知识库吗？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>能。内容是中文版，保留原意，以中文阅读和执行为主。不需要先学英文再使用。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">FlowUs 打不开怎么办？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>复制链接到浏览器地址栏打开。如果仍然打不开，添加微信发送「知识库」，我直接把内容发给你。</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span class="faq-q-text">陪跑和诊断有什么区别？</span>
-                        <span class="faq-icon">+</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>诊断是帮你「看清现状和方向」，60分钟搞定。陪跑是「45天手把手推进」——帮你实际搭建内容系统、打磨产品、建立转化路径，每周2次深度辅导。前者适合还在犹豫的人，后者适合已经决定要做的人。</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 10. 最终 CTA ===== -->
-    <section class="final-cta">
-        <div class="container">
-            <h2 class="cta-title">花 5 分钟，省 3 个月试错</h2>
-            <p class="cta-description">5分钟，8道题。值不值得继续投入，你先自己判断。</p>
-            <div class="final-cta-actions">
-                <a href="/fuye/" class="cta-button large">免费测一测：经验资产诊断</a>
-                <a href="#wechat-contact" class="secondary-button final-secondary">加微信，发送「经验产品化」</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 犹豫打消 ===== -->
-    <section style="padding:0;">
-        <div class="container" style="text-align:center; padding-top:0; padding-bottom:32px;">
-            <p style="color:var(--text-muted); font-size:14px; max-width:480px; margin:0 auto;">
-                还在犹豫？先测完，不满意不会有任何推送骚扰。
+            <p class="lead strong-line">
+              所以我非常清楚：35岁以后真正难的不是有没有能力，而是你的能力离开原来的岗位、平台和身份之后，还能不能被别人看见、理解、信任和购买。
             </p>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- ===== 加微信 inline（保留在页尾附近，作为锚点） ===== -->
-    <section class="wechat-inline" id="wechat-contact">
-        <div class="container">
-            <div class="wechat-inline-card">
-                <h2 class="wechat-inline-title">不确定自己适不适合？先加微信问问</h2>
-                <div class="wechat-inline-body">
-                    <div class="wechat-steps">
-                        <p>发送你的<strong>行业、经验年限、现在最想做的方向</strong>。</p>
-                        <p>我帮你判断：</p>
-                        <ol class="wechat-list">
-                            <li>你的经验能不能产品化</li>
-                            <li>该先看知识库，还是先做诊断</li>
-                            <li>哪些坑暂时不要碰</li>
-                        </ol>
-                    </div>
-                    <div class="wechat-qr-area">
-                        <div class="qr-placeholder">
-                            <span class="qr-label">微信扫码添加</span>
-                        </div>
-                        <p class="wechat-id-fallback">微信号：kevin0915<br>长按复制微信号</p>
-                    </div>
-                </div>
-                <div class="wechat-inline-action">
-                    <span class="wechat-copy-hint">添加微信，发送「经验产品化」</span>
-                </div>
-            </div>
+      <!-- ===== 7. Fit / Unfit ===== -->
+      <section class="section">
+        <div class="center">
+          <h2>这不是一个速成暴利的项目</h2>
+          <p class="lead">我不适合所有人。越早说清楚，越节省彼此时间。</p>
         </div>
-    </section>
+        <div class="split-list">
+          <div class="yes-card">
+            <h3>适合这些人</h3>
+            <ul class="plain-list">
+              <li>35岁以后，有十年以上职业经验</li>
+              <li>正在经历职业瓶颈、转型焦虑、收入压力</li>
+              <li>不想盲目追风口，但想探索第二增长曲线</li>
+              <li>有经验，但说不清自己到底能帮谁、解决什么问题</li>
+              <li>想把经验整理成内容、产品、服务或个人价值系统</li>
+            </ul>
+          </div>
+          <div class="no-card">
+            <h3>不适合这些人</h3>
+            <ul class="plain-list">
+              <li>只想找一个马上赚钱的项目</li>
+              <li>不愿意表达、不愿意行动</li>
+              <li>希望别人直接给答案，自己不做验证</li>
+              <li>想靠包装人设快速割韭菜</li>
+              <li>完全没有真实经验积累的人</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 8. Pricing ===== -->
+      <section class="section">
+        <div class="center">
+          <h2>继续往下走，有三个层次的支持</h2>
+          <p class="lead">不急着做决定。先测方向，再根据结果选择下一步支持。</p>
+        </div>
+        <div class="pricing">
+          <div class="price-card">
+            <div class="tag">低成本入门</div>
+            <h3>知识库</h3>
+            <div class="price">99元/年</div>
+            <p class="muted">低成本理解经验资产化、内容表达、个人商业化的底层方法。适合先建立系统认知的人。</p>
+          </div>
+          <div class="price-card featured">
+            <div class="tag">推荐起点</div>
+            <h3>经验资产解读</h3>
+            <div class="price">199元/60分钟</div>
+            <p class="muted">一对一帮你看清当前经验、卡点、方向和适合的起步路径。基于你的真实经历做具体判断。</p>
+          </div>
+          <div class="price-card">
+            <div class="tag">深度陪跑</div>
+            <h3>45天陪跑服务</h3>
+            <div class="price">9800元</div>
+            <p class="muted">适合已经决定认真做的人，从经验梳理、内容输出、产品设计到转化验证，陪你跑出一个可验证的个人价值系统。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 9. FAQ ===== -->
+      <section class="section">
+        <div class="center">
+          <h2>你可能关心的</h2>
+        </div>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Q1：这是不是教我做副业？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>不是。副业只是可能结果之一。更准确地说，这是帮助你把过去的工作经验整理成可以表达、可以交付、可以验证的经验资产。</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Q2：我还在上班，适合做吗？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>适合。这个诊断不是鼓励你马上离职，而是先帮你看清自己有哪些经验可以被重新利用。</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Q3：我没有个人IP，能做吗？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>能。个人IP不是第一步。第一步是看清你的经验能解决谁的问题。</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Q4：免费诊断和199元解读有什么区别？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>免费诊断给你一个初步方向。199元解读会根据你的真实经历、行业、资源和当前状态，帮你做更具体的路径判断。</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-q-text">Q5：9800元陪跑适合谁？</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>适合已经决定认真推进，需要从定位、内容、产品、转化一路陪跑的人。不适合只是想听听方法但不行动的人。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 10. WeChat Contact ===== -->
+      <section class="section" id="wechat">
+        <div class="center">
+          <h2>不确定自己适合哪一步？</h2>
+          <p class="lead">加微信，把你的情况告诉我，我帮你判断从哪开始更合适。</p>
+        </div>
+        <div class="wechat-contact">
+          <div class="wechat-id-display">
+            <span>kevin0915</span>
+            <button class="copy-btn" id="copyWechatBtn">复制微信号</button>
+          </div>
+          <div class="wechat-steps">
+            <p>发送「<strong>经验资产</strong>」，并告诉我：</p>
+            <ol style="margin-top:8px; padding-left:20px;">
+              <li>你的行业和经验年限</li>
+              <li>你当前在哪个问题上最卡</li>
+              <li>你想探索的方向</li>
+            </ol>
+            <p style="margin-top:12px;">我会帮你判断从知识库、诊断还是陪跑开始更合适。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 11. Final CTA ===== -->
+      <section class="section final">
+        <div class="final-box">
+          <h2>经验不会自动变成价值</h2>
+          <p>但被认真整理过的经验，有机会成为你职业下半场新的增长起点。</p>
+          <p>你不需要现在就做重大决定。先用5分钟，看看你的经验到底适合往哪里走。</p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a class="btn btn-accent" href="/fuye/quiz/">开始我的经验资产诊断</a>
+            <a class="btn btn-ghost" href="/fuye/">先看看我适合哪条路径</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <p class="footer-brand">KEVIN 经验产品化</p>
-                <p class="footer-tagline">把经验变成可积累的资产</p>
-            </div>
-        </div>
+      <div class="footer-inner">
+        <span>&copy; Kevin 彭峥</span>
+        <span>经验资产化 &#183; 个人价值重建 &#183; 第二增长曲线</span>
+      </div>
     </footer>
+  </div>
 
-    <!-- 目录选项弹层 -->
-    <div class="dir-overlay" id="dirOverlay">
-        <div class="dir-panel">
-            <button class="dir-close" id="dirClose">×</button>
-            <h3 class="dir-title">查看知识库目录</h3>
-            <p class="dir-hint">如果 FlowUs 能正常打开，可以直接查看目录。<br>如果打不开，可以复制链接到浏览器，或加微信发送「知识库」。</p>
-            <a href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" class="cta-button dir-btn" target="_blank" rel="noreferrer">打开 FlowUs 目录</a>
-            <button class="secondary-button dir-btn dir-btn-copy" data-copy="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5">复制目录链接</button>
-            <a href="#wechat-contact" class="secondary-button dir-btn dir-btn-wechat dir-close-trigger">加微信发送「知识库」</a>
-        </div>
-    </div>
+  <div class="toast" id="toast"></div>
 
-    <!-- Toast 提示 -->
-    <div class="toast" id="toast">已复制，请粘贴到浏览器打开</div>
+  <script>
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
 
-    <script src="js/script.js"></script>
+    // WeChat copy
+    document.getElementById('copyWechatBtn').addEventListener('click', function() {
+      navigator.clipboard.writeText('kevin0915').then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = '已复制微信号 kevin0915';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    });
+  </script>
 </body>
 </html>
