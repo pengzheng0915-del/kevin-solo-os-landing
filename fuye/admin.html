@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>管理后台 | KEVIN 经验产品化</title>
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --card: #fffaf2;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --line: #e4d8c9;
+      --primary: #1e1a17;
+      --accent: #b8874a;
+      --accent-dark: #875f32;
+      --green: #2d6a4f;
+      --red: #c0392b;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px;
+      line-height: 1.6;
+    }
+    h1 { font-size: 28px; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+    /* Login */
+    .login-wrap {
+      max-width: 400px; margin: 80px auto;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 32px; text-align: center;
+    }
+    .login-wrap input {
+      width: 100%; padding: 14px; border: 1px solid var(--line);
+      border-radius: 10px; font-size: 16px; margin: 16px 0;
+      font-family: inherit;
+    }
+    .login-wrap button {
+      width: 100%; padding: 14px; background: var(--primary);
+      color: #fff; border: 0; border-radius: 10px;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 20px 24px; min-width: 130px; flex: 1;
+    }
+    .stat-card .num { font-size: 36px; font-weight: 900; letter-spacing: -0.03em; }
+    .stat-card .label { color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .stat-a .num { color: var(--accent-dark); }
+    .stat-b .num { color: var(--green); }
+    .stat-c .num { color: #6b4c9a; }
+
+    /* Search */
+    .search-bar {
+      display: flex; gap: 8px; margin-bottom: 16px; align-items: center;
+    }
+    .search-bar input {
+      flex: 1; padding: 10px 14px; border: 1px solid var(--line);
+      border-radius: 10px; font-size: 14px; font-family: inherit;
+      background: var(--card);
+    }
+    .search-bar input:focus { outline: none; border-color: var(--accent); }
+    .search-bar button {
+      padding: 10px 16px; background: var(--card); border: 1px solid var(--line);
+      border-radius: 10px; cursor: pointer; font-size: 13px; font-family: inherit;
+    }
+
+    /* Table */
+    .tbl-wrap { overflow-x: auto; }
+    table {
+      width: 100%; border-collapse: collapse;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); overflow: hidden;
+      font-size: 14px;
+    }
+    th {
+      background: var(--primary); color: #fff; padding: 12px 10px;
+      text-align: left; font-weight: 700; white-space: nowrap;
+    }
+    td { padding: 10px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:hover td { background: #fffbf3; }
+
+    .tag {
+      display: inline-block; padding: 2px 10px; border-radius: 999px;
+      font-size: 12px; font-weight: 700;
+    }
+    .tag-A { background: #efe4d3; color: var(--accent-dark); }
+    .tag-B { background: #d4edda; color: var(--green); }
+    .tag-C { background: #e8dff5; color: #6b4c9a; }
+    .tag-paid { background: #d4edda; color: var(--green); }
+    .tag-unpaid { background: #fde8e8; color: var(--red); }
+
+    .btn-sm {
+      padding: 5px 12px; border: 0; border-radius: 6px;
+      cursor: pointer; font-size: 12px; font-weight: 700; white-space: nowrap;
+    }
+    .btn-copy { background: var(--accent); color: #fff; }
+    .btn-view { background: var(--primary); color: #fff; }
+    .btn-paid { background: var(--green); color: #fff; }
+    .btn-unpaid { background: var(--muted); color: #fff; }
+    .btn-sm:hover { opacity: 0.85; }
+
+    .edit-wechat {
+      width: 100px; padding: 4px 8px; border: 1px solid var(--line);
+      border-radius: 6px; font-size: 13px; font-family: inherit;
+    }
+    .edit-wechat:focus { outline: none; border-color: var(--accent); }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 24px;
+      transform: translateX(-50%);
+      background: rgba(31, 26, 23, .94);
+      color: #fff; padding: 10px 20px;
+      border-radius: 999px;
+      opacity: 0; transition: .2s ease; z-index: 200;
+      font-size: 14px;
+    }
+    .toast.show { opacity: 1; }
+
+    .refresh { margin-bottom: 16px; }
+    .refresh button {
+      padding: 8px 18px; background: var(--card); border: 1px solid var(--line);
+      border-radius: 8px; cursor: pointer; font-size: 14px; font-family: inherit;
+    }
+    .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .loading { text-align: center; padding: 40px; color: var(--muted); }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!-- Login state -->
+  <div id="loginView" style="display:none;">
+    <div class="login-wrap">
+      <h1>KEVIN</h1>
+      <p style="color:var(--muted);margin:8px 0;">管理后台</p>
+      <input type="password" id="pwdInput" placeholder="请输入管理密码" onkeydown="if(event.key==='Enter')login()" />
+      <button onclick="login()">进入后台</button>
+      <p id="loginErr" style="color:var(--red);font-size:13px;margin-top:8px;display:none;"></p>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashView" style="display:none;">
+    <h1>管理后台</h1>
+    <p class="sub">客户诊断数据 · A/B/C测试统计</p>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="搜索报告编号 / 微信ID..." oninput="filterTable()" />
+      <button onclick="document.getElementById('searchInput').value='';filterTable();">清除</button>
+    </div>
+
+    <div class="stats" id="statsRow"></div>
+
+    <div class="refresh">
+      <button onclick="loadData()">刷新数据</button>
+      <span style="margin-left:12px;font-size:13px;color:var(--muted);" id="updateTime"></span>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>版本</th>
+            <th>结果类型</th>
+            <th>匹配度</th>
+            <th>微信ID</th>
+            <th>付费</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="emptyMsg" style="display:none;">暂无数据</div>
+    <div class="loading" id="loadingMsg">加载中...</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  var BASE = window.location.origin;
+  var allData = [];
+
+  function getPwd() { return localStorage.getItem('kevin_admin_pwd'); }
+  function setPwd(v) { localStorage.setItem('kevin_admin_pwd', v); }
+
+  function login() {
+    var pwd = document.getElementById('pwdInput').value.trim();
+    if (!pwd) return;
+    setPwd(pwd);
+    loadData();
+  }
+
+  async function loadData() {
+    var pwd = getPwd();
+    if (!pwd) {
+      showLogin();
+      return;
+    }
+
+    showDash();
+    document.getElementById('loadingMsg').style.display = 'block';
+    document.getElementById('tableBody').innerHTML = '';
+    document.getElementById('emptyMsg').style.display = 'none';
+
+    try {
+      var res = await fetch(BASE + '/api/getQuizzes?pwd=' + encodeURIComponent(pwd));
+      if (res.status === 401) {
+        localStorage.removeItem('kevin_admin_pwd');
+        showLogin();
+        document.getElementById('loginErr').style.display = 'block';
+        document.getElementById('loginErr').textContent = '密码错误，请重新输入';
+        return;
+      }
+      var json = await res.json();
+      if (json.error) throw new Error(json.error);
+
+      allData = json.data || [];
+      renderStats();
+      filterTable();
+      document.getElementById('updateTime').textContent = '更新于 ' + new Date().toLocaleTimeString('zh-CN');
+    } catch (e) {
+      document.getElementById('tableBody').innerHTML =
+        '<tr><td colspan="7" style="text-align:center;color:var(--red);">加载失败: ' + e.message + '</td></tr>';
+    }
+    document.getElementById('loadingMsg').style.display = 'none';
+  }
+
+  function renderStats() {
+    var total = allData.length;
+    var aCount = 0;
+    var bCount = 0;
+    var cCount = 0;
+    var paidCount = 0;
+    for (var i = 0; i < allData.length; i++) {
+      var r = allData[i];
+      if (r.version === 'A') aCount++;
+      if (r.version === 'B') bCount++;
+      if (r.version === 'C') cCount++;
+      if (r.paid) paidCount++;
+    }
+
+    var html = '';
+    html += '<div class="stat-card"><div class="num">' + total + '</div><div class="label">总参与人数</div></div>';
+    html += '<div class="stat-card stat-a"><div class="num">' + aCount + '</div><div class="label">A版 (kevinsolo.cn)</div></div>';
+    html += '<div class="stat-card stat-b"><div class="num">' + bCount + '</div><div class="label">B版 (variant)</div></div>';
+    html += '<div class="stat-card stat-c"><div class="num">' + cCount + '</div><div class="label">C版 (ceo)</div></div>';
+    html += '<div class="stat-card"><div class="num" style="color:var(--green);">' + paidCount + '</div><div class="label">已付费</div></div>';
+    document.getElementById('statsRow').innerHTML = html;
+  }
+
+  var TYPE_NAMES = {
+    content: '内容表达型', consulting: '咨询诊断型', knowledge: '知识产品型',
+    template: '模板工具型', service: '资源服务型', coaching: '陪跑交付型', local: '本地服务型'
+  };
+
+  function filterTable() {
+    var q = (document.getElementById('searchInput').value || '').trim();
+    var data = allData;
+    if (q) {
+      var lower = q.toLowerCase();
+      data = allData.filter(function(r) {
+        return (r.session_id && r.session_id.toLowerCase().indexOf(lower) !== -1) ||
+               (r.wechat && r.wechat.toLowerCase().indexOf(lower) !== -1) ||
+               (r.nickname && r.nickname.toLowerCase().indexOf(lower) !== -1);
+      });
+    }
+    renderTable(data);
+  }
+
+  function renderTable(data) {
+    if (data.length === 0) {
+      document.getElementById('tableBody').innerHTML =
+        '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:40px;">暂无匹配数据</td></tr>';
+      return;
+    }
+    var rows = '';
+    for (var i = 0; i < data.length; i++) {
+      var r = data[i];
+      var time = r.created_at ? new Date(r.created_at).toLocaleString('zh-CN') : '-';
+      var typeName = TYPE_NAMES[r.result_type] || r.result_type || '-';
+      var versionTag = '';
+      if (r.version === 'B') versionTag = 'B版';
+      else if (r.version === 'A') versionTag = 'A版';
+      else if (r.version === 'C') versionTag = 'C版';
+      else versionTag = '-';
+      var tagClass = r.version === 'B' ? 'tag tag-B' : r.version === 'A' ? 'tag tag-A' : r.version === 'C' ? 'tag tag-C' : 'tag';
+      var reportUrl = BASE + '/fuye/report.html?sid=' + r.session_id;
+      var sidShort = r.session_id ? r.session_id.substring(0, 8).toUpperCase() : '-';
+      var paidTag = r.paid ? '<span class="tag tag-paid">已付费</span>' : '<span class="tag tag-unpaid">未付费</span>';
+      var paidBtn = r.paid
+        ? '<button class="btn-sm btn-unpaid" onclick="togglePaid(\'' + r.session_id + '\',0)">取消</button>'
+        : '<button class="btn-sm btn-paid" onclick="togglePaid(\'' + r.session_id + '\',1)">标记付费</button>';
+
+      rows += '<tr>' +
+        '<td>' + time + '</td>' +
+        '<td><span class="' + tagClass + '">' + versionTag + '</span></td>' +
+        '<td>' + typeName + ' <span style="font-size:11px;color:var(--muted);">#' + sidShort + '</span></td>' +
+        '<td>' + (r.result_score != null ? r.result_score : '-') + '</td>' +
+        '<td><input class="edit-wechat" value="' + (r.wechat || '') + '" onchange="updateWechat(\'' + r.session_id + '\',this.value)" placeholder="填微信" /></td>' +
+        '<td>' + paidTag + ' ' + paidBtn + '</td>' +
+        '<td>' +
+          '<button class="btn-sm btn-copy" onclick="copyReport(\'' + reportUrl + '\')">复制链接</button>' +
+          '<button class="btn-sm btn-view" onclick="openReport(\'' + reportUrl + '\')" style="margin-left:4px;">查看</button>' +
+        '</td>' +
+      '</tr>';
+    }
+    document.getElementById('tableBody').innerHTML = rows;
+  }
+
+  function showLogin() {
+    document.getElementById('loginView').style.display = 'block';
+    document.getElementById('dashView').style.display = 'none';
+  }
+
+  function showDash() {
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('dashView').style.display = 'block';
+  }
+
+  function copyReport(url) {
+    navigator.clipboard.writeText(url).then(function() {
+      showToast('报告链接已复制');
+    }).catch(function() {
+      showToast(url);
+    });
+  }
+
+  function openReport(url) {
+    window.open(url, '_blank');
+  }
+
+  async function updateWechat(sid, wechat) {
+    var pwd = getPwd();
+    try {
+      var res = await fetch(BASE + '/api/updateQuiz?pwd=' + encodeURIComponent(pwd), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid, wechat: wechat })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('更新失败: ' + json.error);
+      } else {
+        showToast('微信ID已更新');
+        // Update local data
+        for (var i = 0; i < allData.length; i++) {
+          if (allData[i].session_id === sid) {
+            allData[i].wechat = wechat;
+            break;
+          }
+        }
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+    }
+  }
+
+  async function togglePaid(sid, paid) {
+    var pwd = getPwd();
+    try {
+      var res = await fetch(BASE + '/api/updateQuiz?pwd=' + encodeURIComponent(pwd), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid, paid: paid ? true : false })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('更新失败: ' + json.error);
+      } else {
+        showToast(paid ? '已标记为已付费' : '已取消付费标记');
+        // Update local data
+        for (var i = 0; i < allData.length; i++) {
+          if (allData[i].session_id === sid) {
+            allData[i].paid = paid;
+            break;
+          }
+        }
+        renderStats();
+        filterTable();
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+    }
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._tid);
+    t._tid = setTimeout(function() { t.classList.remove('show'); }, 2000);
+  }
+
+  // Init
+  var savedPwd = getPwd();
+  if (savedPwd) {
+    loadData();
+  } else {
+    showLogin();
+  }
+</script>
+</body>
+</html>

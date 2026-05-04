@@ -1,0 +1,2 @@
+ALTER TABLE quiz_results ADD COLUMN wechat TEXT DEFAULT '';
+ALTER TABLE quiz_results ADD COLUMN paid INTEGER DEFAULT 0;

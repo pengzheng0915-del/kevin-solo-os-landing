@@ -360,6 +360,31 @@
       border: 1.5px solid var(--accent);
     }
 
+    .code-card {
+      margin-top: 16px;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(198, 161, 91, 0.08), rgba(198, 161, 91, 0.02));
+      border: 1.5px solid var(--accent);
+      border-radius: 16px;
+      text-align: center;
+    }
+    .code-card .code-label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+    .code-card .code-value {
+      display: inline-block;
+      padding: 8px 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      font-family: "SF Mono", "Cascadia Code", "Consolas", monospace;
+      color: var(--accent-deep);
+      margin: 4px 0 10px;
+    }
+    .code-card .code-hint { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .code-card .code-hint b { color: var(--text); }
+
     .wechat-box {
       margin-top: 16px;
       padding: 16px;
@@ -800,10 +825,12 @@
             </div>
           </div>
 
+          <div id="codeSpot" class="code-card" style="display:none;"></div>
+
           <div class="wechat-box">
             <strong>微信号：kevin0915</strong>
             <img src="/assets/wechat-qr.jpg" alt="微信二维码" style="display:block;max-width:180px;margin:10px auto;border-radius:10px;border:1px solid var(--line);">
-            添加微信后发送你的诊断截图，解锁完整报告或了解更多服务。
+            添加微信后发送上方的<b>报告编号</b>，支付 9.9 后解锁完整报告。
           </div>
         </div>
 
@@ -819,9 +846,11 @@
       submitResult(r);
     }
 
+    let reportCode = '';
+
     async function submitResult(r) {
       try {
-        await fetch('/api/saveQuiz', {
+        const res = await fetch('/api/saveQuiz', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -832,9 +861,30 @@
             result_scores: r.scores
           })
         });
+        const json = await res.json();
+        if (json.session_id) {
+          reportCode = json.session_id.substring(0, 8).toUpperCase();
+          const spot = document.getElementById('codeSpot');
+          if (spot) {
+            spot.innerHTML =
+              '<div class="code-label">你的报告编号</div>' +
+              '<div class="code-value">' + reportCode + '</div>' +
+              '<div class="code-hint"><b>加微信发送这个编号</b>，支付 ¥9.9 后解锁完整报告</div>' +
+              '<button class="btn btn-primary" style="margin-top:10px;padding:10px 24px;font-size:14px;width:auto;" onclick="copyCode()">复制编号</button>';
+            spot.style.display = 'block';
+          }
+        }
       } catch (e) {
         // Silent fail — don't block the user experience
       }
+    }
+
+    function copyCode() {
+      navigator.clipboard.writeText(reportCode).then(function() {
+        showToast('报告编号已复制：' + reportCode);
+      }).catch(function() {
+        showToast('报告编号：' + reportCode);
+      });
     }
 
     function copyWechat(remark) {
