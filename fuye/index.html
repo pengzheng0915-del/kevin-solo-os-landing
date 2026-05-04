@@ -12,20 +12,19 @@
 
   <style>
     :root {
-      --bg-main: #F7F3EA;
-      --bg-soft: #EDE8DD;
-      --bg-card: #FFFFFF;
-      --text-main: #111827;
-      --text-secondary: #4B5563;
-      --text-muted: #7E8895;
-      --accent: #C6A15B;
+      --bg-main: #f7f2ea;
+      --bg-soft: #faf6f0;
+      --bg-card: #fffaf2;
+      --text-main: #1e1a17;
+      --text-secondary: #6f665d;
+      --text-muted: #8a7e76;
+      --accent: #b8874a;
       --accent-gold: #C6A15B;
-      --accent-clay: #C6A15B;
+      --accent-clay: #b8874a;
       --accent-teal: #2F6F73;
-      --btn-main: #0B1220;
-      --btn-hover: #182033;
-      --color-navy: #0B1220;
-      --border-soft: #E0D8C8;
+      --btn-main: #1e1a17;
+      --btn-hover: #2a2521;
+      --border-soft: #e4d8c9;
       --line-dark: rgba(255, 255, 255, 0.06);
       --radius: 22px;
     }
@@ -59,11 +58,9 @@
     .nav {
       position: sticky; top: 0; z-index: 99;
       backdrop-filter: blur(18px);
-      background: rgba(11, 18, 32, 0.94);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(247, 242, 234, 0.94);
+      border-bottom: 1px solid var(--border-soft);
     }
-    .nav a { color: rgba(255,255,255,0.8); }
-    .nav-inner .brand { color: #fff; }
     .nav-inner {
       width: min(1120px, calc(100% - 32px)); margin: 0 auto;
       height: 64px; display: flex; align-items: center;
@@ -75,7 +72,7 @@
     }
     .brand-mark {
       width: 34px; height: 34px; border-radius: 50%;
-      background: var(--accent); color: var(--color-navy);
+      background: var(--accent); color: #fff;
       display: grid; place-items: center;
       font-size: 17px; font-weight: 900;
     }
@@ -83,11 +80,11 @@
     @media (min-width: 640px) { .nav-brand-text { display: inline; } }
     .nav-cta {
       padding: 10px 16px; border-radius: 999px;
-      background: var(--accent); color: #fff;
+      background: var(--btn-main); color: #fff;
       font-size: 14px; font-weight: 800; white-space: nowrap;
       text-decoration: none;
     }
-    .nav-cta:hover { background: #B8944F; }
+    .nav-cta:hover { background: var(--btn-hover); }
 
     /* ── Hero ── */
     .hero {
@@ -183,7 +180,7 @@
     .avatar-card {
       min-height: 320px; display: flex; flex-direction: column;
       justify-content: space-between;
-      background: linear-gradient(145deg, var(--color-navy), #182033),
+      background: linear-gradient(145deg, #1e1a17, #2a2521),
                   radial-gradient(circle at top right, rgba(198, 161, 91, 0.25), transparent 42%);
       color: #fff;
     }

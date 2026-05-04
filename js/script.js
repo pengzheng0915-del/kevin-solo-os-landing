@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var hero = document.querySelector('.hero');
     var sections = document.querySelectorAll('section:not(.hero)');
     var revealElements = document.querySelectorAll(
-        '.method-card, .ladder-card, .credential-item, .audience-col'
+        '.problem-item, .kb-card, .sample-card, .advanced-card, .credential-item, .audience-col'
     );
     var mobileBar = document.querySelector('.mobile-bottom-bar');
 
