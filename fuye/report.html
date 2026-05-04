@@ -245,6 +245,14 @@
   </style>
 </head>
 <body>
+  <script>
+    (function(){
+      var sid = new URLSearchParams(location.search).get('sid');
+      if (sid) {
+        document.write('<style>#staticView{display:none!important}#reportView{display:block!important}</style>');
+      }
+    })();
+  </script>
   <div class="container" id="app">
 
     <!-- ═══ Static Landing (no ?sid=) ═══ -->
@@ -523,7 +531,6 @@
           '</div>' +
         '</div>' +
         secondHtml;
-    }
     }
   </script>
 </body>
