@@ -12,20 +12,21 @@
 
   <style>
     :root {
-      --bg: #f7f2ea;
-      --card: #fffaf2;
-      --text: #1e1a17;
-      --muted: #6f665d;
-      --line: #e4d8c9;
+      --bg: #F7F3EA;
+      --card: #FFFFFF;
+      --text: #111827;
+      --muted: #4B5563;
+      --line: #E0D8C8;
       --line-dark: rgba(255, 255, 255, 0.06);
-      --link: #b8874a;
-      --primary: #1e1a17;
-      --accent: #b8874a;
-      --accent-dark: #875f32;
-      --soft: rgba(30, 26, 23, 0.05);
+      --link: #C6A15B;
+      --primary: #0B1220;
+      --accent: #C6A15B;
+      --accent-dark: #B8944F;
+      --accent-deep: #B8944F;
+      --soft: rgba(11, 18, 32, 0.05);
       --teal: #2F6F73;
       --radius: 22px;
-      --shadow: 0 8px 30px rgba(30, 26, 23, 0.08);
+      --shadow: 0 8px 30px rgba(11, 18, 32, 0.08);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +34,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
-      background: linear-gradient(180deg, var(--bg) 0%, #ece6dc 100%);
+      background: linear-gradient(180deg, var(--bg) 0%, #EDE8DD 100%);
       color: var(--text);
       line-height: 1.65;
     }
@@ -59,8 +60,8 @@
       top: 0;
       z-index: 99;
       backdrop-filter: blur(18px);
-      background: rgba(247, 242, 234, 0.94);
-      border-bottom: 1px solid var(--line);
+      background: rgba(11, 18, 32, 0.94);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
     .nav-inner {
       width: min(780px, calc(100% - 32px));
@@ -77,13 +78,13 @@
       gap: 10px;
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: var(--text);
+      color: #fff;
     }
     .brand-mark {
       width: 34px; height: 34px;
       border-radius: 50%;
       background: var(--accent);
-      color: #fff;
+      color: var(--primary);
       display: grid;
       place-items: center;
       font-size: 17px;
@@ -92,13 +93,13 @@
     .nav-back {
       padding: 10px 16px;
       border-radius: 999px;
-      background: var(--primary);
+      background: var(--accent);
       color: #fff;
       font-size: 14px;
       font-weight: 800;
       white-space: nowrap;
     }
-    .nav-back:hover { background: #2a2521; }
+    .nav-back:hover { background: var(--accent-dark); }
 
     /* ── Buttons ── */
     .btn {
@@ -224,7 +225,7 @@
     }
 
     /* ── Result ── */
-    .result-wrap { display: none; padding: 30px; border-top: 1px solid var(--line); background: linear-gradient(180deg, #fffaf2, var(--bg)); }
+    .result-wrap { display: none; padding: 30px; border-top: 1px solid var(--line); background: linear-gradient(180deg, var(--card), var(--bg)); }
     .result-wrap.show { display: block; }
 
     .result-card {
@@ -405,7 +406,7 @@
     .toast {
       position: fixed; left: 50%; bottom: 24px;
       transform: translateX(-50%) translateY(20px);
-      background: rgba(30, 26, 23, .94);
+      background: rgba(11, 18, 32, .94);
       color: #fff; padding: 12px 20px;
       border-radius: 999px;
       opacity: 0; pointer-events: none;
@@ -422,7 +423,7 @@
       .quiz-body { padding: 22px; }
       .quiz-nav {
         position: sticky; bottom: 0;
-        background: rgba(247, 242, 234, .94);
+        background: rgba(11, 18, 32, .94);
         backdrop-filter: blur(14px);
         padding: 12px 22px 22px;
         border-top: 1px solid var(--line);
