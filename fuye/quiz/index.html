@@ -292,6 +292,42 @@
     }
     .action-card b { color: var(--teal); }
 
+    /* ── Teaser result (free) ── */
+    .one-liner {
+      font-size: 18px; font-weight: 700; color: var(--text);
+      text-align: center; margin: 0 0 14px; line-height: 1.5;
+    }
+    .teaser-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin: 0 0 12px;
+    }
+    .teaser-tag {
+      padding: 6px 14px; border: 1px solid var(--accent);
+      border-radius: 999px; font-size: 13px; font-weight: 700;
+      color: var(--accent); background: rgba(198, 161, 91, 0.06);
+    }
+    .block-hint {
+      text-align: center; font-size: 14px; color: var(--muted);
+      margin: 0 0 18px; padding: 10px; background: rgba(198, 161, 91, 0.03);
+      border-radius: 12px;
+    }
+    .block-hint b { color: var(--text); }
+    .unlock-cta {
+      border: 1.5px solid var(--accent); border-radius: 16px;
+      padding: 18px; background: linear-gradient(135deg, rgba(198, 161, 91, 0.04), rgba(198, 161, 91, 0.01));
+      margin-top: 16px;
+    }
+    .unlock-cta p { font-size: 14px; color: var(--text); font-weight: 700; margin: 0 0 10px; text-align: center; }
+    .unlock-cta ul { list-style: none; padding: 0; margin: 0; }
+    .unlock-cta li {
+      padding: 6px 0; font-size: 13px; color: var(--muted);
+      padding-left: 18px; position: relative;
+    }
+    .unlock-cta li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--accent); font-weight: 800;
+    }
+
     /* ── Conversion exits ── */
     .exit-section {
       margin-top: 24px;
@@ -640,7 +676,10 @@
           advantage: '表达能力强，愿意持续公开输出，有内容积累习惯',
           block: '内容没转化：写了/拍了但没有收到真实反馈和验证',
           suggestion: '先找到一个细分话题，持续输出30天，同时设计一个低价信息产品（清单/模板/知识库），用内容建立信任、用产品获得反馈。不需要追求大流量，需要在精准人群里建立信任。',
-          action: '本周内选定一个细分话题，写出第一篇文章或拍出第一条短视频并公开发布。'
+          action: '本周内选定一个细分话题，写出第一篇文章或拍出第一条短视频并公开发布。',
+          oneLiner: '你适合把经验变成文章、视频、播客，用内容积累影响力和信任。',
+          tags: ['善于表达', '持续输出', '内容积累'],
+          blockShort: '写了拍了但没收过真实反馈'
         },
         consulting: {
           name: '咨询诊断型',
@@ -649,7 +688,10 @@
           advantage: '判断力强，善于分析问题并给出解决方案',
           block: '服务未定价：免费给了太多建议，没有形成收费闭环',
           suggestion: '适合从一对一轻咨询开始，先定价、先收钱、先交付，用真实案例倒逼产品化。不要急着做内容，先完成第一次收费。199元/次是合适的起步价。',
-          action: '本周内列出你过去帮别人解决过的3个典型问题，把每个问题的"症状-诊断-解法"写成一段话。'
+          action: '本周内列出你过去帮别人解决过的3个典型问题，把每个问题的"症状-诊断-解法"写成一段话。',
+          oneLiner: '你的核心价值是判断力，别人遇到问题愿意找你聊。',
+          tags: ['判断力强', '善于分析', '解决问题'],
+          blockShort: '免费给了太多建议，没形成收费'
         },
         knowledge: {
           name: '知识产品型',
@@ -658,7 +700,10 @@
           advantage: '行业经验丰富，有系统化知识积累和归纳能力',
           block: '经验未萃取：知道很多但还没有整理成清晰的问题场景和可被信任的价值表达',
           suggestion: '你不适合一上来做大课，也不适合盲目直播。更适合先做一个低价知识库或诊断型服务，用99元左右的价格验证需求，再用反馈升级产品。',
-          action: '本周内列出你可以写出来的10个知识点或问题，从中选一个写成一篇1000字左右的内容。'
+          action: '本周内列出你可以写出来的10个知识点或问题，从中选一个写成一篇1000字左右的内容。',
+          oneLiner: '你的行业经验可以整理成知识库、报告、SOP，一次制作多次销售。',
+          tags: ['经验丰富', '系统归纳', '结构化'],
+          blockShort: '知道很多但没整理成可表达的价值'
         },
         template: {
           name: '模板工具型',
@@ -667,7 +712,10 @@
           advantage: '有运营/项目管理经验，善于流程化和标准化',
           block: '过度追求完美：总觉得工具不够好，迟迟不敢发布',
           suggestion: '从你工作中最常用的一个流程开始，把它做成一份模板或检查清单，定价9.9-49元。先卖出10份，用真实反馈迭代。模板工具型产品的复购率和口碑传播都很好。',
-          action: '本周内从你的工作流程中选一个最常见的痛点场景，设计一份一页纸的模板或检查清单。'
+          action: '本周内从你的工作流程中选一个最常见的痛点场景，设计一份一页纸的模板或检查清单。',
+          oneLiner: '你擅长把复杂流程变成标准化工具，拿来就能用。',
+          tags: ['流程化', '标准化', '实操落地'],
+          blockShort: '总觉得不够完美，不敢发布'
         },
         service: {
           name: '资源服务型',
@@ -676,7 +724,10 @@
           advantage: '有客户资源和执行落地能力，擅长对接和交付',
           block: '服务边界不清：什么都做导致定价困难和口碑分散',
           suggestion: '先限定一个具体的服务范围——比如"帮XX行业的人解决XX问题"，用一页纸写清楚：解决什么问题、交付什么结果、多长时间、多少钱。先接3个客户，用结果说话。',
-          action: '本周内写出一页纸的服务说明：你帮谁解决什么问题，交付什么结果，价格是多少。'
+          action: '本周内写出一页纸的服务说明：你帮谁解决什么问题，交付什么结果，价格是多少。',
+          oneLiner: '你的价值在资源连接和执行能力，擅长帮人对接和搞定。',
+          tags: ['资源丰富', '执行落地', '擅长对接'],
+          blockShort: '服务范围太宽，定价困难'
         },
         coaching: {
           name: '陪跑交付型',
@@ -685,7 +736,10 @@
           advantage: '组织力强，善于带领和陪伴他人成长，有耐心',
           block: '产品边界模糊：什么都想做导致什么都没做透',
           suggestion: '先做一个7天小训练营，收费99元以内，用真实交付验证你的陪跑能力。成功后可以升级为月度社群或季度陪跑服务。从"轻"开始，用口碑积累案例和转介绍。',
-          action: '本周内设计一个7天轻量行动计划的大纲：7天里每天让参与者完成1个小任务。'
+          action: '本周内设计一个7天轻量行动计划的大纲：7天里每天让参与者完成1个小任务。',
+          oneLiner: '你善于带人成长，适合通过社群、训练营获得持续收入。',
+          tags: ['组织力强', '善于陪伴', '持续交付'],
+          blockShort: '什么都想做，什么都没做透'
         }
       };
 
@@ -703,50 +757,45 @@
             <p style="color:var(--muted);margin-top:-4px;font-size:14px;">经验资产适合度评分</p>
           </div>
 
-          <h3>你的初步诊断结果</h3>
-          <p>${d.desc}</p>
+          <p class="one-liner">${d.oneLiner}</p>
 
-          <div class="highlight">${d.suggestion}</div>
-
-          <div class="result-grid">
-            <div class="result-box"><b>🎯 核心优势</b><span>${d.advantage}</span></div>
-            <div class="result-box"><b>⚠️ 当前卡点</b><span>${d.block}</span></div>
+          <div class="teaser-tags">
+            ${(d.tags || []).map(t => `<span class="teaser-tag">${t}</span>`).join('')}
           </div>
 
-          <div class="action-card">
-            <b>📋 7天内可执行动作</b><br>
-            ${d.action}
+          <div class="block-hint"><b>当前卡点：</b>${d.blockShort}</div>
+
+          <div class="unlock-cta">
+            <p>¥9.9 解锁完整报告，查看：</p>
+            <ul>
+              <li>你的经验为什么适合这条路径</li>
+              <li>具体转化方向和定价建议</li>
+              <li>7天启动动作 + 30天分阶段计划</li>
+            </ul>
           </div>
-          ${secondData ? `<p style="text-align:center;font-size:14px;color:var(--muted);margin-top:8px;">次选方向：${secondData} — 完整分析请查看下方报告</p>` : ''}
         </div>
 
         <div class="exit-section">
-          <h4>接下来可以怎么走？</h4>
-          <p class="exit-sub">以上是免费诊断结果。如果你想拿到更完整的分析，可以从这里选：</p>
+          <h4>继续下一步</h4>
+          <p class="exit-sub">以上是免费摘要。完整报告 ¥9.9，30天行动计划、转化建议、深度分析都在里面。</p>
 
           <div class="exit-grid">
-            <div class="exit-card">
-              <div class="exit-label">免费</div>
-              <h5>加微信领3条初步建议</h5>
-              <p class="exit-desc">发送你的诊断结果截图，我帮你快速判断：你的方向是否靠谱、当前最大卡点是什么、下一步先做什么。</p>
-              <button class="btn btn-outline btn-block" onclick="copyWechat('初步建议')">复制微信号</button>
-            </div>
-            <div class="exit-card exit-full">
-              <div class="exit-label" style="color:var(--accent);">¥9.9</div>
-              <h5>解锁完整诊断报告</h5>
-              <p class="exit-desc">查看你的经验资产类型、适合度评分、核心优势、主要卡点、转化方向和下一步行动建议。</p>
+            <div class="exit-card exit-full" style="grid-column: 1 / -1;">
+              <div class="exit-label" style="color:var(--accent);">推荐</div>
+              <h5>¥9.9 解锁完整诊断报告</h5>
+              <p class="exit-desc">你的经验为什么适合这条路径、具体转化方向和定价建议、7天启动动作 + 30天行动计划。</p>
               <button class="btn btn-primary btn-block" onclick="copyWechat('完整报告')">加微信解锁完整报告</button>
             </div>
             <div class="exit-card">
               <div class="exit-label">¥99/年</div>
               <h5>经验资产化知识库</h5>
-              <p class="exit-desc">系统学习如何萃取经验、识别价值、整理内容、设计服务雏形，并降低试错成本。</p>
+              <p class="exit-desc">系统学习如何萃取经验、识别价值、整理内容、设计服务雏形。</p>
               <a class="btn btn-outline btn-block" href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" target="_blank">了解知识库</a>
             </div>
             <div class="exit-card">
               <div class="exit-label">¥199</div>
               <h5>60分钟经验资产解读</h5>
-              <p class="exit-desc">基于你的完整诊断报告和过往经历，1对1帮你解读经验中的价值线索，判断更适合的转化方向，指出当前核心卡点，并给出下一步行动建议。</p>
+              <p class="exit-desc">1对1帮你解读经验中的价值线索，判断更适合的转化方向，并给出下一步行动建议。</p>
               <button class="btn btn-outline btn-block" onclick="copyWechat('经验资产解读')">加微信预约解读</button>
             </div>
           </div>
@@ -754,7 +803,7 @@
           <div class="wechat-box">
             <strong>微信号：kevin0915</strong>
             <img src="/assets/wechat-qr.jpg" alt="微信二维码" style="display:block;max-width:180px;margin:10px auto;border-radius:10px;border:1px solid var(--line);">
-            添加微信后发送你的诊断截图，解锁完整报告或领取初步建议。
+            添加微信后发送你的诊断截图，解锁完整报告或了解更多服务。
           </div>
         </div>
 

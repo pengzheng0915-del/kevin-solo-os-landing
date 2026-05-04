@@ -483,6 +483,22 @@
         return '<li><span class="step-num">' + (i + 1) + '</span><div class="step-text"><strong>第' + (i * 7 + 1) + '-' + Math.min((i + 1) * 7, 30) + '天: ' + s.title + '</strong><br><span style="color:var(--muted);">' + s.detail + '</span></div></li>';
       }).join('');
 
+      // Compute second type
+      var scores = typeof r.result_scores === 'string' ? JSON.parse(r.result_scores) : (r.result_scores || {});
+      var sorted = Object.entries(scores).sort(function(a, b) { return b[1] - a[1]; });
+      var secondType = sorted.length > 1 && sorted[1][0] !== r.result_type ? sorted[1][0] : null;
+      var secondD = secondType ? typeData[secondType] : null;
+      var secondHtml = '';
+      if (secondD) {
+        secondHtml =
+          '<div class="report-card">' +
+            '<h2>🔍 次选方向分析：' + secondD.icon + ' ' + secondD.name + '</h2>' +
+            '<p style="font-size:13px;color:var(--muted);margin-bottom:12px;">你的回答中也表现出' + secondD.name + '的倾向。这说明你的经验可以在两条路径之间互补，不必要只走一条。</p>' +
+            '<p>' + secondD.desc + '</p>' +
+            '<div class="highlight">' + secondD.suggestion + '</div>' +
+          '</div>';
+      }
+
       document.getElementById('reportView').innerHTML =
         '<div class="report-card">' +
           '<div class="report-header">' +
@@ -505,7 +521,9 @@
             '<p>以上诊断基于你的回答自动生成。</p>' +
             '<p>如需一对一深度分析和定制方案，添加微信 <strong>kevin0915</strong>，发送「完整报告」，预约60分钟人工诊断（¥199）。</p>' +
           '</div>' +
-        '</div>';
+        '</div>' +
+        secondHtml;
+    }
     }
   </script>
 </body>
