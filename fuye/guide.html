@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>经验资产诊断 | Kevin 彭峥</title>
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --card: #fffaf2;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --accent: #b8874a;
+      --accent-deep: #875f32;
+      --line: #e4d8c9;
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 24px;
+    }
+    .container { max-width: 500px; margin: 0 auto; }
+
+    header {
+      text-align: center;
+      padding: 40px 0 24px;
+    }
+    header h1 {
+      font-size: clamp(22px, 5vw, 30px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .features {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+    .features li {
+      padding: 6px 0;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .features li::before {
+      content: "✓ ";
+      color: var(--accent-deep);
+      font-weight: 900;
+    }
+
+    .notice-box {
+      background: linear-gradient(135deg, #fff8e8, #fef3d5);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 20px 0 12px;
+    }
+
+    .notice-box .icon {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .notice-box .title {
+      font-size: 17px;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--accent-deep);
+    }
+    .notice-box .steps {
+      font-size: 14px;
+      padding-left: 20px;
+    }
+    .notice-box .steps li {
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .url-box {
+      background: #fff;
+      border: 2px dashed var(--accent);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      text-align: center;
+      word-break: break-all;
+    }
+    .url-box .label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .url-box .url {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-deep);
+      letter-spacing: 0.02em;
+      user-select: all;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: 0;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:active { background: var(--accent-deep); }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 30px;
+      transform: translateX(-50%);
+      background: #1e1a17; color: #fff;
+      padding: 12px 24px; border-radius: 999px;
+      font-size: 14px; font-weight: 700;
+      opacity: 0; transition: .2s; z-index: 100;
+      white-space: nowrap;
+    }
+    .toast.show { opacity: 1; }
+
+    footer {
+      text-align: center;
+      padding: 32px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>经验资产诊断</h1>
+    <p>8道题 · 5分钟 · 看清你的经验最适合怎么转化</p>
+  </header>
+
+  <div class="card">
+    <h2>测完你会得到</h2>
+    <ul class="features">
+      <li>你的经验转化类型</li>
+      <li>当前可变现程度评估</li>
+      <li>最容易启动的方向</li>
+      <li>7天行动建议</li>
+    </ul>
+    <p style="font-size:14px;color:var(--muted);">
+      面向有 10 年以上职业经验、想找到第二增长方向的人。
+      不是风口推荐，不是速成套路。
+    </p>
+  </div>
+
+  <div class="notice-box">
+    <div class="icon">💻</div>
+    <div class="title">请在电脑浏览器打开</div>
+    <ol class="steps">
+      <li>复制下方链接</li>
+      <li>在电脑 Chrome / Edge 浏览器粘贴打开</li>
+      <li>8 道题 5 分钟完成诊断，即时出结果</li>
+    </ol>
+
+    <div class="url-box">
+      <div class="label">长按复制链接</div>
+      <div class="url" id="targetUrl">kevinsolo.cn/fuye/</div>
+    </div>
+
+    <button class="btn btn-primary" onclick="copyAndGuide()">复制链接 · 去电脑打开</button>
+  </div>
+
+  <div class="card" style="text-align:center;">
+    <h2>为什么建议电脑操作？</h2>
+    <p style="font-size:14px;color:var(--muted);">
+      测评涉及 8 道题和详细的诊断报告，电脑端阅读体验更好，
+      结果页面也更容易保存和回顾。
+    </p>
+  </div>
+
+  <footer>
+    Kevin 彭峥 · 经验资产诊断<br>
+    不追风口，不贩卖焦虑
+  </footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  var TARGET_URL = 'https://kevinsolo.cn/fuye/';
+
+  function copyAndGuide() {
+    var url = TARGET_URL;
+    // Try clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() {
+        showToast('已复制！请在电脑浏览器粘贴打开');
+      }).catch(function() {
+        showToastUrl();
+      });
+    } else {
+      // Fallback: create textarea
+      showToastUrl();
+    }
+  }
+
+  function showToastUrl() {
+    // Show the URL prominently for manual copy
+    var ta = document.createElement('textarea');
+    ta.value = TARGET_URL;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.style.top = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, 99999);
+    try {
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('已复制！请在电脑浏览器粘贴打开');
+    } catch(e) {
+      document.body.removeChild(ta);
+      showToast('请长按上方链接选择复制');
+    }
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._tid);
+    t._tid = setTimeout(function() { t.classList.remove('show'); }, 3000);
+  }
+
+  // Update URL display to show full URL
+  document.getElementById('targetUrl').textContent = TARGET_URL;
+</script>
+</body>
+</html>

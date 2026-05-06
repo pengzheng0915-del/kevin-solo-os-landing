@@ -1,0 +1,8 @@
+name = "kevin-solo-os"
+compatibility_date = "2025-04-01"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "quiz_db"
+database_name = "quiz-db"
+database_id = "06e01869-4000-4059-b392-9be61a053fb0"

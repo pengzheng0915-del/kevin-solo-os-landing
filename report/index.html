@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>经验资产深度估值报告 | Kevin 彭峥</title>
+<meta name="description" content="8题判断类型，12道深度追问，生成你的经验资产浪费计算、IPO估值、双路径模拟和14天启动清单。¥99解锁完整报告。">
+<style>
+:root {
+  --bg: #f7f2ea; --card: #fffaf2; --text: #1e1a17;
+  --muted: #6f665d; --accent: #b8874a; --accent-deep: #875f32;
+  --line: #e4d8c9; --radius: 18px; --shadow: 0 14px 42px rgba(53,40,25,.06);
+  --max: 780px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.72;
+}
+a { color: inherit; text-decoration: none; }
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247,242,234,.88);
+  backdrop-filter: blur(16px); border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between; height: 56px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
+.brand-mark {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--text); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 900;
+}
+.nav-back { font-size: 14px; color: var(--muted); }
+.nav-back:hover { color: var(--text); }
+
+.page { max-width: var(--max); margin: 0 auto; padding: 32px 24px 80px; }
+
+/* Hero */
+.hero { padding: 12px 0 32px; }
+.eyebrow { font-size: 13px; font-weight: 800; color: var(--accent-deep); letter-spacing: .06em; margin-bottom: 8px; }
+h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.18; letter-spacing: -0.04em; margin-bottom: 14px; }
+.hero-sub { font-size: 16px; color: var(--muted); max-width: 600px; margin-bottom: 18px; line-height: 1.6; }
+
+/* Steps */
+.step { display: none; }
+.step.active { display: block; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border: 0; cursor: pointer; border-radius: 999px;
+  padding: 14px 24px; font-size: 15px; font-weight: 800;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(31,26,23,.12); }
+.btn-primary { background: var(--text); color: #fff; }
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
+.btn-block { width: 100%; }
+.btn-lg { padding: 16px 32px; font-size: 17px; }
+.btn[disabled] { opacity: .42; cursor: not-allowed; transform: none; box-shadow: none; }
+
+/* Quiz styles */
+.quiz-top { margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+.progress-text { font-size: 13px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+.progress-bar { flex: 1; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width .3s ease; }
+
+.q-title { font-size: 21px; font-weight: 800; margin-bottom: 6px; }
+.q-help { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.option {
+  border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px;
+  cursor: pointer; transition: all .18s ease; background: var(--card);
+}
+.option:hover { border-color: var(--accent); background: rgba(184,135,74,.04); }
+.option.selected { border-color: var(--accent); background: rgba(184,135,74,.08); }
+.option input { display: none; }
+.option strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.option span { font-size: 13px; color: var(--muted); }
+
+.quiz-nav { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0 0; }
+.quiz-nav:only-child { justify-content: center; }
+
+/* Deep form */
+.deep-form { display: flex; flex-direction: column; gap: 20px; }
+.deep-field { display: flex; flex-direction: column; gap: 6px; }
+.deep-field label { font-weight: 800; font-size: 15px; }
+.deep-field input, .deep-field textarea, .deep-field select {
+  padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px;
+  font-size: 15px; font-family: inherit; background: var(--card); color: var(--text);
+  transition: border-color .18s ease;
+}
+.deep-field input:focus, .deep-field textarea:focus, .deep-field select:focus {
+  border-color: var(--accent); outline: none;
+}
+.deep-field textarea { min-height: 80px; resize: vertical; }
+.deep-field .hint { font-size: 12px; color: var(--muted); }
+.range-row { display: flex; align-items: center; gap: 12px; }
+.range-row input[type=range] { flex: 1; }
+.range-value { font-weight: 800; font-size: 15px; color: var(--accent-deep); min-width: 40px; }
+
+/* Note */
+.step-note { text-align: center; color: var(--muted); font-size: 13px; padding: 8px 0 16px; line-height: 1.5; }
+
+/* Report styles */
+.report-wrap { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 32px; box-shadow: var(--shadow); }
+.report-header { text-align: center; border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 24px; }
+.report-header .report-id { font-size: 11px; color: var(--muted); letter-spacing: .06em; margin-bottom: 8px; }
+.report-header h2 { font-size: 24px; line-height: 1.3; }
+.report-header .report-time { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+.module { padding: 20px 0; border-bottom: 1px solid var(--line); }
+.module:last-child { border-bottom: none; }
+.module-title { font-size: 19px; font-weight: 800; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.module-icon { font-size: 22px; }
+
+/* Waste calc */
+.waste-number { font-size: 52px; font-weight: 900; color: var(--accent-deep); line-height: 1; letter-spacing: -0.04em; }
+.waste-detail { margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+/* IPO */
+.ipo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+.ipo-item { padding: 14px; background: rgba(184,135,74,.06); border-radius: 12px; }
+.ipo-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.ipo-value { font-size: 18px; font-weight: 800; }
+.ipo-value.highlight { color: var(--accent-deep); }
+
+/* Dual path */
+.dual-path { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.path-card { padding: 18px; border-radius: 14px; }
+.path-a { background: rgba(140,120,110,.08); border: 1px solid rgba(140,120,110,.2); }
+.path-b { background: rgba(47,111,115,.06); border: 1px solid rgba(47,111,115,.2); }
+.path-label { font-weight: 800; font-size: 13px; margin-bottom: 10px; }
+.path-a .path-label { color: #6f665d; }
+.path-b .path-label { color: #2F6F73; }
+.path-steps { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* Checklist */
+.checklist { margin: 14px 0; }
+.cl-day { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid rgba(228,216,201,.5); }
+.cl-day:last-child { border-bottom: none; }
+.cl-num { width: 44px; height: 44px; border-radius: 12px; background: rgba(184,135,74,.12); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; color: var(--accent-deep); flex-shrink: 0; }
+.cl-content { font-size: 14px; line-height: 1.6; }
+
+/* Lock state */
+.lock-overlay { position: relative; }
+.lock-blur { filter: blur(6px); user-select: none; pointer-events: none; }
+.lock-msg {
+  text-align: center; padding: 24px; margin: 20px 0;
+  border: 1.5px dashed var(--accent); border-radius: 14px;
+  background: rgba(184,135,74,.04);
+}
+.lock-msg h3 { font-size: 18px; margin-bottom: 8px; }
+.lock-msg p { color: var(--muted); font-size: 14px; margin-bottom: 16px; }
+
+/* Toast */
+.toast {
+  position: fixed; left: 50%; bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(31,26,23,.94); color: #fff;
+  padding: 12px 20px; border-radius: 999px;
+  opacity: 0; pointer-events: none; z-index: 200;
+  transition: .2s ease; font-size: 14px; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 860px) {
+  .page { padding: 24px 16px 60px; }
+  .report-wrap { padding: 22px; }
+  .ipo-grid, .dual-path { grid-template-columns: 1fr; }
+  .waste-number { font-size: 40px; }
+}
+
+/* Welcome step */
+.welcome-box { text-align: center; padding: 40px 20px; }
+.welcome-box h3 { font-size: 20px; margin: 12px 0 6px; }
+.welcome-box p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+.welcome-input {
+  width: 100%; max-width: 320px; padding: 14px 18px; margin: 0 auto 16px;
+  border: 1.5px solid var(--line); border-radius: 14px;
+  font-size: 16px; display: block; background: var(--card); color: var(--text);
+  text-align: center;
+}
+.welcome-input:focus { border-color: var(--accent); outline: none; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark">K</span><span>Kevin 彭峥</span>
+    </a>
+    <a class="nav-back" href="/fuye/quiz/">← 快速诊断</a>
+  </div>
+</nav>
+
+<main class="page">
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="eyebrow">经验资产深度估值报告</div>
+  <h1>你的经验，到底值多少钱？</h1>
+  <p class="hero-sub">8 题判断类型，12 道深度追问。<br>生成你的经验资产浪费计算、IPO 估值、双路径模拟和 14 天启动清单。</p>
+</section>
+
+<!-- ===== Step 0: Welcome + Quiz ===== -->
+<div class="step active" id="stepQuiz">
+  <div class="welcome-box" id="welcomeBox">
+    <h3>先简单认识一下</h3>
+    <p>输入你的昵称，开始 8 题判断方向。</p>
+    <input type="text" class="welcome-input" id="nicknameInput" placeholder="你的昵称" maxlength="20" onkeydown="if(event.key==='Enter')goQuiz()" oninput="document.getElementById('startBtn').disabled=!this.value.trim()">
+    <button class="btn btn-primary btn-lg" id="startBtn" onclick="goQuiz()" disabled>输入昵称，开始诊断</button>
+  </div>
+
+  <div id="quizPart" style="display:none;">
+    <div class="step-note" id="quizNote" style="display:none;">
+      如果选项都不完全符合，选最接近的。<br>如果你能一眼判断，说明你已经很清楚自己的定位和方向了。
+    </div>
+    <div class="quiz-top" id="quizTop" style="display:none;">
+      <div class="progress-text" id="progressText">第 1 / 8 题</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="percentText">0%</div>
+    </div>
+    <div id="quizQ"></div>
+    <div class="quiz-nav" id="quizNav" style="display:none;">
+      <button class="btn btn-outline" id="prevBtn" onclick="prevQ()">上一题</button>
+      <button class="btn btn-primary" id="nextBtn" onclick="nextQ()" disabled>下一题</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Step 1: Deep Form ===== -->
+<div class="step" id="stepDeep">
+  <div class="section-head" style="margin-bottom:18px;">
+    <h2 style="font-size:24px;">更了解你的情况</h2>
+    <p style="color:var(--muted);font-size:14px;">你的每个答案都会被用到报告中，让结论更精准。</p>
+  </div>
+  <div class="deep-form" id="deepForm"></div>
+  <div style="margin-top:24px;">
+    <button class="btn btn-primary btn-block btn-lg" id="genBtn" onclick="generateReport()">生成完整估值报告</button>
+  </div>
+</div>
+
+<!-- ===== Step 2: Report ===== -->
+<div class="step" id="stepReport">
+  <div id="reportContainer"></div>
+</div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ==================== STATE ====================
+let nickname = '';
+let quizAnswers = {};
+let quizDone = false;
+let deepData = {};
+let reportSessionId = '';
+let isPaid = false;
+const TOTAL_Q = 8;
+let currentQ = 0;
+
+// ==================== QUIZ QUESTIONS ====================
+const questions = [
+  { q: '你现在最想解决的问题是什么？', help: '这决定了你经验转化的优先级。', opts: [
+    { v:'A', t:'不知道经验能怎么用', d:'需要先判断经验能变成什么，而不是急着做产品。' },
+    { v:'B', t:'有经验但不知道如何转化成价值', d:'需要先把经验萃取成清晰的问题、方法和价值表达。' },
+    { v:'C', t:'想做内容但没有方向', d:'需要找到你的内容定位和输出形式。' },
+    { v:'D', t:'已经尝试表达，但反馈不明显', d:'需要回到价值表达和验证路径重新检查。' }
+  ]},
+  { q: '你认为自己最有积累的是什么？', help: '这决定了你的核心资产类型。', opts: [
+    { v:'A', t:'行业专业经验', d:'适合做知识产品、报告、知识库。' },
+    { v:'B', t:'判断力和问题分析', d:'适合做咨询、诊断、1对1服务。' },
+    { v:'C', t:'表达和内容能力', d:'适合做内容输出，持续建立影响力。' },
+    { v:'D', t:'流程和工具化能力', d:'适合做模板、SOP、工具产品。' }
+  ]},
+  { q: '别人一般因为什么找你帮忙？', help: '这验证你的被需求模式。', opts: [
+    { v:'A', t:'想学你懂的东西', d:'说明你的知识积累有市场。' },
+    { v:'B', t:'遇到问题来听你的判断', d:'说明你的分析力是被认可的。' },
+    { v:'C', t:'让你帮忙对接资源/人', d:'说明你有连接和资源整合价值。' },
+    { v:'D', t:'让你手把手带着做', d:'说明你的执行和陪跑能力被需要。' }
+  ]},
+  { q: '你目前的输出状态是什么？', help: '这决定了你离变现还有多远。', opts: [
+    { v:'A', t:'还没开始公开输出', d:'需要先确定方向并迈出第一步。' },
+    { v:'B', t:'偶尔发，但没有固定频率', d:'需要建立持续输出的节奏。' },
+    { v:'C', t:'有持续输出，但还没变现', d:'需要加上产品和服务路径。' },
+    { v:'D', t:'已经有产品或服务在卖', d:'需要优化转化路径和扩大规模。' }
+  ]},
+  { q: '你每周愿意投入多少时间？', help: '现实约束决定可执行的策略。', opts: [
+    { v:'A', t:'每周 2-4 小时', d:'适合做轻量知识产品（模板、清单）。' },
+    { v:'B', t:'每周 5-10 小时', d:'适合做内容+咨询+产品组合。' },
+    { v:'C', t:'每周 10-20 小时', d:'适合做深度服务（咨询、陪跑）。' },
+    { v:'D', t:'可以做全职投入', d:'适合全面铺开内容+产品+服务。' }
+  ]},
+  { q: '你更偏好哪种交付方式？', help: '这决定了你的产品形态。', opts: [
+    { v:'A', t:'资料/知识库', d:'适合把经验整理成可反复使用的内容资产。' },
+    { v:'B', t:'1 对 1 服务', d:'适合根据具体情况做个性化诊断和建议。' },
+    { v:'C', t:'社群或陪跑', d:'适合持续陪伴和过程指导。' },
+    { v:'D', t:'模板或工具', d:'适合把方法封装成可复用的工具产品。' }
+  ]},
+  { q: '你觉得自己最缺的是什么？', help: '这揭示了你的当前卡点。', opts: [
+    { v:'A', t:'方向不清楚', d:'不知道该把经验变成什么。' },
+    { v:'B', t:'不知道怎么表达', d:'有东西但说不清价值。' },
+    { v:'C', t:'不敢定价', d:'愿意付出但怕收钱。' },
+    { v:'D', t:'不知道怎么获客', d:'有产品但不知道找谁。' }
+  ]},
+  { q: '你期望的最理想状态是什么？', help: '这验证你的长期方向。', opts: [
+    { v:'A', t:'有持续被动收入', d:'适合做知识产品和内容资产。' },
+    { v:'B', t:'被认可为某个领域的专家', d:'适合做咨询和诊断服务。' },
+    { v:'C', t:'有一群长期付费客户', d:'适合陪跑和私教模式。' },
+    { v:'D', t:'有一个可出售的产品体系', d:'适合模板工具和标准化服务。' }
+  ]}
+];
+
+// Scoring weights
+const weights = {
+  A: { content: 1.5, knowledge: 1.5, template: 0.5 },
+  B: { consulting: 2.0, knowledge: 0.5, content: 0.5 },
+  C: { coaching: 1.5, service: 1.0, content: 0.5, consulting: 0.5 },
+  D: { template: 1.5, service: 1.0, coaching: 0.5, knowledge: 0.5 }
+};
+
+const typeData = {
+  content:   { name:'内容表达型', icon:'📝', pricing: [29,99], range:'¥29-99/份内容' },
+  consulting:{ name:'咨询诊断型', icon:'🎯', pricing: [199,599], range:'¥199-599/次' },
+  knowledge: { name:'知识产品型', icon:'📚', pricing: [39,199], range:'¥39-199/份产品' },
+  template:  { name:'模板工具型', icon:'🔧', pricing: [9,49], range:'¥9.9-49/份工具' },
+  service:   { name:'资源服务型', icon:'🤝', pricing: [99,499], range:'¥99-499/次服务' },
+  coaching:  { name:'陪跑交付型', icon:'🏃', pricing: [299,999], range:'¥299-999/月' }
+};
+
+// ==================== QUIZ LOGIC ====================
+function goQuiz() {
+  nickname = document.getElementById('nicknameInput').value.trim();
+  if (!nickname) return;
+  document.getElementById('welcomeBox').style.display = 'none';
+  document.getElementById('quizNote').style.display = '';
+  document.getElementById('quizTop').style.display = '';
+  document.getElementById('quizNav').style.display = '';
+  currentQ = 0;
+  renderQ();
+}
+
+function renderQ() {
+  const q = questions[currentQ];
+  document.getElementById('quizQ').innerHTML = `
+    <div class="quiz-step">
+      <h3 class="q-title">${q.q}</h3>
+      <p class="q-help">${q.help}</p>
+      <div class="options">${q.opts.map(o => `
+        <label class="option ${quizAnswers[currentQ]===o.v?'selected':''}" onclick="selectQ('${o.v}',this)">
+          <input type="radio" name="q${currentQ}" value="${o.v}" ${quizAnswers[currentQ]===o.v?'checked':''}>
+          <strong>${o.v}. ${o.t}</strong>
+          <span>${o.d}</span>
+        </label>
+      `).join('')}</div>
+    </div>`;
+  document.getElementById('prevBtn').disabled = currentQ === 0;
+  document.getElementById('nextBtn').disabled = !quizAnswers[currentQ];
+  document.getElementById('progressText').textContent = `第 ${currentQ+1} / ${TOTAL_Q} 题`;
+  document.getElementById('progressFill').style.width = `${((currentQ+1)/TOTAL_Q)*100}%`;
+  document.getElementById('percentText').textContent = `${Math.round((currentQ/TOTAL_Q)*100)}%`;
+  document.getElementById('quizQ').scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function selectQ(v, el) {
+  quizAnswers[currentQ] = v;
+  document.querySelectorAll('#quizQ .option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function prevQ() { if (currentQ > 0) { currentQ--; renderQ(); } }
+function nextQ() {
+  if (!quizAnswers[currentQ]) return;
+  if (currentQ < TOTAL_Q - 1) { currentQ++; renderQ(); }
+  else { finishQuiz(); }
+}
+
+function computeScore() {
+  const scores = { content:0, consulting:0, knowledge:0, template:0, service:0, coaching:0 };
+  for (let i = 0; i < TOTAL_Q; i++) {
+    const a = quizAnswers[i];
+    if (a && weights[a]) {
+      for (const [t, w] of Object.entries(weights[a])) scores[t] += w;
+    }
+  }
+  let topType = 'content', topScore = 0;
+  for (const [t, s] of Object.entries(scores)) { if (s > topScore) { topScore = s; topType = t; } }
+  const totalWeight = TOTAL_Q * 2.5;
+  const rawPct = Math.round((topScore / totalWeight) * 100) + 10;
+  const score = Math.min(95, Math.max(35, rawPct));
+  return { type: topType, score, scores, topScore };
+}
+
+function finishQuiz() {
+  quizDone = true;
+  document.getElementById('quizPart').style.display = 'none';
+  document.getElementById('stepQuiz').classList.remove('active');
+  document.getElementById('stepDeep').classList.add('active');
+  renderDeepForm();
+  document.getElementById('stepDeep').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// ==================== DEEP FORM ====================
+const deepFields = [
+  { id:'industry', label:'你在哪个行业？', type:'text', ph:'例如：制造业、互联网、金融、教育...' },
+  { id:'years', label:'工作多少年了？', type:'number', ph:'输入数字', min:1, max:50 },
+  { id:'status', label:'当前状态？', type:'select', opts:['','在职','自由职业','正在探索新方向','还没开始'] },
+  { id:'hours', label:'每周能投入多少小时？', type:'range', min:1, max:80, step:1, val:10 },
+  { id:'friends', label:'微信好友数？', type:'number', ph:'大概就行', hint:'这是你最直接的私域基础' },
+  { id:'otherFans', label:'公众号/小红书/其他平台粉丝数？', type:'number', ph:'没有填0', hint:'如果有，这是你的内容资产' },
+  { id:'pastTry', label:'你过去尝试过什么？', type:'textarea', ph:'写课、写文章、开直播、接咨询...哪怕没坚持也可以写', hint:'如实写。没做过的填"无"' },
+  { id:'pastResult', label:'结果如何？', type:'textarea', ph:'有人付费吗？有什么反馈？还是不了了之？' },
+  { id:'bottleneck', label:'当前最大的卡点是什么？', type:'select', opts:['','方向不清楚','经验没被萃取成价值','不知道如何定价','不知道怎么获客','不敢开始','不持久，半途而废','其他'] },
+  { id:'hourlyRate', label:'如果给自己定一个时薪，你觉得自己值多少钱？（元/小时）', type:'number', ph:'如实填，不用谦虚', hint:'这是计算你经验浪费的核心数字' },
+  { id:'confidence', label:'你对这个方向的信心（1-10）？', type:'range', min:1, max:10, step:1, val:5 },
+  { id:'consultedBefore', label:'过去有人主动找你咨询过吗？', type:'select', opts:['','有，不止一次','有过一两次','好像没有'] }
+];
+
+function renderDeepForm() {
+  document.getElementById('deepForm').innerHTML = deepFields.map(f => {
+    if (f.type === 'select') {
+      return `<div class="deep-field">
+        <label>${f.label}</label>
+        <select id="df_${f.id}" onchange="updateDeepForm()">${f.opts.map(o => `<option>${o}</option>`).join('')}</select>
+        ${f.hint?`<span class="hint">${f.hint}</span>`:''}
+      </div>`;
+    }
+    if (f.type === 'range') {
+      return `<div class="deep-field">
+        <label>${f.label}</label>
+        <div class="range-row">
+          <input type="range" id="df_${f.id}" min="${f.min}" max="${f.max}" step="${f.step}" value="${f.val}" oninput="document.getElementById('df_${f.id}_v').textContent = this.value; updateDeepForm();" style="flex:1;">
+          <span class="range-value" id="df_${f.id}_v">${f.val}</span>
+        </div>
+      </div>`;
+    }
+    if (f.type === 'textarea') {
+      return `<div class="deep-field">
+        <label>${f.label}</label>
+        <textarea id="df_${f.id}" placeholder="${f.ph}" oninput="updateDeepForm()"></textarea>
+        ${f.hint?`<span class="hint">${f.hint}</span>`:''}
+      </div>`;
+    }
+    return `<div class="deep-field">
+      <label>${f.label}</label>
+      <input type="${f.type}" id="df_${f.id}" placeholder="${f.ph}" ${f.min?'min='+f.min:''} ${f.max?'max='+f.max:''} oninput="updateDeepForm()">
+      ${f.hint?`<span class="hint">${f.hint}</span>`:''}
+    </div>`;
+  }).join('');
+  updateDeepForm();
+}
+
+function updateDeepForm() {
+  const data = {};
+  deepFields.forEach(f => {
+    const el = document.getElementById('df_'+f.id);
+    if (el) data[f.id] = el.value;
+  });
+  deepData = data;
+}
+
+// ==================== REPORT GENERATION ====================
+async function generateReport() {
+  updateDeepForm();
+  const btn = document.getElementById('genBtn');
+  btn.disabled = true;
+  btn.textContent = '正在生成报告...';
+
+  const r = computeScore();
+  const td = typeData[r.type];
+
+  // Save to D1 first
+  try {
+    const resp = await fetch('/api/saveReport', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        version: 'report',
+        answers: quizAnswers,
+        deep: deepData,
+        result_type: td.name,
+        result_score: r.score,
+        result_scores: r.scores,
+        nickname: nickname
+      })
+    });
+    const saved = await resp.json();
+    if (saved.session_id) reportSessionId = saved.session_id;
+  } catch(e) {
+    console.error('Save failed:', e);
+    // Generate report locally even if save fails
+  }
+
+  // Fetch ranking data
+  let ranking = null;
+  try {
+    const rResp = await fetch(`/api/rankPercentile?score=${r.score}`);
+    ranking = await rResp.json();
+  } catch(e) { ranking = { total: 20, percentile: 50 }; }
+
+  // Build report data
+  const reportData = buildReportData(r, td, ranking);
+
+  // Render
+  document.getElementById('stepDeep').classList.remove('active');
+  document.getElementById('stepReport').classList.add('active');
+  renderReport(reportData);
+  document.getElementById('stepReport').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function buildReportData(r, td, ranking) {
+  const d = deepData;
+  const years = parseInt(d.years) || 10;
+  const rate = parseInt(d.hourlyRate) || 150;
+  const hrs = parseInt(d.hours) || 10;
+  const friends = parseInt(d.friends) || 0;
+  const utilization = r.score / 100;
+  const waste = Math.round(years * rate * hrs * 52 * (1 - utilization));
+  const fullVal = Math.round(years * rate * hrs * 52);
+
+  const suggestedPrice = td.pricing[0] + Math.round((r.score - 35) / 60 * (td.pricing[1] - td.pricing[0]));
+  const percentile = ranking ? ranking.percentile : 50;
+  const totalTested = ranking ? ranking.total : 20;
+
+  // Second best type
+  const sortedTypes = Object.entries(r.scores).sort((a,b) => b[1]-a[1]);
+  const secondType = sortedTypes.length > 1 ? sortedTypes[1] : null;
+  const secondData = secondType && secondType[1] > 0 ? typeData[secondType[0]] : null;
+
+  // Path generation
+  const pathA = generatePathA(d);
+  const pathB = generatePathB(r, d, td);
+  const checklist = generateChecklist(r, d, td);
+
+  return { r, td, d, years, rate, hrs, friends, utilization, waste, fullVal, suggestedPrice, percentile, totalTested, secondData, pathA, pathB, checklist };
+}
+
+function generatePathA(d) {
+  const lines = ['继续按现状，不系统萃取经验，不产品化。'];
+  lines.push('3个月内：和之前一样，偶尔想想"要不要做点什么"，但没行动。');
+  lines.push('6个月后：看到别人做起来了，更焦虑，但还不知道自己从哪开始。');
+  lines.push('12个月后：经验还是在脑子和过往履历里，没有变成可交付、可被信任的产品或服务。');
+  if (d.bottleneck === '不敢开始') lines.push('核心风险：持续自我怀疑，错过验证窗口。');
+  if (d.bottleneck === '方向不清楚') lines.push('核心风险：东试试西试试，每个都没做深，精力分散。');
+  return lines;
+}
+
+function generatePathB(r, d, td) {
+  const lines = [];
+  const friends = parseInt(d.friends) || 200;
+  const trustRate = Math.round(friends * 0.01); // 1% conversion estimate
+  const consultingRate = td.icon === '🎯' ? suggestedPrice : 199;
+
+  lines.push('第 1 周：明确价值定位，朋友圈发 3 条免费诊断/经验分享，测试反馈。');
+  lines.push(`第 4 周：收到 ${Math.max(1, Math.round(trustRate))} 个私信咨询，开始第一个付费诊断。`);
+  lines.push(`第 12 周：有 ${Math.max(2, Math.round(trustRate * 2))} 个回头客户或转介绍，月均收入约 ¥${Math.round(consultingRate * trustRate * 2).toLocaleString()}`);
+
+  if (r.type === 'knowledge' || r.type === 'content') {
+    lines.push(`第 6 个月：内容体系成型，知识产品上线，被动收入开始产生。`);
+  } else if (r.type === 'consulting' || r.type === 'coaching') {
+    lines.push(`第 6 个月：案例积累到 10+，口碑开始传播，可以提价到 ¥${Math.round(consultingRate * 1.5)}/次。`);
+  } else {
+    lines.push(`第 6 个月：模板/工具迭代成熟，自动化销售流程建立。`);
+  }
+
+  lines.push(`第 12 个月：经验资产估值从 ¥${Math.round((r.score/100) * 100)}k 提升到 ¥${Math.round(Math.min(500, (r.score/100) * 300))}k，经验资产利用率从 ${Math.round(r.score)}% 提升到 60%+。`);
+  return lines;
+}
+
+function generateChecklist(r, d, td) {
+  const days = [];
+
+  days.push({ day: '第 1 天', task: '写下你过去 2 年帮别人解决过的 3 个问题，每个用一句话描述"症状→解法"。' });
+  days.push({ day: '第 2 天', task: '从 3 个问题中选最能引起同行共鸣的 1 个。' });
+
+  if (r.type === 'content' || r.type === 'knowledge') {
+    days.push({ day: '第 3 天', task: '写一篇 500-800 字的内容，围绕你选的问题，给出你的见解。' });
+    days.push({ day: '第 4 天', task: '发布到朋友圈或你最熟悉的平台，附一句"有同样问题可以私信我"。' });
+    days.push({ day: '第 5 天', task: '观察数据：点赞、评论、私信。记下谁主动联系你了。' });
+  } else if (r.type === 'consulting' || r.type === 'coaching') {
+    days.push({ day: '第 3 天', task: '朋友圈发一条："免费帮 3 个人做 XX 问题诊断，需要的私信"。' });
+    days.push({ day: '第 4 天', task: '筛选 3 位最真实的意向客户，不做推销，只诊断。' });
+    days.push({ day: '第 5 天', task: '完成第 1 个免费诊断，记录客户原话、核心痛点和你的解法。' });
+  } else {
+    days.push({ day: '第 3 天', task: '从你的工作中找出 1 个最常见的重复场景，设计一份一页纸的清单或模板。' });
+    days.push({ day: '第 4 天', task: '发给 3 个同行看看，问他们"这个有用吗？你会花多少钱买？" ' });
+    days.push({ day: '第 5 天', task: '根据反馈修改，定一个初始价格（¥9.9-¥49）。' });
+  }
+
+  days.push({ day: '第 6-7 天', task: '复盘第 1 周：哪些反馈最有价值？你的经验在什么场景下最被需要？' });
+  days.push({ day: '第 8-10 天', task: '加深输出：再写 2 篇内容/再做 2 个咨询/再迭代 1 版产品。建立节奏。' });
+  days.push({ day: '第 11-12 天', task: '定一个明确的定价和服务说明：你解决什么问题、怎么交付、多少钱。' });
+  days.push({ day: '第 13 天', task: '正式发布你的第一个付费服务/产品。哪怕 ¥9.9，也要完成第一次收钱。' });
+  days.push({ day: '第 14 天', task: '总结 14 天数据：做了什么、收到什么反馈、赚了多少钱、下个月怎么优化。' });
+
+  return days;
+}
+
+// ==================== RENDER REPORT ====================
+function renderReport(rd) {
+  const { r, td, d, years, rate, hrs, friends, utilization, waste, fullVal, suggestedPrice, percentile, totalTested, secondData, pathA, pathB, checklist } = rd;
+
+  const now = new Date();
+  const timeStr = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+  // Lock state — check URL for unlock parameter or paid status
+  const urlParams = new URLSearchParams(window.location.search);
+  const sid = urlParams.get('sid');
+  if (sid && sid === reportSessionId) {
+    // Check paid status via API
+    checkPaidStatus(sid).then(paid => {
+      if (paid) { isPaid = true; renderFullReport(rd, timeStr); }
+      else renderLockedReport(rd, timeStr);
+    }).catch(() => renderLockedReport(rd, timeStr));
+  } else if (reportSessionId) {
+    renderLockedReport(rd, timeStr);
+  } else {
+    // Direct render from local data
+    renderFullReport(rd, timeStr);
+  }
+}
+
+async function checkPaidStatus(sid) {
+  try {
+    const resp = await fetch(`/api/getReport?sid=${sid}`);
+    const data = await resp.json();
+    return data.paid === 1;
+  } catch(e) { return false; }
+}
+
+function renderLockedReport(rd, timeStr) {
+  const { r, td, d, years, rate, hrs, utilization, waste } = rd;
+  const wasteStr = waste >= 10000 ? `¥${(waste/10000).toFixed(1)}万` : `¥${waste.toLocaleString()}`;
+
+  let html = `<div class="report-wrap">`;
+  html += `<div class="report-header">
+    <div class="report-id">报告编号：${reportSessionId ? reportSessionId.toUpperCase() : '（保存后可查）'}</div>
+    <h2>👋 ${nickname}，<br>这是你的经验资产估值报告</h2>
+    <div class="report-time">生成时间：${timeStr}</div>
+  </div>`;
+
+  // Module 1: Waste calc (always visible)
+  html += `<div class="module">
+    <div class="module-title"><span class="module-icon">💰</span> 经验资产浪费计算器</div>
+    <div class="waste-number">${wasteStr}</div>
+    <div class="waste-detail">
+      你工作了 <strong>${years} 年</strong>，自评时薪 <strong>¥${rate}</strong>。<br>
+      按你当前的经验资产利用率 <strong>${Math.round(utilization*100)}%</strong>，<br>
+      每年少变现约 <strong>${wasteStr}</strong>。<br><br>
+      如果提升到 60%，每年价值约 <strong>¥${(fullVal * 0.6).toLocaleString()}</strong>。
+    </div>
+  </div>`;
+
+  // Lock
+  html += `<div class="lock-msg">
+    <h3>🔒 以下内容需要解锁</h3>
+    <p>经验 IPO 估值、排位赛、双路径模拟、14 天启动清单——都在完整报告里。</p>
+    <button class="btn btn-accent btn-lg" onclick="handleUnlock()">¥99 解锁完整报告</button>
+    <p style="margin-top:10px;font-size:13px;color:var(--muted);">加微信 kevin0915，付费后即可查看全部内容</p>
+  </div>`;
+
+  // Blur preview
+  html += `<div class="lock-blur">
+    <div class="module">
+      <div class="module-title"><span class="module-icon">📊</span> 经验 IPO 估值</div>
+      <p style="color:var(--muted);">类型：${td.name} · 评分：${r.score}/100 · 在 ${totalTested}+ 测试者中排名前 ${100-percentile}%</p>
+      <p style="color:var(--muted);">建议起步价：${td.range}</p>
+    </div>
+    <div class="module">
+      <div class="module-title"><span class="module-icon">🛤️</span> 双路径人生模拟</div>
+      <p style="color:var(--muted);">解锁后查看你的两条可能路径。</p>
+    </div>
+    <div class="module">
+      <div class="module-title"><span class="module-icon">📋</span> 14 天启动清单</div>
+      <p style="color:var(--muted);">解锁后查看第一天到第 14 天的具体行动。</p>
+    </div>
+  </div>`;
+
+  html += `</div>`;
+  document.getElementById('reportContainer').innerHTML = html;
+}
+
+function renderFullReport(rd, timeStr) {
+  const { r, td, d, years, rate, hrs, friends, utilization, waste, fullVal, suggestedPrice, percentile, totalTested, secondData, pathA, pathB, checklist } = rd;
+  const wasteStr = waste >= 10000 ? `¥${(waste/10000).toFixed(1)}万` : `¥${waste.toLocaleString()}`;
+
+  let html = `<div class="report-wrap">`;
+  html += `<div class="report-header">
+    <div class="report-id">报告编号：${reportSessionId ? reportSessionId.toUpperCase() : 'N/A'}</div>
+    <h2>👋 ${nickname}，这是你的完整估值报告</h2>
+    <div class="report-time">生成时间：${timeStr}</div>
+  </div>`;
+
+  // Module 1: Waste Calculator
+  html += `<div class="module">
+    <div class="module-title"><span class="module-icon">💰</span> 经验资产浪费计算器</div>
+    <div class="waste-number">${wasteStr}</div>
+    <div class="waste-detail">
+      你在 <strong>${d.industry || '你的行业'}</strong> 工作了 <strong>${years} 年</strong>，自评时薪 <strong>¥${rate}</strong>。<br>
+      每周可投入 <strong>${hrs} 小时</strong>，微信好友 <strong>${friends.toLocaleString()} 人</strong>。<br><br>
+      按你当前的经验资产利用率 <strong>${Math.round(utilization*100)}%</strong>，<br>
+      每年少变现约 <strong>${wasteStr}</strong>。<br><br>
+      如果提升到 60%，每年价值约 <strong>¥${(fullVal * 0.6).toLocaleString()}</strong>。<br>
+      <span style="color:var(--muted);font-size:13px;">（计算逻辑：工作经验年限 × 时薪 × 每年可投入小时 × 资产利用率缺口）</span>
+    </div>
+  </div>`;
+
+  // Module 2: IPO Valuation
+  html += `<div class="module">
+    <div class="module-title"><span class="module-icon">📊</span> 经验 IPO 估值</div>
+    <div class="ipo-grid">
+      <div class="ipo-item"><div class="ipo-label">经验类型</div><div class="ipo-value">${td.icon} ${td.name}</div></div>
+      <div class="ipo-item"><div class="ipo-label">资产评分</div><div class="ipo-value highlight">${r.score} / 100</div></div>
+      <div class="ipo-item"><div class="ipo-label">建议起步价</div><div class="ipo-value highlight">¥${suggestedPrice} / 次</div></div>
+      <div class="ipo-item"><div class="ipo-label">在 ${totalTested}+ 测试者中</div><div class="ipo-value">排名前 ${100-percentile}%</div></div>
+      <div class="ipo-item"><div class="ipo-label">变现潜力</div><div class="ipo-value">${r.score>=65?'高':r.score>=50?'中高':'中等'}</div></div>
+      <div class="ipo-item"><div class="ipo-label">价值泄漏点</div><div class="ipo-value" style="font-size:14px;">${d.bottleneck || '方向不清'}</div></div>
+    </div>
+    ${secondData ? `<p style="color:var(--muted);font-size:14px;margin-top:12px;">辅助方向：${secondData.icon} ${secondData.name}（作为补充路径）</p>` : ''}
+    <p style="color:var(--muted);font-size:14px;margin-top:12px;">
+      基于你的 ${years} 年 <strong>${d.industry || '行业'}</strong> 经验${d.bottleneck==='经验没被萃取成价值'?'，你当前最大的问题是经验还没有被萃取成清晰的问题、方法和可被信任的价值表达。':''}${d.bottleneck==='方向不清楚'?'，当前最重要的是先校准方向，避免分散精力。':''}${d.bottleneck==='不敢开始'?'，你具备的基础条件其实够了，最大的敌人是"还没准备好"的念头。':''}
+    </p>
+  </div>`;
+
+  // Module 3: Dual Path
+  html += `<div class="module">
+    <div class="module-title"><span class="module-icon">🛤️</span> 双路径人生模拟</div>
+    <div class="dual-path">
+      <div class="path-card path-a">
+        <div class="path-label">路径 A：继续现状</div>
+        <div class="path-steps">${pathA.map(l => `<span>${l}</span><br><br>`).join('')}</div>
+      </div>
+      <div class="path-card path-b">
+        <div class="path-label">路径 B：按建议行动</div>
+        <div class="path-steps">${pathB.map(l => `<span>${l}</span><br><br>`).join('')}</div>
+      </div>
+    </div>
+  </div>`;
+
+  // Module 4: 14-day Checklist
+  html += `<div class="module">
+    <div class="module-title"><span class="module-icon">📋</span> 14 天启动清单</div>
+    <div class="checklist">${checklist.map(d => `
+      <div class="cl-day">
+        <div class="cl-num">${d.day}</div>
+        <div class="cl-content">${d.task}</div>
+      </div>
+    `).join('')}</div>
+  </div>`;
+
+  // Footer
+  html += `<div style="text-align:center;padding-top:20px;color:var(--muted);font-size:14px;">
+    <p>报告编号：${reportSessionId ? reportSessionId.toUpperCase() : 'N/A'}<br>
+    生成时间：${timeStr} · 为 ${nickname} 生成<br><br>
+    这份报告是基于你填写的 20 项数据生成的个性化估值。<br>
+    随着你投入更多时间和积累更多真实反馈，数字会持续增长。</p>
+    <p style="margin-top:16px;font-size:13px;color:var(--accent-deep);">
+      想找 Kevin 聊聊这份报告的具体内容？<br>
+      加微信 kevin0915，发你的报告编号。
+    </p>
+  </div>`;
+
+  html += `</div>`;
+  document.getElementById('reportContainer').innerHTML = html;
+}
+
+// ==================== UNLOCK ====================
+function handleUnlock() {
+  navigator.clipboard.writeText('kevin0915').then(() => {
+    var t = document.getElementById('toast');
+    t.textContent = '微信号 kevin0915 已复制，加我解锁报告';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  });
+}
+
+// ==================== INIT ====================
+</script>
+</body>
+</html>

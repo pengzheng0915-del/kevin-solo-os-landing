@@ -147,6 +147,59 @@
       box-shadow: var(--shadow);
       overflow: hidden;
     }
+
+    /* ── Welcome / Nickname step ── */
+    .welcome-step {
+      padding: 40px 30px;
+      text-align: center;
+    }
+    .welcome-step .ws-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .welcome-step h3 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 0 0 8px;
+      font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+    }
+    .welcome-step .ws-sub {
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 28px;
+      line-height: 1.6;
+    }
+    .welcome-input {
+      width: 100%;
+      max-width: 320px;
+      padding: 14px 18px;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      font-size: 17px;
+      font-family: inherit;
+      text-align: center;
+      background: var(--card);
+      color: var(--text);
+      transition: border-color .18s ease;
+      margin-bottom: 14px;
+    }
+    .welcome-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .welcome-input::placeholder {
+      color: #c0b7a8;
+      font-size: 15px;
+    }
+    .ws-skip {
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .ws-skip:hover { color: var(--text); }
     .quiz-top {
       padding: 24px 26px;
       border-bottom: 1px solid var(--line);
@@ -397,9 +450,203 @@
     }
     .wechat-box strong { color: var(--text); font-size: 16px; display: block; margin-bottom: 4px; }
 
+    /* ── Paywall (free → paid barrier) ── */
+    .paywall {
+      margin-top: 20px;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(198,161,91,0.04), transparent);
+      border: 1px dashed var(--accent);
+      border-radius: 14px;
+    }
+    .paywall-bar {
+      width: 40px; height: 3px; background: var(--accent);
+      margin: 0 auto 12px; border-radius: 2px;
+    }
+    .paywall-title {
+      text-align: center; font-size: 14px; font-weight: 800;
+      color: var(--accent-deep); margin: 0 0 14px;
+    }
+    .paywall-items { display: flex; flex-direction: column; gap: 10px; }
+    .paywall-item {
+      font-size: 14px; color: var(--muted); padding: 0;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .pw-icon { font-size: 16px; flex-shrink: 0; }
+
+    /* ── Primary CTA card ── */
+    .primary-cta-card {
+      margin-top: 20px;
+      padding: 28px 24px;
+      background: linear-gradient(145deg, #fff8e8, #fef3d5);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      text-align: center;
+    }
+    .cta-anchor {
+      display: inline-block;
+      padding: 4px 14px;
+      background: #c0392b;
+      color: #fff;
+      border-radius: 999px;
+      font-size: 12px; font-weight: 900;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+    .cta-title {
+      font-size: 22px; font-weight: 900;
+      margin: 0 0 10px; letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .cta-desc {
+      font-size: 14px; color: var(--muted);
+      margin: 0 0 18px; line-height: 1.6;
+      max-width: 420px; margin-left: auto; margin-right: auto;
+    }
+    .btn-jumbo {
+      padding: 16px 24px !important;
+      font-size: 17px !important;
+      width: 100% !important;
+      border-radius: 14px !important;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── WeChat inline section ── */
+    .wechat-inline {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .wechat-inline.open { display: block; }
+    .wi-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; margin-bottom: 8px;
+    }
+    .wi-label {
+      font-size: 13px; color: var(--muted); font-weight: 700;
+    }
+    .wi-value {
+      font-size: 18px; font-weight: 900; color: var(--accent-deep);
+      letter-spacing: 0.04em;
+    }
+    .btn-copy-inline {
+      padding: 6px 14px;
+      background: var(--accent);
+      color: #fff;
+      border: 0;
+      border-radius: 8px;
+      font-size: 13px; font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .wi-hint {
+      font-size: 13px; color: var(--muted);
+      text-align: center; margin: 6px 0 12px;
+    }
+    .wi-qr {
+      display: block;
+      max-width: 140px;
+      margin: 0 auto 6px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+    .wi-qr-hint {
+      font-size: 12px; color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Secondary product links ── */
+    .secondary-links {
+      margin-top: 16px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .sec-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 14px;
+    }
+    .sec-price {
+      font-size: 13px; font-weight: 900;
+      color: var(--accent-deep);
+    }
+    .sec-name { flex: 1; color: var(--text); }
+    .sec-link {
+      font-size: 13px; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+    }
+
     .restart-row { text-align: center; margin-top: 20px; }
     .restart-link { font-size: 14px; color: var(--muted); cursor: pointer; border-bottom: 1px dashed var(--line); padding-bottom: 2px; }
     .restart-link:hover { color: var(--text); }
+
+    /* ── Demo Report Sample ── */
+    .demo-toggle {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; margin-top: 18px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(198,161,91,0.12), rgba(198,161,91,0.03));
+      border: 1.5px solid var(--accent);
+      border-radius: 14px;
+      cursor: pointer; font-size: 15px; font-weight: 800;
+      color: var(--accent-deep); transition: background .18s ease;
+      animation: demoPulse 2s ease-in-out infinite;
+    }
+    @keyframes demoPulse {
+      0%, 100% { border-color: var(--accent); }
+      50% { border-color: var(--accent-deep); }
+    }
+    .demo-toggle:hover { background: linear-gradient(135deg, rgba(198,161,91,0.18), rgba(198,161,91,0.06)); }
+    .demo-toggle .arrow { transition: transform .25s ease; font-size: 12px; }
+    .demo-toggle.open .arrow { transform: rotate(180deg); }
+
+    .demo-report {
+      display: none; margin-top: 14px;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 18px; overflow: hidden;
+    }
+    .demo-report.show { display: block; }
+
+    .demo-badge {
+      padding: 8px 16px; background: linear-gradient(135deg, rgba(198,161,91,0.15), rgba(198,161,91,0.05));
+      border-bottom: 1px solid var(--line);
+      font-size: 12px; font-weight: 800; color: var(--accent-deep);
+      text-align: center; letter-spacing: 0.04em;
+    }
+
+    .demo-body { padding: 20px 18px; }
+
+    .demo-section {
+      margin-bottom: 18px; padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .demo-section:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+    .demo-section h4 {
+      font-size: 15px; font-weight: 800; margin: 0 0 8px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .demo-section p {
+      font-size: 13px; color: var(--muted);
+      margin: 0 0 6px; line-height: 1.65;
+    }
+    .demo-section ul {
+      margin: 4px 0 0; padding-left: 18px;
+      font-size: 13px; color: var(--muted); line-height: 1.7;
+    }
+
+    .demo-cta-footer {
+      padding: 14px 18px; text-align: center;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(198,161,91,0.04), transparent);
+    }
+    .demo-cta-footer p {
+      font-size: 14px; font-weight: 700; color: var(--text);
+      margin: 0 0 10px;
+    }
 
     /* ── Toast ── */
     .toast {
@@ -458,13 +705,27 @@
       </div>
 
       <div class="quiz-wrap">
-        <div class="quiz-top">
+        <!-- Welcome / Nickname Step -->
+        <div class="welcome-step" id="welcomeStep">
+          <div class="ws-icon">💡</div>
+          <h3>先简单认识一下</h3>
+          <p class="ws-sub">输入你的昵称，我们会生成一份专属诊断报告。</p>
+          <input type="text" class="welcome-input" id="nicknameInput" placeholder="你的昵称" maxlength="20" onkeydown="if(event.key==='Enter')startQuiz()" oninput="updateStartBtn()" />
+          <br>
+          <button class="btn btn-primary btn-lg" id="startBtn" onclick="startQuiz()" disabled>输入昵称，开始诊断</button>
+        </div>
+
+        <div class="quiz-top" id="quizTop" style="display:none;">
           <div class="progress-text" id="progressText">第 1 / 8 题</div>
           <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
           <div class="progress-text" id="percentText" style="color:var(--muted);font-weight:600;">0%</div>
         </div>
 
-        <div class="quiz-body" id="quizBody">
+        <div class="quiz-note" id="quizNote" style="display:none;text-align:center;padding:0 0 12px;color:var(--muted);font-size:13px;line-height:1.5;">
+          如果选项都不完全符合，选最接近的。<br>如果你能一眼判断，说明你已经很清楚自己的定位和方向了。
+        </div>
+
+        <div class="quiz-body" id="quizBody" style="display:none;">
           <!-- Q1 -->
           <div class="quiz-step active" data-step="0">
             <h3 class="q-title">你现在最想解决的问题是什么？</h3>
@@ -555,7 +816,7 @@
           </div>
         </div>
 
-        <div class="quiz-nav">
+        <div class="quiz-nav" id="quizNav" style="display:none;">
           <button class="btn btn-ghost" id="prevBtn" onclick="prevStep()" disabled>上一题</button>
           <button class="btn btn-primary" id="nextBtn" onclick="nextStep()" disabled>下一题</button>
         </div>
@@ -572,6 +833,7 @@
     const VERSION = 'A';
     let currentStep = 0;
     let answers = {};
+    let nickname = '';
 
     const steps = Array.from(document.querySelectorAll('.quiz-step'));
     const progressText = document.getElementById('progressText');
@@ -580,6 +842,24 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const resultWrap = document.getElementById('resultWrap');
+
+    function updateStartBtn() {
+      var val = document.getElementById('nicknameInput').value.trim();
+      var btn = document.getElementById('startBtn');
+      btn.disabled = !val;
+      btn.textContent = val ? '开始诊断' : '输入昵称，开始诊断';
+    }
+
+    function startQuiz() {
+      nickname = document.getElementById('nicknameInput').value.trim();
+      if (!nickname) return;
+      document.getElementById('welcomeStep').style.display = 'none';
+      document.getElementById('quizTop').style.display = '';
+      document.getElementById('quizNote').style.display = '';
+      document.getElementById('quizBody').style.display = '';
+      document.getElementById('quizNav').style.display = '';
+      updateStep();
+    }
 
     function updateStep() {
       steps.forEach((s, i) => s.classList.toggle('active', i === currentStep));
@@ -775,6 +1055,10 @@
       const secondData = secondType && data[secondType] ? data[secondType].name : null;
 
       resultWrap.innerHTML = `
+        <p style="text-align:center;font-size:18px;font-weight:800;margin-bottom:16px;color:var(--text);">
+          👋 ${nickname}，这是你的专属诊断结果
+        </p>
+
         <div class="result-card">
           <div class="result-header">
             <div class="result-type">${d.icon} ${d.name}</div>
@@ -784,53 +1068,109 @@
 
           <p class="one-liner">${d.oneLiner}</p>
 
-          <div class="teaser-tags">
-            ${(d.tags || []).map(t => `<span class="teaser-tag">${t}</span>`).join('')}
-          </div>
-
-          <div class="block-hint"><b>当前卡点：</b>${d.blockShort}</div>
-
-          <div class="unlock-cta">
-            <p>¥9.9 解锁完整报告，查看：</p>
-            <ul>
-              <li>你的经验为什么适合这条路径</li>
-              <li>具体转化方向和定价建议</li>
-              <li>7天启动动作 + 30天分阶段计划</li>
-            </ul>
+          <div class="paywall">
+            <div class="paywall-bar"></div>
+            <p class="paywall-title">以下内容仅在完整报告中查看</p>
+            <div class="paywall-items">
+              <div class="paywall-item"><span class="pw-icon">🔒</span> 你的经验为什么最适合这条路径（深度分析）</div>
+              <div class="paywall-item"><span class="pw-icon">🔒</span> 当前最大卡点的具体成因和突破方法</div>
+              <div class="paywall-item"><span class="pw-icon">🔒</span> 适合你的 3 个转化方向和定价策略</div>
+              <div class="paywall-item"><span class="pw-icon">🔒</span> 7 天启动清单 + 30 天分阶段行动计划</div>
+            </div>
           </div>
         </div>
 
-        <div class="exit-section">
-          <h4>继续下一步</h4>
-          <p class="exit-sub">以上是免费摘要。完整报告 ¥9.9，30天行动计划、转化建议、深度分析都在里面。</p>
+        <div class="primary-cta-card">
+          <div class="cta-anchor">原价 ¥99 · 限时 ¥9.9</div>
+          <h2 class="cta-title">解锁你的完整诊断报告</h2>
+          <p class="cta-desc">8 道题的分析只是开始。完整报告包含你适合什么、为什么适合、从哪开始、怎么定价、如何验证。</p>
 
-          <div class="exit-grid">
-            <div class="exit-card exit-full" style="grid-column: 1 / -1;">
-              <div class="exit-label" style="color:var(--accent);">推荐</div>
-              <h5>¥9.9 解锁完整诊断报告</h5>
-              <p class="exit-desc">你的经验为什么适合这条路径、具体转化方向和定价建议、7天启动动作 + 30天行动计划。</p>
-              <button class="btn btn-primary btn-block" onclick="copyWechat('完整报告')">加微信解锁完整报告</button>
+          <button class="btn btn-primary btn-jumbo" onclick="handleAddWechat()">
+            加微信 kevin0915 解锁完整报告
+          </button>
+
+          <div class="wechat-inline" id="wechatInline">
+            <div class="wi-row">
+              <span class="wi-label">微信号</span>
+              <span class="wi-value" id="wechatId">kevin0915</span>
+              <button class="btn btn-copy-inline" onclick="copyWechatDirect()">复制</button>
             </div>
-            <div class="exit-card">
-              <div class="exit-label">¥99/年</div>
-              <h5>经验资产化知识库</h5>
-              <p class="exit-desc">系统学习如何萃取经验、识别价值、整理内容、设计服务雏形。</p>
-              <a class="btn btn-outline btn-block" href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" target="_blank">了解知识库</a>
-            </div>
-            <div class="exit-card">
-              <div class="exit-label">¥199</div>
-              <h5>60分钟经验资产解读</h5>
-              <p class="exit-desc">1对1帮你解读经验中的价值线索，判断更适合的转化方向，并给出下一步行动建议。</p>
-              <button class="btn btn-outline btn-block" onclick="copyWechat('经验资产解读')">加微信预约解读</button>
-            </div>
+            <p class="wi-hint">添加后发送报告编号，支付 ¥9.9 即可收到完整报告</p>
+            <img src="/assets/wechat-qr.jpg" alt="微信二维码" class="wi-qr">
+            <p class="wi-qr-hint">扫码添加微信</p>
           </div>
+        </div>
 
-          <div id="codeSpot" class="code-card" style="display:none;"></div>
+        <div class="demo-toggle" id="demoToggle" onclick="this.classList.toggle('open');document.getElementById('demoReport').classList.toggle('show')">
+          👀 付费后你能拿到什么样的报告？点我看样板 <span class="arrow">▼</span>
+        </div>
 
-          <div class="wechat-box">
-            <strong>微信号：kevin0915</strong>
-            <img src="/assets/wechat-qr.jpg" alt="微信二维码" style="display:block;max-width:180px;margin:10px auto;border-radius:10px;border:1px solid var(--line);">
-            添加微信后发送上方的<b>报告编号</b>，支付 9.9 后解锁完整报告。
+        <div class="demo-report" id="demoReport">
+          <div class="demo-badge">📋 示例报告 — 知识产品型</div>
+          <div class="demo-body">
+
+            <div class="demo-section">
+              <h4>🔍 为什么这条路径最适合你</h4>
+              <p>你的核心优势在于系统化归纳——过去 10 年的行业经验和项目踩坑，不是零散的，而是可以整理成一套<strong>可被他人理解的方法论</strong>。你不需要靠一对一说服，你的经验自带结构。适合做「一次制作、多次销售」的付费内容。</p>
+            </div>
+
+            <div class="demo-section">
+              <h4>⚠️ 最大卡点的成因和突破方法</h4>
+              <p><strong>成因：</strong>你的经验太"大"——知道太多，但没拆成具体的问题场景。别人看不到"你能解决我什么问题"，只看到"你懂这个行业"。</p>
+              <p><strong>突破：</strong>不要写行业综述。从一个具体的卡点出发：「如果你正在 X 场景遇到 Y 问题，你可以用 Z 方法」。把经验拆成 10 个这样的微场景，每个写 500 字。</p>
+            </div>
+
+            <div class="demo-section">
+              <h4>🎯 适合你的 3 个转化方向</h4>
+              <p><strong>1. 轻知识库（¥9.9-99）</strong> — 10 个场景清单 + 对应方法，做一份即可反复卖。<br>
+              <strong>2. 诊断型咨询（¥199-499）</strong> — 用你的行业经验做一对一问题诊断。<br>
+              <strong>3. 行业报告/白皮书（¥299-999）</strong> — 深度内容，卖给企业和机构。</p>
+            </div>
+
+            <div class="demo-section">
+              <h4>📅 7 天启动清单</h4>
+              <ul>
+                <li>Day 1：列出你能写的 10 个微场景</li>
+                <li>Day 2：选 1 个写成 500 字干货</li>
+                <li>Day 3：公开发布（公众号/知乎/LinkedIn）</li>
+                <li>Day 4：设计一份 ¥9.9 的清单产品</li>
+                <li>Day 5：写产品介绍页（一页纸）</li>
+                <li>Day 6：找到 5 个目标用户发预览</li>
+                <li>Day 7：收集反馈，迭代产品</li>
+              </ul>
+            </div>
+
+            <div class="demo-section">
+              <h4>🗓 30 天分阶段计划</h4>
+              <p><strong>Week 1-2：</strong>每周发布 2 篇内容，测试哪个场景反馈最好。<br>
+              <strong>Week 3：</strong>基于反馈最好的内容，升级成一份完整的知识产品。<br>
+              <strong>Week 4：</strong>正式定价上线，通过内容持续引流。</p>
+            </div>
+
+          </div>
+          <div class="demo-cta-footer">
+            <p>付费后你将收到你自己的专属报告</p>
+            <button class="btn btn-primary" onclick="handleAddWechat()">加微信 kevin0915 · 解锁你的版本</button>
+          </div>
+        </div>
+
+        <div id="codeSpot" class="code-card" style="display:none;"></div>
+
+        <div class="secondary-links">
+          <div class="sec-item">
+            <span class="sec-price">¥99</span>
+            <span class="sec-name">深度估值报告</span>
+            <a class="sec-link" href="/report/">生成报告 →</a>
+          </div>
+          <div class="sec-item">
+            <span class="sec-price">¥99/年</span>
+            <span class="sec-name">知识库 · 源头内容</span>
+<a class="sec-link" href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" target="_blank">了解 →</a>
+          </div>
+          <div class="sec-item">
+            <span class="sec-price">¥199</span>
+            <span class="sec-name">60分钟 1对1 经验资产解读</span>
+            <button class="sec-link" onclick="handleAddWechat()" style="background:none;border:0;cursor:pointer;font-family:inherit;">预约 →</button>
           </div>
         </div>
 
@@ -841,6 +1181,17 @@
 
       resultWrap.classList.add('show');
       resultWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Auto-expand demo report after short delay
+      setTimeout(function() {
+        var toggle = document.getElementById('demoToggle');
+        var report = document.getElementById('demoReport');
+        if (toggle && report) {
+          toggle.classList.add('open');
+          toggle.style.animation = 'none';
+          report.classList.add('show');
+        }
+      }, 1500);
 
       // Submit to backend (fire and forget)
       submitResult(r);
@@ -858,7 +1209,8 @@
             answers: answers,
             result_type: r.type,
             result_score: r.score,
-            result_scores: r.scores
+            result_scores: r.scores,
+            nickname: nickname
           })
         });
         const json = await res.json();
@@ -867,10 +1219,10 @@
           const spot = document.getElementById('codeSpot');
           if (spot) {
             spot.innerHTML =
-              '<div class="code-label">你的报告编号</div>' +
+              '<div class="code-label">报告编号</div>' +
               '<div class="code-value">' + reportCode + '</div>' +
-              '<div class="code-hint"><b>加微信发送这个编号</b>，支付 ¥9.9 后解锁完整报告</div>' +
-              '<button class="btn btn-primary" style="margin-top:10px;padding:10px 24px;font-size:14px;width:auto;" onclick="copyCode()">复制编号</button>';
+              '<p style="font-size:14px;color:var(--muted);margin:8px 0;text-align:center;">添加 kevin0915 发送此编号 · 支付 ¥9.9 解锁</p>' +
+              '<button class="btn btn-primary" style="margin-top:6px;padding:12px 28px;font-size:15px;width:auto;" onclick="copyCode()">复制编号 · 去加微信</button>';
             spot.style.display = 'block';
           }
         }
@@ -881,33 +1233,62 @@
 
     function copyCode() {
       navigator.clipboard.writeText(reportCode).then(function() {
-        showToast('报告编号已复制：' + reportCode);
+        showToast('报告编号已复制：' + reportCode + '，请到微信添加 kevin0915');
       }).catch(function() {
-        showToast('报告编号：' + reportCode);
+        showToast('报告编号：' + reportCode + '，请在微信添加 kevin0915');
+      });
+    }
+
+    function handleAddWechat() {
+      // Try to copy WeChat ID
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText('kevin0915').then(function() {
+          showToast('微信号已复制：kevin0915，打开微信添加好友');
+        }).catch(function() {
+          showToast('请添加微信号：kevin0915');
+        });
+      } else {
+        showToast('请添加微信号：kevin0915');
+      }
+      // Show inline wechat section
+      var inline = document.getElementById('wechatInline');
+      if (inline) {
+        inline.classList.add('open');
+        inline.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    function copyWechatDirect() {
+      var el = document.getElementById('wechatId');
+      var text = el ? el.textContent : 'kevin0915';
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('已复制：' + text);
+      }).catch(function() {
+        showToast('微信号：' + text);
       });
     }
 
     function copyWechat(remark) {
-      navigator.clipboard.writeText('kevin0915').then(() => {
-        showToast(remark ? '已复制微信号，请到微信添加，并备注"' + remark + '"' : '微信号已复制，打开微信添加好友');
-      }).catch(() => {
-        showToast('微信号：kevin0915');
-      });
+      handleAddWechat();
     }
 
     function restartQuiz() {
       resultWrap.classList.remove('show');
       resultWrap.innerHTML = '';
+      document.getElementById('welcomeStep').style.display = '';
+      document.getElementById('quizTop').style.display = 'none';
+      document.getElementById('quizNote').style.display = 'none';
       document.getElementById('quizBody').style.display = '';
-      document.querySelector('.quiz-nav').style.display = '';
-      document.querySelector('.quiz-wrap .quiz-top').style.display = '';
+      document.getElementById('quizNav').style.display = 'none';
       currentStep = 0;
       answers = {};
+      nickname = '';
+      document.getElementById('nicknameInput').value = '';
+      updateStartBtn();
       steps.forEach(s => {
         s.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
         s.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
       });
-      updateStep();
       document.getElementById('quiz').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -919,8 +1300,7 @@
       t._tid = setTimeout(() => t.classList.remove('show'), 2500);
     }
 
-    // Init
-    updateStep();
+    // Quiz starts on nickname entry — updateStep() called from startQuiz()
   </script>
 </body>
 </html>

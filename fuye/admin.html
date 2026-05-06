@@ -59,6 +59,7 @@
     .stat-a .num { color: var(--accent-dark); }
     .stat-b .num { color: var(--green); }
     .stat-c .num { color: #6b4c9a; }
+    .stat-r .num { color: #2F6F73; }
 
     /* Search */
     .search-bar {
@@ -97,6 +98,7 @@
     .tag-A { background: #efe4d3; color: var(--accent-dark); }
     .tag-B { background: #d4edda; color: var(--green); }
     .tag-C { background: #e8dff5; color: #6b4c9a; }
+    .tag-R { background: #cce9ec; color: #2F6F73; }
     .tag-paid { background: #d4edda; color: var(--green); }
     .tag-unpaid { background: #fde8e8; color: var(--red); }
 
@@ -134,6 +136,52 @@
     }
     .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
     .loading { text-align: center; padding: 40px; color: var(--muted); }
+
+    /* Answers Modal */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30, 26, 23, 0.5); z-index: 300;
+      justify-content: center; align-items: flex-start; padding: 40px 16px;
+      overflow-y: auto;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 32px; max-width: 600px; width: 100%;
+      box-shadow: 0 24px 64px rgba(30, 26, 23, 0.15);
+    }
+    .modal h2 { font-size: 22px; margin-bottom: 4px; letter-spacing: -0.02em; }
+    .modal .sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+    .modal .q-block {
+      padding: 14px 0; border-bottom: 1px solid var(--line);
+    }
+    .modal .q-block:last-child { border-bottom: 0; }
+    .modal .q-num {
+      font-size: 12px; font-weight: 900; color: var(--accent);
+      margin-bottom: 4px; letter-spacing: 0.04em;
+    }
+    .modal .q-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .modal .q-answer {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      font-size: 13px; font-weight: 700;
+      background: #efe4d3; color: var(--accent-dark);
+    }
+    .modal .q-answer-detail { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .modal .q-na {
+      font-size: 13px; color: #c0392b; font-style: italic;
+    }
+    .modal-close {
+      float: right; background: none; border: 0; font-size: 24px;
+      cursor: pointer; color: var(--muted); line-height: 1;
+    }
+    .modal .result-badge {
+      display: inline-block; padding: 6px 14px; border-radius: 999px;
+      font-size: 14px; font-weight: 900; margin-bottom: 16px;
+    }
+    .btn-answers { background: #6b4c9a; color: #fff; }
+    .btn-del { background: var(--red); color: #fff; }
+    .btn-undo { background: var(--accent); color: #fff; }
+    tr.row-deleting { opacity: 0.5; background: #fde8e8; }
   </style>
 </head>
 <body>
@@ -174,6 +222,7 @@
             <th>版本</th>
             <th>结果类型</th>
             <th>匹配度</th>
+            <th>昵称</th>
             <th>微信ID</th>
             <th>付费</th>
             <th>操作</th>
@@ -188,6 +237,14 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- Answers Modal -->
+<div class="modal-overlay" id="answersModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAnswersModal()">&times;</button>
+    <div id="answersContent"></div>
+  </div>
+</div>
 
 <script>
   var BASE = window.location.origin;
@@ -233,7 +290,7 @@
       document.getElementById('updateTime').textContent = '更新于 ' + new Date().toLocaleTimeString('zh-CN');
     } catch (e) {
       document.getElementById('tableBody').innerHTML =
-        '<tr><td colspan="7" style="text-align:center;color:var(--red);">加载失败: ' + e.message + '</td></tr>';
+        '<tr><td colspan="8" style="text-align:center;color:var(--red);">加载失败: ' + e.message + '</td></tr>';
     }
     document.getElementById('loadingMsg').style.display = 'none';
   }
@@ -243,12 +300,14 @@
     var aCount = 0;
     var bCount = 0;
     var cCount = 0;
+    var rCount = 0;
     var paidCount = 0;
     for (var i = 0; i < allData.length; i++) {
       var r = allData[i];
       if (r.version === 'A') aCount++;
       if (r.version === 'B') bCount++;
       if (r.version === 'C') cCount++;
+      if (r.version === 'report') rCount++;
       if (r.paid) paidCount++;
     }
 
@@ -257,6 +316,7 @@
     html += '<div class="stat-card stat-a"><div class="num">' + aCount + '</div><div class="label">A版 (kevinsolo.cn)</div></div>';
     html += '<div class="stat-card stat-b"><div class="num">' + bCount + '</div><div class="label">B版 (variant)</div></div>';
     html += '<div class="stat-card stat-c"><div class="num">' + cCount + '</div><div class="label">C版 (ceo)</div></div>';
+    html += '<div class="stat-card stat-r"><div class="num">' + rCount + '</div><div class="label">深度报告 (report)</div></div>';
     html += '<div class="stat-card"><div class="num" style="color:var(--green);">' + paidCount + '</div><div class="label">已付费</div></div>';
     document.getElementById('statsRow').innerHTML = html;
   }
@@ -265,6 +325,41 @@
     content: '内容表达型', consulting: '咨询诊断型', knowledge: '知识产品型',
     template: '模板工具型', service: '资源服务型', coaching: '陪跑交付型', local: '本地服务型'
   };
+
+  var QUESTIONS = [
+    { title: '你现在最想解决的问题是什么？', q: 'q0', options: {
+      A: '不知道经验能怎么用', B: '有经验但不知道如何转化成价值',
+      C: '想做内容但没有方向', D: '已经尝试表达，但反馈不明显'
+    }},
+    { title: '你过去最有积累的是哪类经验？', q: 'q1', options: {
+      A: '行业专业经验', B: '管理/带团队经验',
+      C: '客户沟通/销售/服务经验', D: '运营/项目/执行经验'
+    }},
+    { title: '你更愿意用哪种方式输出？', q: 'q2', options: {
+      A: '写文章/搭知识库', B: '做短视频/直播',
+      C: '一对一沟通', D: '带社群/做训练营'
+    }},
+    { title: '你现在最大阻碍是什么？', q: 'q3', options: {
+      A: '不知道定位', B: '不敢公开表达',
+      C: '不知道经验能解决谁的问题', D: '不知道如何获得真实反馈'
+    }},
+    { title: '你每周能投入多少时间？', q: 'q4', options: {
+      A: '1-3 小时', B: '3-5 小时',
+      C: '5-10 小时', D: '10 小时以上'
+    }},
+    { title: '你现在有没有可复用的案例？', q: 'q5', options: {
+      A: '没有', B: '有一些，但没整理',
+      C: '有明确案例', D: '有客户/项目成果'
+    }},
+    { title: '你更适合哪种转化方式？', q: 'q6', options: {
+      A: '资料/知识库', B: '一对一解读/诊断',
+      C: '陪跑服务', D: '社群/训练营'
+    }},
+    { title: '你目前最需要什么？', q: 'q7', options: {
+      A: '找方向', B: '搭内容系统',
+      C: '做第一个服务雏形', D: '找到第一个真实反馈'
+    }}
+  ];
 
   function filterTable() {
     var q = (document.getElementById('searchInput').value || '').trim();
@@ -283,7 +378,7 @@
   function renderTable(data) {
     if (data.length === 0) {
       document.getElementById('tableBody').innerHTML =
-        '<tr><td colspan="7" style="text-align:center;color:var(--muted);padding:40px;">暂无匹配数据</td></tr>';
+        '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:40px;">暂无匹配数据</td></tr>';
       return;
     }
     var rows = '';
@@ -295,25 +390,31 @@
       if (r.version === 'B') versionTag = 'B版';
       else if (r.version === 'A') versionTag = 'A版';
       else if (r.version === 'C') versionTag = 'C版';
+      else if (r.version === 'report') versionTag = '深度';
       else versionTag = '-';
-      var tagClass = r.version === 'B' ? 'tag tag-B' : r.version === 'A' ? 'tag tag-A' : r.version === 'C' ? 'tag tag-C' : 'tag';
-      var reportUrl = BASE + '/fuye/report.html?sid=' + r.session_id;
+      var tagClass = r.version === 'B' ? 'tag tag-B' : r.version === 'A' ? 'tag tag-A' : r.version === 'C' ? 'tag tag-C' : r.version === 'report' ? 'tag tag-R' : 'tag';
+      var reportUrl = r.version === 'report'
+        ? BASE + '/report/?sid=' + r.session_id
+        : BASE + '/fuye/report.html?sid=' + r.session_id;
       var sidShort = r.session_id ? r.session_id.substring(0, 8).toUpperCase() : '-';
       var paidTag = r.paid ? '<span class="tag tag-paid">已付费</span>' : '<span class="tag tag-unpaid">未付费</span>';
       var paidBtn = r.paid
         ? '<button class="btn-sm btn-unpaid" onclick="togglePaid(\'' + r.session_id + '\',0)">取消</button>'
         : '<button class="btn-sm btn-paid" onclick="togglePaid(\'' + r.session_id + '\',1)">标记付费</button>';
 
-      rows += '<tr>' +
+      rows += '<tr data-sid="' + r.session_id + '">' +
         '<td>' + time + '</td>' +
         '<td><span class="' + tagClass + '">' + versionTag + '</span></td>' +
         '<td>' + typeName + ' <span style="font-size:11px;color:var(--muted);">#' + sidShort + '</span></td>' +
         '<td>' + (r.result_score != null ? r.result_score : '-') + '</td>' +
+        '<td>' + (r.nickname || '-') + '</td>' +
         '<td><input class="edit-wechat" value="' + (r.wechat || '') + '" onchange="updateWechat(\'' + r.session_id + '\',this.value)" placeholder="填微信" /></td>' +
         '<td>' + paidTag + ' ' + paidBtn + '</td>' +
         '<td>' +
-          '<button class="btn-sm btn-copy" onclick="copyReport(\'' + reportUrl + '\')">复制链接</button>' +
-          '<button class="btn-sm btn-view" onclick="openReport(\'' + reportUrl + '\')" style="margin-left:4px;">查看</button>' +
+          '<button class="btn-sm btn-answers" onclick="showAnswers(\'' + r.session_id + '\')">答题</button>' +
+          '<button class="btn-sm btn-copy" onclick="copyReport(\'' + reportUrl + '\')" style="margin-left:4px;">链接</button>' +
+          '<button class="btn-sm btn-view" onclick="openReport(\'' + reportUrl + '\')" style="margin-left:4px;">报告</button>' +
+          '<button class="btn-sm btn-del btn-undo-tgt" data-sid="' + r.session_id + '" onclick="deleteRow(\'' + r.session_id + '\')" style="margin-left:4px;">删除</button>' +
         '</td>' +
       '</tr>';
     }
@@ -396,6 +497,68 @@
     }
   }
 
+  var _pendingDelete = {}; // sid -> timeoutId
+
+  function deleteRow(sid) {
+    if (!confirm('确定要删除这条记录吗？')) return;
+
+    // Mark as pending — grey out and show undo
+    var row = document.querySelector('tr[data-sid="' + sid + '"]');
+    if (row) row.classList.add('row-deleting');
+    // Replace delete button with undo
+    var delBtn = document.querySelector('.btn-undo-tgt[data-sid="' + sid + '"]');
+    if (delBtn) {
+      delBtn.textContent = '撤销';
+      delBtn.className = 'btn-sm btn-undo btn-undo-tgt';
+      delBtn.onclick = function() { undoDelete(sid); };
+    }
+
+    showToast('已删除 · 3秒内可撤销');
+    _pendingDelete[sid] = setTimeout(function() {
+      executeDelete(sid);
+    }, 3000);
+  }
+
+  function undoDelete(sid) {
+    clearTimeout(_pendingDelete[sid]);
+    delete _pendingDelete[sid];
+
+    var row = document.querySelector('tr[data-sid="' + sid + '"]');
+    if (row) row.classList.remove('row-deleting');
+    var undoBtn = document.querySelector('.btn-undo-tgt[data-sid="' + sid + '"]');
+    if (undoBtn) {
+      undoBtn.textContent = '删除';
+      undoBtn.className = 'btn-sm btn-del btn-undo-tgt';
+      undoBtn.onclick = function() { deleteRow(sid); };
+    }
+    showToast('已撤销删除');
+  }
+
+  async function executeDelete(sid) {
+    var pwd = getPwd();
+    try {
+      var res = await fetch(BASE + '/api/deleteQuiz?pwd=' + encodeURIComponent(pwd), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('删除失败: ' + json.error);
+        undoDelete(sid);
+      } else {
+        allData = allData.filter(function(r) { return r.session_id !== sid; });
+        delete _pendingDelete[sid];
+        renderStats();
+        filterTable();
+        showToast('已永久删除');
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+      undoDelete(sid);
+    }
+  }
+
   function showToast(msg) {
     var t = document.getElementById('toast');
     t.textContent = msg;
@@ -403,6 +566,72 @@
     clearTimeout(t._tid);
     t._tid = setTimeout(function() { t.classList.remove('show'); }, 2000);
   }
+
+  function showAnswers(sid) {
+    var item = null;
+    for (var i = 0; i < allData.length; i++) {
+      if (allData[i].session_id === sid) { item = allData[i]; break; }
+    }
+    if (!item) return;
+
+    var answers = item.answers || {};
+    var typeName = TYPE_NAMES[item.result_type] || item.result_type || '-';
+    var html = '<h2>客户答题详情</h2>';
+    html += '<p class="sub">报告编号: ' + sid.substring(0, 8).toUpperCase() + ' · ';
+    html += '结果: <span class="tag tag-paid" style="padding:2px 10px;">' + typeName + '</span> · ';
+    html += '匹配度: ' + (item.result_score != null ? item.result_score : '-') + '</p>';
+
+    // Detect report version: answers = { quiz: {...}, deep: {...} }
+    var quizPart = answers.quiz || answers;
+    var deepPart = answers.deep || null;
+
+    for (var j = 0; j < QUESTIONS.length; j++) {
+      var q = QUESTIONS[j];
+      var val = quizPart[q.q] || quizPart[String(j)] || '';
+      html += '<div class="q-block">';
+      html += '<div class="q-num">第 ' + (j + 1) + ' / 8 题</div>';
+      html += '<div class="q-title">' + q.title + '</div>';
+      if (val && q.options[val]) {
+        html += '<span class="q-answer">' + val + '. ' + q.options[val] + '</span>';
+      } else if (val) {
+        html += '<span class="q-answer">' + val + '</span>';
+      } else {
+        html += '<span class="q-na">未作答</span>';
+      }
+      html += '</div>';
+    }
+
+    // Show deep form data if report version
+    if (deepPart) {
+      html += '<h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;">深度问题</h3>';
+      var deepLabels = {
+        industry: '行业', years: '工作年限', status: '当前状态', hours: '每周可投入小时',
+        friends: '微信好友数', otherFans: '其他平台粉丝数', pastTry: '过去尝试过什么',
+        pastResult: '结果如何', bottleneck: '当前最大卡点', hourlyRate: '自评时薪',
+        confidence: '信心指数(1-10)', consultedBefore: '过去有人主动找你咨询过吗'
+      };
+      for (var dk in deepPart) {
+        if (deepPart.hasOwnProperty(dk)) {
+          html += '<div class="q-block">';
+          html += '<div class="q-num">' + (deepLabels[dk] || dk) + '</div>';
+          html += '<div class="q-title" style="font-weight:400;">' + (deepPart[dk] || '-') + '</div>';
+          html += '</div>';
+        }
+      }
+    }
+
+    document.getElementById('answersContent').innerHTML = html;
+    document.getElementById('answersModal').classList.add('show');
+  }
+
+  function closeAnswersModal() {
+    document.getElementById('answersModal').classList.remove('show');
+  }
+
+  // Click outside modal to close
+  document.addEventListener('click', function(e) {
+    if (e.target.id === 'answersModal') closeAnswersModal();
+  });
 
   // Init
   var savedPwd = getPwd();

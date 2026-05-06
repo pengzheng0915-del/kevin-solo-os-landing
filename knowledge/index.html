@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识库 · 看了这个，市面上的IP课都不用报了 | Kevin 彭峥</title>
+  <meta name="description" content="Dankoe、Naval 的原视频 + 双语字幕 + 中文总结 + Kevin 彭峥的个人解读 + 思维导图 + 行动计划。¥99/年。看了这个，市面上任何 IP 培训课都不用报了——除非你是为了花钱进新圈子。">
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --card: #fffaf2;
+      --card2: #fffdf8;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --line: #e4d8c9;
+      --primary: #1e1a17;
+      --accent: #b8874a;
+      --accent-dark: #875f32;
+      --radius: 18px;
+      --shadow: 0 14px 42px rgba(53,40,25,.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.7; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,242,234,.88);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1020px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
+    .brand-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900;
+    }
+    .nav-back { font-size: 14px; color: var(--muted); }
+    .nav-back:hover { color: var(--text); }
+
+    /* Page */
+    .page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* Hero */
+    .hero { padding: 32px 0 40px; }
+    .eyebrow { font-size: 13px; font-weight: 800; color: var(--accent-dark); letter-spacing: .06em; margin-bottom: 8px; text-transform: uppercase; }
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.18; letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+    .hero-sub {
+      font-size: 17px; color: var(--muted); max-width: 600px;
+      margin-bottom: 24px; line-height: 1.6;
+    }
+
+    /* Btn */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 0; cursor: pointer; border-radius: 999px;
+      padding: 14px 24px; font-size: 15px; font-weight: 800;
+      text-decoration: none; transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(31,26,23,.12); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Sections */
+    section { padding: 36px 0; }
+    .section-head { margin-bottom: 22px; }
+    .section-kicker { color: var(--accent-dark); font-weight: 900; font-size: 13px; margin-bottom: 6px; }
+    h2 { font-size: clamp(24px, 3.5vw, 32px); line-height: 1.2; letter-spacing: -0.03em; }
+    .section-desc { color: var(--muted); font-size: 15px; margin-top: 8px; }
+
+    /* Cards */
+    .card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+    .card + .card { margin-top: 16px; }
+    .card h3 { font-size: 19px; margin-bottom: 10px; }
+    .card p, .card li { color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .card ul { padding-left: 0; list-style: none; }
+    .card li::before { content: '• '; color: var(--accent); font-weight: 700; }
+
+    /* FlowUs embed fallback */
+    .flowus-card {
+      background: var(--card2); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 22px 24px;
+      box-shadow: var(--shadow); text-align: center;
+    }
+    .flowus-card p { color: var(--muted); font-size: 14px; margin: 12px 0; }
+
+    /* Wechat */
+    .wechat-box {
+      margin-top: 16px; padding: 18px;
+      background: var(--card2); border: 1px dashed var(--accent);
+      border-radius: 14px; text-align: center;
+    }
+    .wechat-box p { color: var(--muted); font-size: 13px; margin: 8px 0 12px; }
+
+    @media (max-width: 768px) {
+      .page { padding: 24px 16px 60px; }
+      .btn { width: 100%; justify-content: center; }
+      .btn-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">K</span>
+        <span>Kevin 彭峥</span>
+      </a>
+      <a class="nav-back" href="/fuye/">← 回到诊断说明</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="eyebrow">看了这个，市面上的 IP 课都不用报了</div>
+      <h1>别人花一万多学的东西，<br>源头在这里，¥99/年</h1>
+      <p class="hero-sub">
+        我花一万多参加古典的超级个体 IP 营，发现就是把 Dankoe、Naval 的公开内容翻译了一遍。
+        我很愤怒。既然如此，我自己来。<br><br>
+        这个知识库里，有 Dankoe、Naval（以后还会加更多）的原视频，我加了双语字幕（英语+中文），
+        提炼了每期视频的核心内容，用我的视角做了个人解读，画了思维导图，还写了行动计划——
+        告诉你视频里的东西怎么落地。<br><br>
+        看了这个，市面上任何 IP 培训、超级个体的课都不用报了。除非你是为了花钱进入新圈子。
+      </p>
+    </section>
+
+    <!-- Module 1: 适合谁 -->
+    <section>
+      <div class="section-head">
+        <div class="section-kicker">模块一</div>
+        <h2>适合谁</h2>
+        <p class="section-desc">这不是一本"方法论"书，不是我教你什么。是别人花一万多才能接触到的东西，我帮你整理好了。</p>
+      </div>
+      <div class="card">
+        <ul>
+          <li>有十年以上职业经验，想把经验整理成可交付的产品或服务</li>
+          <li>已经做出过内容或产品，但转化不好，想系统优化路径</li>
+          <li>正在做咨询、陪跑、知识付费，想看到更多可复用的框架</li>
+          <li>不想只学理论，想看真实案例和可执行的步骤</li>
+          <li>愿意花时间自己研究和实践，而不是等人喂答案</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Module 2: 包含什么 -->
+    <section>
+      <div class="section-head">
+        <div class="section-kicker">模块二</div>
+        <h2>包含什么</h2>
+        <p class="section-desc">下面这些东西，就是别人花一万多去 IP 营学的。</p>
+      </div>
+      <div class="card">
+        <h3>🎬 原视频</h3>
+        <p>Dankoe、Naval 等国外高手的原版视频。以后还会持续加更多内容。</p>
+      </div>
+      <div class="card">
+        <h3>🔤 双语字幕</h3>
+        <p>每期视频我都加了英语+中文字幕。不用翻墙，不用啃英文。</p>
+      </div>
+      <div class="card">
+        <h3>📋 中文核心总结</h3>
+        <p>每期视频的核心内容提炼。不是机翻，是我看完后用自己的话写出来的。</p>
+      </div>
+      <div class="card">
+        <h3>💡 Kevin 个人解读</h3>
+        <p>我对每期内容的视角和理解。不是复述，是我自己消化后的东西。</p>
+      </div>
+      <div class="card">
+        <h3>🧠 思维导图 + 行动计划</h3>
+        <p>每期视频配思维导图，加上可执行的行动步骤——告诉你视频里的东西怎么落地。</p>
+      </div>
+    </section>
+
+    <!-- Module 3: 如何获取 -->
+    <section>
+      <div class="section-head">
+        <div class="section-kicker">模块三</div>
+        <h2>如何获取</h2>
+        <p class="section-desc">两种方式，¥99/年。</p>
+      </div>
+
+      <div class="flowus-card">
+        <h3>📂 直接在 FlowUs 上看</h3>
+        <p>¥99/年，内容持续更新。买了就能看。</p>
+        <button class="btn btn-primary" onclick="window.open('https://flowus.cn/kevinsolo', '_blank')">¥99/年 · 直接购买</button>
+      </div>
+
+      <div class="wechat-box">
+        <h3>💬 不确定？先加微信问问</h3>
+        <p>不确定值不值？加微信，我截图给你看几页。<br>发送「知识库」，我告诉你适不适合你。</p>
+        <img src="/assets/wechat-qr.jpg" alt="微信二维码" style="display:block;width:150px;max-width:100%;margin:0 auto 10px;border-radius:10px;border:1px solid var(--line);">
+        <button class="btn btn-accent" onclick="navigator.clipboard.writeText('kevin0915').then(() => { const t = document.getElementById('toast'); t.textContent = '微信号 kevin0915 已复制'; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); })">复制微信号：kevin0915</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" style="position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:rgba(31,26,23,.94);color:#fff;padding:12px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:.2s ease;z-index:200;font-size:14px;white-space:nowrap;"></div>
+
+  <script>
+    // Analytics tracking
+    (function() {
+      function track(eventName) {
+        if (typeof gtag === 'function') {
+          gtag('event', eventName);
+        }
+        console.log('[track]', eventName);
+      }
+      track('view_knowledge');
+    })();
+  </script>
+</body>
+</html>
