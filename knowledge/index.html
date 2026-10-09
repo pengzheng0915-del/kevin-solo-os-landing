@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一人公司海外源头库 | 想自己研究一人公司，直接看海外源头内容</title>
+  <meta name="description" content="一人公司海外源头库：99元，365天访问现有海外源头内容及中文整理，方便独立阅读与研究，不包含人工咨询。">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://kevinsolo.cn/knowledge/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="一人公司海外源头库｜想自己研究一人公司，直接看海外源头内容">
+  <meta property="og:description" content="阅读现有海外源头内容及中文整理，围绕自己的问题比较方法与适用条件。">
+  <meta property="og:url" content="https://kevinsolo.cn/knowledge/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232D2926'/><text x='50' y='72' text-anchor='middle' font-size='56' font-weight='bold' fill='white' font-family='system-ui'>K</text></svg>" />
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --card: #fffaf2;
+      --card2: #fffdf8;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --line: #e4d8c9;
+      --primary: #1e1a17;
+      --accent: #b8874a;
+      --accent-dark: #875f32;
+      --radius: 18px;
+      --shadow: 0 14px 42px rgba(53,40,25,.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.7; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,242,234,.88);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      max-width: 1020px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
+    .brand-mark {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 900;
+    }
+    .nav-back { font-size: 14px; color: var(--muted); }
+    .nav-back:hover { color: var(--text); }
+
+    /* Page */
+    .page { max-width: 780px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* Hero */
+    .hero { padding: 32px 0 40px; }
+    .eyebrow { font-size: 13px; font-weight: 800; color: var(--accent-dark); letter-spacing: .06em; margin-bottom: 8px; text-transform: uppercase; }
+    h1 {
+      margin-bottom: 14px;
+    }
+    .hero-sub { color: var(--muted); max-width: 600px;
+      margin-bottom: 24px;
+    }
+
+    /* Btn */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 0; cursor: pointer; border-radius: 999px;
+      padding: 14px 24px; font-size: 15px; font-weight: 800;
+      text-decoration: none; transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(31,26,23,.12); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Sections */
+    section { padding: 36px 0; }
+    .section-head { margin-bottom: 22px; }
+    .section-kicker { color: var(--accent-dark); font-weight: 900; font-size: 13px; margin-bottom: 6px; }
+    .section-desc { color: var(--muted); font-size: 15px; margin-top: 8px; }
+
+    /* Cards */
+    .card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+    .card + .card { margin-top: 16px; }
+    .card h3 { font-size: 19px; margin-bottom: 10px; }
+    .card p, .card li { color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .card ul { padding-left: 0; list-style: none; }
+    .card li::before { content: '• '; color: var(--accent); font-weight: 700; }
+
+    /* FlowUs embed fallback */
+    .flowus-card {
+      background: var(--card2); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 22px 24px;
+      box-shadow: var(--shadow); text-align: center;
+    }
+    .flowus-card p { color: var(--muted); font-size: 14px; margin: 12px 0; }
+
+    .knowledge-proof-shell {
+      display: grid;
+      gap: 24px;
+      padding: clamp(22px, 4vw, 36px);
+      background: rgba(255, 250, 242, .76);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+    .knowledge-proof-media {
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .knowledge-proof-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .knowledge-proof-caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .knowledge-proof-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Wechat */
+    .wechat-box {
+      margin-top: 16px; padding: 18px;
+      background: var(--card2); border: 1px dashed var(--accent);
+      border-radius: 14px; text-align: center;
+    }
+    .wechat-box p { color: var(--muted); font-size: 13px; margin: 8px 0 12px; }
+
+    @media (max-width: 768px) {
+      .page { padding: 24px 16px 60px; }
+      .btn { width: 100%; justify-content: center; }
+      .btn-row { flex-direction: column; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/kevin-premium.css?v=20261009-thorough-final">
+<style>
+    @media (max-width: 720px) {
+      html, body { overflow-x: hidden !important; }
+      .nav-back { display: none !important; }
+      .page,
+      .knowledge-hero,
+      .knowledge-hero-grid,
+      .knowledge-hero-copy {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .knowledge-hero-copy .eyebrow { order: 1; }
+      .knowledge-hero-copy h1 {
+        order: 2;
+      }
+      .knowledge-hero-copy .hero-sub { order: 3; }
+      .knowledge-hero-copy .knowledge-hero-actions { order: 4; }
+      .knowledge-hero-copy .knowledge-benefits { order: 5; }
+      .knowledge-hero-copy .knowledge-decision-strip { order: 6; }
+      .knowledge-hero-copy .knowledge-preview { order: 7; }
+      .knowledge-hero-copy .hero-sub {
+        width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
+      }
+      .knowledge-benefit {
+        width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
+      }
+      .knowledge-hero-actions,
+      .knowledge-hero-actions .btn {
+        width: calc(100vw - 32px) !important;
+        max-width: calc(100vw - 32px) !important;
+      }
+      .knowledge-proof-shell {
+        padding: 16px;
+      }
+    }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "一人公司海外源头库",
+  "description": "提供现有海外源头内容及中文整理，帮助读者围绕自己的问题研究方法和适用条件。",
+  "url": "https://kevinsolo.cn/knowledge/",
+  "brand": {
+    "@type": "Brand",
+    "name": "Kevin 彭峥"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "有真实工作经验，正在判断经验能否产品化、服务化或形成个人业务的人"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "99",
+    "priceCurrency": "CNY",
+    "availability": "https://schema.org/InStock",
+    "url": "https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5",
+    "eligibleDuration": {
+      "@type": "QuantitativeValue",
+      "value": "365",
+      "unitCode": "DAY"
+    }
+  },
+  "isRelatedTo": [
+    "职业经验资产化",
+    "一人公司",
+    "经验萃取",
+    "客户验证",
+    "内容获客",
+    "可信销售"
+  ],
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "一人公司海外源头库适合谁？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "适合想自己研究一人公司、内容与产品方法，希望借助现有海外源头内容和中文整理理解相关思路的人。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "一人公司海外源头库和职业经验资产一对一诊断有什么区别？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "一人公司海外源头库提供海外源头内容和中文整理，帮助用户低成本自学并形成问题。1999元方向服务结合个人真实经历与现实条件帮助确定方向；9800元服务按约定开发自己的产品／模型。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "内容如何更新？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "新购提供当前目录内容及365天访问权限，访问期内可查看新增与修订内容，不承诺固定更新频率。此前已购用户按购买时明确的权益履行。"
+        }
+      }
+    ]
+  }
+}
+</script>
+<link rel="stylesheet" href="/assets/kevin-public-system.css?v=20261009-thorough-final">
+  <link rel="stylesheet" href="/assets/kevin-ui-v1.css?v=20261009-thorough-final" />
+  <link rel="stylesheet" href="/assets/knowledge-showcase.css?v=20261009-thorough-final" />
+<link rel="stylesheet" href="/assets/kevin-site-header.css?v=20260725">
+<script data-kevin-clarity="xtbdlvfb1x">
+(function(c,l,a,r,i,t,y){
+  var h=String(c.location&&c.location.hostname||"").toLowerCase();
+  if(h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]")return;
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script",document.currentScript.dataset.kevinClarity);
+</script>
+<link rel="stylesheet" href="/assets/kevin-reading.css?v=20261009-thorough-final">
+</head>
+<body class="kv-knowledge kv-conversion-v1 knowledge-showcase-v2" data-kevin-ui="v1" data-ui-template="knowledge" data-reading-template="knowledge" data-kv-nav-runtime="v1">
+<header class="kv-global-header" data-kv-nav="public">
+  <div class="kv-global-header__inner">
+    <a class="kv-global-header__brand" href="/" aria-label="Kevin 彭峥首页">
+      <span class="kv-global-header__mark" aria-hidden="true">K</span>
+      <span class="kv-global-header__identity">
+        <strong>Kevin 彭峥</strong>
+        <small>职业经验资产顾问</small>
+      </span>
+    </a>
+    <nav class="kv-global-header__desktop-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/method/experience-asset-assessment/">判断方法</a>
+      <a href="/cases/">真实案例</a>
+      <a href="/articles/">经验洞察</a>
+      <div class="kv-global-header__products">
+        <button class="kv-global-header__product-trigger" type="button">产品</button>
+        <div class="kv-global-header__product-panel">
+          <a href="/knowledge/">一人公司海外源头库</a>
+          <a href="/prompts/">做图提示词库</a>
+        </div>
+      </div>
+      <a href="/about/">关于 Kevin</a>
+      <a href="/#products">服务与价格</a>
+    </nav>
+    <a class="kv-global-header__cta" href="/fuye/quiz/">
+      <span class="kv-global-header__cta-full">免费测一下</span>
+      <span class="kv-global-header__cta-short">免费测评</span>
+    </a>
+    <details class="kv-global-header__mobile-menu">
+      <summary aria-label="打开站点菜单"><span aria-hidden="true"></span></summary>
+      <nav class="kv-global-header__mobile-panel" aria-label="移动端主要导航">
+        <a href="/">首页</a>
+        <a href="/method/experience-asset-assessment/">判断方法</a>
+        <a href="/cases/">真实案例</a>
+        <a href="/articles/">经验洞察</a>
+        <a href="/knowledge/">一人公司海外源头库</a>
+        <a href="/prompts/">做图提示词库</a>
+        <a href="/about/">关于 Kevin</a>
+        <a href="/#products">服务与价格</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+  <main class="page knowledge-showcase">
+    <section class="knowledge-showcase-hero">
+      <div class="knowledge-hero-title">
+        <div class="eyebrow">一人公司海外源头库 · 365 天访问</div>
+        <h1 data-kv-title="feature"><span class="kv-title-line">想自己研究一人公司</span><span class="kv-title-line">直接看海外源头内容</span></h1>
+      </div>
+      <div class="knowledge-hero-offer">
+        <p class="hero-sub">99元，365天访问现有海外源头内容及中文整理，方便你围绕问题阅读、比较方法和适用条件。知识库独立销售，不包含人工咨询。</p>
+        <div class="knowledge-price"><strong>¥99</strong><span>365 天访问</span></div>
+        <div class="knowledge-hero-actions">
+          <a class="btn btn-primary" href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" target="_blank" rel="noopener noreferrer">进入 FlowUs 看真实产品</a>
+          <a class="btn btn-outline" href="https://flowus.cn/kevinpeng/share/df72f6df-b7c7-40e1-90c3-7da2045a76fe" target="_blank" rel="noopener noreferrer">公开试看完整一篇</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="knowledge-source-strip" aria-label="当前内容来源">
+      <div class="knowledge-source"><img src="/assets/knowledge-showcase/person-dan-koe.jpg" alt="" width="32" height="32"><strong>Dan Koe</strong></div>
+      <div class="knowledge-source"><img src="/assets/knowledge-showcase/person-naval.jpg" alt="" width="32" height="32"><strong>Naval</strong></div>
+      <div class="knowledge-source"><img src="/assets/knowledge-showcase/person-justin-welsh.jpg" alt="" width="32" height="32"><strong>Justin Welsh</strong></div>
+      <div class="knowledge-source"><img src="/assets/knowledge-showcase/person-chris-do.jpg" alt="" width="32" height="32"><strong>Chris Do</strong></div>
+      <div class="knowledge-source"><img src="/assets/knowledge-showcase/person-rob-fitzpatrick.jpg" alt="" width="32" height="32"><strong>Rob Fitzpatrick</strong></div>
+    </section>
+
+    <section class="knowledge-benefits" aria-label="产品帮助你获得什么">
+      <article class="knowledge-benefit">
+        <small>01</small>
+        <strong>直接看源头</strong>
+        <p>围绕自己的问题阅读海外源头内容，理解作者的方法及其适用条件。</p>
+      </article>
+      <article class="knowledge-benefit">
+        <small>02</small>
+        <strong>再省时间</strong>
+        <p>省去自己寻找、筛选、翻译和整理海外长视频的时间。</p>
+      </article>
+      <article class="knowledge-benefit">
+        <small>03</small>
+        <strong>少走弯路</strong>
+        <p>看清每种方法的适用条件，避免把别人的成功路径直接照搬到自己身上。</p>
+      </article>
+    </section>
+
+    <section id="product-proof" data-knowledge-proof data-knowledge-topic-grid>
+      <div class="knowledge-section-head">
+        <h2>先看真实主题，再决定值不值得买</h2>
+        <p>下面九张均取自知识库已经收录的视频内容，不是生成的装饰图，也不是虚构的产品界面。</p>
+      </div>
+      <div class="knowledge-topic-grid">
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-deep-work.jpg" alt="6 个月深度工作养成指南视频封面" width="1280" height="720" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Dan Koe</small><strong>6 个月深度工作养成指南</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-specific-knowledge.jpg" alt="用具体知识武装自己视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Naval</small><strong>用具体知识武装自己</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-judgment.jpg" alt="判断力视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Naval</small><strong>判断力：无限杠杆时代的决定性技能</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-content-system.jpg" alt="Justin Welsh 内容操作系统视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Justin Welsh</small><strong>Justin Welsh 内容操作系统</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-one-person-business.jpg" alt="零员工一人企业视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Justin Welsh</small><strong>一人企业经验与商业模式</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-sales-call.jpg" alt="销售电话前必做的三件事视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Chris Do</small><strong>销售电话前必做的三件事</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-pricing-negotiation.jpg" alt="客户说太贵谈判策略视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Chris Do</small><strong>客户说太贵？角色扮演谈判策略</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-customer-interview.jpg" alt="客户理解自查工作坊视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Rob Fitzpatrick</small><strong>客户理解自查工作坊</strong></div>
+        </article>
+        <article class="knowledge-topic-card">
+          <div class="knowledge-topic-cover"><img src="/assets/knowledge-showcase/topic-productized-service.jpg" alt="产品化服务与客户发现视频封面" width="1280" height="720" loading="lazy" decoding="async"></div>
+          <div class="knowledge-topic-meta"><small>Rob Fitzpatrick</small><strong>产品化服务与客户发现：销售即迭代</strong></div>
+        </article>
+      </div>
+      <p class="knowledge-proof-note">以上标题与封面均来自当前 FlowUs 知识库内容。人物是内容研究来源，不代表合作、推荐或背书。</p>
+    </section>
+
+    <section class="knowledge-bridge">
+      <strong>不知道先看哪一篇？从你的问题开始</strong>
+      <p>下面按常见问题整理了阅读入口。选一个最接近你当前处境的问题，先读对应内容，再决定下一步。</p>
+    </section>
+
+    <section class="knowledge-question-map">
+      <div class="knowledge-section-head">
+        <h2>从你现在卡住的问题进入</h2>
+        <p>不必认识所有作者，也不必从第一篇顺序读到最后一篇。先找到当前问题，再进入对应的方法、适用边界与验证动作。</p>
+      </div>
+      <div class="knowledge-question-list">
+        <article class="knowledge-question-row">
+          <div class="knowledge-question-title"><a href="https://flowus.cn/kevinpeng/share/010d7ffd-2840-43f7-84e4-92b87aa45838" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:4px"><strong>我适不适合做一人公司？ →</strong></a><span>先看路径，也看不能直接照搬的前提</span></div>
+          <div class="knowledge-question-topics"><span>一人企业路径</span><span>技能栈</span><span>内容系统</span></div>
+          <div class="knowledge-question-sources"><img src="/assets/knowledge-showcase/person-justin-welsh.jpg" alt="Justin Welsh" width="52" height="52" loading="lazy"><img src="/assets/knowledge-showcase/person-dan-koe.jpg" alt="Dan Koe" width="52" height="52" loading="lazy"></div>
+        </article>
+        <article class="knowledge-question-row">
+          <div class="knowledge-question-title"><a href="https://flowus.cn/kevinpeng/share/c27d5778-e96a-4dde-a919-512be619790f" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:4px"><strong>我的经验怎样变成最小产品？ →</strong></a><span>先验证真实问题，不先开发庞大课程</span></div>
+          <div class="knowledge-question-topics"><span>产品化你自己</span><span>具体知识</span><span>微产品验证</span></div>
+          <div class="knowledge-question-sources"><img src="/assets/knowledge-showcase/person-naval.jpg" alt="Naval" width="52" height="52" loading="lazy"><img src="/assets/knowledge-showcase/person-dan-koe.jpg" alt="Dan Koe" width="52" height="52" loading="lazy"></div>
+        </article>
+        <article class="knowledge-question-row">
+          <div class="knowledge-question-title"><a href="https://flowus.cn/kevinpeng/share/6b759824-d5de-40fa-b613-5f1b8c937e58" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:4px"><strong>没有流量，怎样从零建立受众？ →</strong></a><span>内容建立说服力，主动获得真实曝光</span></div>
+          <div class="knowledge-question-topics"><span>内容操作系统</span><span>受众增长</span><span>长期信任</span></div>
+          <div class="knowledge-question-sources"><img src="/assets/knowledge-showcase/person-justin-welsh.jpg" alt="Justin Welsh" width="52" height="52" loading="lazy"><img src="/assets/knowledge-showcase/person-dan-koe.jpg" alt="Dan Koe" width="52" height="52" loading="lazy"></div>
+        </article>
+        <article class="knowledge-question-row">
+          <div class="knowledge-question-title"><a href="https://flowus.cn/kevinpeng/share/3e0b95ba-8bb2-4735-9081-2f4f83365f9b" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:4px"><strong>怎样让内容和销售建立可信度？ →</strong></a><span>价值表达、销售对话与谈判判断</span></div>
+          <div class="knowledge-question-topics"><span>销售的本质</span><span>服务定位</span><span>价格谈判</span></div>
+          <div class="knowledge-question-sources"><img src="/assets/knowledge-showcase/person-chris-do.jpg" alt="Chris Do" width="52" height="52" loading="lazy"><img src="/assets/knowledge-showcase/person-naval.jpg" alt="Naval" width="52" height="52" loading="lazy"></div>
+        </article>
+        <article class="knowledge-question-row">
+          <div class="knowledge-question-title"><a href="https://flowus.cn/kevinpeng/share/9d03ef67-0621-4624-becf-5bc81545d0ab" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:4px"><strong>怎样验证客户真实需求？ →</strong></a><span>不把客户的礼貌反馈当成购买意愿</span></div>
+          <div class="knowledge-question-topics"><span>客户访谈</span><span>需求验证</span><span>销售即迭代</span></div>
+          <div class="knowledge-question-sources"><img src="/assets/knowledge-showcase/person-rob-fitzpatrick.jpg" alt="Rob Fitzpatrick" width="52" height="52" loading="lazy"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="knowledge-value-strip" aria-label="每篇内容的整理价值">
+      <div class="knowledge-value"><small>内容来源</small><strong>源头方法</strong></div>
+      <div class="knowledge-value"><small>降低门槛</small><strong>中文整理</strong></div>
+      <div class="knowledge-value"><small>避免照搬</small><strong>适用边界</strong></div>
+      <div class="knowledge-value"><small>结合现实</small><strong>Kevin 判断</strong></div>
+      <div class="knowledge-value"><small>尝试行动</small><strong>验证动作</strong></div>
+    </section>
+
+    <section class="knowledge-boundary" aria-label="产品边界">
+      <h2>买之前，把边界看清楚</h2>
+      <dl>
+        <dt>不是替你判断</dt>
+        <dd>提供海外源头内容和中文整理，帮助你在花钱之前看清楚；最终选择仍由你自己决定。</dd>
+        <dt>AI 是辅助工具</dt>
+        <dd>用于围绕库内内容解释、比较、追问和整理行动，不代替个人判断。</dd>
+        <dt>不是定制咨询</dt>
+        <dd>提供共性内容和判断框架，不提供个人定制结论，也不承诺收入结果。</dd>
+        <dt>分销规则</dt>
+        <dd>是否支持分销及具体比例，以购买页当时显示的 FlowUs 规则为准。</dd>
+      </dl>
+    </section>
+
+    <section class="knowledge-final-cta">
+      <div>
+        <h2>先看完整试看，再决定是否购买</h2>
+        <p>FlowUs 完成付款、权限和知识库交付；购买后获得 365 天访问权限。</p>
+      </div>
+      <a class="btn btn-primary" href="https://flowus.cn/kevinpeng/share/8aefb1a2-7b82-4073-a90b-8922feae58a2?code=VRM6F5" target="_blank" rel="noopener noreferrer">进入 FlowUs 看真实产品</a>
+    </section>
+    <p class="knowledge-update-note">新购提供当前目录内容及365天访问权限，访问期内可查看新增与修订内容，不承诺固定更新频率。此前已购用户按购买时明确的权益履行，本次说明不减少已有权益。</p>
+  </main>
+
+  <script>
+    // Analytics tracking
+    (function() {
+      function track(eventName) {
+        if (typeof gtag === 'function') {
+          gtag('event', eventName);
+        }
+        console.log('[track]', eventName);
+      }
+      track('view_knowledge');
+    })();
+  </script>
+
+<script>
+(function(){
+    if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') return;
+    var bp = document.createElement('script');
+    bp.src = location.protocol === 'https:' ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+  <script src="/assets/kevin-ui-v1.js?v=20261009-thorough-final" defer></script>
+<footer data-kevin-icp aria-label="网站备案信息" style="padding:24px 12px;text-align:center;font-size:12px;line-height:1.6;color:#6b7280;background:transparent">
+  <span style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px">
+    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:26px;color:inherit;text-decoration:none">鄂ICP备2026039968号-1</a>
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=42011102006455" target="_blank" rel="noopener noreferrer" data-track="click_public_security_filing" style="display:inline-flex;align-items:center;gap:4px;min-height:26px;color:inherit;text-decoration:none"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAFEElEQVR42kXU629b9R3H8fe5+Pj4+HacOHa8uCtNI9oU2oa13QbL0tFNXKY2g0zqKEJoTB1DmxgCjQdM7AFiD9iTSkOIbeqYtKI+2MYkRFt1lJBpQCvKRe3WVr2ENE1jp2lix7GPfS4+Pue3BxXJP/DS5yt9Pl9JCAF2C4AQGVmEOFqJWKQXaPbaV8+M/vv4pz/1nI72nfu2HuzasuVt6C95niDqOCBLgAwAqSSSEALfroMkkAOBomWAD+6dPH7iqZP/ujIqnEl91jNQMiZrszpOxegMf7f/yOCesb+I4LajwmsiJAkQKOm+W3RDsmiKZYSRAc3VJ/7wxsTjT47vbboz+u0Jhf36TZ7SZ7nn7jxdd+fV/U++9/CJV185IsWUqK1JuHyGr34OK1kVGVlJocrVonfm5Xd/f7jOvv39/LjYIP2nC1QvB1SnAuq7/8gPgnM8c+gRDv7TR1z+8z8ShqvLegI9Hl0FE55FPFofvH70xamR3edGzIE8v8ieY/pwA3mNSWC1wQuRekxOPX2SvcYZ8t+6i+/tPrZn8aM3rtozZzdcfP+dVTDqOajuu4kjl5PaJ3PbeXC7RfNsA/l6HcmMEl0KcE/eJLKuG73pUPnracbubzPxxSbe/DAoJKRWDHloFawvVorhx+8fCKUYqDYpa47GPEQCH5ZcpPUG2jYT+UYLjZDKtENflweSRK0pE+1RD2wcHlu3As5ceu+H7XJ5OJPQoBNFFApkh3tpIrDu6SbYVyTx0hDGM1uQewxy27K07DYIQSFnQOnsvUuzp36yAhqJzGDD8unvcUHv5sRpA3VXiuqetQRlC+l/LexjN/Gnl9GeH6br2a28dagGxBnarNKaWsAtTRVXwHBpbk+jpnJn0aL4dY3X34zzn1dKDO0okDaS2BdqhAse7rkayfIy51++wquHouSHTDb31amUPfylS8MroKy2TKshk1q8wt77Azp+Av/oPN1/+xy5L0K7RyHMqWR3FShMXKVy8DyttsLYaIRkdRKroaIm5QiAChAzvjoub7g2GuT7eOIbFgf6eni9PIg/e4Hu6iRyOoZzoYY1kKOcKfB3OQYpkye+uUAnWcS8Q8LIrDm2AoKcEw3B3JTFnYPT/PZX23jx+RGOWpuh4TNqV+kyZd46lqSJAWR47uc6OwYmmZsEXJuwY21dAVWzvb2TzOPP+5QWLvLL4Shj43EmjttckrfwwKYvKMQqdI700a45rNlo8OsHrnHz1DVsX0fPaqimthG49Ry85iePVk//7rAz38ar+FCaYf1DQ0TzOgRVgqpKc8Ehva4L1nZDqcL025dxklkS/QlivQbpgX07tcz3P5CEEAB0Wv99bOn8gdcC10lXPpxHjQt6dw4SLDn4dgvZ0NG74khahOqpKTqBSnr7enyXanrDyCNxMzUuaffdOtl3ZnAWnbI7H3P0fJjO7xogqLcIrAYYGopmosWgvdykVaqhr+1GL+bxlm3csiVia5ooqRSxL2sj2ldR+OiF3NeSvZFMAa8eEgYqYaDgLlogQtrVOs3JRSQlApKEe6NCJCaT/3YhqxnWz0KH1S1rSopo946HLDv9ml0qtTRlmVSuQ0Sy0SQfxVtGOA7JjVlSAylkrYma1pAyvdc76l2/UY3bf6Roi6zWRvhIEdVuVONPOxfzLzn1xQc9f3bnVzb1bAotKaGbcpcaS2Ld4Hqsx7TV3MjZpamFcWemdqJvZy6UFAURuAD8Hy4iNxOfElCpAAAAAElFTkSuQmCC" width="24" height="24" alt="" aria-hidden="true" style="display:block;width:24px;height:24px;flex:0 0 auto" />鄂公网安备42011102006455号</a>
+  </span>
+</footer>
+</body>
+
+</html>

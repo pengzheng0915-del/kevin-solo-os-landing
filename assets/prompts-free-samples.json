@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-14T00:00:00.000Z",
+  "total": 12,
+  "items": [
+    {
+      "id": "kevin-original:structured-product-poster-json",
+      "slug": "kevin-structured-product-poster-json",
+      "title": "结构化产品海报 JSON",
+      "summary": "用可校验的 JSON 字段控制产品、配色、构图、文字与输出比例。",
+      "mediaType": "image",
+      "model": "GPT Image 2",
+      "promptOriginal": "{\n  \"task\": \"Create a clean editorial product poster\",\n  \"subject\": \"[PRODUCT_NAME]\",\n  \"background\": \"warm ivory paper texture\",\n  \"accentColor\": \"[ACCENT_COLOR]\",\n  \"composition\": {\n    \"placement\": \"product centered slightly below the optical center\",\n    \"negativeSpace\": \"reserve the upper-left area for a short headline\",\n    \"aspectRatio\": \"4:5\"\n  },\n  \"text\": {\n    \"headline\": \"[HEADLINE]\",\n    \"language\": \"Chinese\",\n    \"mustBeLegible\": true\n  },\n  \"constraints\": [\"one product only\", \"no watermark\", \"no invented logo\"]\n}",
+      "promptZh": "{\n  \"任务\": \"生成一张干净的编辑式产品海报\",\n  \"主体\": \"[产品名称]\",\n  \"背景\": \"暖米白纸张纹理\",\n  \"强调色\": \"[强调色]\",\n  \"构图\": {\n    \"位置\": \"产品居中并略低于视觉中心\",\n    \"留白\": \"左上方为短标题保留空间\",\n    \"画面比例\": \"4:5\"\n  },\n  \"文字\": {\n    \"标题\": \"[标题]\",\n    \"语言\": \"中文\",\n    \"必须清晰可读\": true\n  },\n  \"约束\": [\"只出现一个产品\", \"不要水印\", \"不要编造品牌标志\"]\n}",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/structured-product-poster-json.webp",
+          "alt": "暖米白背景上的橄榄绿手冲壶产品海报",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-structured-product-poster-json",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "产品营销",
+        "海报"
+      ],
+      "tags": [
+        "JSON",
+        "产品海报",
+        "文字排版"
+      ],
+      "packId": "kevin-original-starter-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "structured-json",
+      "recommendedModel": "GPT Image 2",
+      "inputRequirements": [
+        "准备产品名称、强调色和短标题"
+      ],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [
+        {
+          "key": "PRODUCT_NAME",
+          "label": "产品名称",
+          "defaultValue": null,
+          "example": "手冲咖啡壶"
+        },
+        {
+          "key": "ACCENT_COLOR",
+          "label": "强调色",
+          "defaultValue": null,
+          "example": "橄榄绿"
+        },
+        {
+          "key": "HEADLINE",
+          "label": "标题",
+          "defaultValue": null,
+          "example": "把早晨慢下来"
+        }
+      ],
+      "optionalEdits": [
+        "背景材质",
+        "产品位置",
+        "画面比例"
+      ],
+      "preserveInstructions": [
+        "保留 JSON 的引号、括号、逗号和层级",
+        "保留文字清晰可读约束"
+      ],
+      "aspectRatio": "4:5",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要水印",
+        "不要编造品牌标志"
+      ],
+      "usageSteps": [
+        "替换三个方括号变量",
+        "用 JSON 校验器检查格式",
+        "复制完整 JSON 到 GPT Image 2"
+      ],
+      "usageTips": [
+        "只修改字段值，不要删除结构符号"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:seedream-editorial-still-life",
+      "slug": "kevin-seedream-editorial-still-life",
+      "title": "暖米白编辑式静物图",
+      "summary": "以真实纸张、单一主体和克制阴影生成适合文章配图的静物画面。",
+      "mediaType": "image",
+      "model": "Seedream 4.5",
+      "promptOriginal": "Create an editorial still-life photograph of a single well-used notebook and a black fountain pen on a warm ivory paper surface. Use soft window light from the upper left, a restrained olive-green accent, visible paper fibers, natural imperfections, and a quiet working atmosphere. Keep generous negative space on the right for article layout. 4:3 landscape composition. No logo, no watermark, no extra objects, no readable writing.",
+      "promptZh": "生成一张编辑式静物照片：暖米白纸面上只放一本有使用痕迹的笔记本和一支黑色钢笔。左上方柔和窗光，使用克制的橄榄绿点缀，保留纸张纤维和自然瑕疵，营造安静工作的氛围。右侧保留充足留白，便于文章排版。4:3 横向构图。不要品牌标志，不要水印，不要额外物品，不要可读文字。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/seedream-editorial-still-life.webp",
+          "alt": "暖米白纸面上的旧笔记本与黑色钢笔静物图",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-seedream-editorial-still-life",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "编辑配图",
+        "静物"
+      ],
+      "tags": [
+        "暖米白",
+        "静物",
+        "留白"
+      ],
+      "packId": "kevin-original-starter-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "direct",
+      "recommendedModel": "Seedream 4.5",
+      "inputRequirements": [],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "点缀色",
+        "主体物品",
+        "留白方向"
+      ],
+      "preserveInstructions": [
+        "保持单一主体组合",
+        "保留自然材质与克制光线"
+      ],
+      "aspectRatio": "4:3",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要品牌标志",
+        "不要水印",
+        "不要可读文字"
+      ],
+      "usageSteps": [
+        "按需要调整主体物品",
+        "复制到 Seedream 4.5",
+        "检查留白是否适合排版"
+      ],
+      "usageTips": [
+        "如果加入文字，建议后期排版而不是让模型生成"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:product-reveal-triptych",
+      "slug": "kevin-product-reveal-triptych",
+      "title": "产品揭晓三联分镜图",
+      "summary": "用三个连续画面表现产品从材质特写到完整亮相，适合广告提案和视觉分镜展示。",
+      "mediaType": "image",
+      "model": "GPT Image 2",
+      "promptOriginal": "Create one polished 16:9 landscape product-reveal storyboard divided into three equal vertical panels with clean narrow gutters. Panel 1: macro close-up of soft side light crossing the surface of a matte black unbranded reusable bottle. Panel 2: three-quarter medium view of the same bottle, centered, showing its full geometry, cap, and label area. Panel 3: hero product view on a warm ivory background with a restrained olive-green reflection and a clean contact shadow. Keep the bottle shape, material, cap, proportions, and label placement identical across all three panels. Premium editorial product photography, realistic materials, coherent lighting, no timeline marks. No extra products, invented logo, readable brand text, watermark, people, hands, duplicated bottle parts, or geometry changes.",
+      "promptZh": "生成一张 16:9 横向产品揭晓三联分镜图，画面分成三个等宽竖向区域，中间使用干净的窄间隔。第一格：哑光黑色无品牌水瓶的材质微距特写，柔和侧光掠过瓶身。第二格：同一只水瓶的四分之三中景，主体居中，完整表现瓶身几何、瓶盖和标签区域。第三格：暖米白背景中的英雄产品图，带克制的橄榄绿反光和干净接触阴影。三格中的瓶身形状、材质、瓶盖、比例和标签位置必须完全一致。整体采用高级编辑式产品摄影，材质真实、光线连贯，不要时间轴标记。不要额外产品、虚构品牌标志、可读品牌文字、水印、人物、手、重复零件或几何变形。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/seedance-product-reveal-storyboard.webp",
+          "alt": "黑色水瓶从材质特写到完整亮相的三联分镜图",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-product-reveal-triptych",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "产品营销",
+        "分镜图"
+      ],
+      "tags": [
+        "三联画",
+        "产品一致性",
+        "广告提案"
+      ],
+      "packId": "kevin-motion-web-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "direct",
+      "recommendedModel": "GPT Image 2",
+      "inputRequirements": [
+        "确认产品外观、材质和标签位置"
+      ],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "产品类型",
+        "背景色",
+        "反光颜色",
+        "三格景别"
+      ],
+      "preserveInstructions": [
+        "保留三格从特写到完整亮相的顺序",
+        "保持产品几何、材质与标签位置一致"
+      ],
+      "aspectRatio": "16:9",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要额外产品",
+        "不要编造品牌标志或可读品牌文字",
+        "不要水印、人物或手",
+        "不要重复零件或几何变形"
+      ],
+      "usageSteps": [
+        "按实际产品调整主体描述",
+        "复制到 GPT Image 2",
+        "逐格检查产品外观和标签位置是否一致"
+      ],
+      "usageTips": [
+        "如果三格产品外观不一致，减少装饰描述并强化同一产品身份约束"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:service-process-infographic",
+      "slug": "kevin-service-process-infographic",
+      "title": "服务流程信息长图",
+      "summary": "把目标读者、问题信号、三步方法、证据边界和行动入口排成一张中文信息长图。",
+      "mediaType": "image",
+      "model": "GPT Image 2",
+      "promptOriginal": "Create one polished long-form Chinese service infographic for [SERVICE_NAME], aimed at [TARGET_READER]. Use a warm ivory paper-textured background, highly legible dark Chinese typography, strong black borders, restrained yellow highlights, and one mint-green information card. Arrange the image from top to bottom: a concise headline, three problem signals [PROBLEM_SIGNALS], a three-step method [THREE_STEPS], a clearly separated evidence-boundary block, two short FAQ rows, and one final primary action [PRIMARY_ACTION]. Keep a clear reading order, generous spacing, and one consistent editorial neo-brutalist visual system. This is a single static image, not webpage code or a user interface. Do not invent customer logos, testimonials, business results, prices, external links, QR codes, or contact details. No watermark and no unreadable pseudo-text.",
+      "promptZh": "为[服务名称]生成一张面向[目标读者]的中文服务流程信息长图。使用暖米白纸张纹理背景、清晰易读的深色中文字体、粗黑边框、克制的黄色强调和一张薄荷绿信息卡。整张图片从上到下依次排布：简洁主标题、三个问题信号[问题信号]、三步方法[三步方法]、独立且醒目的证据边界模块、两条简短常见问题，以及唯一主要行动[主要动作]。保持清楚的阅读顺序、充足间距和统一的编辑式新粗野主义视觉系统。这是一张静态图片，不是网页代码或用户界面。不要编造客户标志、评价、业务结果、价格、外部链接、二维码或联系方式。不要水印，也不要不可读的伪文字。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/gemini-service-landing-page.png",
+          "alt": "包含问题、三步方法、证据边界和行动入口的中文服务信息长图",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-service-process-infographic",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "信息长图",
+        "服务表达"
+      ],
+      "tags": [
+        "中文排版",
+        "流程图",
+        "证据边界"
+      ],
+      "packId": "kevin-motion-web-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "variable",
+      "recommendedModel": "GPT Image 2",
+      "inputRequirements": [
+        "准备服务名称、目标读者、三个问题信号、三步方法和主要动作"
+      ],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [
+        {
+          "key": "SERVICE_NAME",
+          "label": "服务名称",
+          "defaultValue": null,
+          "example": "职业经验梳理"
+        },
+        {
+          "key": "TARGET_READER",
+          "label": "目标读者",
+          "defaultValue": null,
+          "example": "正在评估服务的专业人士"
+        },
+        {
+          "key": "PROBLEM_SIGNALS",
+          "label": "问题信号",
+          "defaultValue": null,
+          "example": "说不清、交不出、卖不稳"
+        },
+        {
+          "key": "THREE_STEPS",
+          "label": "三步方法",
+          "defaultValue": null,
+          "example": "拆问题、做结构、再验证"
+        },
+        {
+          "key": "PRIMARY_ACTION",
+          "label": "主要动作",
+          "defaultValue": null,
+          "example": "预约一次沟通"
+        }
+      ],
+      "optionalEdits": [
+        "主标题",
+        "模块顺序",
+        "强调色",
+        "画面比例"
+      ],
+      "preserveInstructions": [
+        "保留单张长图与唯一主要动作",
+        "保留独立的证据边界模块",
+        "保证中文文字清晰可读"
+      ],
+      "aspectRatio": "3:5",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要编造客户标志、评价、结果、价格或外部链接",
+        "不要二维码、联系方式、水印或伪文字",
+        "不要输出网页代码或用户界面"
+      ],
+      "usageSteps": [
+        "替换五项方括号信息",
+        "复制到 GPT Image 2",
+        "逐字检查中文并确认只有一个主要行动"
+      ],
+      "usageTips": [
+        "中文较多时缩短每个模块的文字，生成后必须人工逐字复核"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:nano-reference-object-scene",
+      "slug": "kevin-nano-reference-object-scene",
+      "title": "参考物件场景重构",
+      "summary": "上传一张无品牌日常物件照片，保留可辨识外形与材质，把它重构为编辑式桌面静物。",
+      "mediaType": "image",
+      "model": "Nano Banana Pro",
+      "promptOriginal": "Use the uploaded photo of one unbranded ceramic cup as the sole object-identity reference. Recreate that same cup in a quiet editorial tabletop scene: preserve its silhouette, handle proportions, glaze color, surface texture, and any small handmade irregularities visible in the reference. Place it on a warm ivory paper surface beside one folded neutral linen napkin, with soft window light from the upper left and a restrained olive-green shadow card outside the frame creating a subtle reflected tint. Use a 4:5 vertical composition, eye-level close shot, realistic contact shadow, and generous negative space above the cup. The reference controls only the cup identity; do not copy the original background or camera angle. Do not add people, hands, logos, labels, readable text, watermark, extra cups, or invented decoration. Do not change the cup geometry or glaze pattern.",
+      "promptZh": "把上传的一张无品牌陶瓷杯照片作为唯一的物件身份参考。在安静的编辑式桌面场景中重现同一只杯子：保留参考图中可见的轮廓、杯把比例、釉色、表面质感和细小手作不规则。将杯子放在暖米白纸面上，旁边只放一块折叠的中性色亚麻布；左上方柔和窗光，画面外用克制的橄榄绿色卡纸形成轻微反光。使用 4:5 竖向构图、平视近景、真实接触阴影，并在杯子上方保留充足留白。参考图只控制杯子身份，不复制原背景或原拍摄角度。不要加入人物、手、标志、标签、可读文字、水印、额外杯子或凭空装饰；不要改变杯子几何形状和釉面纹样。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/nano-reference-object-scene.webp",
+          "alt": "保留杯形、釉色、杯把和缺口特征的窗光场景重构",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-nano-reference-object-scene",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/nano-reference-object-input.webp",
+          "alt": "无品牌手作陶瓷杯参考图",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-nano-reference-object-scene",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "categories": [
+        "参考图创作",
+        "静物"
+      ],
+      "tags": [
+        "物件一致性",
+        "陶瓷",
+        "编辑摄影"
+      ],
+      "packId": "kevin-reference-workflow-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "reference-image",
+      "recommendedModel": "Nano Banana Pro",
+      "inputRequirements": [
+        "上传一张光线清楚、主体完整、无品牌标志的陶瓷杯照片"
+      ],
+      "referenceImageCount": 1,
+      "referenceImageRequired": true,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "桌面材质",
+        "陪衬物",
+        "反光颜色",
+        "留白方向"
+      ],
+      "preserveInstructions": [
+        "保留杯子轮廓、杯把比例、釉色和手作细节",
+        "参考图只控制物件身份，不复制背景"
+      ],
+      "aspectRatio": "4:5",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要人物或手",
+        "不要品牌、标签、文字或水印",
+        "不要改变杯子几何和釉面纹样",
+        "不要增加第二只杯子"
+      ],
+      "usageSteps": [
+        "上传一张符合要求的杯子参考图",
+        "复制完整提示词到 Nano Banana Pro",
+        "检查杯子身份细节是否保持一致"
+      ],
+      "usageTips": [
+        "参考图背景越简单，模型越容易只提取物件身份"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:nano-style-reference-paper-collage",
+      "slug": "kevin-nano-style-reference-paper-collage",
+      "title": "纸张拼贴风格参考",
+      "summary": "从自有纸张肌理板提取配色、纤维和裁切节奏，生成不复制原构图的抽象山谷拼贴。",
+      "mediaType": "image",
+      "model": "Nano Banana Pro",
+      "promptOriginal": "Use the uploaded self-owned paper texture board only as a style reference. Extract its color relationships, visible fibers, torn-versus-cut edge rhythm, layering depth, and soft directional shadow behavior. Create a new abstract mountain-valley paper collage from simple geometric forms: a low ochre sun, two overlapping slate-blue ridges, one warm ivory foreground plane, and a narrow olive-green path leading inward. Compose an original 3:4 vertical scene with clear depth, handmade imperfections, subtle paper lift at the edges, and studio light from the upper left. Do not reproduce the reference board's exact composition, objects, text, marks, or identifiable motifs. Do not imitate a named artist. No people, animals, logos, readable text, watermark, photorealistic landscape, plastic texture, or glossy 3D rendering.",
+      "promptZh": "仅把上传的自有纸张肌理板作为风格参考。提取其中的配色关系、可见纤维、撕边与裁切边的节奏、叠层深度和柔和定向阴影规律。用简单几何纸片创作一幅全新的抽象山谷拼贴：低位赭黄色太阳、两层交叠的灰蓝山脊、一块暖米白前景，以及一条向画面深处延伸的窄橄榄绿路径。使用原创的 3:4 竖向构图，层次清楚，保留手工瑕疵、纸边轻微翘起和左上方棚拍光。不要复刻参考板的具体构图、物件、文字、标记或可识别图案，也不要模仿具名艺术家。不要人物、动物、标志、可读文字、水印、写实风景、塑料质感或高光 3D 渲染。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/nano-style-paper-collage-valley.webp",
+          "alt": "暖米白、灰蓝、橄榄绿与赭黄纸张拼贴山谷",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-nano-style-reference-paper-collage",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/nano-style-paper-collage-input.webp",
+          "alt": "自有纸张肌理与配色风格参考板",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-nano-style-reference-paper-collage",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "categories": [
+        "风格参考",
+        "纸艺"
+      ],
+      "tags": [
+        "纸张拼贴",
+        "抽象山谷",
+        "材质参考"
+      ],
+      "packId": "kevin-reference-workflow-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "reference-style",
+      "recommendedModel": "Nano Banana Pro",
+      "inputRequirements": [
+        "上传一张本人创作、已获授权或明确可商用的纸张肌理板"
+      ],
+      "referenceImageCount": 1,
+      "referenceImageRequired": true,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "抽象主题",
+        "几何元素",
+        "主配色",
+        "光线方向"
+      ],
+      "preserveInstructions": [
+        "只提取材质、配色和层叠规律",
+        "必须重新构图，不复制可识别元素"
+      ],
+      "aspectRatio": "3:4",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要复刻参考构图或标记",
+        "不要模仿具名艺术家",
+        "不要人物、动物、标志、文字或水印",
+        "不要塑料或高光 3D 质感"
+      ],
+      "usageSteps": [
+        "确认参考板的权利状态并上传",
+        "复制完整提示词到 Nano Banana Pro",
+        "对照检查只借用了风格规律而未复制具体元素"
+      ],
+      "usageTips": [
+        "优先使用自己拍摄的材质板，避免把第三方成品画面当作风格参考"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:gpt15-variable-workshop-poster",
+      "slug": "kevin-gpt15-variable-workshop-poster",
+      "title": "可替换工作坊海报",
+      "summary": "替换活动名、日期、地点和强调色，生成文字层级清楚的丝网印刷质感中文海报。",
+      "mediaType": "image",
+      "model": "GPT Image 1.5",
+      "promptOriginal": "Create a 4:5 vertical Chinese workshop poster for [EVENT_TITLE]. Display exactly these two supporting lines: [DATE] and [VENUE]. Build the layout on a bold modular grid: oversized black Chinese headline in the upper half, the date and venue aligned as a compact information block near the lower left, one abstract circular registration mark, and a narrow vertical rule connecting the two zones. Use a warm ivory paper background, deep charcoal ink, and [ACCENT_COLOR] as the only accent. Add subtle two-pass screen-print misregistration, fine paper grain, and slightly uneven ink edges while keeping every supplied character crisp and fully legible. No logo, no sponsor, no QR code, no ticket price, no extra wording, no photographic people, no watermark, and no invented event details.",
+      "promptZh": "为[活动名称]生成一张 4:5 竖版中文工作坊海报。只显示以下两行辅助信息：[日期]、[地点]。版式建立在有力度的模块化网格上：上半区使用超大黑色中文标题，左下方用紧凑信息块对齐日期和地点，加入一个抽象圆形套准标记，并用一条窄竖线连接上下两个区域。背景为暖米白纸张，主色为深炭黑，[强调色]是唯一强调色。加入克制的双色丝网印刷套色偏差、细微纸纹和略不均匀的墨边，同时确保所有提供的汉字清晰、完整、可读。不要标志、赞助方、二维码、票价、额外文字、摄影人物、水印或凭空补充的活动信息。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/gpt15-variable-workshop-poster.webp",
+          "alt": "纸上工作坊双色丝网印刷中文海报",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-gpt15-variable-workshop-poster",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "海报",
+        "活动视觉"
+      ],
+      "tags": [
+        "变量提示词",
+        "中文排版",
+        "丝网印刷"
+      ],
+      "packId": "kevin-original-starter-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "variable",
+      "recommendedModel": "GPT Image 1.5",
+      "inputRequirements": [
+        "准备活动名称、日期、地点和一个强调色"
+      ],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [
+        {
+          "key": "EVENT_TITLE",
+          "label": "活动名称",
+          "defaultValue": null,
+          "example": "把经验变成作品"
+        },
+        {
+          "key": "DATE",
+          "label": "日期",
+          "defaultValue": null,
+          "example": "2026.09.12 14:00"
+        },
+        {
+          "key": "VENUE",
+          "label": "地点",
+          "defaultValue": null,
+          "example": "城市公共阅读空间"
+        },
+        {
+          "key": "ACCENT_COLOR",
+          "label": "强调色",
+          "defaultValue": null,
+          "example": "钴蓝"
+        }
+      ],
+      "optionalEdits": [
+        "网格密度",
+        "套色偏移强度",
+        "标题位置"
+      ],
+      "preserveInstructions": [
+        "只显示用户提供的三组文字",
+        "保持标题、日期和地点清晰可读",
+        "只使用一个强调色"
+      ],
+      "aspectRatio": "4:5",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要标志、赞助方或二维码",
+        "不要票价或额外文字",
+        "不要人物或水印",
+        "不要编造活动信息"
+      ],
+      "usageSteps": [
+        "替换四个方括号变量",
+        "复核日期与地点的字符",
+        "复制到 GPT Image 1.5 并检查文字准确性"
+      ],
+      "usageTips": [
+        "活动名控制在十二个汉字以内，文字稳定性通常更好"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:gpt2-direct-cutaway-workbench",
+      "slug": "kevin-gpt2-direct-cutaway-workbench",
+      "title": "剖面式创作工作台",
+      "summary": "直接生成无人物、无品牌的等距剖面工作台，呈现创作材料、工具与收纳层次。",
+      "mediaType": "image",
+      "model": "GPT Image 2",
+      "promptOriginal": "An isometric cutaway illustration of a compact creative workbench built into a warm ivory wall niche. Show three clear layers: the top surface with stacked blank paper, a metal ruler, a wooden pencil, and two unlabeled color swatches; a shallow middle drawer pulled open to reveal clips, thread, and a small cutting mat; a lower shelf with neatly rolled kraft paper and one plain archival box. Use precise editorial rendering, tactile paper and wood textures, dark charcoal outlines, restrained mustard-yellow and olive-green accents, soft upper-left light, realistic contact shadows, and balanced negative space. 3:2 landscape composition, no people, no hands, no brands, no logos, no readable text, no computer screen, no watermark, no floating objects, and no impossible drawer geometry.",
+      "promptZh": "生成一幅紧凑创作工作台的等距剖面插画，工作台嵌入暖米白墙龛。画面清楚呈现三层：上层桌面放着叠好的空白纸、金属直尺、木铅笔和两张无标签色卡；中间浅抽屉拉开，能看到夹子、线材和一块小型切割垫；下层搁板整齐放着卷起的牛皮纸和一个无标记档案盒。使用精准的编辑式渲染，保留纸张与木材触感、深炭黑轮廓、克制的芥末黄和橄榄绿点缀、左上方柔光、真实接触阴影与平衡留白。3:2 横向构图。不要人物、手、品牌、标志、可读文字、电脑屏幕、水印、悬浮物件或不可能的抽屉结构。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/gpt2-direct-cutaway-workbench.webp",
+          "alt": "三层等距剖面创作工作台插画",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-gpt2-direct-cutaway-workbench",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "编辑插画",
+        "工作空间"
+      ],
+      "tags": [
+        "等距剖面",
+        "工具台",
+        "材质细节"
+      ],
+      "packId": "kevin-reference-workflow-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-09-14T00:00:00.000Z",
+      "usageType": "direct",
+      "recommendedModel": "GPT Image 2",
+      "inputRequirements": [],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "工具种类",
+        "搁板间距",
+        "点缀色",
+        "墙面材质"
+      ],
+      "preserveInstructions": [
+        "保持三层结构清楚",
+        "所有物件必须有合理支撑和接触阴影"
+      ],
+      "aspectRatio": "3:2",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要人物或手",
+        "不要品牌、标志、文字或水印",
+        "不要电脑屏幕",
+        "不要悬浮物件或错误结构"
+      ],
+      "usageSteps": [
+        "直接复制完整提示词到 GPT Image 2",
+        "检查三层结构和物件数量",
+        "需要时只调整下方“可选修改”列出的内容"
+      ],
+      "usageTips": [
+        "若画面过满，优先删减工具，不要减少结构层次"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:seedream-variable-botanical-package",
+      "slug": "kevin-seedream-variable-botanical-package",
+      "title": "植物主题包装概念",
+      "summary": "替换通用品类、植物元素与配色，生成无品牌圆筒纸罐包装和编辑式棚拍画面。",
+      "mediaType": "image",
+      "model": "Seedream 4.5",
+      "promptOriginal": "Create an original packaging concept and editorial studio photograph for an unbranded cylindrical paper canister containing [PRODUCT_CATEGORY]. Build the visual system around [BOTANICAL_ELEMENT] using simplified linocut-style botanical shapes, not a copied illustration. Apply [COLOR_PALETTE] across the canister, lid edge, and one flat background panel, with warm ivory as the neutral base. Show one open canister standing upright and its plain lid resting beside it; three-quarter camera angle, soft upper-left key light, subtle paper grain, crisp print edges, realistic contact shadows, and generous negative space on the upper right. 4:5 vertical composition. The package may display only the generic category words supplied in [PRODUCT_CATEGORY]; no brand name, logo, certification mark, claims, ingredients, barcode, price, person, hand, watermark, or additional products.",
+      "promptZh": "为无品牌圆筒纸罐生成一套原创包装概念和编辑式棚拍照片，纸罐内容品类为[产品品类]。视觉系统围绕[植物元素]展开，使用简化的版画式植物形状，不复制现成插画。[配色方案]用于纸罐、罐盖边缘和一块平面背景板，暖米白作为中性底色。画面中只出现一个直立的开口纸罐，素色罐盖放在旁边；四分之三视角，左上方柔和主光，细微纸张颗粒，印刷边缘清楚，接触阴影真实，右上方保留充足留白。4:5 竖向构图。包装只能显示[产品品类]中提供的通用品类文字；不要品牌名、标志、认证标记、功效宣称、配料、条码、价格、人物、手、水印或额外产品。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/seedream-variable-botanical-package.webp",
+          "alt": "草本茶粉植物主题无品牌圆筒纸罐包装概念",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-seedream-variable-botanical-package",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "包装设计",
+        "产品营销"
+      ],
+      "tags": [
+        "植物版画",
+        "纸罐",
+        "变量提示词"
+      ],
+      "packId": "kevin-original-starter-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-09-14T00:00:00.000Z",
+      "usageType": "variable",
+      "recommendedModel": "Seedream 4.5",
+      "inputRequirements": [
+        "准备一个通用品类名称、一种植物元素和一组不超过三色的配色"
+      ],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [
+        {
+          "key": "PRODUCT_CATEGORY",
+          "label": "产品品类",
+          "defaultValue": null,
+          "example": "草本茶"
+        },
+        {
+          "key": "BOTANICAL_ELEMENT",
+          "label": "植物元素",
+          "defaultValue": null,
+          "example": "迷迭香枝叶"
+        },
+        {
+          "key": "COLOR_PALETTE",
+          "label": "配色方案",
+          "defaultValue": null,
+          "example": "陶土红、深绿、暖米白"
+        }
+      ],
+      "optionalEdits": [
+        "纸罐比例",
+        "罐盖位置",
+        "留白方向",
+        "版画纹理粗细"
+      ],
+      "preserveInstructions": [
+        "保持无品牌和无功效宣称",
+        "只出现一个纸罐和一个罐盖",
+        "植物图形必须原创简化"
+      ],
+      "aspectRatio": "4:5",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要品牌、标志或认证",
+        "不要功效宣称、配料、条码或价格",
+        "不要人物、手、水印或额外产品",
+        "不要复制现成植物插画"
+      ],
+      "usageSteps": [
+        "替换三个方括号变量",
+        "确认产品品类不含品牌词",
+        "复制到 Seedream 4.5 并检查包装文字"
+      ],
+      "usageTips": [
+        "配色控制在三种以内，更容易保持包装系统统一"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:paper-craft-process-board",
+      "slug": "kevin-paper-craft-process-board",
+      "title": "纸艺组装四格过程图",
+      "summary": "用四格连续画面展示纸片从平铺到组装成抽象山谷，强调材质、配色和零件一致。",
+      "mediaType": "image",
+      "model": "GPT Image 2",
+      "promptOriginal": "Create one polished 16:9 landscape four-panel paper-craft process board with four equal vertical panels and clean narrow gutters. Panel 1: top-down view of flat warm-ivory, slate-blue, ochre, and olive-green paper shapes arranged in an orderly grid. Panel 2: oblique close view showing the same slate-blue pieces folded along visible scored lines into two layered ridges. Panel 3: side view showing the same ochre circle placed behind the ridges and the olive-green strip bent into a narrow path. Panel 4: three-quarter hero view of the completed abstract valley paper sculpture with clean contact shadows. Keep every paper piece, color, thickness, fiber, and cut edge consistent across all four panels. Fixed warm upper-left studio light, matte paper texture, clear step-by-step visual order. No people, hands, tools, text, logos, watermark, extra pieces, glossy plastic texture, duplicated parts, or shape changes between panels.",
+      "promptZh": "生成一张 16:9 横向纸艺组装四格过程图，画面分成四个等宽竖向区域，中间使用干净的窄间隔。第一格：顶视角，暖米白、灰蓝、赭黄和橄榄绿纸片整齐平铺成零件网格。第二格：斜俯近景，同一组灰蓝纸片沿可见压痕折叠成两层山脊。第三格：侧面视角，同一赭黄色圆片放在山脊后方，同一橄榄绿长条弯成窄路径。第四格：四分之三英雄视角，完整抽象山谷纸艺雕塑组装完成并形成干净接触阴影。四格中的每一块纸片、颜色、厚度、纤维和裁切边缘必须一致。使用左上方固定暖色棚灯、哑光纸张材质和清楚的步骤顺序。不要人物、手、工具、文字、标志、水印、额外纸片、高光塑料质感、重复零件或跨格变形。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/seedance20-paper-craft-storyboard.webp",
+          "alt": "纸片从平铺到抽象山谷成品的四格组装过程图",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-paper-craft-process-board",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "纸艺插画",
+        "过程图"
+      ],
+      "tags": [
+        "四格分镜",
+        "自组装",
+        "材质一致性"
+      ],
+      "packId": "kevin-motion-web-pack",
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-22T00:00:00.000Z",
+      "updatedAt": "2026-08-22T00:00:00.000Z",
+      "usageType": "direct",
+      "recommendedModel": "GPT Image 2",
+      "inputRequirements": [],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "纸片配色",
+        "最终雕塑主题",
+        "四格视角"
+      ],
+      "preserveInstructions": [
+        "保留从零件平铺到成品的四格顺序",
+        "所有纸片的颜色、厚度和边缘纹理跨格一致",
+        "每格只展示一个清楚的组装阶段"
+      ],
+      "aspectRatio": "16:9",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要人物、手或工具",
+        "不要文字、标志或水印",
+        "不要额外或重复纸片",
+        "不要跨格变形或塑料质感"
+      ],
+      "usageSteps": [
+        "直接复制完整提示词到 GPT Image 2",
+        "确认四格从左到右顺序清楚",
+        "逐格检查纸片数量、配色和材质是否一致"
+      ],
+      "usageTips": [
+        "如果四格零件不一致，减少纸片数量并为每种颜色指定唯一形状"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:gpt2-editorial-professional-portrait",
+      "slug": "kevin-gpt2-editorial-professional-portrait",
+      "title": "职业人物编辑式肖像",
+      "summary": "生成一位完全虚构的中年职业人物肖像，用真实肤质、克制配色和充足留白表达可靠感。",
+      "mediaType": "image",
+      "model": "GPT Image 2",
+      "promptOriginal": "Create a polished editorial photograph in a 4:3 landscape composition. Show a fictional East Asian mid-career professional, around 40 years old, from chest up, seated slightly left of center and looking calmly toward the camera. This is a completely fictional person and must not resemble any known public figure or real individual. Natural skin texture, subtle signs of experience, charcoal overshirt over an ivory shirt, quiet confident expression, soft window light from the upper left. Warm ivory paper-textured background with restrained olive-green and muted mustard geometric accents; generous clean negative space on the right for article layout. Premium editorial magazine photography, realistic lens depth, understated and trustworthy, not corporate stock-photo style. No text, no letters, no logo, no watermark, no badge, no extra people, no distorted hands or facial features.",
+      "promptZh": "生成一张 4:3 横向编辑式人物照片。一位完全虚构、约 40 岁的东亚职业人士以胸像入镜，坐在画面偏左位置，平静看向镜头。人物不得模仿任何公众人物或真实个人。保留自然肤质和适度岁月痕迹，穿深炭灰外套与暖米白衬衫，神情安静、自信；左上方柔和窗光。背景使用暖米白纸张纹理，加入克制的橄榄绿和低饱和芥末黄几何点缀，右侧保留干净留白，便于文章排版。整体是高级但克制的编辑杂志摄影，景深真实、值得信任，不要企业图库感。不要文字、字母、品牌标志、水印、徽章、额外人物，也不要畸形手部或五官。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/gpt2-editorial-professional-portrait.webp",
+          "alt": "暖米白背景中的虚构中年职业人物编辑式肖像",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-gpt2-editorial-professional-portrait",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "人物摄影",
+        "文章配图"
+      ],
+      "tags": [
+        "职业人物",
+        "编辑式肖像",
+        "留白"
+      ],
+      "packId": null,
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-29T00:00:00.000Z",
+      "updatedAt": "2026-08-29T00:00:00.000Z",
+      "usageType": "direct",
+      "recommendedModel": "GPT Image 2",
+      "inputRequirements": [],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "人物年龄与服装",
+        "留白方向",
+        "点缀色",
+        "画面比例"
+      ],
+      "preserveInstructions": [
+        "人物必须完全虚构且不模仿真实个人",
+        "保留自然肤质与克制的编辑摄影感",
+        "保留可用于排版的干净留白"
+      ],
+      "aspectRatio": "4:3",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要模仿公众人物或真实个人",
+        "不要文字、字母、标志、水印或徽章",
+        "不要额外人物或畸形五官和手部",
+        "不要企业图库感"
+      ],
+      "usageSteps": [
+        "直接复制完整提示词到 GPT Image 2",
+        "检查人物是否为虚构且五官自然",
+        "按排版位置需要调整留白方向"
+      ],
+      "usageTips": [
+        "如需表现某位真实人物，请改用自己有权使用的本人照片和参考图工作流"
+      ],
+      "needsReview": false
+    },
+    {
+      "id": "kevin-original:seedream-experience-method-board",
+      "slug": "kevin-seedream-experience-method-board",
+      "title": "经验方法素材板",
+      "summary": "用索引卡、笔记本和整理工具组成俯拍素材板，直观表达从零散经验到清晰方法的过程。",
+      "mediaType": "image",
+      "model": "Seedream 4.5",
+      "promptOriginal": "Create a polished top-down editorial flat-lay photograph in a 4:3 landscape composition. On a warm ivory paper-textured desk, arrange an open unbranded notebook, six small index cards, two binder clips, one graphite pencil, a translucent olive-green ruler, and a muted mustard folder into a clear visual workflow from scattered experience evidence on the left to an organized method on the right. The cards may contain only abstract short lines and simple non-linguistic marks—absolutely no readable text, numbers, letters, logos, or handwriting. Natural paper fibers, subtle use marks, soft window light from the upper left, restrained charcoal, olive, and mustard palette, clean editorial composition, believable materials, and a quiet professional working atmosphere. No people, no hands, no devices, no brand marks, no watermark, no user interface, and no clutter.",
+      "promptZh": "生成一张 4:3 横向、俯拍视角的编辑式静物照片。在暖米白纸张纹理桌面上摆放一本打开的无品牌笔记本、六张小索引卡、两个长尾夹、一支石墨铅笔、一把半透明橄榄绿直尺和一个低饱和芥末黄文件夹。构图要形成清楚的视觉流程：左侧是零散经验材料，右侧是整理完成的方法。卡片上只能出现抽象短线和非语言图形，绝对不要可读文字、数字、字母、品牌标志或手写字。保留自然纸张纤维、轻微使用痕迹、左上方柔和窗光，以及克制的深炭灰、橄榄绿和芥末黄配色；材质可信，画面干净，呈现安静、专业的工作氛围。不要人物、手、电子设备、品牌、水印、用户界面或杂乱物品。",
+      "previewAssets": [
+        {
+          "type": "image",
+          "url": "/assets/prompts-media/original/seedream-experience-method-board.webp",
+          "alt": "从零散索引卡到整理完成方法的俯拍经验素材板",
+          "sourceUrl": "https://kevinsolo.cn/prompts/item/kevin-seedream-experience-method-board",
+          "storage": "local",
+          "rightsStatus": "owned"
+        }
+      ],
+      "referenceAssets": [],
+      "categories": [
+        "知识整理",
+        "编辑配图"
+      ],
+      "tags": [
+        "素材板",
+        "俯拍静物",
+        "经验方法"
+      ],
+      "packId": null,
+      "relatedPromptIds": [],
+      "access": "free",
+      "sourceUrl": "https://kevinsolo.cn/prompts/",
+      "sourceType": "kevinsolo-original",
+      "sourceLicense": "KevinSolo original",
+      "sourceCommit": null,
+      "publishedAt": "2026-08-29T00:00:00.000Z",
+      "updatedAt": "2026-08-29T00:00:00.000Z",
+      "usageType": "direct",
+      "recommendedModel": "Seedream 4.5",
+      "inputRequirements": [],
+      "referenceImageCount": 0,
+      "referenceImageRequired": false,
+      "requiredEdits": [],
+      "optionalEdits": [
+        "卡片数量",
+        "流程方向",
+        "工具种类",
+        "点缀色"
+      ],
+      "preserveInstructions": [
+        "保持从零散材料到清晰方法的视觉流程",
+        "所有卡片只使用抽象线条和非语言图形",
+        "保留自然纸张材质与克制配色"
+      ],
+      "aspectRatio": "4:3",
+      "duration": null,
+      "shotCount": null,
+      "negativeConstraints": [
+        "不要可读文字、数字、字母或手写字",
+        "不要人物、手或电子设备",
+        "不要品牌标志、水印或用户界面",
+        "不要杂乱堆叠"
+      ],
+      "usageSteps": [
+        "直接复制完整提示词到 Seedream 4.5",
+        "检查所有卡片和直尺是否没有可读字符",
+        "确认画面左散右整的流程关系清楚"
+      ],
+      "usageTips": [
+        "如果模型生成了伪文字，可追加要求只保留空白卡片或抽象短线"
+      ],
+      "needsReview": false
+    }
+  ]
+}

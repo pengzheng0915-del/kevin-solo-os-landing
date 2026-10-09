@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /fuye/admin.html
+Disallow: /prompts/admin.html
+Disallow: /visual-audit/
+Disallow: /qa-screenshots/
+Disallow: /customer-flow-audit-20260707/
+Disallow: /customer-flow-audit-20260708/
+Disallow: /docs/
+Disallow: /diagnostic-model-v1/
+Disallow: /scripts/
+Disallow: /functions/
+
+Sitemap: https://kevinsolo.cn/sitemap.xml

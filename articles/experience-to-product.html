@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>工作十年，经验为什么还不能直接变成产品 - Kevin 彭峥</title>
+  <meta name="description" content="Kevin 的经验产品化判断方法：从真实案例、重复问题、可交付结果、适用边界和付费信号判断经验是否值得产品化。">
+  <link rel="canonical" href="https://kevinsolo.cn/articles/experience-to-product" />
+  <style>
+    :root {
+      --bg: #F3E8D4;
+      --card: #FFF7E8;
+      --text: #2A1F18;
+      --muted: #6F5E4F;
+      --soft: #8A7A6A;
+      --accent: #B8894D;
+      --accent-deep: #9A6F3A;
+      --olive: #263F35;
+      --line: #E2CDAF;
+      --radius: 22px;
+      --max: 780px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.85;
+      -webkit-font-smoothing: antialiased;
+    }
+    nav { padding: 20px 24px; max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .brand { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; }
+    .brand-mark { width: 34px; height: 34px; background: #2D2926; border-radius: 9px; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 16px; flex-shrink: 0; }
+    .back-link { color: var(--muted); font-size: 14px; text-decoration: none; }
+    .back-link:hover { color: var(--text); }
+
+    article { max-width: var(--max); margin: 0 auto; padding: 0 24px 60px; }
+    h1 { margin-bottom: 8px; }
+    .meta { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+    h2 { margin: 36px 0 14px; color: var(--olive); }
+    p { font-size: 17px; line-height: 2; margin-bottom: 18px; color: var(--text); }
+    .highlight { background: linear-gradient(180deg, transparent 60%, rgba(184,137,77,0.2) 60%); padding: 0 2px; }
+
+    blockquote { border-left: 3px solid var(--accent); padding: 12px 20px; margin: 24px 0; background: var(--card); border-radius: 0 12px 12px 0; font-size: 16px; color: var(--soft); font-style: italic; }
+
+    .cta { text-align: center; margin-top: 48px; padding: 36px 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); }
+    .cta h3 { font-size: 20px; font-weight: 800; margin-bottom: 12px; letter-spacing: 0; }
+    .cta p { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+    .cta a {
+      display: inline-block; background: var(--olive); color: #fff;
+      padding: 14px 36px; border-radius: 12px; font-size: 16px; font-weight: 800;
+      text-decoration: none;
+    }
+    .cta a:hover { background: #1E3128; }
+
+    footer { border-top: 1px solid var(--line); padding: 32px 24px; text-align: center; color: var(--muted); font-size: 13px; max-width: var(--max); margin: 0 auto; }
+  </style>
+  <link rel="stylesheet" href="/assets/kevin-premium.css?v=20261009-thorough-final">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232D2926'/><text x='50' y='72' text-anchor='middle' font-size='56' font-weight='bold' fill='white' font-family='system-ui'>K</text></svg>" />
+<!-- Kevin SEO/GEO metadata start -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="工作十年，经验为什么还不能直接变成产品 | Kevin 彭峥" />
+<meta property="og:description" content="Kevin 的经验产品化判断方法：从真实案例、重复问题、可交付结果、适用边界和付费信号判断经验是否值得产品化。" />
+<meta property="og:url" content="https://kevinsolo.cn/articles/experience-to-product" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="twitter:card" content="summary" />
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "工作十年，经验为什么还不能直接变成产品",
+  "description": "Kevin 的经验产品化判断方法：从真实案例、重复问题、可交付结果、适用边界和付费信号判断经验是否值得产品化。",
+  "url": "https://kevinsolo.cn/articles/experience-to-product",
+  "inLanguage": "zh-CN",
+  "author": {
+    "@type": "Person",
+    "name": "Kevin 彭峥",
+    "url": "https://kevinsolo.cn"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Kevin 彭峥｜职业经验资产顾问",
+    "url": "https://kevinsolo.cn"
+  },
+  "mainEntityOfPage": "https://kevinsolo.cn/articles/experience-to-product",
+  "about": [
+    "经验萃取",
+    "经验产品化",
+    "一人公司",
+    "35岁职业转型"
+  ]
+}</script>
+<!-- Kevin SEO/GEO metadata end -->
+<link rel="stylesheet" href="/assets/kevin-public-system.css?v=20261009-thorough-final">
+  <link rel="stylesheet" href="/assets/kevin-ui-v1.css?v=20261009-thorough-final" />
+<link rel="stylesheet" href="/assets/kevin-site-header.css?v=20260725">
+<script data-kevin-clarity="xtbdlvfb1x">
+(function(c,l,a,r,i){
+  var h=String(c.location&&c.location.hostname||"").toLowerCase();
+  if(h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]")return;
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  function boot(){
+    if(c.__kevinClarityBooted)return;c.__kevinClarityBooted=1;
+    var t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    (l.head||l.documentElement).appendChild(t);
+  }
+  if(l.readyState==="complete")setTimeout(boot,0);
+  else c.addEventListener("load",function(){setTimeout(boot,0)},{once:true});
+})(window,document,"clarity","script","xtbdlvfb1x");
+</script>
+<link rel="stylesheet" href="/assets/kevin-reading.css?v=20261009-thorough-final">
+</head>
+<body class="kv-article kv-editorial-v1" data-kevin-ui="v1" data-ui-template="article" data-reading-template="article" data-kv-nav-runtime="v1">
+<header class="kv-global-header" data-kv-nav="public">
+  <div class="kv-global-header__inner">
+    <a class="kv-global-header__brand" href="/" aria-label="Kevin 彭峥首页">
+      <span class="kv-global-header__mark" aria-hidden="true">K</span>
+      <span class="kv-global-header__identity">
+        <strong>Kevin 彭峥</strong>
+        <small>职业经验资产顾问</small>
+      </span>
+    </a>
+    <nav class="kv-global-header__desktop-nav" aria-label="主要导航">
+      <a href="/">首页</a>
+      <a href="/method/experience-asset-assessment/">判断方法</a>
+      <a href="/cases/">真实案例</a>
+      <a href="/articles/">经验洞察</a>
+      <div class="kv-global-header__products">
+        <button class="kv-global-header__product-trigger" type="button">产品</button>
+        <div class="kv-global-header__product-panel">
+          <a href="/knowledge/">一人公司海外源头库</a>
+          <a href="/prompts/">做图提示词库</a>
+        </div>
+      </div>
+      <a href="/about/">关于 Kevin</a>
+      <a href="/#products">服务与价格</a>
+    </nav>
+    <a class="kv-global-header__cta" href="/fuye/quiz/">
+      <span class="kv-global-header__cta-full">免费测一下</span>
+      <span class="kv-global-header__cta-short">免费测评</span>
+    </a>
+    <details class="kv-global-header__mobile-menu">
+      <summary aria-label="打开站点菜单"><span aria-hidden="true"></span></summary>
+      <nav class="kv-global-header__mobile-panel" aria-label="移动端主要导航">
+        <a href="/">首页</a>
+        <a href="/method/experience-asset-assessment/">判断方法</a>
+        <a href="/cases/">真实案例</a>
+        <a href="/articles/">经验洞察</a>
+        <a href="/knowledge/">一人公司海外源头库</a>
+        <a href="/prompts/">做图提示词库</a>
+        <a href="/about/">关于 Kevin</a>
+        <a href="/#products">服务与价格</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+  <article class="kv-editorial-reading">
+    <div class="kv-editorial-meta"><a href="/articles/">经验洞察</a><span>经验不是答案，判断才是。</span></div>
+<h1 data-kv-title="article">工作十年，经验为什么还不能直接变成产品</h1>
+    <p class="meta">Kevin 彭峥 · 经验资产顾问</p>
+
+    <section class="article-brief" aria-label="方法说明">
+      <div class="article-brief-head">
+        <span>本站方法说明</span>
+        <strong>经验丰富只是起点，产品还需要对象、结果和边界</strong>
+      </div>
+      <div class="article-brief-grid">
+        <p><b>内容性质</b><span>Kevin 彭峥的本站方法说明</span></p>
+        <p><b>适合谁</b><span>有多年专业积累，想做咨询、知识产品、工具或小服务的人</span></p>
+        <p><b>Kevin 判断</b><span>先证明经验能稳定解决某类问题，再选择产品形式</span></p>
+        <p><b>不要照搬</b><span>不把工作年限、知识整理或别人称赞直接视为可售卖产品</span></p>
+      </div>
+    </section>
+<p>工作十年会留下大量知识、关系和判断，但这些内容不会自动组成产品。产品要求别人能够清楚判断：它为谁解决什么问题，需要投入什么，最后会得到什么结果。</p>
+<h2>从经验到产品，中间至少隔着三道判断</h2>
+<p>第一道是事实。你是否真的处理过相似问题，并能拿出案例、过程材料或外部反馈。第二道是复用。你的关键判断能否在不同对象和情境中重复发挥作用，而不是只在原公司权限与资源下成立。第三道是需求。目标对象是否愿意投入时间、材料或费用来改变现状。</p>
+<p>缺少事实，产品容易变成观点合集；缺少复用，交付会完全依赖个人临场发挥；缺少需求，即使内容完整，也可能只适合自我总结。</p>
+<h2>先确定结果，再决定形式</h2>
+<p>咨询、课程、知识库、模板和工具只是不同载体。一个需要现场判断、信息不完整的问题，更适合从咨询或审阅开始；步骤稳定、输入清楚的问题，才可能逐步变成清单、模板或工具；需要长期练习与反馈的能力，则可能需要训练或陪伴。</p>
+<p>不要先问“我想做什么产品”，先问“对方要完成什么变化，我能负责哪一部分”。责任边界越清楚，交付形式越容易确定。</p>
+<h2>用一次最小交付检查产品假设</h2>
+<p>选择一个已有案例，把服务压缩成一次45到60分钟判断、一份审阅或一张清单。开始前写明输入材料、交付结果和不包含内容；完成后记录对方最有用的部分、没看懂的地方，以及是否愿意继续投入。</p>
+<p>只有当类似问题重复出现、交付结果相对稳定，并且有人愿意为解决它付出成本，经验才开始具备产品化条件。否则更合理的动作是继续积累证据，而不是扩大包装。</p>
+<section class="kevin-article-cta article-next-step" aria-label="读完下一步">
+    <div class="article-cta-kicker">读完以后，回到自己的经验</div>
+    <strong>别急着收藏，也别急着照做。先问一句：这篇文章能帮你做出哪个判断？</strong>
+    <p>方向拿不准，可以了解1999元方向服务；需要开发自己的产品／模型，可以了解9800元服务。也可以先用免费经验路径测评梳理思路，按自己的需要选择。</p>
+    <div class="article-next-grid" aria-label="下一步选择">
+      <a href="/fuye/quiz/"><b>免费经验路径测评</b><span>用8道题梳理思考框架和当前卡点，不替你下结论。</span></a>
+      <a href="/articles/"><b>继续阅读</b><span>回到阅读系统，按问题选择路径。</span></a>
+      <a href="/diagnosis-sample/"><b>看服务样例</b><span>了解1999元方向服务。</span></a>
+    </div>
+    <p class="article-cta-foot"><a class="article-cta-contact" href="https://work.weixin.qq.com/kfid/kfcdeee6e0a57a6c662" target="_blank" rel="noopener noreferrer">企业微信联系 Kevin</a><span class="article-cta-note">无需先完成测评或提供报告编号；按自己的需要了解1999元方向服务或9800元产品／模型开发。</span></p>
+  </section>
+
+</article>
+
+  <footer class="kv-editorial-footer">Copyright &copy; Kevin 彭峥 · 经验不萃取，就只是过去</footer>
+<script>
+(function() {
+  var sid = sessionStorage.getItem('_ksite_analytics_sid') || '';
+  if (!/^ks_[a-z0-9]{6,20}_[a-z0-9]{4,16}$/.test(sid)) {
+    sid = 'ks_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 9).padEnd(4, '0');
+    sessionStorage.setItem('_ksite_analytics_sid', sid);
+  }
+  var src = sessionStorage.getItem('_ksrc') || '';
+  if (!src) { var m = location.search.match(/[?&]src=([^&]+)/); src = m ? decodeURIComponent(m[1]) : ''; if (src) sessionStorage.setItem('_ksrc', src); }
+  window._ktrack = function(eventName, extraPage) {
+    if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') return;
+    try {
+      fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event_type: eventName, source: src, session_id: sid, page: extraPage || location.pathname, meta: {} }), keepalive: true });
+    } catch(e) {}
+  };
+  window._ktrack('pageview');
+})();
+</script>
+
+<script>
+(function(){
+    if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') return;
+    var bp = document.createElement('script');
+    bp.src = location.protocol === 'https:' ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+  <script src="/assets/kevin-ui-v1.js?v=20261009-thorough-final" defer></script>
+<footer data-kevin-icp aria-label="网站备案信息" style="padding:24px 12px;text-align:center;font-size:12px;line-height:1.6;color:#6b7280;background:transparent">
+  <span style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px">
+    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:26px;color:inherit;text-decoration:none">鄂ICP备2026039968号-1</a>
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=42011102006455" target="_blank" rel="noopener noreferrer" data-track="click_public_security_filing" style="display:inline-flex;align-items:center;gap:4px;min-height:26px;color:inherit;text-decoration:none"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAFEElEQVR42kXU629b9R3H8fe5+Pj4+HacOHa8uCtNI9oU2oa13QbL0tFNXKY2g0zqKEJoTB1DmxgCjQdM7AFiD9iTSkOIbeqYtKI+2MYkRFt1lJBpQCvKRe3WVr2ENE1jp2lix7GPfS4+Pue3BxXJP/DS5yt9Pl9JCAF2C4AQGVmEOFqJWKQXaPbaV8+M/vv4pz/1nI72nfu2HuzasuVt6C95niDqOCBLgAwAqSSSEALfroMkkAOBomWAD+6dPH7iqZP/ujIqnEl91jNQMiZrszpOxegMf7f/yOCesb+I4LajwmsiJAkQKOm+W3RDsmiKZYSRAc3VJ/7wxsTjT47vbboz+u0Jhf36TZ7SZ7nn7jxdd+fV/U++9/CJV185IsWUqK1JuHyGr34OK1kVGVlJocrVonfm5Xd/f7jOvv39/LjYIP2nC1QvB1SnAuq7/8gPgnM8c+gRDv7TR1z+8z8ShqvLegI9Hl0FE55FPFofvH70xamR3edGzIE8v8ieY/pwA3mNSWC1wQuRekxOPX2SvcYZ8t+6i+/tPrZn8aM3rtozZzdcfP+dVTDqOajuu4kjl5PaJ3PbeXC7RfNsA/l6HcmMEl0KcE/eJLKuG73pUPnracbubzPxxSbe/DAoJKRWDHloFawvVorhx+8fCKUYqDYpa47GPEQCH5ZcpPUG2jYT+UYLjZDKtENflweSRK0pE+1RD2wcHlu3As5ceu+H7XJ5OJPQoBNFFApkh3tpIrDu6SbYVyTx0hDGM1uQewxy27K07DYIQSFnQOnsvUuzp36yAhqJzGDD8unvcUHv5sRpA3VXiuqetQRlC+l/LexjN/Gnl9GeH6br2a28dagGxBnarNKaWsAtTRVXwHBpbk+jpnJn0aL4dY3X34zzn1dKDO0okDaS2BdqhAse7rkayfIy51++wquHouSHTDb31amUPfylS8MroKy2TKshk1q8wt77Azp+Av/oPN1/+xy5L0K7RyHMqWR3FShMXKVy8DyttsLYaIRkdRKroaIm5QiAChAzvjoub7g2GuT7eOIbFgf6eni9PIg/e4Hu6iRyOoZzoYY1kKOcKfB3OQYpkye+uUAnWcS8Q8LIrDm2AoKcEw3B3JTFnYPT/PZX23jx+RGOWpuh4TNqV+kyZd46lqSJAWR47uc6OwYmmZsEXJuwY21dAVWzvb2TzOPP+5QWLvLL4Shj43EmjttckrfwwKYvKMQqdI700a45rNlo8OsHrnHz1DVsX0fPaqimthG49Ry85iePVk//7rAz38ar+FCaYf1DQ0TzOgRVgqpKc8Ehva4L1nZDqcL025dxklkS/QlivQbpgX07tcz3P5CEEAB0Wv99bOn8gdcC10lXPpxHjQt6dw4SLDn4dgvZ0NG74khahOqpKTqBSnr7enyXanrDyCNxMzUuaffdOtl3ZnAWnbI7H3P0fJjO7xogqLcIrAYYGopmosWgvdykVaqhr+1GL+bxlm3csiVia5ooqRSxL2sj2ldR+OiF3NeSvZFMAa8eEgYqYaDgLlogQtrVOs3JRSQlApKEe6NCJCaT/3YhqxnWz0KH1S1rSopo946HLDv9ml0qtTRlmVSuQ0Sy0SQfxVtGOA7JjVlSAylkrYma1pAyvdc76l2/UY3bf6Roi6zWRvhIEdVuVONPOxfzLzn1xQc9f3bnVzb1bAotKaGbcpcaS2Ld4Hqsx7TV3MjZpamFcWemdqJvZy6UFAURuAD8Hy4iNxOfElCpAAAAAElFTkSuQmCC" width="24" height="24" alt="" aria-hidden="true" style="display:block;width:24px;height:24px;flex:0 0 auto" />鄂公网安备42011102006455号</a>
+  </span>
+</footer>
+
+</body>
+
+</html>

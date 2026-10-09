@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>经验路径管理后台 | Kevin 彭峥</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232D2926'/><text x='50' y='72' text-anchor='middle' font-size='56' font-weight='bold' fill='white' font-family='system-ui'>K</text></svg>" />
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --card: #fffaf2;
+      --text: #1e1a17;
+      --muted: #6f665d;
+      --line: #e4d8c9;
+      --primary: #1e1a17;
+      --accent: #b8874a;
+      --accent-dark: #875f32;
+      --green: #2d6a4f;
+      --red: #c0392b;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 24px;
+      line-height: 1.6;
+    }
+    h1 { font-size: 28px; letter-spacing: 0; margin-bottom: 4px; }
+    .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+    /* Login */
+    .login-wrap {
+      max-width: 400px; margin: 80px auto;
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 32px; text-align: center;
+    }
+    .login-wrap input {
+      width: 100%; padding: 14px; border: 1px solid var(--line);
+      border-radius: 10px; font-size: 16px; margin: 16px 0;
+      font-family: inherit;
+    }
+    .login-wrap button {
+      width: 100%; padding: 14px; background: var(--primary);
+      color: #fff; border: 0; border-radius: 10px;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 20px 24px; min-width: 130px; flex: 1;
+    }
+    .stat-card .num { font-size: 36px; font-weight: 900; letter-spacing: 0; }
+    .stat-card .label { color: var(--muted); font-size: 14px; margin-top: 2px; }
+    .stat-a .num { color: var(--accent-dark); }
+    .stat-b .num { color: var(--green); }
+    .stat-c .num { color: #6b4c9a; }
+    .stat-r .num { color: #2F6F73; }
+    .funnel-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      margin: -8px 0 22px;
+      box-shadow: 0 12px 30px rgba(53,40,25,.05);
+    }
+    .funnel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .funnel-title {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .funnel-note {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      max-width: 620px;
+    }
+    .funnel-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 10px;
+    }
+    .funnel-step {
+      border: 1px solid rgba(0,0,0,.05);
+      border-radius: 14px;
+      background: rgba(255,255,255,.54);
+      padding: 12px;
+    }
+    .funnel-step strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .funnel-step span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .funnel-rate {
+      margin-top: 9px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(85,98,79,.12);
+      overflow: hidden;
+    }
+    .funnel-rate i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green), var(--accent));
+    }
+    .ops-board {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin: -8px 0 22px;
+    }
+    .ops-card {
+      min-height: 128px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 250, 242, 0.82);
+      box-shadow: 0 14px 34px rgba(53,40,25,.055);
+    }
+    .ops-card button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+    .ops-num {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .ops-title {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .ops-note {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .search-insights {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr 1fr;
+      gap: 12px;
+      margin: -8px 0 22px;
+    }
+    .search-insight-card {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 242, 0.84);
+      box-shadow: 0 12px 30px rgba(53,40,25,.045);
+    }
+    .search-insight-card h2 { font-size: 16px; margin-bottom: 4px; }
+    .search-insight-card > p { color: var(--muted); font-size: 12px; margin-bottom: 14px; }
+    .search-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .search-kpi { padding: 12px; border-radius: 12px; background: rgba(85,98,79,.07); }
+    .search-kpi strong { display: block; font-size: 24px; line-height: 1.1; }
+    .search-kpi span { display: block; color: var(--muted); font-size: 11px; margin-top: 5px; }
+    .search-rank { display: grid; gap: 7px; }
+    .search-rank div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; font-size: 12px; }
+    .search-rank span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
+    .search-rank strong { color: var(--text); }
+
+    /* Search */
+    .search-bar {
+      display: flex; gap: 8px; margin-bottom: 16px; align-items: center;
+    }
+    .search-bar input {
+      flex: 1; padding: 10px 14px; border: 1px solid var(--line);
+      border-radius: 10px; font-size: 14px; font-family: inherit;
+      background: var(--card);
+    }
+    .search-bar input:focus { outline: none; border-color: var(--accent); }
+    .search-bar button {
+      padding: 10px 16px; background: var(--card); border: 1px solid var(--line);
+      border-radius: 10px; cursor: pointer; font-size: 13px; font-family: inherit;
+    }
+    .search-result-note {
+      display: none;
+      margin: -8px 0 18px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 252, 245, 0.86);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .search-result-note strong {
+      color: var(--green);
+      font-size: 16px;
+      margin: 0 2px;
+    }
+    body.admin-searching .stats,
+    body.admin-searching .funnel-card,
+    body.admin-searching .search-insights,
+    body.admin-searching .ops-board {
+      display: none;
+    }
+    body.admin-searching .refresh {
+      margin-top: 8px;
+    }
+    body.admin-searching .search-result-note {
+      display: block;
+    }
+
+    /* Table */
+    .tbl-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--card);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border: 0;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    th {
+      background: var(--primary); color: #fff; padding: 12px 10px;
+      text-align: left; font-weight: 700; white-space: nowrap;
+    }
+    td { padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tr:hover td { background: #fffbf3; }
+    tr:last-child td { border-bottom: 0; }
+
+    .tag {
+      display: inline-block; padding: 2px 10px; border-radius: 999px;
+      font-size: 12px; font-weight: 700;
+    }
+    .tag-A { background: #efe4d3; color: var(--accent-dark); }
+    .tag-B { background: #d4edda; color: var(--green); }
+    .tag-C { background: #e8dff5; color: #6b4c9a; }
+    .tag-R { background: #cce9ec; color: #2F6F73; }
+    .tag-paid { background: #d4edda; color: var(--green); }
+    .tag-unpaid { background: #fde8e8; color: var(--red); }
+    .tag-pos { background: #fff3cd; color: #856404; }
+    .tag-boot { background: #cce5ff; color: #004085; }
+    .tag-acq { background: #e8dff5; color: #6b4c9a; }
+    .tag-consult { background: #fde8e8; color: var(--red); }
+    .tag-extraction { background: #d4edda; color: var(--green); }
+    .purchases-select {
+      width: 100%;
+      max-width: 180px;
+      padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px;
+      font-size: 13px; font-family: inherit; background: var(--card);
+    }
+    .stat-pos .num { color: #856404; }
+    .stat-boot .num { color: #004085; }
+    .stat-acq .num { color: #6b4c9a; }
+    .tag-src { background: #f0f0f0; color: #555; }
+    .tag-tag { background: #e0f0ff; color: #1a6fb5; }
+    .signal-stack { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; max-width: 260px; }
+    .tag-signal { background: #fff3cd; color: #875f32; }
+    .tag-signal-hot { background: #fde8e8; color: var(--red); }
+    .tag-signal-done { background: #d4edda; color: var(--green); }
+    .tag-priority-high { background: #8b2635; color: #fff; }
+    .tag-priority-mid { background: #fff3cd; color: #875f32; }
+    .tag-priority-low { background: #e8edf3; color: #405060; }
+    .event-timeline {
+      margin: 14px 0 4px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.42);
+      overflow: hidden;
+    }
+    .event-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .event-row:last-child { border-bottom: 0; }
+    .event-time { color: var(--muted); }
+    .event-name { font-weight: 800; color: var(--text); }
+    .edit-notes { width: 100%; max-width: 180px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px; font-size: 13px; font-family: inherit; background:#fffdf8; }
+    .edit-notes:focus { outline: none; border-color: var(--accent); }
+
+    .btn-sm {
+      min-height: 34px;
+      padding: 7px 12px; border: 0; border-radius: 9px;
+      cursor: pointer; font-size: 12px; font-weight: 800; white-space: nowrap;
+    }
+    .btn-copy { background: var(--accent); color: #fff; }
+    .btn-view { background: var(--primary); color: #fff; }
+    .btn-paid { background: var(--green); color: #fff; }
+    .btn-unpaid { background: var(--muted); color: #fff; }
+    .btn-sm:hover { opacity: 0.85; }
+
+    .edit-wechat {
+      width: 132px; padding: 7px 9px; border: 1px solid var(--line);
+      border-radius: 9px; font-size: 13px; font-family: inherit; background:#fffdf8;
+    }
+    .edit-wechat:focus { outline: none; border-color: var(--accent); }
+
+    .lead-check { width: 42px; text-align: center; }
+    .lead-main-cell { min-width: 340px; max-width: 460px; }
+    .lead-title {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .lead-type {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text);
+    }
+    .lead-id {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .lead-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 9px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .lead-meta span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 8px;
+      border: 1px solid rgba(228,216,201,.82);
+      border-radius: 999px;
+      background: rgba(255,255,255,.58);
+    }
+    .lead-contact {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .lead-nickname {
+      max-width: 180px;
+      color: var(--muted);
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .lead-diagnostic {
+      margin-top: 10px;
+      padding: 12px;
+      border: 1px solid rgba(184,138,90,.22);
+      border-radius: 14px;
+      background: rgba(255,255,255,.58);
+      display: grid;
+      gap: 8px;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+    .lead-diagnostic-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .lead-diagnostic-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--text);
+    }
+    .lead-diagnostic-action {
+      font-size: 12px;
+      font-weight: 900;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 999px;
+      padding: 4px 9px;
+    }
+    .lead-diagnostic-grid {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 6px 10px;
+      font-size: 12px;
+      line-height: 1.55;
+      min-width: 0;
+    }
+    .lead-diagnostic-grid strong { color: var(--accent); white-space: nowrap; }
+    .lead-diagnostic-grid span {
+      color: var(--text);
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .deal-cell { min-width: 220px; }
+    .deal-pay {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .product-current {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .notes-cell { min-width: 170px; }
+    .action-cell { min-width: 142px; }
+    .action-stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      max-width: 132px;
+    }
+
+    @media (max-width: 900px) {
+      body { padding: 16px; }
+      table { min-width: 900px; }
+      .lead-main-cell { min-width: 300px; }
+      .ops-board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 24px;
+      transform: translateX(-50%);
+      background: rgba(31, 26, 23, .94);
+      color: #fff; padding: 10px 20px;
+      border-radius: 999px;
+      opacity: 0; transition: .2s ease; z-index: 200;
+      font-size: 14px;
+    }
+    .toast.show { opacity: 1; }
+
+    .refresh {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .refresh button {
+      padding: 8px 18px; background: var(--card); border: 1px solid var(--line);
+      border-radius: 8px; cursor: pointer; font-size: 14px; font-family: inherit;
+    }
+    .sort-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .sort-control select {
+      padding: 8px 30px 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--text);
+      font: inherit;
+    }
+    .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .loading { text-align: center; padding: 40px; color: var(--muted); }
+
+    /* Answers Modal */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30, 26, 23, 0.5); z-index: 300;
+      justify-content: center; align-items: flex-start; padding: 40px 16px;
+      overflow-y: auto;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 32px; max-width: 780px; width: 100%;
+      max-height: calc(100dvh - 80px); overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(30, 26, 23, 0.15);
+    }
+    .modal h2 { font-size: 22px; margin-bottom: 4px; letter-spacing: 0; }
+    .modal .sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+    .modal .q-block {
+      padding: 14px 0; border-bottom: 1px solid var(--line);
+    }
+    .modal .q-block:last-child { border-bottom: 0; }
+    .modal .q-num {
+      font-size: 12px; font-weight: 900; color: var(--accent);
+      margin-bottom: 4px; letter-spacing: 0.04em;
+    }
+    .modal .q-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .modal .q-answer {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      font-size: 13px; font-weight: 700;
+      background: #efe4d3; color: var(--accent-dark);
+    }
+    .modal .q-answer-detail { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .modal .q-na {
+      font-size: 13px; color: #c0392b; font-style: italic;
+    }
+    .modal-close {
+      float: right; background: none; border: 0; font-size: 24px;
+      cursor: pointer; color: var(--muted); line-height: 1;
+    }
+    .modal .result-badge {
+      display: inline-block; padding: 6px 14px; border-radius: 999px;
+      font-size: 14px; font-weight: 900; margin-bottom: 16px;
+    }
+    .btn-answers { background: #6b4c9a; color: #fff; }
+    .btn-v3 { background: #2f6f73; color: #fff; }
+    .v3-chain-status {
+      border-color: rgba(47, 111, 115, 0.28) !important;
+      background: rgba(47, 111, 115, 0.08) !important;
+      color: #24585b !important;
+      font-weight: 800 !important;
+    }
+    .v3-chain-status.v3-chain-none {
+      border-color: rgba(126, 117, 106, 0.22) !important;
+      background: rgba(126, 117, 106, 0.07) !important;
+      color: #71685e !important;
+    }
+    .v3-chain-status.v3-chain-working {
+      border-color: rgba(176, 138, 90, 0.28) !important;
+      background: rgba(176, 138, 90, 0.10) !important;
+      color: #7a5728 !important;
+    }
+    .v3-chain-status.v3-chain-error {
+      border-color: rgba(154, 40, 56, 0.28) !important;
+      background: rgba(154, 40, 56, 0.08) !important;
+      color: #8b2434 !important;
+    }
+    .v3-review-guidance {
+      margin: 14px 0 4px;
+      padding: 16px;
+      border: 1px solid rgba(47, 111, 115, 0.24);
+      border-radius: 14px;
+      background: rgba(47, 111, 115, 0.06);
+    }
+    .v3-review-guidance[data-level="high"] {
+      border-color: rgba(154, 40, 56, 0.28);
+      background: rgba(154, 40, 56, 0.06);
+    }
+    .v3-review-guidance[data-level="low"] {
+      border-color: rgba(45, 106, 79, 0.28);
+      background: rgba(45, 106, 79, 0.06);
+    }
+    .v3-review-recommendation {
+      display: inline-block;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #2f6f73;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .v3-review-guidance[data-level="high"] .v3-review-recommendation { background: #8b2635; }
+    .v3-review-guidance[data-level="low"] .v3-review-recommendation { background: #2d6a4f; }
+    .v3-review-checks {
+      display: grid;
+      gap: 10px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .v3-review-checks li {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.68);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .v3-review-checks strong { display: block; color: var(--text); }
+    .v3-review-details {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .v3-review-details > summary {
+      padding: 13px 15px;
+      cursor: pointer;
+      color: var(--accent-dark);
+      font-size: 14px;
+      font-weight: 800;
+      background: rgba(184, 135, 74, 0.06);
+    }
+    .v3-review-details-inner { padding: 0 15px 4px; }
+    .btn-del { background: var(--red); color: #fff; }
+    .btn-undo { background: var(--accent); color: #fff; }
+    tr.row-deleting { opacity: 0.5; background: #fde8e8; }
+    tr.row-restoring { opacity: 0.7; background: #e8f5e9; }
+    .trash-toggle {
+      display: inline-block; padding: 8px 14px;
+      background: rgba(192,57,43,0.08); color: var(--red);
+      border: 1px dashed var(--red); border-radius: 8px;
+      font-size: 13px; cursor: pointer; margin-left: 8px;
+    }
+    .trash-toggle:hover { background: rgba(192,57,43,0.15); }
+    .trash-toggle .count { font-weight: 900; }
+        .batch-bar {
+      display: none; align-items: center; gap: 10px;
+      padding: 10px 16px; margin-bottom: 14px;
+      background: rgba(192,57,43,0.06); border: 1px dashed var(--red);
+      border-radius: 10px; font-size: 13px;
+    }
+    .batch-bar.show { display: flex; }
+    .btn-batch-del {
+      padding: 7px 18px; background: var(--red); color: #fff;
+      border: 0; border-radius: 8px; cursor: pointer;
+      font-size: 13px; font-weight: 700; font-family: inherit;
+    }
+    .btn-batch-del:hover { opacity: 0.85; }
+.btn-restore { background: var(--green); color: #fff; margin-left: 4px; }
+    @media (max-width: 900px) {
+      .funnel-head { flex-direction: column; }
+      .funnel-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .search-insights { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      body { padding: 14px; }
+      .funnel-steps { grid-template-columns: 1fr; }
+      .ops-board { grid-template-columns: 1fr; }
+      .search-kpis { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/kevin-premium.css?v=20260710-admin-workbench">
+<script data-kevin-clarity="xtbdlvfb1x">
+(function(c,l,a,r,i,t,y){
+  var h=String(c.location&&c.location.hostname||"").toLowerCase();
+  if(h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]")return;
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script",document.currentScript.dataset.kevinClarity);
+</script>
+</head>
+<body class="kv-admin kv-fuye-admin">
+<div id="app">
+  <!-- Login state -->
+  <div id="loginView" style="display:none;">
+    <div class="login-wrap">
+      <h1>KEVIN</h1>
+      <p style="color:var(--muted);margin:8px 0;">管理后台</p>
+      <input type="password" id="pwdInput" placeholder="请输入管理密码" onkeydown="if(event.key==='Enter')login()" />
+      <button onclick="login()">进入后台</button>
+      <p id="loginErr" style="color:var(--red);font-size:13px;margin-top:8px;display:none;"></p>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashView" style="display:none;">
+    <h1>管理后台</h1>
+    <p class="sub">客户诊断数据 · 深度测评结果 · 加微信与职业经验资产一对一诊断信号</p>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="搜索测评编号 / 报告编号 / 昵称 / 微信 / session / 类型 / 付费 / 咨询" oninput="filterTable()" />
+      <button onclick="document.getElementById('searchInput').value='';filterTable();">清除</button>
+    </div>
+    <div class="search-result-note" id="searchResultNote"></div>
+    <div class="batch-bar" id="batchBar">
+      <span>已选择 <strong id="batchCount">0</strong> 条</span>
+      <button class="btn-batch-del" onclick="batchDelete()">批量删除</button>
+      <button style="padding:7px 14px;background:var(--card);border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;" onclick="clearSelection()">取消选择</button>
+    </div>
+
+    <div class="stats" id="statsRow"></div>
+    <div class="funnel-card" id="funnelCard"></div>
+    <div class="search-insights" id="searchInsights"></div>
+    <div class="ops-board" id="opsBoard"></div>
+
+    <div class="refresh">
+      <label class="sort-control" for="sortMode">
+        排序
+        <select id="sortMode" onchange="filterTable()">
+          <option value="latest" selected>最新报告优先</option>
+          <option value="priority">跟进优先</option>
+        </select>
+      </label>
+      <button onclick="loadData()">刷新数据</button>
+      <span style="margin-left:12px;font-size:13px;color:var(--muted);" id="updateTime"></span>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:42px;"><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" title="全选/取消全选"></th>
+            <th>线索工作台</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div class="empty" id="emptyMsg" style="display:none;">暂无数据</div>
+    <div class="loading" id="loadingMsg">加载中...</div>
+
+    <!-- Nav links -->
+    <div class="refresh" style="margin-top:8px;">
+      <span style="display:inline-block;padding:8px 18px;background:rgba(184,135,74,0.08);color:var(--accent);border:1px dashed var(--accent);border-radius:8px;font-size:14px;margin-right:8px;">编辑标签和备注后自动保存</span>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Answers Modal -->
+<div class="modal-overlay" id="answersModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAnswersModal()">&times;</button>
+    <div id="answersContent"></div>
+  </div>
+</div>
+
+<script src="/assets/assessment-v3/admin-review.js?v=20260724"></script>
+<script>
+  function isV3AdminEnabled(locationLike) {
+    var value = locationLike || {};
+    var hostname = String(value.hostname || '').toLowerCase().replace(/^\[|\]$/g, '');
+    var isLocal = hostname === '127.0.0.1' || hostname === 'localhost' || hostname === '::1';
+    var isApprovedProductionHost = hostname === 'kevinsolo.cn'
+      || hostname === 'www.kevinsolo.cn'
+      || hostname === 'kevin-solo-os.pages.dev'
+      || hostname.endsWith('.kevin-solo-os.pages.dev');
+    return isApprovedProductionHost
+      || (isLocal && /(?:^|[?&])localV3=1(?:&|$)/.test(String(value.search || '')));
+  }
+
+  var V3_ADMIN_ENABLED = isV3AdminEnabled(window.location);
+  var V3_REVIEW_UI = window.AssessmentV3AdminReview || null;
+  var v3ReviewSessionId = '';
+  var BASE = window.location.origin;
+  var API_BASE = ((window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.hostname === '::1' || window.location.hostname === '[::1]') && window.location.port === '8765')
+    ? 'http://127.0.0.1:8788'
+    : window.location.origin;
+  var allData = [];
+  var searchAnalytics = null;
+
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function jsArg(value) {
+    return JSON.stringify(String(value == null ? '' : value))
+      .replace(/</g, '\\u003c')
+      .replace(/>/g, '\\u003e')
+      .replace(/&/g, '\\u0026')
+      .replace(/"/g, '&quot;');
+  }
+
+  function showPageError(message) {
+    var safe = escapeHtml(message || '后台加载异常');
+    var loginView = document.getElementById('loginView');
+    var dashView = document.getElementById('dashView');
+    var loadingMsg = document.getElementById('loadingMsg');
+    var tableBody = document.getElementById('tableBody');
+    if (loginView) loginView.style.display = 'none';
+    if (dashView) dashView.style.display = 'block';
+    if (loadingMsg) loadingMsg.style.display = 'none';
+    if (tableBody) {
+      tableBody.innerHTML = '<tr><td colspan="2" style="text-align:center;color:var(--red);padding:32px;">后台加载失败：' + safe + '<br><button class="btn-sm btn-view" style="margin-top:12px;" onclick="localStorage.removeItem(&quot;kevin_admin_pwd&quot;);location.reload();">清除登录状态并重试</button></td></tr>';
+    }
+  }
+
+  window.addEventListener('error', function(e) {
+    showPageError(e.message || '页面脚本错误');
+  });
+  window.addEventListener('unhandledrejection', function(e) {
+    showPageError((e.reason && e.reason.message) || String(e.reason || '异步加载错误'));
+  });
+
+  function getPwd() { return localStorage.getItem('kevin_admin_pwd'); }
+  function setPwd(v) { localStorage.setItem('kevin_admin_pwd', v); }
+  function adminHeaders(extra) {
+    var headers = Object.assign({}, extra || {});
+    headers['x-admin-password'] = getPwd() || '';
+    return headers;
+  }
+  function adminFetch(url, options) {
+    var init = Object.assign({}, options || {});
+    init.headers = adminHeaders(init.headers);
+    return fetch(url, init);
+  }
+
+  function login() {
+    var pwd = document.getElementById('pwdInput').value.trim();
+    if (!pwd) return;
+    setPwd(pwd);
+    loadData();
+  }
+
+  async function loadData() {
+    var pwd = getPwd();
+    if (!pwd) {
+      showLogin();
+      return;
+    }
+
+    showDash();
+    document.getElementById('loadingMsg').style.display = 'block';
+    document.getElementById('tableBody').innerHTML = '';
+    document.getElementById('emptyMsg').style.display = 'none';
+
+    try {
+      var res = await adminFetch(API_BASE + '/api/getQuizzes?showDeleted=1');
+      if (res.status === 401) {
+        localStorage.removeItem('kevin_admin_pwd');
+        showLogin();
+        document.getElementById('loginErr').style.display = 'block';
+        document.getElementById('loginErr').textContent = '密码错误，请重新输入';
+        return;
+      }
+      var json = await res.json();
+      if (json.error) throw new Error(json.error);
+
+      allData = (json.data || []).slice();
+      renderStats();
+      filterTable();
+      await loadSearchAnalytics(pwd);
+      document.getElementById('updateTime').textContent = '更新于 ' + new Date().toLocaleTimeString('zh-CN');
+    } catch (e) {
+      document.getElementById('tableBody').innerHTML =
+        '<tr><td colspan="2" style="text-align:center;color:var(--red);">加载失败: ' + e.message + '</td></tr>';
+    }
+    document.getElementById('loadingMsg').style.display = 'none';
+  }
+
+  async function loadSearchAnalytics(pwd) {
+    try {
+      var res = await adminFetch(API_BASE + '/api/track?days=30');
+      if (!res.ok) throw new Error('搜索数据暂时不可用');
+      var json = await res.json();
+      if (json.error) throw new Error(json.error);
+      searchAnalytics = json;
+      renderSearchInsights(json);
+    } catch (e) {
+      var el = document.getElementById('searchInsights');
+      if (el) el.innerHTML = '<div class="search-insight-card" style="grid-column:1/-1;"><h2>搜索与来源</h2><p style="margin:0;">暂时无法读取搜索数据，不影响客户测评记录。</p></div>';
+    }
+  }
+
+  function sourceName(value) {
+    var labels = {
+      direct: '直接访问',
+      organic_baidu: '百度自然搜索',
+      organic_google: 'Google 自然搜索',
+      organic_bing: 'Bing 自然搜索',
+      organic_sogou: '搜狗自然搜索',
+      organic_360: '360 自然搜索',
+      referral_zhihu: '知乎',
+      referral_wechat: '微信',
+      referral_xiaohongshu: '小红书',
+      referral_toutiao: '头条'
+    };
+    return labels[value] || String(value || '其他来源').replace(/^referral_/, '外部：');
+  }
+
+  function funnelSessions(data, eventName) {
+    var rows = (data && data.funnel) || [];
+    for (var i = 0; i < rows.length; i++) {
+      if (rows[i].event_type === eventName) return Number(rows[i].sessions || rows[i].events || 0);
+    }
+    return 0;
+  }
+
+  function rankHtml(rows, labelKey, valueKey, formatter) {
+    rows = (rows || []).slice(0, 5);
+    if (!rows.length) return '<div class="search-rank"><span>暂无数据</span></div>';
+    var html = '<div class="search-rank">';
+    for (var i = 0; i < rows.length; i++) {
+      var label = formatter ? formatter(rows[i][labelKey]) : rows[i][labelKey];
+      html += '<div><span title="' + escapeHtml(label) + '">' + escapeHtml(label) + '</span><strong>' + Number(rows[i][valueKey] || 0) + '</strong></div>';
+    }
+    return html + '</div>';
+  }
+
+  function renderSearchInsights(data) {
+    var el = document.getElementById('searchInsights');
+    if (!el) return;
+    var sources = data.sources || [];
+    var organicSessions = 0;
+    for (var i = 0; i < sources.length; i++) {
+      if (String(sources[i].source || '').indexOf('organic_') === 0) organicSessions += Number(sources[i].sessions || 0);
+    }
+    var videoOpens = funnelSessions(data, 'open_video_app');
+    var quizStarts = funnelSessions(data, 'start_quiz') || funnelSessions(data, 'click_quiz');
+    var html = '<section class="search-insight-card"><h2>搜索与来源</h2><p>最近 30 天，按独立浏览会话统计</p><div class="search-kpis">';
+    html += '<div class="search-kpi"><strong>' + Number(data.unique_sessions || 0) + '</strong><span>全部会话</span></div>';
+    html += '<div class="search-kpi"><strong>' + organicSessions + '</strong><span>自然搜索会话</span></div>';
+    html += '<div class="search-kpi"><strong>' + videoOpens + '</strong><span>视频工具打开</span></div>';
+    html += '</div></section>';
+    html += '<section class="search-insight-card"><h2>访客从哪里来</h2><p>来源会话数，不等于成交数</p>' + rankHtml(sources, 'source', 'sessions', sourceName) + '</section>';
+    html += '<section class="search-insight-card"><h2>先落到哪一页</h2><p>入口页会话数 · 测评动作 ' + quizStarts + '</p>' + rankHtml(data.landings || [], 'landing_page', 'sessions') + '</section>';
+    el.innerHTML = html;
+  }
+
+  function renderStats() {
+    var total = allData.length;
+    var aCount = 0;
+    var bCount = 0;
+    var cCount = 0;
+    var rCount = 0;
+    var paidCount = 0;
+    var signalCount = 0;
+    var copyWechatCount = 0;
+    var click699Count = 0;
+    var highPriorityCount = 0;
+    for (var i = 0; i < allData.length; i++) {
+      var r = allData[i];
+      if (r.version === 'A') aCount++;
+      if (r.version === 'B') bCount++;
+      if (r.version === 'C') cCount++;
+      if (r.version === 'report') rCount++;
+      if (r.paid) paidCount++;
+      if (hasEvent(r, 'click_699_cta') || hasEvent(r, 'copy_wechat_report') || hasEvent(r, 'copy_wechat')) signalCount++;
+      if (hasEvent(r, 'copy_wechat_report') || hasEvent(r, 'copy_wechat')) copyWechatCount++;
+      if (hasEvent(r, 'click_699_cta')) click699Count++;
+      if (getLeadPriority(r).level === 'high') highPriorityCount++;
+    }
+
+    var knowledgeCount = 0, promptsCount = 0, consultCount = 0, extractionCount = 0;
+    for (var i = 0; i < allData.length; i++) {
+      var p = [];
+      try { p = JSON.parse(allData[i].purchases || '[]'); } catch(e) { p = []; }
+      if (p.indexOf('knowledge99') !== -1) knowledgeCount++;
+      if (p.indexOf('prompts99') !== -1) promptsCount++;
+      if (p.indexOf('consult699') !== -1) consultCount++;
+      if (p.indexOf('extraction') !== -1) extractionCount++;
+    }
+
+    var html = '';
+    var deepRate = total ? Math.round((rCount / total) * 100) : 0;
+    html += '<div class="stat-card"><div class="num">' + total + '</div><div class="label">总测评记录</div></div>';
+    html += '<div class="stat-card stat-r"><div class="num">' + rCount + '</div><div class="label">已完成深度报告</div></div>';
+    html += '<div class="stat-card"><div class="num">' + deepRate + '%</div><div class="label">深度完成率</div></div>';
+    html += '<div class="stat-card"><div class="num" style="color:var(--red);">' + highPriorityCount + '</div><div class="label">高优先跟进</div></div>';
+    html += '<div class="stat-card"><div class="num" style="color:var(--red);">' + signalCount + '</div><div class="label">咨询信号</div></div>';
+    html += '<div class="stat-card"><div class="num" style="color:var(--red);">' + copyWechatCount + '</div><div class="label">复制微信</div></div>';
+    html += '<div class="stat-card stat-boot"><div class="num">' + click699Count + '</div><div class="label">点击职业经验资产一对一诊断入口</div></div>';
+    html += '<div class="stat-card"><div class="num" style="color:var(--green);">' + paidCount + '</div><div class="label">已付费客户</div></div>';
+    html += '<div class="stat-card stat-pos"><div class="num">' + knowledgeCount + '</div><div class="label">一人公司海外源头库</div></div>';
+    html += '<div class="stat-card stat-acq"><div class="num">' + promptsCount + '</div><div class="label">做图提示词库</div></div>';
+    html += '<div class="stat-card stat-boot"><div class="num">' + consultCount + '</div><div class="label">已标记职业经验资产一对一诊断成交</div></div>';
+    html += '<div class="stat-card"><div class="num" style="color:var(--green);">' + extractionCount + '</div><div class="label">长期萃取</div></div>';
+
+    // Source distribution
+    var sourceStats = {};
+    for (var i = 0; i < allData.length; i++) {
+      var s = (allData[i].source || '').trim();
+      if (s) sourceStats[s] = (sourceStats[s] || 0) + 1;
+    }
+    var sourceKeys = Object.keys(sourceStats).sort(function(a,b){ return sourceStats[b] - sourceStats[a]; });
+    for (var k = 0; k < sourceKeys.length; k++) {
+      html += '<div class="stat-card"><div class="num" style="color:var(--accent-dark);">' + sourceStats[sourceKeys[k]] + '</div><div class="label">来源: ' + escapeHtml(sourceKeys[k]) + '</div></div>';
+    }
+
+    document.getElementById('statsRow').innerHTML = html;
+    renderFunnel({
+      total: total,
+      deep: rCount,
+      copyWechat: copyWechatCount,
+      click699: click699Count,
+      consultDeal: consultCount
+    });
+    renderOpsBoard();
+  }
+
+  function isTodayItem(item) {
+    if (!item || !item.created_at) return false;
+    var d = new Date(item.created_at);
+    var now = new Date();
+    return d.getFullYear() === now.getFullYear() &&
+      d.getMonth() === now.getMonth() &&
+      d.getDate() === now.getDate();
+  }
+
+  function parsePurchases(item) {
+    try { return JSON.parse((item && item.purchases) || '[]') || []; } catch(e) { return []; }
+  }
+
+  function hasDeepCompleted(item) {
+    var deepPart = getDeepPart(item);
+    return !!(item && (item.version === 'report' || Object.keys(deepPart).length > 0 || hasEvent(item, 'complete_deep_report')));
+  }
+
+  function matchesOpsKind(item, kind) {
+    if (kind === 'today') return isTodayItem(item);
+    if (kind === 'copy_unpaid') return !item.paid && (hasEvent(item, 'copy_wechat_report') || hasEvent(item, 'copy_wechat'));
+    if (kind === 'paid_delivery') return !!item.paid;
+    if (kind === 'high_699') return getLeadPriority(item).level === 'high' && (hasEvent(item, 'click_699_cta') || getStoredDiagnostic(item).recommend699 || getCommercialSignal(item).score >= 35 || parsePurchases(item).indexOf('consult699') !== -1);
+    if (kind === 'deep_unfinished') return hasEvent(item, 'start_deep_report') && !hasDeepCompleted(item);
+    return false;
+  }
+
+  function renderOpsBoard() {
+    var el = document.getElementById('opsBoard');
+    if (!el) return;
+    var cards = [
+      { kind: 'today', title: '今日新增报告', note: '当天新增的测评和报告，先确认是否有高意向。' },
+      { kind: 'copy_unpaid', title: '复制微信未付费', note: '已经有私聊动作，但还没有标记付款。' },
+      { kind: 'paid_delivery', title: '已付费待交付', note: '需要优先核对付款、报告编号和报告链接。' },
+      { kind: 'high_699', title: '职业经验资产一对一诊断高优先', note: '有咨询、服务样例或付费信号，适合人工判断。' },
+      { kind: 'deep_unfinished', title: '深度报告未完成', note: '提醒先补完免费测评摘要，再判断个人经验完整路径报告或职业经验资产一对一诊断。' }
+    ];
+    var html = '';
+    for (var i = 0; i < cards.length; i++) {
+      var count = allData.filter(function(item) { return matchesOpsKind(item, cards[i].kind); }).length;
+      html += '<div class="ops-card"><button onclick="applyOpsFilter(' + jsArg(cards[i].title) + ')">';
+      html += '<span class="ops-num">' + count + '</span>';
+      html += '<span class="ops-title">' + escapeHtml(cards[i].title) + '</span>';
+      html += '<span class="ops-note">' + escapeHtml(cards[i].note) + '</span>';
+      html += '</button></div>';
+    }
+    el.innerHTML = html;
+  }
+
+  function applyOpsFilter(label) {
+    var input = document.getElementById('searchInput');
+    if (!input) return;
+    input.value = label;
+    filterTable();
+  }
+
+  function pct(value, total) {
+    if (!total) return 0;
+    return Math.max(0, Math.min(100, Math.round((value / total) * 100)));
+  }
+
+  function funnelAdvice(data) {
+    var total = data.total || 0;
+    if (!total) return '还没有足够数据。先发给目标用户测试，看第一批人卡在哪一步。';
+    var deepRate = pct(data.deep, total);
+    var copyRate = pct(data.copyWechat, total);
+    var clickRate = pct(data.click699, total);
+    if (deepRate < 35) return '深度完成率偏低，优先看 8 题结果页和深度表单入口是否足够明显。';
+    if (copyRate < 20) return '复制微信偏低，优先看个人经验完整路径报告领取区是否让人愿意发送报告编号。';
+    if (clickRate < 8) return '职业经验资产一对一诊断入口点击率偏低，说明用户愿意看报告，但预约理由还可以继续打磨。';
+    return '漏斗已经有咨询动作，优先跟进高优先客户，记录是否成交。';
+  }
+
+  function renderFunnel(data) {
+    var el = document.getElementById('funnelCard');
+    if (!el) return;
+    var total = data.total || 0;
+    var steps = [
+      { label: '总测评记录', value: data.total || 0, rate: 100 },
+      { label: '完成深度报告', value: data.deep || 0, rate: pct(data.deep || 0, total) },
+      { label: '复制微信', value: data.copyWechat || 0, rate: pct(data.copyWechat || 0, total) },
+      { label: '点击职业经验资产一对一诊断入口', value: data.click699 || 0, rate: pct(data.click699 || 0, total) },
+      { label: '已标记职业经验资产一对一诊断成交', value: data.consultDeal || 0, rate: pct(data.consultDeal || 0, total) }
+    ];
+    var html = '<div class="funnel-head">';
+    html += '<div><div class="funnel-title">转化漏斗</div><div class="funnel-note">发出去以后，先看用户卡在哪一步。这里不预测收入，只帮你判断页面和私域跟进哪里需要调整。</div></div>';
+    html += '<div class="funnel-note"><strong style="color:var(--text);">当前判断：</strong>' + escapeHtml(funnelAdvice(data)) + '</div>';
+    html += '</div><div class="funnel-steps">';
+    for (var i = 0; i < steps.length; i++) {
+      html += '<div class="funnel-step"><strong>' + steps[i].value + '</strong><span>' + escapeHtml(steps[i].label) + ' · ' + steps[i].rate + '%</span><div class="funnel-rate"><i style="width:' + steps[i].rate + '%"></i></div></div>';
+    }
+    html += '</div>';
+    el.innerHTML = html;
+  }
+
+  var TYPE_NAMES = {
+    content: '内容表达型', consulting: '咨询诊断型', knowledge: '知识产品型',
+    template: '模板工具型', service: '资源服务型', coaching: '陪跑交付型', local: '本地服务型'
+  };
+
+  var QUESTIONS = [
+    { title: '别人最常因为哪类问题来问你？', q: 'q0', options: {
+      A: '行业经验/专业判断', B: '管理/带团队/处理复杂局面',
+      C: '客户沟通/销售/服务交付', D: '工具、流程、模板或执行方法'
+    }},
+    { title: '你有没有真实案例或成果可以讲？', q: 'q1', options: {
+      A: '还没有，更多是零散经历', B: '有一些，但没系统整理',
+      C: '有明确案例，只是没包装成产品', D: '已经有人因为这些经验认可或付费'
+    }},
+    { title: '你更擅长哪种表达方式？', q: 'q2', options: {
+      A: '写下来、整理成文档', B: '公开表达、视频或直播',
+      C: '一对一沟通和诊断', D: '陪着别人一步步做'
+    }},
+    { title: '你能不能把经验整理成结构化材料？', q: 'q3', options: {
+      A: '很难，脑子里有但写不出来', B: '能写一点，但不成体系',
+      C: '能整理成框架、清单或方法', D: '已经有文章、课件、模板或文档'
+    }},
+    { title: '有没有付费、咨询或转介绍信号？', q: 'q4', options: {
+      A: '基本没有', B: '有人问过，但没有成交',
+      C: '有人愿意深入聊或请教', D: '已经有付费、转介绍或明确需求'
+    }},
+    { title: '你最愿意先做哪种交付？', q: 'q5', options: {
+      A: '知识库、资料包、指南', B: '一次性咨询/诊断',
+      C: '陪跑、训练营、社群', D: '模板、工具、流程包'
+    }},
+    { title: '你现在最大的限制是什么？', q: 'q6', options: {
+      A: '方向不清，不知道先做什么', B: '表达不清，别人看不懂价值',
+      C: '交付边界不清，不知道怎么收费', D: '没验证，不知道有没有人买'
+    }},
+    { title: '你愿不愿意先做低门槛验证？', q: 'q7', options: {
+      A: '暂时不想公开尝试', B: '可以先找熟人聊',
+      C: '愿意发内容或发招募验证', D: '愿意拿一个具体服务直接试收款'
+    }}
+  ];
+
+  var DEEP_LABELS = {
+    name: '姓名/称呼',
+    industry: '行业',
+    years: '工作年限',
+    status: '当前状态',
+    currentState: '当前状态',
+    hours: '每周可投入小时',
+    weeklyHours: '每周可投入小时',
+    friends: '微信好友数',
+    audience: '可触达人数/私域规模',
+    otherFans: '其他平台粉丝数',
+    attempts: '过去尝试过什么',
+    pastTry: '过去尝试过什么',
+    pastResult: '结果如何',
+    bottleneck: '当前最大卡点',
+    biggestBlock: '当前最大卡点',
+    hourlyRate: '自评时薪',
+    hourlyValue: '自评时薪',
+    confidence: '信心指数(1-10)',
+    consultedBefore: '过去有人主动找你咨询过吗',
+    paidBefore: '是否有人为你的经验/服务付费过',
+    paidSignal: '付费/咨询/转介绍信号',
+    caseCount: '真实案例数量',
+    caseCountDetailed: '能否写出 3 个真实案例',
+    bestCaseDescription: '最强案例清晰度',
+    evidenceQuality: '外部证据',
+    evidenceType: '最硬证据',
+    targetCustomerClarity: '目标对象清晰度',
+    problemScene: '问题触发场景',
+    deliverableReadiness: '可交付成果',
+    costWillingnessSignal: '成本投入信号',
+    careerVsProductization: '职业问题还是产品化问题',
+    organizationComplexity: '组织决策复杂度',
+    consumerAnxiety: '购买动机/焦虑信号',
+    deliveryResponsibility: '交付边界责任',
+    serviceDataReadiness: '服务经营数据',
+    currentOffer: '目前有没有产品/服务雏形',
+    targetUser: '最想服务的人群',
+    deliveryPreference: '更愿意的交付方式',
+    availableAssets: '已有内容/案例/资料',
+    expectation: '这次最想看清什么'
+  };
+
+  function normalizeAnswers(raw) {
+    if (!raw) return {};
+    if (typeof raw === 'string') {
+      try { return JSON.parse(raw); } catch(e) { return { raw: raw }; }
+    }
+    if (typeof raw === 'object') return raw;
+    return {};
+  }
+
+  function answerValue(source, q, index) {
+    if (!source) return '';
+    var keys = [q.q, String(index), 'q' + index, index];
+    for (var i = 0; i < keys.length; i++) {
+      var v = source[keys[i]];
+      if (v !== undefined && v !== null && v !== '') return String(v);
+    }
+    return '';
+  }
+
+  function normalizeOptionKey(value) {
+    var v = String(value == null ? '' : value).trim();
+    if (v === '') return '';
+    var map = { '0': 'A', '1': 'B', '2': 'C', '3': 'D' };
+    return map[v] || v.toUpperCase();
+  }
+
+  var EVENT_LABELS = {
+    pageview: '访问页面',
+    start_quiz: '开始8题',
+    complete_quiz: '完成8题',
+    start_deep_report: '进入深度测评',
+    complete_deep_report: '完成深度测评',
+    view_locked_report: '查看个人经验完整路径报告入口',
+    copy_wechat: '复制微信',
+    copy_wechat_report: '复制报告页微信',
+    click_699_cta: '点击职业经验资产一对一诊断',
+    click_diagnosis_sample: '查看服务样例',
+    pageview_diagnosis_sample: '访问服务说明与交付样例',
+    sample_copy_consult_message: '复制职业经验资产一对一诊断预约话术',
+    sample_click_quiz: '样本页点击免费经验路径测评',
+    click_quiz: '点击测评入口',
+    click_wechat: '点击微信入口',
+    click_prompts: '点击做图提示词库',
+    click_knowledge: '点击知识库'
+  };
+
+  function getEvents(item) {
+    return Array.isArray(item && item.events) ? item.events : [];
+  }
+
+  function hasEvent(item, name) {
+    var events = getEvents(item);
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].event_type === name) return true;
+    }
+    return false;
+  }
+
+  function getDeepPart(item) {
+    var answers = normalizeAnswers(item && item.answers);
+    return normalizeAnswers((item && item.deep) || answers.deep || answers.profile || answers.reportDeep || null);
+  }
+
+  function getStoredDiagnostic(item) {
+    var scores = normalizeAnswers(item && item.result_scores);
+    var answers = normalizeAnswers(item && item.answers);
+    var legacy = normalizeAnswers(scores.diagnostic || answers.diagnostic || {});
+    var paid = getPaidDiagnostic(item);
+    return Object.assign({}, legacy, paid);
+  }
+
+  function getPaidDiagnostic(item) {
+    var scores = normalizeAnswers(item && item.result_scores);
+    var answers = normalizeAnswers(item && item.answers);
+    var direct = normalizeAnswers(item && item.paid_diagnostic);
+    return normalizeAnswers(direct && Object.keys(direct).length ? direct : (scores.paidDiagnostic || answers.paidDiagnostic || {}));
+  }
+
+  function getPaidDiagnosticBucketLabel(bucket) {
+    var map = {
+      reject_now: '先劝退',
+      case_extract: '案例萃取',
+      self_study_99: '一人公司海外源头库',
+      path_report_99: '个人经验完整路径报告',
+      prompt_library_99: '做图提示词库',
+      paid_trial: '低价试单',
+      career_reposition: '职业再定位',
+      manual_review: '人工观察',
+      consult_699: '职业经验资产一对一诊断'
+    };
+    return map[bucket] || '个人经验完整路径报告';
+  }
+
+  function getPaidDiagnosticAction(paidDiagnostic) {
+    var bucket = paidDiagnostic && paidDiagnostic.bucket;
+    if (bucket === 'reject_now') return '先劝退';
+    if (bucket === 'case_extract') return '案例萃取';
+    if (bucket === 'self_study_99') return '一人公司海外源头库';
+    if (bucket === 'prompt_library_99') return '做图提示词库';
+    if (bucket === 'paid_trial') return '低价试单';
+    if (bucket === 'career_reposition') return '先做职业判断';
+    if (bucket === 'manual_review') return '先人工观察';
+    if (bucket === 'consult_699') return '职业经验资产一对一诊断';
+    return '个人经验完整路径报告';
+  }
+
+  function normalizeReportTerms(value) {
+    return String(value == null ? '' : value)
+      .replace(/(?:个人经验)?完整路径报告|99\s*路径报告|99\s*报告/g, '个人经验完整路径报告'); // terminology-compat: 历史报告字段
+  }
+
+  function renderPaidDiagnosticLead(item) {
+    var paidDiagnostic = getPaidDiagnostic(item);
+    if (!paidDiagnostic || (!paidDiagnostic.bucket && !paidDiagnostic.label && !paidDiagnostic.status)) return '';
+    var bucketLabel = getPaidDiagnosticBucketLabel(paidDiagnostic.bucket);
+    var action = getPaidDiagnosticAction(paidDiagnostic);
+    var gaps = Array.isArray(paidDiagnostic.informationGaps) ? paidDiagnostic.informationGaps : [];
+    var rules = Array.isArray(paidDiagnostic.disqualificationRulesHit) ? paidDiagnostic.disqualificationRulesHit : [];
+    var primaryPath = paidDiagnostic.primaryPath && paidDiagnostic.primaryPath.label ? paidDiagnostic.primaryPath.label : paidDiagnostic.firstPath;
+    var reason = normalizeReportTerms([paidDiagnostic.label, primaryPath, paidDiagnostic.riskLevel ? ('风险 ' + paidDiagnostic.riskLevel) : ''].filter(Boolean).join(' / ') || '等待个人经验完整路径报告数据');
+    var confidenceText = normalizeReportTerms(paidDiagnostic.confidenceLabel || (paidDiagnostic.confidence ? ('结论可信度：' + paidDiagnostic.confidence) : '-'));
+    var recommendText = [
+      '是否建议 一人公司海外源头库：' + (paidDiagnostic.recommendSelfStudy99 ? '是' : '否'),
+      '是否建议做图提示词库：' + (paidDiagnostic.recommendPrompt99 ? '是' : '否'),
+      '是否建议职业经验资产一对一诊断：' + (paidDiagnostic.recommend699 ? '是' : '否')
+    ].join(' / ');
+    var disqualificationText = normalizeReportTerms(rules.length ? rules.map(function(rule) { return rule.label || rule.code || ''; }).filter(Boolean).join(' / ') : '-');
+    var gapText = normalizeReportTerms(gaps.length ? gaps.slice(0, 3).join(' / ') : '-');
+    var nextMessage = normalizeReportTerms(paidDiagnostic.nextMessage || buildFollowMessage(item));
+    return '<div class="lead-diagnostic">' +
+      '<div class="lead-diagnostic-head">' +
+      '<div class="lead-diagnostic-title">线索分层：' + escapeHtml(bucketLabel) + '</div>' +
+      '<div class="lead-diagnostic-action">推荐动作：' + escapeHtml(action) + '</div>' +
+      '</div>' +
+      '<div class="lead-diagnostic-grid">' +
+      '<strong>跟进理由</strong><span>' + escapeHtml(reason) + '</span>' +
+      '<strong>判断信心</strong><span>' + escapeHtml(confidenceText) + '</span>' +
+      '<strong>产品建议</strong><span>' + escapeHtml(recommendText) + '</span>' +
+      '<strong>劝退原因</strong><span>' + escapeHtml(disqualificationText) + '</span>' +
+      '<strong>信息不足点</strong><span>' + escapeHtml(gapText) + '</span>' +
+      '<strong>下一句回复</strong><span>' + escapeHtml(nextMessage) + '</span>' +
+      '</div>' +
+      '</div>';
+  }
+
+  function renderAdminLeadBrief(item) {
+    var paidDiagnostic = getPaidDiagnostic(item);
+    var priority = getLeadPriority(item);
+    var hasPaidDiagnostic = paidDiagnostic && (paidDiagnostic.bucket || paidDiagnostic.label || paidDiagnostic.status);
+    var bucketLabel = hasPaidDiagnostic ? getPaidDiagnosticBucketLabel(paidDiagnostic.bucket) : (priority.level === 'high' ? '高优先线索' : priority.level === 'mid' ? '可跟进线索' : priority.level === 'low' ? '轻度线索' : '普通线索');
+    var action = hasPaidDiagnostic ? getPaidDiagnosticAction(paidDiagnostic) : (priority.level === 'high' ? '优先私聊' : priority.level === 'mid' ? '先问卡点' : priority.level === 'low' ? '低压观察' : '先观察');
+    var gaps = Array.isArray(paidDiagnostic.informationGaps) ? paidDiagnostic.informationGaps : [];
+    var rules = Array.isArray(paidDiagnostic.disqualificationRulesHit) ? paidDiagnostic.disqualificationRulesHit : [];
+    var primaryPath = paidDiagnostic.primaryPath && paidDiagnostic.primaryPath.label ? paidDiagnostic.primaryPath.label : paidDiagnostic.firstPath;
+    var reason = hasPaidDiagnostic
+      ? normalizeReportTerms([paidDiagnostic.label, primaryPath, paidDiagnostic.riskLevel ? ('风险 ' + paidDiagnostic.riskLevel) : ''].filter(Boolean).join(' / ') || '已有个人经验完整路径报告判断')
+      : '根据测评结果、行为信号、付费信号和咨询信号综合判断。';
+    var confidenceText = hasPaidDiagnostic
+      ? normalizeReportTerms(paidDiagnostic.confidenceLabel || (paidDiagnostic.confidence ? ('结论可信度：' + paidDiagnostic.confidence) : '结论可信度待补充'))
+      : '线索热度：' + priority.score + ' 分';
+    var gapText = normalizeReportTerms(gaps.length ? gaps.slice(0, 2).join(' / ') : (rules.length ? rules.slice(0, 2).map(function(rule) { return rule.label || rule.code || ''; }).filter(Boolean).join(' / ') : '暂无明显缺口'));
+    var nextMessage = normalizeReportTerms(paidDiagnostic.nextMessage || buildFollowMessage(item));
+    return '<div class="admin-lead-brief">' +
+      '<div class="admin-brief-head">' +
+        '<span>线索分层：' + escapeHtml(bucketLabel) + '</span>' +
+        '<strong>下一步：' + escapeHtml(action) + '</strong>' +
+      '</div>' +
+      '<div class="admin-brief-grid">' +
+        '<div><b>判断依据</b><span>' + escapeHtml(reason) + '</span></div>' +
+        '<div><b>判断信心</b><span>' + escapeHtml(confidenceText) + '</span></div>' +
+        '<div><b>注意事项</b><span>' + escapeHtml(gapText) + '</span></div>' +
+      '</div>' +
+      '<div class="admin-next-message"><b>下一句回复</b><span>' + escapeHtml(nextMessage) + '</span></div>' +
+    '</div>';
+  }
+
+  function deepField(deepPart, keys, fallback) {
+    deepPart = deepPart || {};
+    for (var i = 0; i < keys.length; i++) {
+      var v = deepPart[keys[i]];
+      if (v !== undefined && v !== null && String(v).trim() !== '') return v;
+    }
+    return fallback === undefined ? '' : fallback;
+  }
+
+  function parseHours(value) {
+    var text = String(value == null ? '' : value);
+    var nums = text.match(/\d+/g);
+    if (!nums || !nums.length) return 0;
+    return Number(nums[nums.length - 1]) || 0;
+  }
+
+  function getCommercialSignal(item) {
+    var deepPart = getDeepPart(item);
+    var score = 0;
+    var labels = [];
+    var paidBefore = String(deepField(deepPart, ['paidBefore', 'paidSignal'], ''));
+    var consultedBefore = String(deepPart.consultedBefore || '');
+    var pastResult = String(deepField(deepPart, ['pastResult'], ''));
+    var pastTry = String(deepField(deepPart, ['pastTry', 'attempts'], ''));
+    var hours = parseHours(deepField(deepPart, ['hours', 'weeklyHours'], 0));
+
+    if (/稳定|2-5次/.test(paidBefore)) {
+      score += 35;
+      labels.push('强付费信号');
+    } else if (/1次|付费尝试|付费咨询|转介绍|明确需求|有人付费/.test(paidBefore) || /有人付费/.test(pastResult)) {
+      score += 24;
+      labels.push('有付费信号');
+    }
+
+    if (/经常/.test(consultedBefore)) {
+      score += 24;
+      labels.push('高频咨询');
+    } else if (/3-5人/.test(consultedBefore)) {
+      score += 16;
+      labels.push('多人咨询');
+    } else if (/1-2人/.test(consultedBefore)) {
+      score += 8;
+      labels.push('零散咨询');
+    }
+
+    if (/接过付费咨询|开过线上课程|做过付费社群/.test(pastTry)) {
+      score += 12;
+      if (labels.indexOf('做过付费尝试') === -1) labels.push('做过付费尝试');
+    }
+
+    if (/有人感兴趣但没付费/.test(pastResult)) {
+      score += 8;
+      labels.push('有人感兴趣');
+    }
+
+    if (hours >= 15) {
+      score += 8;
+      labels.push('执行时间足');
+    } else if (hours >= 6) {
+      score += 4;
+      labels.push('有执行时间');
+    }
+
+    return { score: score, labels: labels, deep: deepPart };
+  }
+
+  function getFollowSignals(item) {
+    var signals = [];
+    var deepPart = getDeepPart(item);
+    var hasDeep = item.version === 'report' || Object.keys(deepPart).length > 0 || hasEvent(item, 'complete_deep_report');
+    var priority = getLeadPriority(item);
+    var commercial = getCommercialSignal(item);
+    var diagnostic = getStoredDiagnostic(item);
+    var paidDiagnostic = getPaidDiagnostic(item);
+
+    if (priority.level === 'high') signals.push({ text: '高优先', cls: 'tag-priority-high' });
+    else if (priority.level === 'mid') signals.push({ text: '中优先', cls: 'tag-priority-mid' });
+    else if (priority.level === 'low') signals.push({ text: '低优先', cls: 'tag-priority-low' });
+
+    if (hasDeep) signals.push({ text: '已完成深度', cls: 'tag-signal-done' });
+    if (paidDiagnostic.bucket) signals.push({ text: getPaidDiagnosticBucketLabel(paidDiagnostic.bucket), cls: paidDiagnostic.bucket === 'consult_699' ? 'tag-signal-hot' : 'tag-signal' });
+    if (diagnostic.label) signals.push({ text: diagnostic.label, cls: 'tag-signal' });
+    if (diagnostic.recommend99) signals.push({ text: '推荐个人经验完整路径报告', cls: 'tag-signal' });
+    if (diagnostic.recommendSelfStudy99) signals.push({ text: '推荐一人公司海外源头库', cls: 'tag-signal' });
+    if (diagnostic.recommendPrompt99) signals.push({ text: '推荐做图提示词库', cls: 'tag-signal' });
+    if (diagnostic.recommend699) signals.push({ text: '推荐职业经验资产一对一诊断', cls: 'tag-signal-hot' });
+    if (commercial.labels.indexOf('强付费信号') !== -1 || commercial.labels.indexOf('有付费信号') !== -1 || commercial.labels.indexOf('做过付费尝试') !== -1) signals.push({ text: '有付费信号', cls: 'tag-signal-hot' });
+    if (commercial.labels.indexOf('高频咨询') !== -1 || commercial.labels.indexOf('多人咨询') !== -1) signals.push({ text: '有咨询信号', cls: 'tag-signal-hot' });
+    if (hasEvent(item, 'click_699_cta')) signals.push({ text: '点过职业经验资产一对一诊断入口', cls: 'tag-signal-hot' });
+    if (hasEvent(item, 'copy_wechat_report') || hasEvent(item, 'copy_wechat')) signals.push({ text: '复制微信', cls: 'tag-signal-hot' });
+    if (hasEvent(item, 'click_diagnosis_sample')) signals.push({ text: '看过服务说明与交付样例', cls: 'tag-signal' });
+    if (!hasDeep && hasEvent(item, 'start_deep_report')) signals.push({ text: '深度未完成', cls: 'tag-signal' });
+
+    return signals;
+  }
+
+  function getLeadPriority(item) {
+    var deepPart = getDeepPart(item);
+    var hasDeep = item && (item.version === 'report' || Object.keys(deepPart).length > 0 || hasEvent(item, 'complete_deep_report'));
+    var commercial = getCommercialSignal(item);
+    var diagnostic = getStoredDiagnostic(item);
+    var paidDiagnostic = getPaidDiagnostic(item);
+    var score = 0;
+    if (hasEvent(item, 'click_699_cta')) score += 45;
+    if (paidDiagnostic.priority === 'high') score += 28;
+    else if (paidDiagnostic.priority === 'medium') score += 12;
+    else if (paidDiagnostic.priority === 'low') score += 2;
+    if (paidDiagnostic.bucket === 'consult_699') score += 28;
+    else if (paidDiagnostic.bucket === 'paid_trial') score += 20;
+    else if (paidDiagnostic.bucket === 'path_report_99') score += 10;
+    else if (paidDiagnostic.bucket === 'reject_now') score -= 16;
+    if (diagnostic.recommend699) score += 24;
+    else if (diagnostic.recommend99) score += 8;
+    if (hasEvent(item, 'copy_wechat_report') || hasEvent(item, 'copy_wechat')) score += 35;
+    if (hasDeep) score += 25;
+    score += commercial.score;
+    if (hasEvent(item, 'view_locked_report')) score += 15;
+    if (hasEvent(item, 'click_diagnosis_sample')) score += 10;
+    if (!hasDeep && hasEvent(item, 'start_deep_report')) score += 8;
+    if (Number(item && item.result_score) >= 75) score += 10;
+    if (item && item.paid) score += 20;
+
+    var cappedScore = Math.min(score, 100);
+    var level = cappedScore >= 70 ? 'high' : cappedScore >= 40 ? 'mid' : cappedScore > 0 ? 'low' : 'none';
+    return { score: cappedScore, level: level };
+  }
+
+  function compareLeadPriority(a, b) {
+    var pa = getLeadPriority(a).score;
+    var pb = getLeadPriority(b).score;
+    if (pb !== pa) return pb - pa;
+    return compareLatestFirst(a, b);
+  }
+
+  function compareLatestFirst(a, b) {
+    var ta = a && a.created_at ? new Date(a.created_at).getTime() : 0;
+    var tb = b && b.created_at ? new Date(b.created_at).getTime() : 0;
+    return tb - ta;
+  }
+
+  function getSortComparator() {
+    var select = document.getElementById('sortMode');
+    return select && select.value === 'priority' ? compareLeadPriority : compareLatestFirst;
+  }
+
+  function renderFollowAdvice(item) {
+    var p = getLeadPriority(item);
+    var paidDiagnostic = getPaidDiagnostic(item);
+    var advice = '暂无强信号，先观察来源和测评结果。';
+    var message = buildFollowMessage(item);
+    if (paidDiagnostic.nextMessage) {
+      advice = '系统已根据个人经验完整路径报告给出跟进判断。先按这个动作回复，不要直接硬推职业经验资产一对一诊断。';
+      message = normalizeReportTerms(paidDiagnostic.nextMessage);
+    } else if (p.level === 'high') {
+      advice = '优先跟进。对方已经出现明确咨询信号，建议直接私聊确认：完成深度测评后，是否适合预约职业经验资产一对一诊断。';
+    } else if (p.level === 'mid') {
+      advice = '可以跟进。建议先问一句：报告里最卡的是方向、案例、定价还是交付？再看是否适合预约职业经验资产一对一诊断。';
+    } else if (hasEvent(item, 'start_deep_report') && !hasEvent(item, 'complete_deep_report')) {
+      advice = '对方进入过深度测评但未完成，可以提醒先补完免费测评摘要，再判断是否领取个人经验完整路径报告。';
+    } else if (p.level === 'low') {
+      advice = '只有轻度信号，先不强推职业经验资产一对一诊断。可以引导对方补充真实经历，或先完成免费测评摘要。';
+    }
+    return '<div class="q-block" style="border-color:rgba(139,38,53,.18);background:rgba(139,38,53,.04);">' +
+      '<div class="q-num">跟进建议 · ' + p.score + '分</div>' +
+      '<div class="q-title" style="font-weight:400;">' + escapeHtml(advice) + '</div>' +
+      '<div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.72);border:1px solid var(--line);font-size:13px;white-space:pre-wrap;">' + escapeHtml(message) + '</div>' +
+      '<button class="btn-sm btn-copy" style="margin-top:10px;" onclick="copyFollowMessage(' + jsArg(message) + ')">复制跟进话术</button>' +
+    '</div>';
+  }
+
+  function renderLeadSnapshot(item, deepPart) {
+    deepPart = normalizeAnswers(deepPart || getDeepPart(item));
+    if (!deepPart || !Object.keys(deepPart).length) return '';
+    var commercial = getCommercialSignal(item);
+    var signalText = commercial.labels.length ? commercial.labels.join(' / ') : '暂无明显付费或咨询信号';
+    var rows = [
+      ['基础背景', [deepField(deepPart, ['name'], ''), deepField(deepPart, ['industry'], ''), deepField(deepPart, ['years'], '')].filter(Boolean).join(' · ') || '-'],
+      ['可投入资源', '每周 ' + (deepField(deepPart, ['hours', 'weeklyHours'], '-') || '-') + ' · 时薪 ' + (deepField(deepPart, ['hourlyRate', 'hourlyValue'], '-') || '-') + ' · 可触达 ' + (deepField(deepPart, ['friends', 'audience', 'otherFans'], '-') || '-')],
+      ['商业信号', signalText],
+      ['当前卡点', deepField(deepPart, ['bottleneck', 'biggestBlock'], '-') || '-'],
+      ['过去尝试', deepField(deepPart, ['pastTry', 'attempts'], '-') || '-']
+    ];
+    var html = '<div class="q-block" style="border-color:rgba(85,98,79,.22);background:rgba(85,98,79,.045);">';
+    html += '<div class="q-num">客户摘要</div>';
+    html += '<div style="display:grid;gap:8px;margin-top:8px;">';
+    for (var i = 0; i < rows.length; i++) {
+      html += '<div style="display:grid;grid-template-columns:88px 1fr;gap:10px;align-items:start;font-size:13px;">';
+      html += '<strong style="color:var(--accent);">' + escapeHtml(rows[i][0]) + '</strong>';
+      html += '<span style="color:var(--text);line-height:1.65;">' + escapeHtml(rows[i][1]) + '</span>';
+      html += '</div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  function buildFollowMessage(item) {
+    var typeName = TYPE_NAMES[item && item.result_type] || (item && item.result_type) || '你的测评结果';
+    var commercial = getCommercialSignal(item);
+    var paidDiagnostic = getPaidDiagnostic(item);
+    if (paidDiagnostic.nextMessage) return paidDiagnostic.nextMessage;
+    if (hasEvent(item, 'click_699_cta')) {
+      return '我看到你已经完成深度测评，也点过职业经验资产一对一诊断入口。你现在最卡的是方向、案例、定价还是交付？如果你愿意，我可以先判断一下你是否适合预约职业经验资产一对一诊断。';
+    }
+    if (hasEvent(item, 'copy_wechat_report') || hasEvent(item, 'copy_wechat')) {
+      return '我看到你已经完成深度测评，也复制过微信号。你现在最卡的是方向、案例、定价还是交付？你先说一个最卡的问题，我判断一下是否适合预约职业经验资产一对一诊断。';
+    }
+    if (commercial.labels.indexOf('强付费信号') !== -1 || commercial.labels.indexOf('有付费信号') !== -1 || commercial.labels.indexOf('做过付费尝试') !== -1) {
+      return '我看你已经完成深度测评，而且已经出现过付费信号。你现在最值得判断的不是要不要继续学习，而是：第一路径、第一案例和第一版交付能不能升级成 职业经验资产一对一诊断。你目前最卡的是哪一块？';
+    }
+    if (commercial.labels.indexOf('高频咨询') !== -1 || commercial.labels.indexOf('多人咨询') !== -1) {
+      return '我看你已经完成深度测评，而且有人找你咨询过类似问题。你现在可以先不用急着做产品，先判断这类咨询到底能不能变成一次边界清楚的 职业经验资产一对一诊断。你最常被问到的是哪类问题？';
+    }
+    if (item && item.version === 'report') {
+      return '我看你已经完成深度测评了。你的结果偏向「' + typeName + '」。这份报告能帮你看清卡点，但第一路径、第一案例和第一版交付通常还需要人工判断。你现在最想先判断哪一块？';
+    }
+    if (hasEvent(item, 'start_deep_report') && !hasEvent(item, 'complete_deep_report')) {
+      return '我看到你已经进入深度测评，但还没有完成。建议你把后面 3 组问题补完，先生成免费测评摘要；想看完整判断的话，可以发送「个人经验完整路径报告 + 报告编号」。';
+    }
+    if (hasEvent(item, 'click_diagnosis_sample')) {
+      return '我看你看过服务说明与交付样例。这个页面主要是让你看清职业经验资产一对一诊断会交付什么。你现在是想先自己验证，还是想让我帮你判断第一路径？';
+    }
+    return '我看到你做了免费经验路径测评。你现在最卡的是方向、表达、交付，还是不知道能不能收费？你可以先告诉我最卡的一点，我再判断下一步适合怎么走。';
+  }
+
+  function renderSignalTags(item) {
+    var signals = getFollowSignals(item);
+    if (!signals.length) {
+      return '<span style="color:var(--muted);font-size:12px;">-</span>';
+    }
+    var html = '<div class="signal-stack">';
+    for (var i = 0; i < signals.length; i++) {
+      html += '<span class="tag ' + signals[i].cls + '">' + escapeHtml(signals[i].text) + '</span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function renderEventTimeline(item) {
+    var events = getEvents(item).slice(0, 12);
+    if (!events.length) {
+      return '<div class="q-block"><div class="q-num">客户行为</div><div class="q-title" style="font-weight:400;">暂无埋点行为。可能是早期记录，或用户没有触发关键动作。</div></div>';
+    }
+
+    var html = '<h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;">客户行为时间线</h3>';
+    html += '<div class="event-timeline">';
+    for (var i = 0; i < events.length; i++) {
+      var ev = events[i];
+      var label = EVENT_LABELS[ev.event_type] || ev.event_type || '-';
+      var time = ev.created_at ? new Date(ev.created_at).toLocaleString('zh-CN') : '-';
+      html += '<div class="event-row">';
+      html += '<div class="event-time">' + escapeHtml(time) + '</div>';
+      html += '<div><div class="event-name">' + escapeHtml(label) + '</div><div style="color:var(--muted);font-size:12px;">' + escapeHtml(ev.page || '') + '</div></div>';
+      html += '</div>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function renderKeyValueBlock(label, value) {
+    var text = value;
+    if (text && typeof text === 'object') {
+      try { text = JSON.stringify(text, null, 2); } catch(e) { text = String(text); }
+    }
+    text = String(text || '-');
+    return '<div class="q-block">' +
+      '<div class="q-num">' + escapeHtml(label) + '</div>' +
+      '<div class="q-title" style="font-weight:400;white-space:pre-wrap;">' + escapeHtml(text) + '</div>' +
+    '</div>';
+  }
+
+  function updateSearchMode(q, count) {
+    var searching = !!q;
+    document.body.classList.toggle('admin-searching', searching);
+    var note = document.getElementById('searchResultNote');
+    if (!note) return;
+    if (!searching) {
+      note.innerHTML = '';
+      return;
+    }
+    note.innerHTML = '已筛出 <strong>' + count + '</strong> 条记录。先核对报告编号、昵称和诊断状态；需要跟进时点「报告」或「链接」。';
+  }
+
+  function getMeasurementCode(record) {
+    var code = String(record && record.measurement_code || '').trim();
+    return /^(?=[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$)(?=.*[2-9])[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{8}$/.test(code) ? code : '';
+  }
+
+  function filterTable() {
+    var q = (document.getElementById('searchInput').value || '').trim();
+    var data = allData.slice();
+    if (q) {
+      var lower = q.toLowerCase();
+      data = allData.filter(function(r) {
+        if (lower.indexOf('今日') !== -1 && !isTodayItem(r)) return false;
+        if (lower.indexOf('复制微信未付费') !== -1) return matchesOpsKind(r, 'copy_unpaid');
+        if (lower.indexOf('已付费待交付') !== -1) return matchesOpsKind(r, 'paid_delivery');
+        if (lower.indexOf('高优先级') !== -1 || lower.indexOf('699') !== -1) {
+          if (!matchesOpsKind(r, 'high_699') && parsePurchases(r).indexOf('consult699') === -1 && !hasEvent(r, 'click_699_cta')) return false;
+        }
+        if (lower.indexOf('深度报告未完成') !== -1) return matchesOpsKind(r, 'deep_unfinished');
+        var typeName = TYPE_NAMES[r.result_type] || r.result_type || '';
+        var purchases = parsePurchases(r);
+        var signalText = getFollowSignals(r).map(function(s) { return s.text; }).join(' ');
+        var diagnostic = getStoredDiagnostic(r);
+        var paidDiagnostic = getPaidDiagnostic(r);
+        var haystack = [
+          r.session_id, getMeasurementCode(r), r.wechat, r.nickname, r.source, r.tags, r.notes,
+          typeName, r.result_type, r.version, r.paid ? '已付费 付费' : '未付费',
+          purchases.join(' '), signalText, getCommercialSignal(r).labels.join(' '),
+          diagnostic.label, diagnostic.status, diagnostic.recommend99 ? '推荐个人经验完整路径报告 推荐99报告' : '', diagnostic.recommend699 ? '推荐职业经验资产一对一诊断' : '',
+          paidDiagnostic.bucket, paidDiagnostic.leadBucket, paidDiagnostic.diagnosticStatus, getPaidDiagnosticBucketLabel(paidDiagnostic.bucket), paidDiagnostic.priority, paidDiagnostic.firstPath,
+          paidDiagnostic.confidence, paidDiagnostic.confidenceLabel, paidDiagnostic.biggestMisjudgment,
+          JSON.stringify(paidDiagnostic.informationGaps || []), JSON.stringify(paidDiagnostic.disqualificationRulesHit || []),
+          paidDiagnostic.nextMessage, paidDiagnostic.recommendSelfStudy99 ? '99自学 99 自学' : '',
+          paidDiagnostic.recommendPrompt99 ? '99提示词 99 提示词' : '',
+          paidDiagnostic.recommend99 ? '个人经验完整路径报告 个人经验完整路径报告 99报告 99 报告' : '',
+          paidDiagnostic.recommend699 ? '职业经验资产一对一诊断 职业经验资产一对一诊断' : '',
+          String(r.result_score || '')
+        ].join(' ').toLowerCase();
+        return haystack.indexOf(lower) !== -1;
+      });
+    }
+    updateSearchMode(q, data.length);
+    data.sort(getSortComparator());
+    renderTable(data);
+  }
+
+  function renderTable(data) {
+    if (data.length === 0) {
+      document.getElementById('tableBody').innerHTML =
+        '<tr><td colspan="2" style="text-align:center;color:var(--muted);padding:40px;">暂无匹配数据</td></tr>';
+      return;
+    }
+    var rows = '';
+    for (var i = 0; i < data.length; i++) {
+      var r = data[i];
+      var time = r.created_at ? new Date(r.created_at).toLocaleString('zh-CN') : '-';
+      var typeName = TYPE_NAMES[r.result_type] || r.result_type || '-';
+      var sid = String(r.session_id || '');
+      var versionTag = '';
+      if (r.version === 'B') versionTag = 'B版';
+      else if (r.version === 'A') versionTag = 'A版';
+      else if (r.version === 'C') versionTag = 'C版';
+      else if (r.version === 'report') versionTag = '深度';
+      else if (r.version === 'quiz') versionTag = '8题';
+      else versionTag = '-';
+      var tagClass = r.version === 'B' ? 'tag tag-B' : r.version === 'A' ? 'tag tag-A' : r.version === 'C' ? 'tag tag-C' : r.version === 'report' ? 'tag tag-R' : r.version === 'quiz' ? 'tag tag-src' : 'tag';
+      var measurementCode = getMeasurementCode(r);
+      var paidTag = r.paid ? '<span class="tag tag-paid">已付费</span>' : '<span class="tag tag-unpaid">未付费</span>';
+      var paidBtn = r.paid
+        ? '<button class="btn-sm btn-unpaid" onclick="togglePaid(' + jsArg(sid) + ',0)">取消付费</button>'
+        : '<button class="btn-sm btn-paid" onclick="togglePaid(' + jsArg(sid) + ',1)">标记付费</button>';
+
+      var purchases = [];
+      try { purchases = JSON.parse(r.purchases || '[]'); } catch(e) { purchases = []; }
+      var productTags = '';
+      if (purchases.indexOf('knowledge99') !== -1) productTags += '<span class="tag tag-pos" style="margin-right:2px;">一人公司海外源头库</span>';
+      if (purchases.indexOf('prompts99') !== -1) productTags += '<span class="tag tag-acq" style="margin-right:2px;">做图提示词库</span>';
+      if (purchases.indexOf('consult699') !== -1) productTags += '<span class="tag tag-consult" style="margin-right:2px;">职业经验资产一对一诊断</span>';
+      if (purchases.indexOf('extraction') !== -1) productTags += '<span class="tag tag-extraction">长期萃取</span>';
+      if (!productTags) productTags = '<span style="color:var(--muted);font-size:12px;">-</span>';
+
+      var purchaseKey = JSON.stringify((purchases || []).slice().sort());
+      var productSelect = '<select class="purchases-select" data-sid="' + escapeHtml(sid) + '" onchange="updatePurchases(this)">' +
+        '<option value="[]"' + (purchases.length === 0 ? ' selected' : '') + '>未购买</option>' +
+        '<option value=\'["knowledge99"]\'' + (purchaseKey === '["knowledge99"]' ? ' selected' : '') + '>一人公司海外源头库</option>' +
+        '<option value=\'["prompts99"]\'' + (purchaseKey === '["prompts99"]' ? ' selected' : '') + '>做图提示词库</option>' +
+        '<option value=\'["consult699"]\'' + (purchaseKey === '["consult699"]' ? ' selected' : '') + '>职业经验资产一对一诊断</option>' +
+        '<option value=\'["extraction"]\'' + (purchaseKey === '["extraction"]' ? ' selected' : '') + '>长期萃取</option>' +
+        '<option value=\'["knowledge99","consult699"]\'' + (purchaseKey === '["consult699","knowledge99"]' ? ' selected' : '') + '>一人公司海外源头库 + 职业经验资产一对一诊断</option>' +
+        '<option value=\'["prompts99","consult699"]\'' + (purchaseKey === '["consult699","prompts99"]' ? ' selected' : '') + '>做图提示词库 + 职业经验资产一对一诊断</option>' +
+        '<option value=\'["knowledge99","prompts99"]\'' + (purchaseKey === '["knowledge99","prompts99"]' ? ' selected' : '') + '>一人公司海外源头库 + 做图提示词库</option>' +
+        '<option value=\'["knowledge99","prompts99","consult699"]\'' + (purchaseKey === '["consult699","knowledge99","prompts99"]' ? ' selected' : '') + '>一人公司海外源头库 + 做图提示词库 + 职业经验资产一对一诊断</option>' +
+        '</select>';
+
+      // Source badge
+      var source = r.source || '';
+      var sourceBadge = source ? '<span class="tag tag-src">' + escapeHtml(source) + '</span>' : '<span style="color:var(--muted);font-size:12px;">-</span>';
+
+      // Tags display
+      var tags = r.tags || '';
+      var tagsHtml = tags ? '<span class="tag tag-tag">' + escapeHtml(tags) + '</span>' : '<span style="color:var(--muted);font-size:12px;">-</span>';
+      var signalHtml = renderSignalTags(r);
+
+      var actionBtns = '<div class="action-stack">' +
+        '<button class="btn-sm btn-answers" onclick="showAnswers(' + jsArg(sid) + ')">答题</button>' +
+        '<button class="btn-sm btn-copy" onclick="copyReport(' + jsArg(sid) + ')">赠送报告</button>' +
+        '<button class="btn-sm btn-view" onclick="openReport(' + jsArg(sid) + ')">报告</button>' +
+        (V3_ADMIN_ENABLED ? '<button class="btn-sm btn-v3" onclick="showV3Review(' + jsArg(sid) + ')">个性化报告复核</button>' : '') +
+        '<button class="btn-sm btn-del btn-undo-tgt" data-sid="' + escapeHtml(sid) + '" onclick="deleteRow(' + jsArg(sid) + ')">删除</button>' +
+        '</div>';
+
+      var scoreText = r.result_score != null ? r.result_score : '-';
+      var leadMeta = '<div class="lead-meta">' +
+        '<span>' + escapeHtml(time) + '</span>' +
+        '<span>' + escapeHtml(versionTag) + '</span>' +
+        '<span>匹配 ' + escapeHtml(scoreText) + '</span>' +
+        renderV3ChainStatus(r);
+      if (source) leadMeta += '<span>来源：' + escapeHtml(source) + '</span>';
+      if (tags) leadMeta += '<span>标签：' + escapeHtml(tags) + '</span>';
+      leadMeta += '</div>';
+
+      var leadMain = '<div class="admin-lead-identity">' +
+        '<div class="lead-title">' +
+        '<span class="lead-type">' + escapeHtml(typeName) + '</span>' +
+        '<span class="lead-id">#' + escapeHtml(measurementCode || '未生成') + '</span>' +
+        '</div>' +
+        leadMeta +
+        '<div class="lead-contact">' +
+        '<input class="edit-wechat" value="' + escapeHtml(r.wechat || '') + '" onchange="updateWechat(' + jsArg(sid) + ',this.value)" placeholder="微信ID" />' +
+        '<span class="lead-nickname">昵称：' + escapeHtml(r.nickname || '-') + '</span>' +
+        '</div>' +
+      '</div>';
+
+      var adminCard =
+        '<article class="admin-lead-card">' +
+          '<section class="admin-lead-main">' +
+            leadMain +
+            renderAdminLeadBrief(r) +
+          '</section>' +
+          '<section class="admin-lead-signals">' +
+            '<div class="admin-section-title">跟进信号</div>' +
+            signalHtml +
+            '<div class="admin-product-current">' +
+              '<span class="admin-field-label">已购产品</span>' +
+              '<div class="product-current">' + productTags + '</div>' +
+            '</div>' +
+          '</section>' +
+          '<section class="admin-lead-actions">' +
+            '<div class="admin-action-group">' +
+              '<span class="admin-field-label">交易状态</span>' +
+              '<div class="deal-pay">' + paidTag + paidBtn + '</div>' +
+              productSelect +
+            '</div>' +
+            '<div class="admin-action-group">' +
+              '<span class="admin-field-label">备注</span>' +
+              '<input class="edit-notes" value="' + escapeHtml(r.notes || '') + '" onchange="updateNotes(' + jsArg(sid) + ',this.value)" placeholder="备注" />' +
+            '</div>' +
+            actionBtns +
+          '</section>' +
+        '</article>';
+
+      rows += '<tr class="admin-lead-row" data-sid="' + escapeHtml(sid) + '">' +
+        '<td class="lead-check"><input type="checkbox" class="row-checkbox" data-sid="' + escapeHtml(sid) + '" onchange="updateBatchButtons()"></td>' +
+        '<td class="admin-lead-cell">' + adminCard + '</td>' +
+      '</tr>';
+    }
+    document.getElementById('tableBody').innerHTML = rows;
+  }
+
+  function showLogin() {
+    document.getElementById('loginView').style.display = 'block';
+    document.getElementById('dashView').style.display = 'none';
+  }
+
+  function showDash() {
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('dashView').style.display = 'block';
+  }
+
+  async function createSecureReportUrl(sid) {
+    var res = await adminFetch(API_BASE + '/api/createReportShareLink', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ session_id: sid })
+    });
+    var json = await res.json();
+    if (!res.ok || !json.url) throw new Error(json.error || '无法生成安全链接');
+    return BASE + json.url;
+  }
+
+  async function copyReport(sid) {
+    try {
+      var url = await createSecureReportUrl(sid);
+      await navigator.clipboard.writeText(url);
+      showToast('赠送链接已复制，客户无需付款即可查看');
+    } catch (e) {
+      showToast('生成失败：' + e.message);
+    }
+  }
+
+  function copyFollowMessage(text) {
+    if (!text) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        showToast('跟进话术已复制');
+      }).catch(function() {
+        showToast(text);
+      });
+    } else {
+      showToast(text);
+    }
+  }
+
+  function openReport(sid) {
+    try {
+      sessionStorage.setItem('_kevin_report_admin_pwd', getPwd() || '');
+      sessionStorage.setItem('_kevin_report_admin_sid', sid);
+      window.open(BASE + '/report/?sid=' + encodeURIComponent(sid), '_blank');
+    } catch (e) {
+      showToast('打开失败：' + e.message);
+    }
+  }
+
+  async function updateWechat(sid, wechat) {
+    var pwd = getPwd();
+    try {
+        var res = await adminFetch(API_BASE + '/api/updateQuiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid, wechat: wechat })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('更新失败: ' + json.error);
+      } else {
+        showToast('微信ID已更新');
+        // Update local data
+        for (var i = 0; i < allData.length; i++) {
+          if (allData[i].session_id === sid) {
+            allData[i].wechat = wechat;
+            break;
+          }
+        }
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+    }
+  }
+
+  async function togglePaid(sid, paid) {
+    var pwd = getPwd();
+    try {
+        var res = await adminFetch(API_BASE + '/api/updateQuiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid, paid: paid ? true : false })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('更新失败: ' + json.error);
+      } else {
+        showToast(paid ? '已标记为已付费' : '已取消付费标记');
+        // Update local data
+        for (var i = 0; i < allData.length; i++) {
+          if (allData[i].session_id === sid) {
+            allData[i].paid = paid;
+            break;
+          }
+        }
+        renderStats();
+        filterTable();
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+    }
+  }
+
+  var _pendingDelete = {}; // sid -> timeoutId
+
+  function deleteRow(sid) {
+    if (!confirm('确定要删除这条记录吗？')) return;
+
+    // Mark as pending ， grey out and show undo
+    var row = document.querySelector('tr[data-sid="' + sid + '"]');
+    if (row) row.classList.add('row-deleting');
+    // Replace delete button with undo
+    var delBtn = document.querySelector('.btn-undo-tgt[data-sid="' + sid + '"]');
+    if (delBtn) {
+      delBtn.textContent = '撤销';
+      delBtn.className = 'btn-sm btn-undo btn-undo-tgt';
+      delBtn.onclick = function() { undoDelete(sid); };
+    }
+
+    showToast('已删除 · 3秒内可撤销');
+    _pendingDelete[sid] = setTimeout(function() {
+      executeDelete(sid);
+    }, 3000);
+  }
+
+  function undoDelete(sid) {
+    clearTimeout(_pendingDelete[sid]);
+    delete _pendingDelete[sid];
+
+    var row = document.querySelector('tr[data-sid="' + sid + '"]');
+    if (row) row.classList.remove('row-deleting');
+    var undoBtn = document.querySelector('.btn-undo-tgt[data-sid="' + sid + '"]');
+    if (undoBtn) {
+      undoBtn.textContent = '删除';
+      undoBtn.className = 'btn-sm btn-del btn-undo-tgt';
+      undoBtn.onclick = function() { deleteRow(sid); };
+    }
+    showToast('已撤销删除');
+  }
+
+  async function executeDelete(sid) {
+    var pwd = getPwd();
+    try {
+      var res = await adminFetch(API_BASE + '/api/deleteQuiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('删除失败: ' + json.error);
+        undoDelete(sid);
+      } else {
+        allData = allData.filter(function(r) { return r.session_id !== sid; });
+        delete _pendingDelete[sid];
+        renderStats();
+        filterTable();
+        showToast('已删除（可从回收站恢复）');
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+      undoDelete(sid);
+    }
+  }
+
+  async function updateNotes(sid, notes) {
+    var pwd = getPwd();
+    try {
+      var res = await adminFetch(API_BASE + '/api/updateQuiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid, notes: notes })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('更新失败: ' + json.error);
+      } else {
+        showToast('备注已更新');
+        for (var i = 0; i < allData.length; i++) {
+          if (allData[i].session_id === sid) {
+            allData[i].notes = notes;
+            break;
+          }
+        }
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+    }
+  }
+
+  async function updatePurchases(select) {
+    var sid = select.getAttribute('data-sid');
+    var purchases = select.value;
+    var pwd = getPwd();
+    try {
+      var res = await adminFetch(API_BASE + '/api/updateQuiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sid: sid, purchases: purchases })
+      });
+      var json = await res.json();
+      if (json.error) {
+        showToast('更新失败: ' + json.error);
+      } else {
+        for (var i = 0; i < allData.length; i++) {
+          if (allData[i].session_id === sid) {
+            allData[i].purchases = purchases;
+            break;
+          }
+        }
+        renderStats();
+        filterTable();
+        showToast('产品购买已更新');
+      }
+    } catch (e) {
+      showToast('网络错误: ' + e.message);
+    }
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._tid);
+    t._tid = setTimeout(function() { t.classList.remove('show'); }, 2000);
+  }
+
+  function v3Text(value, fallback) {
+    if (typeof value === 'string' || typeof value === 'number') return String(value);
+    return fallback || '';
+  }
+
+  function v3FieldLabel(field) {
+    if (V3_REVIEW_UI && typeof V3_REVIEW_UI.fieldLabel === 'function') {
+      return V3_REVIEW_UI.fieldLabel(field);
+    }
+    return '补充信息';
+  }
+
+  function v3StatusLabel(status) {
+    if (V3_REVIEW_UI && typeof V3_REVIEW_UI.statusLabel === 'function') {
+      return V3_REVIEW_UI.statusLabel(status);
+    }
+    return '状态待确认';
+  }
+
+  function v3ChainState(item) {
+    var status = item && item.v3_status || '';
+    if (!status) return { kind: 'none', label: '尚未进入个性化分析' };
+    if (status === 'analyzing' || status === 'not_started') {
+      return { kind: 'working', label: '个性化分析中' };
+    }
+    if (status === 'needs_follow_up') {
+      return { kind: 'working', label: '个性化分析待补充' };
+    }
+    if (['limited', 'ready', 'review_required', 'approved', 'rejected'].indexOf(status) !== -1) {
+      return { kind: 'ready', label: '个性化分析已生成' };
+    }
+    return { kind: 'error', label: '个性化分析失败' };
+  }
+
+  function renderV3ChainStatus(item) {
+    var state = v3ChainState(item);
+    var detail = [];
+    if (item && item.v3_stage) detail.push('阶段：' + item.v3_stage);
+    if (item && item.v3_provider) detail.push('服务：' + item.v3_provider);
+    if (item && item.v3_model) detail.push('模型：' + item.v3_model);
+    if (item && item.v3_error_code) detail.push('错误：' + item.v3_error_code);
+    if (item && item.v3_updated_at) detail.push('更新：' + item.v3_updated_at);
+    return '<span class="v3-chain-status v3-chain-' + escapeHtml(state.kind) + '"' +
+      (detail.length ? ' title="' + escapeHtml(detail.join('；')) + '"' : '') +
+      '>' + escapeHtml(state.label) + '</span>';
+  }
+
+  function v3ConfidenceLabel(value) {
+    if (typeof value === 'number') {
+      if (value >= 0.8) return '较高';
+      if (value >= 0.55) return '中等';
+      return '较低';
+    }
+    return ({ high: '较高', medium: '中等', low: '较低' })[value] || v3Text(value, '未标注');
+  }
+
+  function v3PathStatusLabel(value) {
+    if (V3_REVIEW_UI && typeof V3_REVIEW_UI.pathStatusLabel === 'function') {
+      return V3_REVIEW_UI.pathStatusLabel(value);
+    }
+    return '待判断';
+  }
+
+  function v3ReasonLabel(value) {
+    if (V3_REVIEW_UI && typeof V3_REVIEW_UI.reasonLabel === 'function') {
+      return V3_REVIEW_UI.reasonLabel(value);
+    }
+    return '系统发现一项需要人工核对的问题';
+  }
+
+  function v3List(values, formatter) {
+    if (!Array.isArray(values) || !values.length) return '<div class="q-na">暂无</div>';
+    var html = '<ul style="padding-left:20px;margin:8px 0;">';
+    for (var i = 0; i < values.length; i++) {
+      var value = formatter ? formatter(values[i], i) : v3Text(values[i] && values[i].text, v3Text(values[i]));
+      html += '<li>' + escapeHtml(value) + '</li>';
+    }
+    return html + '</ul>';
+  }
+
+  function v3Line(label, value) {
+    var text = v3Text(value, '未提供');
+    return '<div class="q-answer-detail" style="margin:7px 0;line-height:1.65;"><strong>' +
+      escapeHtml(label) + '：</strong>' + escapeHtml(text) + '</div>';
+  }
+
+  function v3ReportHtml(report) {
+    if (!report || typeof report !== 'object') return '<div class="q-na">AI 报告尚未生成。</div>';
+    var html = '';
+    var facts = Array.isArray(report.understoodFacts) ? report.understoodFacts : [];
+    if (facts.length) {
+      html += '<div class="q-answer"><strong>AI 理解到的事实</strong></div>';
+      html += v3List(facts, function(item) { return v3Text(item && item.text, v3Text(item)); });
+    }
+    var judgement = report.primaryJudgement && typeof report.primaryJudgement === 'object' ? report.primaryJudgement : {};
+    html += '<div class="q-answer" style="margin-top:12px;"><strong>核心判断</strong></div>';
+    html += v3Line('判断', judgement.text || judgement.statement);
+    html += v3Line('可信程度', v3ConfidenceLabel(judgement.confidence));
+    if (Array.isArray(judgement.limitations) && judgement.limitations.length) {
+      html += '<div class="q-answer-detail"><strong>判断限制</strong>' + v3List(judgement.limitations) + '</div>';
+    }
+    var paths = Array.isArray(report.pathComparison) ? report.pathComparison : [];
+    if (paths.length) {
+      html += '<div class="q-answer" style="margin-top:14px;"><strong>路径比较</strong></div>';
+      for (var p = 0; p < paths.length; p++) {
+        html += '<div style="border:1px solid rgba(85,98,79,.18);border-radius:8px;padding:10px 12px;margin-top:8px;">' +
+          '<strong>' + escapeHtml(paths[p].path || ('路径 ' + (p + 1))) + '</strong>' +
+          '<span style="margin-left:8px;color:var(--muted);">' + escapeHtml(v3PathStatusLabel(paths[p].status)) + '</span>' +
+          '<div class="q-answer-detail" style="margin-top:5px;">' + escapeHtml(paths[p].reason || '暂无说明') + '</div></div>';
+      }
+    }
+    var actions = Array.isArray(report.sevenDayAction) ? report.sevenDayAction : [];
+    if (actions.length) {
+      html += '<div class="q-answer" style="margin-top:14px;"><strong>7 天行动</strong></div>';
+      for (var a = 0; a < actions.length; a++) {
+        html += '<div style="border-left:3px solid #b78945;padding:3px 0 3px 12px;margin-top:10px;">' +
+          '<strong>' + escapeHtml(actions[a].dayRange || ('行动 ' + (a + 1))) + '</strong>' +
+          '<div class="q-answer-detail">' + escapeHtml(actions[a].action || '') + '</div>' +
+          (actions[a].successSignal ? '<div class="q-answer-detail"><strong>完成信号：</strong>' + escapeHtml(actions[a].successSignal) + '</div>' : '') + '</div>';
+      }
+    }
+    var doNotDo = Array.isArray(report.doNotDo) ? report.doNotDo : [];
+    if (doNotDo.length) {
+      html += '<div class="q-answer" style="margin-top:14px;"><strong>暂时不要做</strong></div>';
+      html += v3List(doNotDo, function(item) { return v3Text(item && item.text, v3Text(item)); });
+    }
+    if (Array.isArray(report.uncertainty) && report.uncertainty.length) {
+      html += '<div class="q-answer" style="margin-top:14px;"><strong>仍不能确定的部分</strong></div>' + v3List(report.uncertainty);
+    }
+    return html;
+  }
+
+  function v3Block(title, body) {
+    return '<div class="q-block"><div class="q-title">' + escapeHtml(title) + '</div>' + body + '</div>';
+  }
+
+  function v3BuildReviewGuidance(data) {
+    if (V3_REVIEW_UI && typeof V3_REVIEW_UI.buildReviewGuidance === 'function') {
+      return V3_REVIEW_UI.buildReviewGuidance(data);
+    }
+    return {
+      level: 'medium',
+      recommendation: '重点核对后决定',
+      summary: '自动复核建议暂时不可用，请只核对核心判断和证据边界。',
+      checks: [{
+        title: '核心判断与证据',
+        standard: '确认结论能在客户原回答中找到依据，没有把推测写成事实。'
+      }]
+    };
+  }
+
+  function v3ReviewGuidanceHtml(guidance) {
+    var value = guidance || {};
+    var checks = Array.isArray(value.checks) ? value.checks : [];
+    var html = '<div class="v3-review-guidance" data-level="' + escapeHtml(value.level || 'medium') + '">';
+    html += '<span class="v3-review-recommendation">系统建议：' + escapeHtml(value.recommendation || '重点核对后决定') + '</span>';
+    html += '<div class="q-answer-detail" style="margin-top:9px;color:var(--text);">' + escapeHtml(value.summary || '') + '</div>';
+    html += '<ol class="v3-review-checks">';
+    for (var i = 0; i < checks.length; i++) {
+      html += '<li><strong>' + String(i + 1) + '. ' + escapeHtml(checks[i].title || '需要核对') + '</strong>' +
+        '<span>通过标准：' + escapeHtml(checks[i].standard || '确认与客户原回答一致。') + '</span></li>';
+    }
+    return html + '</ol></div>';
+  }
+
+  function v3ReviewActionHtml(guidance) {
+    var value = guidance || {};
+    var approveLabel = value.level === 'low' ? '按系统建议标记通过' : '核对后标记通过';
+    var adjustLabel = value.level === 'high' ? '按系统建议标记需要调整' : '标记需要调整';
+    return '<div class="q-block">' +
+      '<label class="q-title" for="v3ReviewNote">复核备注（仅在发现问题时填写）</label>' +
+      '<textarea id="v3ReviewNote" rows="3" style="width:100%;padding:10px;font:inherit;" placeholder="例如：核心判断没有证据；或第 2 条行动需要改成先验证"></textarea>' +
+      '<div class="q-answer-detail" style="margin-top:8px;">先按上面的清单核对，不需要逐字通读。此操作只记录你的判断，不会自动修改客户已经看到的报告。</div>' +
+      '<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;">' +
+      '<button type="button" class="btn-sm btn-v3" data-v3-review-action onclick="submitV3Review(\'approve\')">' + escapeHtml(approveLabel) + '</button>' +
+      '<button type="button" class="btn-sm btn-del" data-v3-review-action onclick="submitV3Review(\'reject\')">' + escapeHtml(adjustLabel) + '</button>' +
+      '</div></div>';
+  }
+
+  function renderV3Review(data) {
+    var redacted = data && data.redacted_input && typeof data.redacted_input === 'object' ? data.redacted_input : {};
+    var core = redacted.coreAnswers && typeof redacted.coreAnswers === 'object' ? redacted.coreAnswers : {};
+    var followUpAnswers = redacted.followUpAnswers && typeof redacted.followUpAnswers === 'object' ? redacted.followUpAnswers : {};
+    var evidence = data && data.evidence && typeof data.evidence === 'object' ? data.evidence : {};
+    var accepted = Array.isArray(evidence.accepted) ? evidence.accepted : [];
+    var rejected = Array.isArray(evidence.rejected) ? evidence.rejected : [];
+    var rules = data && data.kevin_rule_result && typeof data.kevin_rule_result === 'object' ? data.kevin_rule_result : {};
+    var caseExtraction = data && data.case_extraction && typeof data.case_extraction === 'object' ? data.case_extraction : null;
+    var caseCard = data && data.case_evidence_card && typeof data.case_evidence_card === 'object' ? data.case_evidence_card : null;
+    var guidance = v3BuildReviewGuidance(data);
+    var html = '<h2>个性化报告复核</h2>';
+    html += '<p class="sub" style="line-height:1.7;">系统已先完成证据、边界和质量检查。你只需要处理下面列出的重点，不需要逐字通读整份报告。</p>';
+    html += v3ReviewGuidanceHtml(guidance);
+    html += v3Block('当前检查状态', '<div class="q-answer"><strong>' + escapeHtml(v3StatusLabel(data && data.status)) + '</strong></div><div class="q-answer-detail">生成：' + escapeHtml(data && data.created_at) + '<br>更新：' + escapeHtml(data && data.updated_at) + '</div>');
+    if (data && data.report_candidate) html += v3ReviewActionHtml(guidance);
+    html += '<details class="v3-review-details"><summary>需要时展开：客户原话、证据和全部报告内容</summary><div class="v3-review-details-inner">';
+
+    var openAnswerHtml = '';
+    ['decision', 'caseOneProblem', 'caseOneAction', 'caseOneResult', 'costSignals'].forEach(function(key) {
+      openAnswerHtml += v3Line(v3FieldLabel(key), core[key]);
+    });
+    Object.keys(followUpAnswers).forEach(function(key) {
+      openAnswerHtml += v3Line(v3FieldLabel(key), followUpAnswers[key]);
+    });
+    html += v3Block('客户真实回答', openAnswerHtml || '<div class="q-na">暂无开放回答</div>');
+
+    var acceptedHtml = accepted.length ? '' : '<div class="q-na">暂无被接受证据</div>';
+    for (var i = 0; i < accepted.length; i++) {
+      var source = accepted[i] && accepted[i].source && typeof accepted[i].source === 'object' ? accepted[i].source : {};
+      var evidenceField = source.field || accepted[i].sourceField || '证据';
+      var evidenceQuote = source.quote || accepted[i].sourceQuote || '';
+      acceptedHtml += v3Line(v3FieldLabel(evidenceField), evidenceQuote);
+    }
+    html += v3Block('系统采用的关键证据', acceptedHtml);
+    var rejectedHtml = rejected.length
+      ? '<div class="q-answer-detail">系统自动排除了 <strong>' + rejected.length + '</strong> 条无法在客户原回答中核验的信息，这些内容不会进入客户报告。通常不需要处理。</div>'
+      : '<div class="q-answer-detail">所有采用的信息都能在客户原回答中找到依据。</div>';
+    html += v3Block('系统未采用的信息', rejectedHtml);
+
+    if (caseCard) {
+      var caseHtml = '<div class="q-answer"><strong>' + escapeHtml(caseCard.title || '未命名案例') + '</strong></div>';
+      caseHtml += '<div class="q-answer-detail"><strong>案例状态：</strong>' + escapeHtml(caseExtraction && caseExtraction.complete ? '四项信息已补齐' : '仍有信息待补') + '</div>';
+      var caseLabels = {
+        context: '发生场景',
+        problem: '真实问题',
+        goalAndConstraints: '目标与限制',
+        alternativesAndJudgement: '选择与判断依据',
+        actions: '客户亲自采取的动作',
+        result: '实际结果',
+        externalSignals: '外部投入与反馈',
+        boundaryAndTransfer: '适用与失效边界'
+      };
+      Object.keys(caseLabels).forEach(function(key) {
+        caseHtml += '<div class="q-answer-detail"><strong>' + escapeHtml(caseLabels[key]) + '：</strong>' + escapeHtml(caseCard[key] || '未提供') + '</div>';
+      });
+      var caseFacts = Array.isArray(caseCard.facts) ? caseCard.facts : [];
+      var factsHtml = caseFacts.length ? '' : '<div class="q-na">暂无通过原话核验的事实</div>';
+      for (var f = 0; f < caseFacts.length; f++) {
+        factsHtml += '<div class="q-answer-detail"><strong>' + escapeHtml(caseFacts[f].evidenceLevel || '证据') + '：</strong>' + escapeHtml(caseFacts[f].sourceQuote || caseFacts[f].claim || '') + '</div>';
+      }
+      caseHtml += '<div class="q-answer-detail"><strong>已核验事实</strong></div>' + factsHtml;
+      caseHtml += '<div class="q-answer-detail"><strong>当前解释：</strong>' + escapeHtml(caseCard.interpretation && caseCard.interpretation.text || '暂无') + '</div>';
+      var hypotheses = Array.isArray(caseCard.hypotheses) ? caseCard.hypotheses.map(function(item) { return item && item.text; }).filter(Boolean) : [];
+      caseHtml += '<div class="q-answer-detail"><strong>待验证假设</strong>' + v3List(hypotheses) + '</div>';
+      caseHtml += '<div class="q-answer-detail"><strong>不能直接推断</strong>' + v3List(caseCard.doNotInfer) + '</div>';
+      caseHtml += '<div class="q-answer-detail"><strong>下一步：</strong>' + escapeHtml(caseCard.nextAction || '待人工判断') + '</div>';
+      html += v3Block('案例证据卡', caseHtml);
+    } else if (caseExtraction && caseExtraction.required) {
+      html += v3Block('案例证据卡', '<div class="q-na">案例萃取已触发，客户尚未补齐四项真实回答。</div>');
+    }
+
+    var checkHtml = '<div class="q-answer"><strong>信息缺口</strong></div>' + v3List(data && data.missing_information);
+    if (Array.isArray(rules.contradictions) && rules.contradictions.length) checkHtml += '<div class="q-answer"><strong>回答中的矛盾</strong></div>' + v3List(rules.contradictions, v3ReasonLabel);
+    if (Array.isArray(rules.reviewReasons) && rules.reviewReasons.length) checkHtml += '<div class="q-answer"><strong>需要人工复核的原因</strong></div>' + v3List(rules.reviewReasons, v3ReasonLabel);
+    if (Array.isArray(rules.prohibitedConclusions) && rules.prohibitedConclusions.length) checkHtml += '<div class="q-answer"><strong>不能越过的判断边界</strong></div>' + v3List(rules.prohibitedConclusions);
+    var qualityResult = data && data.quality_result && typeof data.quality_result === 'object' ? data.quality_result : {};
+    var qualityIssues = qualityResult.issues || qualityResult.warnings || qualityResult.personalizationIssues || [];
+    if (Array.isArray(qualityIssues) && qualityIssues.length) checkHtml += '<div class="q-answer"><strong>质量检查提示</strong></div>' + v3List(qualityIssues, v3ReasonLabel);
+    html += v3Block('需要你重点检查', checkHtml);
+    html += v3Block('生成的报告', data && data.report_candidate
+      ? v3ReportHtml(data.report_candidate)
+      : '<div class="q-na">案例材料已记录，候选报告尚未生成，当前不能批准或驳回。</div>');
+    var review = data && data.review_metadata && typeof data.review_metadata === 'object' ? data.review_metadata : {};
+    var reviewHtml = review.action ? v3Line('最近结论', review.action === 'approve' ? '复核通过' : '需要调整') : '<div class="q-na">尚未人工复核</div>';
+    if (review.note) reviewHtml += v3Line('备注', review.note);
+    if (review.reviewed_at) reviewHtml += v3Line('复核时间', review.reviewed_at);
+    html += v3Block('复核记录', reviewHtml);
+    html += '</div></details>';
+    document.getElementById('answersContent').innerHTML = html;
+  }
+
+  async function showV3Review(sid) {
+    if (!V3_ADMIN_ENABLED) return;
+    v3ReviewSessionId = sid;
+    var content = document.getElementById('answersContent');
+    content.innerHTML = '<h2>个性化报告复核</h2><p class="sub">正在读取分析结果与自动质检建议…</p>';
+    document.getElementById('answersModal').classList.add('show');
+    try {
+      var pwd = getPwd();
+      var url = API_BASE + '/api/getAssessmentV3?sid=' + encodeURIComponent(sid);
+      var res = await adminFetch(url);
+      var json = await res.json();
+      if (res.status === 404) {
+        content.innerHTML = '<h2>个性化报告复核</h2><p class="sub">这条记录尚未生成个性化分析报告。</p>';
+        return;
+      }
+      if (!res.ok) throw new Error(json && json.code ? json.code : 'V3 请求失败');
+      renderV3Review(json);
+    } catch (e) {
+      content.innerHTML = '<h2>个性化报告复核</h2><p class="sub">读取失败：' + escapeHtml(e && e.message ? e.message : '请稍后重试') + '</p>';
+    }
+  }
+
+  async function submitV3Review(action) {
+    if (!V3_ADMIN_ENABLED || !v3ReviewSessionId) return;
+    var actionLabel = action === 'approve' ? '复核通过' : '需要调整';
+    if (!confirm('确认将这份报告标记为“' + actionLabel + '”吗？此操作不会修改客户已经看到的报告。')) return;
+    var note = document.getElementById('v3ReviewNote');
+    var controls = document.querySelectorAll('[data-v3-review-action]');
+    for (var i = 0; i < controls.length; i++) controls[i].disabled = true;
+    try {
+      var pwd = getPwd();
+      var res = await adminFetch(API_BASE + '/api/reviewAssessmentV3', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: v3ReviewSessionId, action: action, note: note ? note.value : '' })
+      });
+      var json = await res.json();
+      if (!res.ok) throw new Error(json && json.code ? json.code : 'V3 复核失败');
+      showToast('已标记为' + actionLabel);
+      await showV3Review(v3ReviewSessionId);
+    } catch (e) {
+      showToast('复核失败：' + (e && e.message ? e.message : '请稍后重试'));
+      for (var j = 0; j < controls.length; j++) controls[j].disabled = false;
+    }
+  }
+
+  function showAnswers(sid) {
+    var item = null;
+    for (var i = 0; i < allData.length; i++) {
+      if (allData[i].session_id === sid) { item = allData[i]; break; }
+    }
+    if (!item) return;
+
+    var answers = normalizeAnswers(item.answers);
+    var quizPart = normalizeAnswers(answers.quiz || answers.quick || answers.base || answers);
+    var deepPart = getDeepPart(item);
+    var typeName = TYPE_NAMES[item.result_type] || item.result_type || '-';
+    var html = '<h2>客户答题详情</h2>';
+    html += '<p class="sub">测评编号: ' + escapeHtml(getMeasurementCode(item) || '未生成') + ' · 会话ID: ' + escapeHtml(sid) + ' · ';
+    html += '结果: <span class="tag tag-paid" style="padding:2px 10px;">' + typeName + '</span> · ';
+    html += '匹配度: ' + (item.result_score != null ? item.result_score : '-') + '</p>';
+    html += '<div style="margin-bottom:16px;">' + renderSignalTags(item) + '</div>';
+    html += renderFollowAdvice(item);
+    html += renderLeadSnapshot(item, deepPart);
+
+    // Detect report version: answers = { quiz: {...}, deep: {...} }
+    html += '<h3 style="margin-top:18px;margin-bottom:12px;font-size:16px;">8 题快速测评</h3>';
+
+    for (var j = 0; j < QUESTIONS.length; j++) {
+      var q = QUESTIONS[j];
+      var rawVal = answerValue(quizPart, q, j);
+      var val = normalizeOptionKey(rawVal);
+      html += '<div class="q-block">';
+      html += '<div class="q-num">第 ' + (j + 1) + ' / 8 题</div>';
+      html += '<div class="q-title">' + q.title + '</div>';
+      if (val && q.options[val]) {
+        html += '<span class="q-answer">' + val + '. ' + q.options[val] + '</span>';
+      } else if (val) {
+        html += '<span class="q-answer">' + val + '</span>';
+      } else {
+        html += '<span class="q-na">未作答</span>';
+      }
+      html += '</div>';
+    }
+
+    // Show deep form data if report version
+    if (deepPart && Object.keys(deepPart).length) {
+      html += '<h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;">深度问题</h3>';
+      var orderedDeepKeys = ['name','industry','years','status','currentState','caseCount','caseCountDetailed','bestCaseDescription','evidenceQuality','evidenceType','targetCustomerClarity','problemScene','deliverableReadiness','costWillingnessSignal','consultedBefore','paidBefore','paidSignal','deliveryPreference','careerVsProductization','organizationComplexity','consumerAnxiety','deliveryResponsibility','serviceDataReadiness','hours','weeklyHours','hourlyRate','hourlyValue','friends','audience','otherFans','pastTry','attempts','pastResult','bottleneck','biggestBlock','currentOffer','targetUser','availableAssets','expectation','confidence'];
+      var rendered = {};
+      for (var dki = 0; dki < orderedDeepKeys.length; dki++) {
+        var dk = orderedDeepKeys[dki];
+        if (deepPart.hasOwnProperty(dk)) {
+          html += renderKeyValueBlock(DEEP_LABELS[dk] || v3FieldLabel(dk), deepPart[dk]);
+          rendered[dk] = true;
+        }
+      }
+      for (var extraKey in deepPart) {
+        if (deepPart.hasOwnProperty(extraKey) && !rendered[extraKey]) {
+          html += renderKeyValueBlock(v3FieldLabel(extraKey), deepPart[extraKey]);
+        }
+      }
+    } else if (item.version === 'report') {
+      html += '<div class="q-block" style="border-color:rgba(192,57,43,.25);background:rgba(192,57,43,.04);">';
+      html += '<div class="q-num">深度问题</div>';
+      html += '<div class="q-title" style="font-weight:400;">这条记录被标记为深度报告，但没有读到深度答案。可能是早期记录、保存失败，或接口返回字段不完整。</div>';
+      html += '</div>';
+    }
+
+    html += renderEventTimeline(item);
+
+    if ((!answers || Object.keys(answers).length === 0) && item.answers) {
+      html += renderKeyValueBlock('原始 answers', item.answers);
+    }
+
+    document.getElementById('answersContent').innerHTML = html;
+    document.getElementById('answersModal').classList.add('show');
+  }
+
+  function closeAnswersModal() {
+    document.getElementById('answersModal').classList.remove('show');
+  }
+
+  // Click outside modal to close
+  document.addEventListener('click', function(e) {
+    if (e.target.id === 'answersModal') closeAnswersModal();
+  });
+
+  
+  // ==================== BATCH DELETE ====================
+  function toggleSelectAll(cb) {
+    var checkboxes = document.querySelectorAll('#tableBody .row-checkbox');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = cb.checked;
+    }
+    updateBatchButtons();
+  }
+
+  function updateBatchButtons() {
+    var checkboxes = document.querySelectorAll('#tableBody .row-checkbox:checked');
+    var count = checkboxes.length;
+    var bar = document.getElementById('batchBar');
+    document.getElementById('batchCount').textContent = count;
+    if (count > 0) {
+      bar.classList.add('show');
+    } else {
+      bar.classList.remove('show');
+      document.getElementById('selectAll').checked = false;
+    }
+  }
+
+  function clearSelection() {
+    var checkboxes = document.querySelectorAll('#tableBody .row-checkbox');
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = false;
+    }
+    document.getElementById('selectAll').checked = false;
+    updateBatchButtons();
+  }
+
+  async function batchDelete() {
+    var checkboxes = document.querySelectorAll('#tableBody .row-checkbox:checked');
+    if (checkboxes.length === 0) return;
+    if (!confirm('确定要批量删除已选的 ' + checkboxes.length + ' 条记录吗？')) return;
+
+    var pwd = getPwd();
+    var total = checkboxes.length;
+    var done = 0;
+    var failed = [];
+
+    for (var i = 0; i < checkboxes.length; i++) {
+      var sid = checkboxes[i].getAttribute('data-sid');
+      try {
+        var res = await adminFetch(API_BASE + '/api/deleteQuiz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sid: sid })
+        });
+        var json = await res.json();
+        if (json.error) {
+          failed.push(sid);
+        } else {
+          done++;
+          // Remove from local data
+          allData = allData.filter(function(r) { return r.session_id !== sid; });
+        }
+      } catch(e) {
+        failed.push(sid);
+      }
+    }
+
+    clearSelection();
+    renderStats();
+    filterTable();
+    if (failed.length > 0) {
+      showToast('成功删除 ' + done + '/' + total + ' 条，失败: ' + failed.join(', '));
+    } else {
+      showToast('已批量删除 ' + done + ' 条记录');
+    }
+  }
+
+// Init
+  var savedPwd = getPwd();
+  if (savedPwd) {
+    loadData();
+  } else {
+    showLogin();
+  }
+</script>
+<footer data-kevin-icp aria-label="网站备案信息" style="padding:24px 12px;text-align:center;font-size:12px;line-height:1.6;color:#6b7280;background:transparent">
+  <span style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px">
+    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:26px;color:inherit;text-decoration:none">鄂ICP备2026039968号-1</a>
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=42011102006455" target="_blank" rel="noopener noreferrer" data-track="click_public_security_filing" style="display:inline-flex;align-items:center;gap:4px;min-height:26px;color:inherit;text-decoration:none"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAFEElEQVR42kXU629b9R3H8fe5+Pj4+HacOHa8uCtNI9oU2oa13QbL0tFNXKY2g0zqKEJoTB1DmxgCjQdM7AFiD9iTSkOIbeqYtKI+2MYkRFt1lJBpQCvKRe3WVr2ENE1jp2lix7GPfS4+Pue3BxXJP/DS5yt9Pl9JCAF2C4AQGVmEOFqJWKQXaPbaV8+M/vv4pz/1nI72nfu2HuzasuVt6C95niDqOCBLgAwAqSSSEALfroMkkAOBomWAD+6dPH7iqZP/ujIqnEl91jNQMiZrszpOxegMf7f/yOCesb+I4LajwmsiJAkQKOm+W3RDsmiKZYSRAc3VJ/7wxsTjT47vbboz+u0Jhf36TZ7SZ7nn7jxdd+fV/U++9/CJV185IsWUqK1JuHyGr34OK1kVGVlJocrVonfm5Xd/f7jOvv39/LjYIP2nC1QvB1SnAuq7/8gPgnM8c+gRDv7TR1z+8z8ShqvLegI9Hl0FE55FPFofvH70xamR3edGzIE8v8ieY/pwA3mNSWC1wQuRekxOPX2SvcYZ8t+6i+/tPrZn8aM3rtozZzdcfP+dVTDqOajuu4kjl5PaJ3PbeXC7RfNsA/l6HcmMEl0KcE/eJLKuG73pUPnracbubzPxxSbe/DAoJKRWDHloFawvVorhx+8fCKUYqDYpa47GPEQCH5ZcpPUG2jYT+UYLjZDKtENflweSRK0pE+1RD2wcHlu3As5ceu+H7XJ5OJPQoBNFFApkh3tpIrDu6SbYVyTx0hDGM1uQewxy27K07DYIQSFnQOnsvUuzp36yAhqJzGDD8unvcUHv5sRpA3VXiuqetQRlC+l/LexjN/Gnl9GeH6br2a28dagGxBnarNKaWsAtTRVXwHBpbk+jpnJn0aL4dY3X34zzn1dKDO0okDaS2BdqhAse7rkayfIy51++wquHouSHTDb31amUPfylS8MroKy2TKshk1q8wt77Azp+Av/oPN1/+xy5L0K7RyHMqWR3FShMXKVy8DyttsLYaIRkdRKroaIm5QiAChAzvjoub7g2GuT7eOIbFgf6eni9PIg/e4Hu6iRyOoZzoYY1kKOcKfB3OQYpkye+uUAnWcS8Q8LIrDm2AoKcEw3B3JTFnYPT/PZX23jx+RGOWpuh4TNqV+kyZd46lqSJAWR47uc6OwYmmZsEXJuwY21dAVWzvb2TzOPP+5QWLvLL4Shj43EmjttckrfwwKYvKMQqdI700a45rNlo8OsHrnHz1DVsX0fPaqimthG49Ry85iePVk//7rAz38ar+FCaYf1DQ0TzOgRVgqpKc8Ehva4L1nZDqcL025dxklkS/QlivQbpgX07tcz3P5CEEAB0Wv99bOn8gdcC10lXPpxHjQt6dw4SLDn4dgvZ0NG74khahOqpKTqBSnr7enyXanrDyCNxMzUuaffdOtl3ZnAWnbI7H3P0fJjO7xogqLcIrAYYGopmosWgvdykVaqhr+1GL+bxlm3csiVia5ooqRSxL2sj2ldR+OiF3NeSvZFMAa8eEgYqYaDgLlogQtrVOs3JRSQlApKEe6NCJCaT/3YhqxnWz0KH1S1rSopo946HLDv9ml0qtTRlmVSuQ0Sy0SQfxVtGOA7JjVlSAylkrYma1pAyvdc76l2/UY3bf6Roi6zWRvhIEdVuVONPOxfzLzn1xQc9f3bnVzb1bAotKaGbcpcaS2Ld4Hqsx7TV3MjZpamFcWemdqJvZy6UFAURuAD8Hy4iNxOfElCpAAAAAElFTkSuQmCC" width="24" height="24" alt="" aria-hidden="true" style="display:block;width:24px;height:24px;flex:0 0 auto" />鄂公网安备42011102006455号</a>
+  </span>
+</footer>
+</body>
+</html>
+

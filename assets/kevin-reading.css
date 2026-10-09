@@ -1,0 +1,268 @@
+/* Final reading contract. Legacy sheets keep layout, color and control styling. */
+:root {
+  --read-body: 18px;
+  --read-leading: 1.85;
+  --read-measure: 720px;
+  --read-h1: clamp(40px, 4.4vw, 56px);
+  --read-h2: 32px;
+  --read-h3: 22px;
+  --read-serif: "Noto Serif SC", "Songti SC", SimSun, serif;
+  --read-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+html { scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body[data-reading-template] :where(main, article, section, .shell, .wrap) { min-width: 0; }
+body[data-reading-template] :where(p, li, dd, blockquote) { overflow-wrap: break-word; }
+body:where([data-reading-template]:not([data-reading-template="prompts"])) :where(h1, h2, h3) {
+  font-family: var(--read-serif);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+body:where([data-reading-template]:not([data-reading-template="prompts"])) h1 { font-size: var(--read-h1); line-height: 1.24; }
+body:where([data-reading-template]:not([data-reading-template="prompts"])) h2 { font-size: var(--read-h2); line-height: 1.4; }
+body:where([data-reading-template]:not([data-reading-template="prompts"])) h3 { font-size: var(--read-h3); line-height: 1.45; }
+body[data-reading-template] [data-kevin-icp] { color: #60584e !important; }
+
+/* Landing page: one proposition, one complete primary action. */
+body[data-reading-template="home"] .kv-home-hero h1 { font-size: clamp(48px, 4.1vw, 64px); line-height: 1.2; max-width: none; }
+body[data-reading-template="home"] .kv-home-hero .kv-title-line { display: block; white-space: normal; }
+body[data-reading-template="home"] .kv-home-hero__lead { font-size: 19px; line-height: 1.75; max-width: 39em; }
+body[data-reading-template="home"] :is(.kv-home-intro,.kv-case-proof,.kv-method-strip,.kv-method__head,.kv-fit,.kv-routes,.kv-home-final) h2 { font-size:34px; line-height:1.4; }
+body[data-reading-template="home"] :is(.kv-home-intro, .kv-case-proof, .kv-method-strip) p:not(.kv-home-kicker) { font-size: var(--read-body); line-height: var(--read-leading); }
+body[data-reading-template="home"] .kv-fit__promise { max-width: 44em; font-size: 16px; line-height: 1.8; }
+body[data-reading-template="home"] .kv-routes__primary p { font-size: 17px; line-height: 1.8; }
+body[data-reading-template="home"] .kv-routes__quiet span { font-size: 16px; line-height: 1.75; }
+body[data-reading-template="home"] .kv-home-final > div > p:not(.kv-home-kicker) { font-size: 18px; line-height: 1.8; }
+body[data-reading-template="home"] .kv-home-final__action p { font-size: 15px; line-height: 1.75; }
+
+/* Continuous editorial reading. Metadata and navigation retain their own scale. */
+body[data-reading-template="article"] .kv-editorial-reading {
+  box-sizing: border-box;
+  width: min(var(--read-measure), calc(100% - 40px));
+  max-width: var(--read-measure);
+  margin-inline: auto;
+}
+body[data-reading-template="article"] .kv-editorial-reading :is(p, li, blockquote) {
+  font-family: var(--read-sans);
+  font-size: var(--read-body);
+  line-height: var(--read-leading);
+}
+body[data-reading-template="article"] .kv-editorial-reading > p { margin-block: 0 1.1em; }
+body[data-reading-template="article"] .kv-editorial-reading h1 { font-size: 44px; line-height: 1.32; width: auto; max-width: none; margin-block: 24px; }
+body[data-reading-template="article"] .kv-editorial-reading h2 { font-size: 30px; line-height: 1.45; margin-block: 42px 16px; }
+body[data-reading-template="article"] .kv-editorial-reading h3 { font-size: 22px; line-height: 1.5; margin-block: 30px 12px; }
+body[data-reading-template="article"] .kv-editorial-reading :is(.meta, .kv-editorial-meta) { font-size: 14px; line-height: 1.7; }
+body[data-reading-template="article"] .article-brief :is(p, span) { font-size: 16px; line-height: 1.7; }
+body[data-reading-template="article"] .article-brief-grid { gap: 0;grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+/* Article discovery pages keep a wider layout than individual essays. */
+body[data-reading-template="article-index"] .hub-hero h1 { font-size: clamp(44px, 4.6vw, 60px); line-height: 1.24; max-width: none; }
+body[data-reading-template="article-index"] .hub-hero .kv-title-line { display: block; }
+body[data-reading-template="article-index"] .hub-hero .lead { max-width: 39em; font-size: 18px; line-height: 1.8; }
+body[data-reading-template="article-index"] .hub-map-card li { font-size: 16px; line-height: 1.8; }
+body[data-reading-template="article-index"] :is(.editorial-lens-grid, .category-grid, .intent-grid) :is(p, span:not(.count)) { font-size: 16px; line-height: 1.75; }
+body[data-reading-template="article-index"] .section-title { font-size: 34px; line-height: 1.38; }
+body[data-reading-template="article-category"] h1 { font-size: clamp(40px, 4.2vw, 54px); line-height: 1.28; max-width: none; }
+body[data-reading-template="article-category"] .section-title { font-size: 32px; line-height: 1.4; }
+body[data-reading-template="article-category"] .lead { font-size: 18px; line-height: 1.8; max-width: 40em; }
+
+/* The CTA explains the next step; small source/date labels remain small. */
+body[data-reading-template]:is([data-reading-template="article"], [data-reading-template="article-category"]) .article-next-step > p:not(.article-cta-kicker):not(.article-cta-foot),
+body[data-reading-template]:is([data-reading-template="article"], [data-reading-template="article-category"]) .article-next-grid span,
+body[data-reading-template]:is([data-reading-template="article"], [data-reading-template="article-category"]) .article-cta-note,
+body[data-reading-template]:is([data-reading-template="article"], [data-reading-template="article-category"]) .article-cta-foot {
+  font-size: 16px;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+body[data-reading-template="article-category"] :is(.kevin-article-cta > p,.article-author-note p) { font-size:16px;line-height:1.75; }
+body[data-reading-template]:is([data-reading-template="article"], [data-reading-template="article-category"]) .article-cta-contact,
+body[data-reading-template]:is([data-reading-template="article"], [data-reading-template="article-category"]) .article-cta-contact:visited {
+  color: #fffaf2 !important;
+  display: inline-block;
+  padding-block: 8px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Questions: separate a section title from a card label. */
+body[data-reading-template="question"] .hero h1 { font-size: clamp(40px, 4.1vw, 56px); line-height: 1.28; max-width: 100%; }
+body[data-reading-template="question"] .hero :is(.lead, .answer p) { font-size: 18px; line-height: 1.85; }
+body[data-reading-template="question"] .deep-answer > .section > .card,
+body[data-reading-template="question"] .deep-answer > .section > h2,
+body[data-reading-template="question"] .deep-answer .steps { width: min(100%, 760px); margin-inline: auto; }
+body[data-reading-template="question"] .deep-answer :is(p:not(.case-boundary):not(.search-ai-byline), li) { font-size: var(--read-body); line-height: var(--read-leading); }
+body[data-reading-template="question"] .deep-answer :is(.section > h2, .search-section h2) { font-size: 32px; line-height: 1.4; }
+body[data-reading-template="question"] .side li { font-size: 16px; line-height: 1.8; }
+body[data-reading-template="question"] .case-boundary { font-size: 15px; line-height: 1.75; }
+body[data-reading-template="question-index"] h1 { font-size: clamp(40px, 4.1vw, 56px); line-height: 1.28; }
+body[data-reading-template="question-index"] :is(.section h2, .question-section h2) { font-size: 30px; line-height: 1.4; }
+body[data-reading-template="question-index"] .lead { font-size: 18px; line-height: 1.8; }
+
+/* Personal explanation and case evidence retain visible metadata hierarchy. */
+body[data-reading-template="about"] .about-hero h1 { font-size: clamp(42px, 4.3vw, 58px); line-height: 1.25; max-width: none; }
+body[data-reading-template="about"] h1 .kv-title-line { display: block; white-space: normal; }
+body[data-reading-template="about"] .about-row-body { max-width: 720px; }
+body[data-reading-template="about"] :is(.about-row-body, .about-belief-list, .about-section-head) p { font-size: var(--read-body); line-height: var(--read-leading); }
+body[data-reading-template="about"] :is(.about-row-body, .about-section-head, .about-connect-head) h2 { font-size: 34px; line-height: 1.4; }
+body[data-reading-template="about"] :is(.about-lead, .about-intro) { font-size: 18px; line-height: 1.8; }
+body[data-reading-template="about"] :is(.about-list-card li, .about-callout span) { font-size: 17px; line-height: 1.8; }
+body[data-reading-template="about"] .about-path-grid p { font-size: 16px; line-height: 1.8; }
+body[data-reading-template="cases"] .cases-hero h1 { font-size: clamp(44px, 4.5vw, 60px); line-height: 1.25; }
+body[data-reading-template="cases"] .cases-section-head h2 { font-size: 36px; line-height: 1.38; }
+body[data-reading-template="cases"] .case-featured h3 { font-size: 30px; line-height: 1.4; }
+body[data-reading-template="cases"] .case-category-group h3 { font-size: 22px; line-height: 1.45; }
+body[data-reading-template="cases"] :is(.case-compact-card, .case-method-card) h4 { font-size: 22px; line-height: 1.45; }
+body[data-reading-template="cases"] :is(.cases-lead, .case-featured__body p, .case-featured__body li, .case-compact-card p, .case-method-card p, .case-avoid) { font-size: 17px; line-height: 1.85; }
+body[data-reading-template="cases"] .cases-kicker { font-size: 13px; line-height: 1.65; }
+body[data-reading-template="cases"] .case-featured__body h4 { font-family: var(--read-sans); font-size: 15px; line-height: 1.65; }
+
+/* 1999 is its current standalone template, never the incompatible old B+ skin. */
+body[data-reading-template="diagnosis"] { font-family: var(--read-sans); }
+body[data-reading-template="diagnosis"] .shell.hero h1 { font-size: clamp(42px, 4.1vw, 56px); line-height: 1.28; max-width: none; }
+body[data-reading-template="diagnosis"] .section h2 { font-size: 34px; line-height: 1.4; }
+body[data-reading-template="diagnosis"] :is(.hero p:not(.eyebrow), .section p, .section li) { font-size: 17px; line-height: 1.85; }
+body[data-reading-template="diagnosis"] .section :is(.price-note, .closing-price p) { font-size: 14px; line-height: 1.7; }
+body[data-reading-template="diagnosis"] #boundaries :is(h2, p, li) { color: #251f1a; }
+body[data-reading-template="diagnosis"] .closing h2 { color: #fffaf2; }
+body[data-reading-template="diagnosis"] .closing p { color: #e8e0d3; }
+body[data-reading-template="diagnosis"] #booking .primary-link { background: #fffaf1; color: #123f35; border-color: #fffaf1; min-height: 48px; }
+
+/* 9800: declared font ownership replaces the malformed duplicate H1 rule. */
+body[data-reading-template="development"] h1 { font-size: clamp(38px, 3.8vw, 54px); line-height: 1.35; max-width: none; }
+body[data-reading-template="development"] h1 span { display: block; white-space: normal; }
+body[data-reading-template="development"] .dev-section h2 { font-size: 34px; line-height: 1.4; }
+body[data-reading-template="development"] .dev-form-row h3 { font-size: 20px; line-height: 1.5; }
+body[data-reading-template="development"] .dev-document h3 { font-size: 24px; line-height: 1.4; }
+body[data-reading-template="development"] .dev-lead { font-size: 18px; line-height: 1.85; }
+body[data-reading-template="development"] :is(.dev-card p, .dev-card li, .dev-faq details p, .dev-callout) { font-size: 17px; line-height: 1.85; }
+body[data-reading-template="development"] :is(.dev-form-row p, .dev-document dd) { font-size: 16px; line-height: 1.8; }
+body[data-reading-template="development"] .dev-form > .dev-note { font-size: 15px; line-height: 1.75; }
+body[data-reading-template="development"] .dev-closing h2 { font-size: 34px; line-height: 1.4; }
+body[data-reading-template="development"] .dev-closing p { font-size: 16px; line-height: 1.8; }
+
+body[data-reading-template="knowledge"] .knowledge-hero-title h1 { font-size: clamp(40px, 4.2vw, 54px); line-height: 1.28; width: auto; max-width: none; }
+body[data-reading-template="knowledge"] h1 .kv-title-line { display: block; white-space: normal; }
+body[data-reading-template="knowledge"] :is(.hero-sub, .knowledge-update-note) { font-size: 16px; line-height: 1.85; }
+body[data-reading-template="knowledge"] :is(.hero-sub, .knowledge-update-note) { color:#5f5549 !important; }
+body[data-reading-template="knowledge"] .knowledge-section-head h2 { font-size: 34px; line-height: 1.4; }
+body[data-reading-template="method"] h1 { font-size: clamp(40px, 4.1vw, 56px); line-height: 1.28; max-width: none; }
+body[data-reading-template="method"] h1 .kv-title-line { display: block; }
+body[data-reading-template="method"] .kt-section-head h2 { font-size: 34px; line-height: 1.4; }
+body[data-reading-template="method"] .kt-dimension h2 { font-size: 26px; line-height: 1.4; }
+body[data-reading-template="method"] :is(.kt-section-head p, .kt-process-card p, .kt-evidence-card p, .kt-dimension p) { font-size: 17px; line-height: 1.85; }
+
+/* Assessment controls remain a form, rather than inheriting the article scale. */
+body[data-reading-template="quiz"] .quiz-intro-title { font-size: clamp(40px, 4vw, 54px); line-height: 1.3; max-width: none; }
+body[data-reading-template="quiz"] .quiz-intro-title .kv-title-line:nth-child(-n+2) { display: inline; white-space: normal; }
+body[data-reading-template="quiz"] .quiz-intro-title .kv-title-line:last-child { display: block; white-space: normal; }
+body[data-reading-template="quiz"] .hero-subtitle { font-size: 17px; line-height: 1.8; max-width: 41em; }
+body[data-reading-template="quiz"] :is(.q-title, .question-title) { font-size: 26px; line-height: 1.4; }
+body[data-reading-template="quiz"] :is(.q-help, .question-help) { font-size: 16px; line-height: 1.75; }
+body[data-reading-template="quiz"] .result-box p { font-size:17px;line-height:1.8; }
+body[data-reading-template="report"] .hero h1 { font-size: clamp(36px, 3.5vw, 48px); line-height: 1.3; max-width: 100%; }
+body[data-reading-template="report"] .hero h1 :is(.kv-title-line, .kv-title-mobile-line) { display: inline; white-space: normal; }
+body[data-reading-template="report"] :is(.hero-sub, .deep-side p, .cta-desc) { font-size: 16px; line-height: 1.8; }
+body[data-reading-template="report"] .welcome-box p { font-size:16px;line-height:1.8; }
+body[data-reading-template="report"] .missing-report-card p { font-size:16px;line-height:1.8; }
+body[data-reading-template="report"] .locked-preview > p,
+body[data-reading-template="report"] :is(.locked-unlock-copy,.locked-availability) p,
+body[data-reading-template="report"] .locked-small,
+body[data-reading-template="report"] .locked-report-value-list li { font-size:16px;line-height:1.8; }
+body[data-reading-template="report"] :is(.report-section p, .report-section li, .report-body p) { font-size: 17px; line-height: 1.85; }
+body[data-reading-template="report"] :is(.report-section h2, .report-body h2) { font-size: 30px; line-height: 1.4; }
+body[data-reading-template="report"] .manual-service-grid > div { font-size: 16px !important; line-height: 1.75 !important; }
+body[data-reading-template="report"] .ksj-r :is(p,li) { font-size:17px;line-height:1.85; }
+body[data-reading-template="report"] :is(.ksj-r,.ksj-block) li em { font-size:15.5px;line-height:1.8; }
+body[data-reading-template="report"] .ksj-block :is(p,li) { font-size:17px;line-height:1.85; }
+body[data-reading-template="report"] .ksj-block header h3 { font-size:21px;line-height:1.45; }
+body[data-reading-template="report"] .ksj-r__head h2 { font-size:28px;line-height:1.4; }
+body[data-reading-template="report"] .ksj-r h3 { font-size:21px;line-height:1.45; }
+body[data-reading-template="report"] .ksj-r .ksj-note { font-size:15.5px;line-height:1.8; }
+body[data-reading-template="report"] .ksj-r__head p { font-size:16px;line-height:1.75; }
+body[data-reading-template="report"] .section-content :is(p,li) { font-size:17px !important;line-height:1.85 !important; }
+body[data-reading-template="report"] .cta-card p { font-size:16px !important;line-height:1.8 !important; }
+body[data-reading-template="privacy"] :is(.wrap, .page, main) { max-width: 760px; }
+body[data-reading-template="privacy"] main :is(p, li) { font-size: var(--read-body); line-height: var(--read-leading); }
+body[data-reading-template="privacy"] h2 { font-size:32px;line-height:1.4; }
+
+/* Tool typography stays tool-owned; only continuous introductions are shared. */
+body[data-reading-template="prompts"] :is(.page-intro > p, .hero-copy > p) { font-size: 17px; line-height: 1.75; }
+body[data-reading-template="prompts"] .prompt-app-bar { position: relative; top: auto; }
+
+@media (min-width: 1180px) and (max-height: 760px) {
+  body[data-reading-template="home"] .kv-home-hero { padding-block: 36px; }
+}
+
+@media (pointer: coarse) {
+  body[data-reading-template] :where(main, article, section) summary { min-height: 44px; padding-block: 8px; }
+  body[data-reading-template] :where(input, select, textarea) { font-size: 16px; }
+  body[data-reading-template] :where(.kv-site-footer, .site-footer) nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  body[data-reading-template="report"] .seg-btn { min-height:44px; }
+}
+
+@media (max-width: 900px) {
+  :root { --read-h1: 42px; --read-h2: 30px; }
+  body[data-reading-template="home"] .kv-home-hero h1 { font-size: clamp(36px, 5.2vw, 48px); }
+  body[data-reading-template="article"] .kv-editorial-reading { width: min(var(--read-measure), calc(100% - 40px)); }
+}
+
+@media (max-width: 640px) {
+  :root { --read-body: 17px; --read-h1: 30px; --read-h2: 26px; --read-h3: 21px; }
+  html { scroll-padding-top: 80px; }
+  body:where([data-reading-template]:not([data-reading-template="prompts"])) h1 { font-size: var(--read-h1); line-height: 1.35; }
+  body:where([data-reading-template]:not([data-reading-template="prompts"])) h2 { font-size: var(--read-h2); line-height: 1.4; }
+  body:where([data-reading-template]:not([data-reading-template="prompts"])) h3 { font-size: var(--read-h3); line-height: 1.45; }
+  body[data-reading-template="home"] .kv-home-hero h1 { font-size: clamp(27px, 7.7vw, 36px); line-height: 1.3; }
+  body[data-reading-template="home"] .kv-home-hero__lead { font-size: 17px; line-height: 1.8; }
+  body[data-reading-template="home"] :is(.kv-home-intro,.kv-case-proof,.kv-method-strip,.kv-method__head,.kv-fit,.kv-routes,.kv-home-final) h2 { font-size:27px; }
+  body[data-reading-template="privacy"] h2 { font-size:26px; }
+  body[data-reading-template="home"] .kv-home-hero .kv-title-mobile-break { display: inline; }
+  body[data-reading-template="article"] .kv-editorial-reading { width: calc(100% - 36px); }
+  body[data-reading-template="article"] .kv-editorial-reading h1 { font-size: clamp(26px, 7.3vw, 30px); line-height: 1.4; }
+  body[data-reading-template="article"] .kv-editorial-reading h2 { font-size: 25px; margin-block: 34px 14px; }
+  body[data-reading-template="article"] .kv-editorial-reading h3 { font-size: 21px; }
+  body[data-reading-template="article"] .article-brief-grid { grid-template-columns: 1fr; }
+  body[data-reading-template="article-index"] .hub-hero h1 { font-size: clamp(28px, 7.7vw, 34px); }
+  body[data-reading-template="article-index"] .section-title { font-size: 26px; }
+  body[data-reading-template="article-category"] h1 { font-size: clamp(26px, 7.3vw, 31px); }
+  body[data-reading-template="article-category"] .section-title { font-size: 26px; }
+  body[data-reading-template="question"] .hero h1 { font-size: clamp(26px, 7.3vw, 31px); line-height: 1.4; }
+  body[data-reading-template="question"] .deep-answer :is(.section > h2, .search-section h2) { font-size: 26px; }
+  body[data-reading-template="question"] .deep-answer > .section > .card { width: 100%; }
+  body[data-reading-template="question-index"] h1 { font-size: 30px; }
+  body[data-reading-template="question-index"] :is(.section h2, .question-section h2) { font-size: 26px; }
+  body[data-reading-template="about"] .about-hero h1 { font-size: 32px; }
+  body[data-reading-template="about"] :is(.about-row-body, .about-section-head, .about-connect-head) h2 { font-size: 27px; }
+  body[data-reading-template="cases"] .cases-hero h1 { font-size: 32px; }
+  body[data-reading-template="cases"] .cases-section-head h2 { font-size: 28px; }
+  body[data-reading-template="cases"] .case-featured h3 { font-size: 25px; }
+  body[data-reading-template="development"] h1 { font-size: clamp(26px, 7.7vw, 34px); line-height: 1.4; }
+  body[data-reading-template="development"] .dev-section h2 { font-size: 28px; }
+  body[data-reading-template="development"] .dev-closing h2 { font-size: 28px; }
+  body[data-reading-template="diagnosis"] .shell.hero h1 { font-size: clamp(28px, 7.7vw, 34px); }
+  body[data-reading-template="diagnosis"] .section h2 { font-size: 28px; }
+  body[data-reading-template="knowledge"] .knowledge-hero-title h1 { font-size: clamp(26px, 7.3vw, 31px); line-height: 1.4; }
+  body[data-reading-template="knowledge"] h1 .kv-title-line { display: inline; }
+  body[data-reading-template="method"] h1 { font-size: 30px; }
+  body[data-reading-template="method"] h1 .kv-title-line { display: inline; }
+  body[data-reading-template="method"] .kt-section-head h2 { font-size: 28px; }
+  body[data-reading-template="method"] .kt-dimension h2 { font-size: 24px; }
+  body[data-reading-template="quiz"] .quiz-intro-title { font-size: clamp(24px, 7.4vw, 32px); }
+  body[data-reading-template="quiz"] :is(.q-title, .question-title) { font-size: 23px; }
+  body[data-reading-template="report"] .hero h1 { font-size: clamp(26px, 7.1vw, 31px); }
+  body[data-reading-template="report"] .manual-service-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  body[data-reading-template="report"] :is(.report-section h2, .report-body h2) { font-size: 26px; }
+  body[data-reading-template="report"] .ksj-r__head h2 { font-size:25px; }
+  body[data-reading-template="knowledge"] .knowledge-section-head h2 { font-size:28px; }
+  body[data-reading-template="prompts"] .prompt-app-bar .brand-mark { width: 30px; height: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

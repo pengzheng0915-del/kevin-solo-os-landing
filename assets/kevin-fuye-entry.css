@@ -1,0 +1,41 @@
+/* Keep the assessment entry title inside its copy column at every breakpoint. */
+body.kv-fuye-entry .hero h1.fuye-entry-title[data-kv-title="feature"] {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  font-size: 52px !important;
+  line-height: 1.06 !important;
+  text-wrap: balance !important;
+}
+
+body.kv-fuye-entry .hero .fuye-entry-title .kv-title-line {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  text-wrap: balance !important;
+}
+
+@media (max-width: 1240px) {
+  body.kv-fuye-entry .hero h1.fuye-entry-title[data-kv-title="feature"] {
+    font-size: 44px !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body.kv-fuye-entry .hero h1.fuye-entry-title[data-kv-title="feature"] {
+    font-size: 40px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  body.kv-fuye-entry .hero h1.fuye-entry-title[data-kv-title="feature"] {
+    font-size: 32px !important;
+    line-height: 1.10 !important;
+  }
+}

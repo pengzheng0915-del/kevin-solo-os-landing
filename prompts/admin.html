@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>做图提示词库管理后台</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root { --bg: #fff; --text: #1a1a1a; --muted: #6b7280; --accent: #B8894D; --border: #e5e7eb; --radius: 8px; --paid: #10B981; --unpaid: #F59E0B; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f9fafb; color: var(--text); padding: 24px; }
+h1 { font-size: 22px; margin-bottom: 8px; }
+.sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+.stats { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.stat { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 20px; min-width: 100px; }
+.stat .num { font-size: 28px; font-weight: 800; }
+.stat .label { font-size: 12px; color: var(--muted); }
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+th { text-align: left; padding: 10px 14px; font-size: 12px; color: var(--muted); border-bottom: 1px solid var(--border); background: #f9fafb; }
+td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #f3f4f6; }
+.badge { padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; }
+.badge-paid { background: var(--paid); }
+.badge-unpaid { background: var(--unpaid); }
+.btn { padding: 5px 14px; border-radius: 999px; border: 1px solid var(--border); font-size: 12px; cursor: pointer; background: #fff; }
+.btn:hover { border-color: var(--accent); }
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.loading { text-align: center; padding: 40px; color: var(--muted); }
+.auth { text-align: center; padding: 60px; }
+.auth input { padding: 8px 16px; border: 1px solid var(--border); border-radius: 999px; font-size: 14px; }
+.auth button { padding: 8px 20px; background: var(--accent); color: #fff; border: none; border-radius: 999px; cursor: pointer; font-size: 14px; }
+.grant-notice { display: none; margin: 0 0 20px; padding: 16px; border: 2px solid #1a1a1a; border-radius: 8px; background: #fff4a8; box-shadow: 4px 4px 0 #1a1a1a; }
+.grant-notice strong, .grant-notice span { display: block; }
+.grant-notice code { display: inline-block; margin: 10px 10px 0 0; padding: 8px 10px; background: #fff; border: 1px solid #1a1a1a; font-size: 15px; font-weight: 800; }
+.buyer-create { margin: 0 0 20px; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; }
+.buyer-create label { display: block; margin-bottom: 10px; font-size: 15px; font-weight: 700; }
+.buyer-create-row { display: flex; gap: 10px; align-items: center; }
+.buyer-create input { min-width: 0; flex: 1; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; }
+.buyer-create p { margin-top: 8px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.btn:disabled { cursor: wait; opacity: .6; }
+.xianyu-console { margin: 0 0 24px; padding: 16px; border: 2px solid #1a1a1a; border-radius: var(--radius); background: #fff; }
+.xianyu-console h2 { font-size: 18px; margin-bottom: 6px; }
+.xianyu-console__note { color: var(--muted); font-size: 13px; line-height: 1.55; margin-bottom: 14px; }
+.xianyu-order-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: end; }
+.xianyu-order-form label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.xianyu-order-form input[type="text"] { width: 100%; min-width: 0; padding: 9px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; }
+.xianyu-confirmation { grid-column: 1 / -1; display: flex; gap: 8px; align-items: flex-start; font-size: 13px; line-height: 1.45; }
+.xianyu-confirmation input { margin-top: 3px; }
+.xianyu-delivery { display: none; margin-top: 14px; padding: 14px; border: 1px solid #1a1a1a; border-radius: 6px; background: #fff4a8; }
+.xianyu-delivery strong, .xianyu-delivery span, .xianyu-delivery code { display: block; }
+.xianyu-delivery span { margin-top: 6px; color: var(--muted); font-size: 12px; }
+.xianyu-delivery code { margin: 8px 0; font-size: 15px; font-weight: 800; word-break: break-all; }
+.xianyu-delivery pre { margin: 10px 0; padding: 10px; overflow-wrap: anywhere; white-space: pre-wrap; border: 1px solid #d3c88a; background: #fff; font: inherit; font-size: 13px; line-height: 1.55; }
+.xianyu-order-table { margin-top: 16px; overflow-x: auto; }
+.xianyu-order-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  body { padding: 14px; }
+  .buyer-create-row, .xianyu-order-form { align-items: stretch; grid-template-columns: 1fr; flex-direction: column; }
+  .xianyu-order-form .btn { width: 100%; }
+}
+</style>
+  <link rel="stylesheet" href="/assets/kevin-premium.css?v=20260707-allsite">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232D2926'/><text x='50' y='72' text-anchor='middle' font-size='56' font-weight='bold' fill='white' font-family='system-ui'>K</text></svg>" />
+<script data-kevin-clarity="xtbdlvfb1x">
+(function(c,l,a,r,i,t,y){
+  var h=String(c.location&&c.location.hostname||"").toLowerCase();
+  if(h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]")return;
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script",document.currentScript.dataset.kevinClarity);
+</script>
+</head>
+<body class="kv-admin kv-prompts-admin">
+<header class="admin-hero">
+  <div class="admin-eyebrow">运营控制台</div>
+  <h1>做图提示词库管理后台</h1>
+  <p class="sub">买家与付费授权管理</p>
+</header>
+
+<div id="authBox" class="auth" style="display:none">
+  <input type="password" id="pwdInput" placeholder="管理员密码" onkeydown="if(event.key==='Enter')login()">
+  <button onclick="login()">登录</button>
+</div>
+
+<div id="mainContent" style="display:none">
+  <div class="admin-toolbar">
+    <div>
+      <div class="admin-section-title">买家记录</div>
+      <p>查看买家记录、付费状态，并手动处理做图提示词库的解锁状态。</p>
+    </div>
+  </div>
+  <section id="xianyuOrderConsole" class="xianyu-console" aria-labelledby="xianyuOrderTitle">
+    <h2 id="xianyuOrderTitle">闲鱼订单台</h2>
+    <p class="xianyu-console__note">固定商品：99 元中文提示词工具库。请先在闲鱼人工核对订单已付款、实付 99 元且未退款；本站不会自动读取订单或发送消息。</p>
+    <form id="xianyuOrderForm" class="xianyu-order-form" autocomplete="off">
+      <div>
+        <label for="xianyuOrderRef">完整闲鱼订单号</label>
+        <input id="xianyuOrderRef" name="sourceOrderRef" type="text" inputmode="text" minlength="8" maxlength="64" required placeholder="仅用于本次核验，不会保存在浏览器">
+      </div>
+      <button id="xianyuOrderSubmit" class="btn btn-primary" type="submit">生成访问码和交付话术</button>
+      <label class="xianyu-confirmation" for="xianyuConfirmedPaid"><input id="xianyuConfirmedPaid" name="confirmedPaid" type="checkbox" required>我已在闲鱼核对：商品正确、已付款、实付 99 元、尚未退款。</label>
+    </form>
+    <div id="xianyuDeliveryNotice" class="xianyu-delivery" role="status" aria-live="polite">
+      <strong>访问码与整段交付话术只在本次响应显示</strong>
+      <span id="xianyuDeliveryOrderRef"></span>
+      <code id="xianyuDeliveryCode"></code>
+      <pre id="xianyuDeliveryMessage"></pre>
+      <button class="btn btn-primary" type="button" data-order-action="copy-delivery">复制整段交付话术</button>
+    </div>
+    <div class="stats" id="xianyuOrderStats" aria-live="polite"></div>
+    <div class="xianyu-order-table">
+      <table aria-label="闲鱼订单列表">
+        <thead><tr><th>内部号</th><th>订单末四位</th><th>状态</th><th>绑定手机号</th><th>更新时间</th><th>操作</th></tr></thead>
+        <tbody id="xianyuOrderList"></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="buyer-create" aria-labelledby="ownerAccessTitle">
+    <label id="ownerAccessTitle">站长完整库访问</label>
+    <div class="buyer-create-row">
+      <button id="ownerLibraryButton" class="btn btn-primary" type="button">以站长身份进入完整提示词库</button>
+    </div>
+    <p>仅为当前浏览器签发 7 天站长访问权限，不生成或消耗客户兑换码。</p>
+  </section>
+  <form id="newBuyerForm" class="buyer-create" autocomplete="off">
+    <label for="newBuyerPhone">新增买家手机号并确认付款/生成兑换码</label>
+    <div class="buyer-create-row">
+      <input id="newBuyerPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="18" required placeholder="输入付款客户手机号">
+      <button id="newBuyerSubmit" class="btn btn-primary" type="submit">确认已收款并生成兑换码</button>
+    </div>
+    <p>仅在 Kevin 已人工核实收款后操作。客户兑换时必须填写这里登记的同一手机号和兑换码。</p>
+  </form>
+  <div id="grantNotice" class="grant-notice" role="status" aria-live="polite">
+    <strong>兑换码只显示这一次</strong>
+    <span>请通过已确认的私下渠道发送给该购买者。服务器只保存哈希，刷新后无法找回原码。</span>
+    <code id="grantCode"></code><button class="btn btn-primary" type="button" onclick="copyGrantCode()">复制兑换码</button>
+  </div>
+  <div class="stats" id="statsBar"></div>
+  <div class="tbl-wrap">
+  <table>
+    <thead><tr><th>手机号/历史标识</th><th>创建时间</th><th>状态</th><th>付费时间</th><th>操作</th></tr></thead>
+    <tbody id="userList"></tbody>
+  </table>
+  </div>
+</div>
+
+<script>
+const API = '/api/prompts/';
+const ORDERS_API = API + 'orders';
+let pwd = '';
+let xianyuDeliveryOrderKey = '';
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>'"]/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  })[character]);
+}
+
+function adminFetch(url, options = {}) {
+  const init = { ...options };
+  init.headers = { ...(init.headers || {}), 'x-admin-password': pwd };
+  return fetch(url, init);
+}
+
+async function login() {
+  pwd = document.getElementById('pwdInput').value;
+  document.getElementById('pwdInput').value = '';
+  loadData();
+}
+
+function clearXianyuDelivery() {
+  xianyuDeliveryOrderKey = '';
+  document.getElementById('xianyuDeliveryOrderRef').textContent = '';
+  document.getElementById('xianyuDeliveryCode').textContent = '';
+  document.getElementById('xianyuDeliveryMessage').textContent = '';
+  const notice = document.getElementById('xianyuDeliveryNotice');
+  notice.dataset.orderKey = '';
+  notice.style.display = 'none';
+}
+
+function isTerminalXianyuStatus(status) {
+  return status === 'REFUNDED' || status === 'REVOKED';
+}
+
+function clearXianyuDeliveryForOrder(orderKey) {
+  if (!orderKey || String(orderKey) !== xianyuDeliveryOrderKey) return false;
+  clearXianyuDelivery();
+  return true;
+}
+
+function isDeliveryInvalidatingOrderAction(action) {
+  return action === 'reissueCode' || action === 'markRefunded' || action === 'revoke';
+}
+
+function clearUncertainXianyuMutation(body) {
+  if (!isDeliveryInvalidatingOrderAction(body?.action)) return false;
+  return clearXianyuDeliveryForOrder(body?.orderKey);
+}
+
+function isValidDeliveryMutationSuccess(body, result) {
+  if (!isDeliveryInvalidatingOrderAction(body?.action) || result?.success !== true) return true;
+  if (String(result?.order?.orderKey || '') !== String(body?.orderKey || '')) return false;
+  if (body.action === 'reissueCode') {
+    return Boolean(result?.accessCode && result?.deliveryMessage)
+      && ['GRANTED', 'DELIVERED'].includes(result?.order?.status);
+  }
+  return isTerminalXianyuStatus(result?.order?.status);
+}
+
+function showXianyuDelivery(result) {
+  const code = String(result?.accessCode || '');
+  const message = String(result?.deliveryMessage || '');
+  const orderKey = String(result?.order?.orderKey || '');
+  const orderReference = String(result?.order?.orderMask || orderKey);
+  if (!code || !message || !orderKey || !orderReference) {
+    clearXianyuDelivery();
+    return false;
+  }
+  xianyuDeliveryOrderKey = orderKey;
+  document.getElementById('xianyuDeliveryOrderRef').textContent = '关联订单：' + orderReference;
+  document.getElementById('xianyuDeliveryCode').textContent = code;
+  document.getElementById('xianyuDeliveryMessage').textContent = message;
+  const notice = document.getElementById('xianyuDeliveryNotice');
+  notice.dataset.orderKey = orderKey;
+  notice.style.display = 'block';
+  return true;
+}
+
+function xianyuOrderActions(order) {
+  const key = escapeHtml(order?.orderKey || '');
+  if (!key) return '';
+  const buttons = [];
+  if (order.canMarkDelivered) buttons.push('<button class="btn" type="button" data-order-action="mark-delivered" data-order-key="' + key + '">标记已发送</button>');
+  if (order.canReissue) buttons.push('<button class="btn" type="button" data-order-action="reissue" data-order-key="' + key + '">补发新码</button>');
+  if (order.canRefund) buttons.push('<button class="btn" type="button" data-order-action="refund" data-order-key="' + key + '">确认退款撤权</button>');
+  if (order.canRefund) buttons.push('<button class="btn" type="button" data-order-action="revoke-mistaken" data-order-key="' + key + '">误授权撤权</button>');
+  if (order.canRefund) buttons.push('<button class="btn" type="button" data-order-action="revoke-risk" data-order-key="' + key + '">风控撤权</button>');
+  return buttons.length ? '<div class="xianyu-order-actions">' + buttons.join('') + '</div>' : '-';
+}
+
+function renderXianyuOrders(payload) {
+  const orders = Array.isArray(payload?.data) ? payload.data : [];
+  const stats = payload?.stats || {};
+  document.getElementById('xianyuOrderStats').innerHTML =
+    '<div class="stat"><div class="num">' + escapeHtml(stats.total ?? orders.length) + '</div><div class="label">闲鱼订单</div></div>' +
+    '<div class="stat"><div class="num" style="color:#10B981">' + escapeHtml(stats.active ?? orders.filter(order => ['GRANTED', 'DELIVERED'].includes(order.status)).length) + '</div><div class="label">当前有效</div></div>';
+  document.getElementById('xianyuOrderList').innerHTML = orders.length ? orders.map(order =>
+    '<tr><td>' + escapeHtml(order.orderKey || '-') + '</td>' +
+    '<td>' + escapeHtml(order.orderMask || '-') + '</td>' +
+    '<td><span class="badge ' + (['REFUNDED', 'REVOKED'].includes(order.status) ? 'badge-unpaid' : 'badge-paid') + '">' + escapeHtml(order.status || '-') + '</span></td>' +
+    '<td>' + escapeHtml(order.boundPhoneMask || '-') + '</td>' +
+    '<td>' + escapeHtml(order.updatedAt || '-') + '</td>' +
+    '<td>' + xianyuOrderActions(order) + '</td></tr>'
+  ).join('') : '<tr><td colspan="6" class="loading">暂无闲鱼订单</td></tr>';
+  const deliveryOrder = orders.find(order => order.orderKey === xianyuDeliveryOrderKey);
+  if (deliveryOrder && isTerminalXianyuStatus(deliveryOrder.status)) {
+    clearXianyuDelivery();
+  }
+}
+
+async function loadXianyuOrders({ preserveDelivery = true } = {}) {
+  if (!preserveDelivery) clearXianyuDelivery();
+  document.getElementById('xianyuOrderList').innerHTML = '<tr><td colspan="6" class="loading">加载中...</td></tr>';
+  try {
+    const response = await adminFetch(ORDERS_API);
+    if (response.status === 403) { clearXianyuDelivery(); pwd = ''; loadData(); return; }
+    const result = await response.json();
+    if (!response.ok || !result.success) throw new Error(result.error || '加载失败');
+    renderXianyuOrders(result);
+  } catch (error) {
+    document.getElementById('xianyuOrderList').innerHTML = '<tr><td colspan="6" class="loading">闲鱼订单加载失败</td></tr>';
+  }
+}
+
+async function loadData({ preserveDelivery = true } = {}) {
+  if (!pwd) {
+    document.getElementById('authBox').style.display = 'block';
+    document.getElementById('mainContent').style.display = 'none';
+    return;
+  }
+
+  document.getElementById('authBox').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+  document.getElementById('userList').innerHTML = '<tr><td colspan="5" class="loading">加载中...</td></tr>';
+
+  try {
+    const r = await adminFetch(API + 'users');
+    if (r.status === 403) { clearXianyuDelivery(); pwd = ''; loadData(); return; }
+    const d = await r.json();
+    if (!d.success) throw new Error('legacy buyer records unavailable');
+
+    const users = d.data || [];
+    const paid = users.filter(u => u.paid === 1).length;
+    const unpaid = users.filter(u => u.paid === 0).length;
+
+    document.getElementById('statsBar').innerHTML =
+      '<div class="stat"><div class="num">' + users.length + '</div><div class="label">总买家</div></div>' +
+      '<div class="stat"><div class="num" style="color:#10B981">' + paid + '</div><div class="label">已付费</div></div>' +
+      '<div class="stat"><div class="num" style="color:#F59E0B">' + unpaid + '</div><div class="label">待付费</div></div>';
+
+    document.getElementById('userList').innerHTML = users.map(u =>
+      '<tr><td>' + escapeHtml(u.wechat_id || '-') + '</td>' +
+      '<td>' + escapeHtml(u.created_at || '-') + '</td>' +
+      '<td><span class="badge ' + (u.paid ? 'badge-paid' : 'badge-unpaid') + '">' + (u.paid ? '已付费' : '待付费') + '</span></td>' +
+      '<td>' + escapeHtml(u.paid_at || '-') + '</td>' +
+      '<td>' + (u.paid === 1
+        ? '<button class="btn" type="button" data-admin-action="mark-unpaid" data-wechat-id="' + escapeHtml(u.wechat_id || '') + '">取消付费</button>'
+        : '<button class="btn btn-primary" type="button" data-admin-action="mark-paid" data-wechat-id="' + escapeHtml(u.wechat_id || '') + '">确认付款并生成兑换码</button>') +
+      '</td></tr>'
+    ).join('');
+  } catch(e) {
+    document.getElementById('userList').innerHTML = '<tr><td colspan="5" class="loading">加载失败</td></tr>';
+  }
+  await loadXianyuOrders({ preserveDelivery });
+}
+
+async function markPaid(phone) {
+  const response = await adminFetch(API + 'users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'markPaid', phone })
+  });
+  const result = await response.json();
+  if (!response.ok || !result.success || !result.accessCode) {
+    window.alert(result.error || '生成兑换码失败，请先检查服务端配置和迁移。');
+    return false;
+  }
+  document.getElementById('grantCode').textContent = result.accessCode;
+  document.getElementById('grantNotice').style.display = 'block';
+  loadData();
+  return true;
+}
+
+async function copyGrantCode() {
+  const value = document.getElementById('grantCode').textContent;
+  if (!value) return;
+  await navigator.clipboard.writeText(value);
+}
+
+async function markUnpaid(wx) {
+  await adminFetch(API + 'users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'markUnpaid', wechatId: wx })
+  });
+  loadData();
+}
+
+async function postXianyuOrderAction(body) {
+  let response;
+  try {
+    response = await adminFetch(ORDERS_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+  } catch (error) {
+    clearUncertainXianyuMutation(body);
+    window.alert('闲鱼订单操作失败，提交结果未知，请刷新订单状态后再继续。');
+    return null;
+  }
+  let result = null;
+  let parsed = true;
+  try { result = await response.json(); } catch { parsed = false; result = null; }
+  if (response.status === 403) {
+    clearXianyuDelivery();
+    pwd = '';
+    loadData();
+    return null;
+  }
+  const stateUncertain = result?.error === 'ORDER_STATE_CHANGED'
+    || result?.error === 'ORDER_TERMINAL'
+    || Number(response.status) === 409
+    || Number(response.status) >= 500
+    || !parsed
+    || !result
+    || typeof result.success !== 'boolean'
+    || (result.success === false && typeof result.error !== 'string')
+    || !isValidDeliveryMutationSuccess(body, result);
+  if (stateUncertain) {
+    clearUncertainXianyuMutation(body);
+    if (result?.success === true) {
+      window.alert('闲鱼订单操作返回了无法确认的结果，请刷新订单状态后再继续。');
+      return null;
+    }
+  }
+  if (!response.ok || !result?.success) {
+    window.alert(result?.error || '闲鱼订单操作失败，请检查服务端配置。');
+    return null;
+  }
+  if (isTerminalXianyuStatus(result?.order?.status)) {
+    clearXianyuDeliveryForOrder(result?.order?.orderKey || body?.orderKey);
+  }
+  return result;
+}
+
+async function createXianyuOrder() {
+  const submit = document.getElementById('xianyuOrderSubmit');
+  const sourceOrderRef = document.getElementById('xianyuOrderRef').value.trim();
+  const confirmedPaid = document.getElementById('xianyuConfirmedPaid').checked;
+  if (!sourceOrderRef || !confirmedPaid) return;
+  submit.disabled = true;
+  try {
+    const result = await postXianyuOrderAction({ action: 'createPaidOrder', sourceOrderRef, confirmedPaid: true });
+    if (!result) return;
+    document.getElementById('xianyuOrderRef').value = '';
+    document.getElementById('xianyuConfirmedPaid').checked = false;
+    showXianyuDelivery(result);
+    await loadData({ preserveDelivery: true });
+  } finally {
+    submit.disabled = false;
+  }
+}
+
+async function copyXianyuDelivery() {
+  const message = document.getElementById('xianyuDeliveryMessage').textContent;
+  if (!message) return;
+  await navigator.clipboard.writeText(message);
+}
+
+async function actOnXianyuOrder(button) {
+  const orderKey = button.dataset.orderKey || '';
+  const action = button.dataset.orderAction || '';
+  if (!orderKey) return;
+  const dangerous = {
+    reissue: ['reissueCode', 'lost_code', '补发会立即让旧兑换码失效，确定继续吗？'],
+    refund: ['markRefunded', 'platform_refunded', '请确认闲鱼平台已退款。继续会立即撤销该订单权益。'],
+    'revoke-mistaken': ['revoke', 'mistaken_grant', '请确认这是内部误授权。继续会立即撤销该订单权益。'],
+    'revoke-risk': ['revoke', 'risk_control', '请确认这是风控撤权。继续会立即撤销该订单权益。']
+  };
+  if (action === 'mark-delivered') {
+    const result = await postXianyuOrderAction({ action: 'markDelivered', orderKey });
+    if (result) await loadData();
+    return;
+  }
+  const detail = dangerous[action];
+  if (!detail || !window.confirm(detail[2])) return;
+  button.disabled = true;
+  try {
+    const result = await postXianyuOrderAction({ action: detail[0], orderKey, reasonCode: detail[1] });
+    if (!result) return;
+    if (action === 'reissue') {
+      showXianyuDelivery(result);
+      await loadData({ preserveDelivery: true });
+    } else {
+      await loadData();
+    }
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function enterOwnerLibrary() {
+  const button = document.getElementById('ownerLibraryButton');
+  button.disabled = true;
+  try {
+    const response = await adminFetch(API + 'users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'ownerLogin' })
+    });
+    const result = await response.json();
+    if (!response.ok || !result.success) {
+      window.alert(result.error || '站长访问授权失败，请检查服务端配置。');
+      return;
+    }
+    window.location.assign('/prompts/');
+  } catch (error) {
+    window.alert('站长访问授权失败，请稍后重试。');
+  } finally {
+    button.disabled = false;
+  }
+}
+
+document.getElementById('userList').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-admin-action]');
+  if (!button) return;
+  const wechatId = button.dataset.wechatId || '';
+  if (button.dataset.adminAction === 'mark-paid') markPaid(wechatId);
+  if (button.dataset.adminAction === 'mark-unpaid') markUnpaid(wechatId);
+});
+
+document.getElementById('xianyuOrderList').addEventListener('click', (event) => {
+  const button = event.target.closest('[data-order-action]');
+  if (button) actOnXianyuOrder(button);
+});
+
+document.getElementById('xianyuDeliveryNotice').addEventListener('click', (event) => {
+  if (event.target.closest('[data-order-action="copy-delivery"]')) copyXianyuDelivery();
+});
+
+document.getElementById('xianyuOrderForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  await createXianyuOrder();
+});
+
+document.getElementById('newBuyerForm').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const input = document.getElementById('newBuyerPhone');
+  const submit = document.getElementById('newBuyerSubmit');
+  const phone = input.value.trim();
+  if (!phone) {
+    input.focus();
+    return;
+  }
+
+  submit.disabled = true;
+  try {
+    const succeeded = await markPaid(phone);
+    if (succeeded) input.value = '';
+  } finally {
+    submit.disabled = false;
+  }
+});
+
+document.getElementById('ownerLibraryButton').addEventListener('click', enterOwnerLibrary);
+
+loadData();
+
+// Auto-refresh every 30s
+setInterval(() => loadData({ preserveDelivery: true }), 30000);
+</script>
+<footer data-kevin-icp aria-label="网站备案信息" style="padding:24px 12px;text-align:center;font-size:12px;line-height:1.6;color:#6b7280;background:transparent">
+  <span style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px">
+    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:26px;color:inherit;text-decoration:none">鄂ICP备2026039968号-1</a>
+    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=42011102006455" target="_blank" rel="noopener noreferrer" data-track="click_public_security_filing" style="display:inline-flex;align-items:center;gap:4px;min-height:26px;color:inherit;text-decoration:none"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAFEElEQVR42kXU629b9R3H8fe5+Pj4+HacOHa8uCtNI9oU2oa13QbL0tFNXKY2g0zqKEJoTB1DmxgCjQdM7AFiD9iTSkOIbeqYtKI+2MYkRFt1lJBpQCvKRe3WVr2ENE1jp2lix7GPfS4+Pue3BxXJP/DS5yt9Pl9JCAF2C4AQGVmEOFqJWKQXaPbaV8+M/vv4pz/1nI72nfu2HuzasuVt6C95niDqOCBLgAwAqSSSEALfroMkkAOBomWAD+6dPH7iqZP/ujIqnEl91jNQMiZrszpOxegMf7f/yOCesb+I4LajwmsiJAkQKOm+W3RDsmiKZYSRAc3VJ/7wxsTjT47vbboz+u0Jhf36TZ7SZ7nn7jxdd+fV/U++9/CJV185IsWUqK1JuHyGr34OK1kVGVlJocrVonfm5Xd/f7jOvv39/LjYIP2nC1QvB1SnAuq7/8gPgnM8c+gRDv7TR1z+8z8ShqvLegI9Hl0FE55FPFofvH70xamR3edGzIE8v8ieY/pwA3mNSWC1wQuRekxOPX2SvcYZ8t+6i+/tPrZn8aM3rtozZzdcfP+dVTDqOajuu4kjl5PaJ3PbeXC7RfNsA/l6HcmMEl0KcE/eJLKuG73pUPnracbubzPxxSbe/DAoJKRWDHloFawvVorhx+8fCKUYqDYpa47GPEQCH5ZcpPUG2jYT+UYLjZDKtENflweSRK0pE+1RD2wcHlu3As5ceu+H7XJ5OJPQoBNFFApkh3tpIrDu6SbYVyTx0hDGM1uQewxy27K07DYIQSFnQOnsvUuzp36yAhqJzGDD8unvcUHv5sRpA3VXiuqetQRlC+l/LexjN/Gnl9GeH6br2a28dagGxBnarNKaWsAtTRVXwHBpbk+jpnJn0aL4dY3X34zzn1dKDO0okDaS2BdqhAse7rkayfIy51++wquHouSHTDb31amUPfylS8MroKy2TKshk1q8wt77Azp+Av/oPN1/+xy5L0K7RyHMqWR3FShMXKVy8DyttsLYaIRkdRKroaIm5QiAChAzvjoub7g2GuT7eOIbFgf6eni9PIg/e4Hu6iRyOoZzoYY1kKOcKfB3OQYpkye+uUAnWcS8Q8LIrDm2AoKcEw3B3JTFnYPT/PZX23jx+RGOWpuh4TNqV+kyZd46lqSJAWR47uc6OwYmmZsEXJuwY21dAVWzvb2TzOPP+5QWLvLL4Shj43EmjttckrfwwKYvKMQqdI700a45rNlo8OsHrnHz1DVsX0fPaqimthG49Ry85iePVk//7rAz38ar+FCaYf1DQ0TzOgRVgqpKc8Ehva4L1nZDqcL025dxklkS/QlivQbpgX07tcz3P5CEEAB0Wv99bOn8gdcC10lXPpxHjQt6dw4SLDn4dgvZ0NG74khahOqpKTqBSnr7enyXanrDyCNxMzUuaffdOtl3ZnAWnbI7H3P0fJjO7xogqLcIrAYYGopmosWgvdykVaqhr+1GL+bxlm3csiVia5ooqRSxL2sj2ldR+OiF3NeSvZFMAa8eEgYqYaDgLlogQtrVOs3JRSQlApKEe6NCJCaT/3YhqxnWz0KH1S1rSopo946HLDv9ml0qtTRlmVSuQ0Sy0SQfxVtGOA7JjVlSAylkrYma1pAyvdc76l2/UY3bf6Roi6zWRvhIEdVuVONPOxfzLzn1xQc9f3bnVzb1bAotKaGbcpcaS2Ld4Hqsx7TV3MjZpamFcWemdqJvZy6UFAURuAD8Hy4iNxOfElCpAAAAAElFTkSuQmCC" width="24" height="24" alt="" aria-hidden="true" style="display:block;width:24px;height:24px;flex:0 0 auto" />鄂公网安备42011102006455号</a>
+  </span>
+</footer>
+</body>
+</html>
