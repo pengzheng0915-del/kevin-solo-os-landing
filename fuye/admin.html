@@ -943,6 +943,7 @@
     var bCount = 0;
     var cCount = 0;
     var rCount = 0;
+    var generatedCount = 0;
     var paidCount = 0;
     var signalCount = 0;
     var copyWechatCount = 0;
@@ -953,7 +954,8 @@
       if (r.version === 'A') aCount++;
       if (r.version === 'B') bCount++;
       if (r.version === 'C') cCount++;
-      if (r.version === 'report') rCount++;
+      if (hasDeepCompleted(r)) rCount++;
+      if (r.miniapp_report_status === 'generated' || (!r.miniapp_input_status && ['ready','limited','approved'].indexOf(r.v3_status) !== -1)) generatedCount++;
       if (r.paid) paidCount++;
       if (hasEvent(r, 'click_699_cta') || hasEvent(r, 'copy_wechat_report') || hasEvent(r, 'copy_wechat')) signalCount++;
       if (hasEvent(r, 'copy_wechat_report') || hasEvent(r, 'copy_wechat')) copyWechatCount++;
@@ -974,7 +976,8 @@
     var html = '';
     var deepRate = total ? Math.round((rCount / total) * 100) : 0;
     html += '<div class="stat-card"><div class="num">' + total + '</div><div class="label">总测评记录</div></div>';
-    html += '<div class="stat-card stat-r"><div class="num">' + rCount + '</div><div class="label">已完成深度报告</div></div>';
+    html += '<div class="stat-card stat-r"><div class="num">' + rCount + '</div><div class="label">已完成深度测评</div></div>';
+    html += '<div class="stat-card stat-r"><div class="num">' + generatedCount + '</div><div class="label">已生成完整报告</div></div>';
     html += '<div class="stat-card"><div class="num">' + deepRate + '%</div><div class="label">深度完成率</div></div>';
     html += '<div class="stat-card"><div class="num" style="color:var(--red);">' + highPriorityCount + '</div><div class="label">高优先跟进</div></div>';
     html += '<div class="stat-card"><div class="num" style="color:var(--red);">' + signalCount + '</div><div class="label">咨询信号</div></div>';
@@ -1022,6 +1025,7 @@
   }
 
   function hasDeepCompleted(item) {
+    if (item && item.miniapp_input_status) return item.miniapp_input_status === 'ready';
     var deepPart = getDeepPart(item);
     return !!(item && (item.version === 'report' || Object.keys(deepPart).length > 0 || hasEvent(item, 'complete_deep_report')));
   }
@@ -1039,11 +1043,11 @@
     var el = document.getElementById('opsBoard');
     if (!el) return;
     var cards = [
-      { kind: 'today', title: '今日新增报告', note: '当天新增的测评和报告，先确认是否有高意向。' },
+      { kind: 'today', title: '今日新增测评', note: '当天新增的测评会话；资料完成和报告生成状态分别查看。' },
       { kind: 'copy_unpaid', title: '复制微信未付费', note: '已经有私聊动作，但还没有标记付款。' },
       { kind: 'paid_delivery', title: '已付费待交付', note: '需要优先核对付款、报告编号和报告链接。' },
       { kind: 'high_699', title: '职业经验资产一对一诊断高优先', note: '有咨询、服务样例或付费信号，适合人工判断。' },
-      { kind: 'deep_unfinished', title: '深度报告未完成', note: '提醒先补完免费测评摘要，再判断个人经验完整路径报告或职业经验资产一对一诊断。' }
+      { kind: 'deep_unfinished', title: '深度测评未完成', note: '先补完深度资料，再生成报告；资料完成和报告生成分别记录。' }
     ];
     var html = '';
     for (var i = 0; i < cards.length; i++) {
@@ -1087,7 +1091,7 @@
     var total = data.total || 0;
     var steps = [
       { label: '总测评记录', value: data.total || 0, rate: 100 },
-      { label: '完成深度报告', value: data.deep || 0, rate: pct(data.deep || 0, total) },
+      { label: '完成深度测评', value: data.deep || 0, rate: pct(data.deep || 0, total) },
       { label: '复制微信', value: data.copyWechat || 0, rate: pct(data.copyWechat || 0, total) },
       { label: '点击职业经验资产一对一诊断入口', value: data.click699 || 0, rate: pct(data.click699 || 0, total) },
       { label: '已标记职业经验资产一对一诊断成交', value: data.consultDeal || 0, rate: pct(data.consultDeal || 0, total) }
@@ -1431,7 +1435,7 @@
   function getFollowSignals(item) {
     var signals = [];
     var deepPart = getDeepPart(item);
-    var hasDeep = item.version === 'report' || Object.keys(deepPart).length > 0 || hasEvent(item, 'complete_deep_report');
+    var hasDeep = hasDeepCompleted(item);
     var priority = getLeadPriority(item);
     var commercial = getCommercialSignal(item);
     var diagnostic = getStoredDiagnostic(item);
@@ -1460,7 +1464,7 @@
 
   function getLeadPriority(item) {
     var deepPart = getDeepPart(item);
-    var hasDeep = item && (item.version === 'report' || Object.keys(deepPart).length > 0 || hasEvent(item, 'complete_deep_report'));
+    var hasDeep = hasDeepCompleted(item);
     var commercial = getCommercialSignal(item);
     var diagnostic = getStoredDiagnostic(item);
     var paidDiagnostic = getPaidDiagnostic(item);
@@ -1661,7 +1665,7 @@
         if (lower.indexOf('高优先级') !== -1 || lower.indexOf('699') !== -1) {
           if (!matchesOpsKind(r, 'high_699') && parsePurchases(r).indexOf('consult699') === -1 && !hasEvent(r, 'click_699_cta')) return false;
         }
-        if (lower.indexOf('深度报告未完成') !== -1) return matchesOpsKind(r, 'deep_unfinished');
+        if (lower.indexOf('深度报告未完成') !== -1 || lower.indexOf('深度测评未完成') !== -1) return matchesOpsKind(r, 'deep_unfinished');
         var typeName = TYPE_NAMES[r.result_type] || r.result_type || '';
         var purchases = parsePurchases(r);
         var signalText = getFollowSignals(r).map(function(s) { return s.text; }).join(' ');
@@ -1708,6 +1712,7 @@
       else if (r.version === 'report') versionTag = '深度';
       else if (r.version === 'quiz') versionTag = '8题';
       else versionTag = '-';
+      if (r.miniapp_input_version) versionTag = '深度资料';
       var tagClass = r.version === 'B' ? 'tag tag-B' : r.version === 'A' ? 'tag tag-A' : r.version === 'C' ? 'tag tag-C' : r.version === 'report' ? 'tag tag-R' : r.version === 'quiz' ? 'tag tag-src' : 'tag';
       var measurementCode = getMeasurementCode(r);
       var paidTag = r.paid ? '<span class="tag tag-paid">已付费</span>' : '<span class="tag tag-unpaid">未付费</span>';
@@ -1835,9 +1840,11 @@
 
   async function copyReport(sid) {
     try {
+      showToast('正在准备完整报告和赠送链接，请稍候');
       var url = await createSecureReportUrl(sid);
       await navigator.clipboard.writeText(url);
       showToast('赠送链接已复制，客户无需付款即可查看');
+      await loadData();
     } catch (e) {
       showToast('生成失败：' + e.message);
     }
@@ -1856,12 +1863,31 @@
     }
   }
 
-  function openReport(sid) {
+  async function openReport(sid) {
+    var pending = null;
     try {
       sessionStorage.setItem('_kevin_report_admin_pwd', getPwd() || '');
       sessionStorage.setItem('_kevin_report_admin_sid', sid);
-      window.open(BASE + '/report/?sid=' + encodeURIComponent(sid), '_blank');
+      var item = allData.find(function(r) { return r.session_id === sid; });
+      pending = window.open('about:blank', '_blank');
+      if (item && item.miniapp_input_status && item.miniapp_report_status !== 'generated') {
+        if (pending) {
+          pending.document.title = '正在准备报告';
+          pending.document.body.textContent = '正在使用已保存的深度资料生成完整报告，请稍候…';
+        }
+        var response = await adminFetch(API_BASE + '/api/createReportShareLink', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: sid, preview: true })
+        });
+        var value = await response.json();
+        if (!response.ok || !value.report_generated) throw new Error(value.error || '报告暂时未生成');
+        item.miniapp_report_status = 'generated';
+        filterTable();
+      }
+      if (pending) pending.location.href = BASE + '/report/?sid=' + encodeURIComponent(sid);
+      else showToast('报告已准备好；请允许打开新窗口后再次点击“报告”');
     } catch (e) {
+      if (pending) pending.close();
       showToast('打开失败：' + e.message);
     }
   }
@@ -2050,6 +2076,8 @@
   }
 
   function v3FieldLabel(field) {
+    var stableLabels = {decision:'本次想判断的问题',caseOneProblem:'当时遇到的问题',caseOneAction:'你采取的具体动作',caseOneResult:'实际发生的结果',caseBoundaryTransfer:'经验的适用边界',nearestIncident:'最近发生的具体事情',problemSpecificity:'最能解决的具体问题',audienceAccess:'能接触到的验证对象',validationCommitment:'愿意进行的验证行动'};
+    if (stableLabels[field]) return stableLabels[field];
     if (V3_REVIEW_UI && typeof V3_REVIEW_UI.fieldLabel === 'function') {
       return V3_REVIEW_UI.fieldLabel(field);
     }
@@ -2079,6 +2107,13 @@
   }
 
   function renderV3ChainStatus(item) {
+    if (item && item.miniapp_input_status) {
+      var labels = {collecting:'深度资料尚未完成',checking:'资料检查中',invalid:'资料需要补充',needs_evidence:'资料需要补充',provider_error:'资料检查待重试',ready:'深度资料已完成'};
+      var label = labels[item.miniapp_input_status] || '深度资料已保存';
+      label += item.miniapp_report_status === 'generated' ? ' · 完整报告已生成' : ' · 完整报告未生成';
+      if (item.miniapp_gift_active) label += ' · 已创建赠送链接';
+      return '<span class="v3-chain-status">' + escapeHtml(label) + '</span>';
+    }
     var state = v3ChainState(item);
     var detail = [];
     if (item && item.v3_stage) detail.push('阶段：' + item.v3_stage);

@@ -266,3 +266,7 @@ body[data-reading-template="prompts"] .prompt-app-bar { position: relative; top:
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Reading pages own heading wrapping; preserve landing and tool contracts. */
+body:where([data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"])) :where(h1,h2,h3,h4){word-break:normal;overflow-wrap:anywhere;line-break:strict;text-wrap:balance;white-space:normal}
+@media(max-width:400px){body[data-reading-template="home"] :where(#intro-title) br,body[data-reading-template="diagnosis"] :where(#process-title) br{display:none}}

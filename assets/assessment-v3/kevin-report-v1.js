@@ -114,6 +114,7 @@
     var fs = J.freeSummary || (root.KevinJudgement ? root.KevinJudgement.buildFreeSummary(J) : null);
     if (!fs) return '';
     var a = fs.A_judgement || {};
+    var career = J.actionStatus === 'career_reposition_first';
     var html = '<div class="ksj-free" data-ksj="free-summary">';
 
     // A. 当前判断
@@ -123,10 +124,10 @@
     if (a.stageWhy) html += '<p class="ksj-note">' + t(a.stageWhy) + '</p>';
     html += '<p class="ksj-line"><span class="ksj-tag">方向倾向</span><strong>' + t(a.direction) + '</strong></p>';
     html += '<p class="ksj-line"><span class="ksj-tag">当前动作</span><strong>' + t(a.action) + '</strong></p>';
-    html += '<p class="ksj-why">方向倾向说的是"你更可能适合哪种交付"，当前动作说的是"现在最该做哪一步验证"。' + t(fs.A_reason) + '</p>';
+    html += '<p class="ksj-why">' + (career ? '本轮先核对职业方向与经历证据。' : '方向倾向说的是"你更可能适合哪种交付"，当前动作说的是"现在最该做哪一步验证"。') + t(fs.A_reason) + '</p>';
     if (a.directionReason) html += '<details class="ksj-trace"><summary>查看方向判断依据</summary><p class="ksj-note">' + t(a.directionReason) + '</p></details>';
     if (fs.paymentConflict) html += conflictBlock(fs.paymentNote);
-    html += '<p class="ksj-note">8 题准备度：' + t(a.readiness) + '（' + t(a.readinessScore) + ' 分）。'
+    if (!career) html += '<p class="ksj-note">8 题准备度：' + t(a.readiness) + '（' + t(a.readinessScore) + ' 分）。'
       + '这只是 8 题选择的准备度，不是你的当前阶段；当前阶段由你在深度判断里提供的真实证据决定。</p>';
     html += '</section>';
 
@@ -237,6 +238,7 @@
   function renderPaidReport(J, meta) {
     if (!J) return '';
     meta = meta || {};
+    var career = J.actionStatus === 'career_reposition_first';
     var html = '<div class="ksj-report" data-ksj="paid-report">';
 
     /* 01 一句话诊断 */
@@ -249,7 +251,7 @@
     var basis2 = (J.facts[1] && J.facts[1].text) || '';
     html += '<p>目前最大的判断依据：' + t(basis + basis2) + '</p>';
     var rd = J.eightQuestionReadiness || {};
-    html += '<p class="ksj-note">8 题准备度：' + t(rd.label) + '（' + t(rd.score) + ' 分）。'
+    if (!career) html += '<p class="ksj-note">8 题准备度：' + t(rd.label) + '（' + t(rd.score) + ' 分）。'
       + '8 题总分只反映你在初筛题里的准备程度，不能用来说明当前阶段；'
       + '上面的当前阶段是由你提供的案例、外部证据和真实付费事实共同决定的。</p>';
     html += '<p class="ksj-note">这份报告只依据你本次填写的回答生成，没有补充任何你没有提供的事实。</p>';
@@ -270,15 +272,15 @@
     ) + '</article>';
     html += '</div>';
     if (J.paymentConflict) html += conflictBlock((J.payment || {}).note);
-    html += renderRadar(J);
-    html += '<p class="ksj-note">每根轴按「这一项自己的满分」归一化后显示，不是六项平均分。某一根短，只代表这一项相对它自己的标准还不足，不代表你整体不行。</p>';
+    if (!career) html += renderRadar(J);
+    if (!career) html += '<p class="ksj-note">每根轴按「这一项自己的满分」归一化后显示，不是六项平均分。某一根短，只代表这一项相对它自己的标准还不足，不代表你整体不行。</p>';
     html += '</section>';
 
     /* 03 主卡点 + 次卡点 */
     html += '<section class="ksj-r" id="report-module-03" data-ksj-module="03">' + moduleHead('03', '主要卡点与次要卡点', '最多两个，每个都说明为什么它限制下一步');
     var gapClass = J.gap.level === 'critical' ? '' : (J.gap.level === 'moderate' ? ' moderate' : ' none');
     html += '<div class="ksj-gap' + gapClass + '">';
-    html += '<small>' + t(J.gap.headline) + '（' + t(J.primaryGap.label) + ' · ' + t(J.primaryGap.score) + ' 分）</small>';
+    html += '<small>' + t(J.gap.headline) + '（' + t(J.primaryGap.label) + (J.primaryGap.score == null ? ' · 不计分' : ' · ' + t(J.primaryGap.score) + ' 分') + '）</small>';
     html += '<h3>' + t(gapHeadlineText(J)) + '</h3>';
     html += '<p>' + t(J.primaryGap.why) + '</p>';
     html += '</div>';
@@ -289,8 +291,8 @@
       html += '<p>' + t(J.secondaryGap.why) + '</p>';
       html += '</div>';
     }
-    html += '<p class="ksj-note">六个维度：' + J.gap.all.map(function (item) {
-      return t(item.label) + ' ' + t(item.score);
+    html += '<p class="ksj-note">' + (career ? '本轮核对：' : '六个维度：') + J.gap.all.map(function (item) {
+      return t(item.label) + (item.score == null ? '（不计分）' : ' ' + t(item.score));
     }).join(' · ') + '</p>';
     html += '</section>';
 
@@ -327,15 +329,15 @@
     var v = J.validation || {};
     html += '<section class="ksj-r" id="report-module-06" data-ksj-module="06">' + moduleHead('06', '7 天验证计划', '只安排必要动作，并且写明通过标准和停止标准');
     // v.intro：现实可行性不足时，7 天规模要压到"一定做得完"，由判断层给整句
-    html += '<p>' + (v.intro
-      ? t(v.intro)
+    html += '<p>' + (v.sentence || v.intro
+      ? t(v.sentence || v.intro)
       : '找 ' + t(v.times || 3) + ' 位「' + t(v.who) + '」，确认他们是否反复遇到「' + t(v.question) + '」这个问题。') + '</p>';
-    html += '<p><strong>问什么：</strong>围绕「' + t(v.question) + '」这一个问题，不问"你要不要买"。</p>';
+    html += '<p><strong>问什么：</strong>围绕「' + t(v.question) + '」这一个问题' + (career ? '，请对方给出具体依据。' : '，不问"你要不要买"。') + '</p>';
     html += '<p><strong>做什么：</strong>' + t(v.how) + '</p>';
     /* Round E 第 3 条：已经有可重复付费事实的人，不能再被要求"验证别人愿不愿意付钱"。
      * 这一行必须与 7 天计划、当前动作、stage 同一方向。 */
     var paidRepeat = !!(J.evidence && J.evidence.paymentLevel >= 2) && !(J.evidence && J.evidence.paymentConflict);
-    html += '<p><strong>是否尝试收费：</strong>' + (
+    if (!career) html += '<p><strong>是否尝试收费：</strong>' + (
       paidRepeat
         ? '你已经有可重复的付费事实，本轮不再测试付费意愿：重点是把交付边界写清，并拿到一次复购或转介绍。'
         : (J.firstDelivery && J.firstDelivery.defer ? '本轮不收费，只换真实反馈。' : '可以在最后一轮尝试一次低门槛付费意向确认，但不预设价格、不承诺结果。')

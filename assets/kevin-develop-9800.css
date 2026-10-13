@@ -37,6 +37,21 @@
 .dev-document dl div { padding: 16px 0; border-top: 1px solid rgba(60,48,37,.16); }
 .dev-document dt { font-weight: 700; font-size: 15px; }
 .dev-document dd { color: #60584e; margin: 6px 0 0; }
+.dev-model-showcase { grid-template-areas: "heading model" "copy model"; grid-template-rows: auto 1fr; row-gap: 0; }
+.dev-model-heading { grid-area: heading; min-width: 0; }
+.dev-model-heading h2 { margin: 12px 0 20px; scroll-margin-top: 140px; }
+.dev-model-copy { grid-area: copy; min-width: 0; }
+.dev-model-copy > .dev-lead:first-child { margin-top: 0; }
+.dev-model-figure { grid-area: model; margin: 0; min-width: 0; }
+.dev-model-figure > a { display: block; }
+.dev-model-figure img { display: block; width: 100%; height: auto; border: 1px solid rgba(60,48,37,.14); }
+.dev-model-figure figcaption { margin: 14px 0 0; color: #60584e; font-size: 14px; line-height: 1.75; }
+.dev-registration { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(60,48,37,.16); }
+.dev-registration h3 { font-size: 19px; }
+.dev-registration__image { display: block; max-width: 350px; }
+.dev-registration img { display: block; width: 100%; height: auto; border: 1px solid rgba(60,48,37,.14); }
+.dev-registration .dev-note { margin: 12px 0 0; }
+@media(max-width: 840px) { .dev-model-showcase { grid-template-areas: "heading" "model" "copy"; grid-template-rows: auto auto auto; row-gap: 24px; } .dev-model-heading h2 { margin-bottom: 0; } .dev-registration__image { max-width: 100%; } }
 .dev-compare .dev-card:first-child { background: #efe7d8; }
 .dev-compare .dev-card:last-child { border-top: 4px solid #123f35; }
 .dev-faq details { border-top: 1px solid rgba(60,48,37,.16); padding: 20px 0; }

@@ -62,6 +62,8 @@ body.kv-report .assessment-report-v1__task > small {
 
 body.kv-report .assessment-report-v1__header h1 {
   margin: 7px 0 12px;
+  font-size: clamp(28px, 5vw, 40px);
+  line-height: 1.2;
 }
 
 body.kv-report .assessment-report-v1__meta {
@@ -335,7 +337,13 @@ body.kv-report .assessment-report-v1--decision {
 
 body.kv-report .assessment-report-v1--decision :where(h1, h2, h3) {
   color: var(--decision-ink) !important;
+  font-family: var(--kv-sans) !important;
+  font-weight: 780 !important;
+}
+
+body.kv-report .assessment-report-v1--decision :where(h1, h2, h3):where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   line-break: strict;
+  text-wrap: balance;
 }
 
 body.kv-report .assessment-report-v1--decision :where(p, li) {
@@ -360,6 +368,8 @@ body.kv-report .assessment-report-v1--decision > .assessment-report-v1__header {
 
 body.kv-report .assessment-report-v1--decision > .assessment-report-v1__header h1 {
   margin: 8px 0 12px;
+  font-size: clamp(36px, 4.1vw, 52px);
+  line-height: 1.12;
 }
 
 body.kv-report .decision-report__summary { padding: 0; }
@@ -444,6 +454,9 @@ body.kv-report .assessment-report-v1--decision .decision-report__chapter-head h2
   margin: 8px 0 0;
   font-size: clamp(30px, 3.4vw, 42px);
   line-height: 1.18;
+}
+
+body.kv-report .assessment-report-v1--decision .decision-report__chapter-head h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   overflow-wrap: anywhere !important;
   white-space: normal !important;
   word-break: normal !important;
@@ -537,7 +550,19 @@ body.kv-report .decision-report__radar-value { fill: var(--decision-green); font
 body.kv-report .decision-report__score-panel ol { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
 body.kv-report .decision-report__score-panel li { display: grid; grid-template-columns: 28px minmax(90px, 1fr) 44px; gap: 10px; align-items: center; font-size: 13px; }
 body.kv-report .decision-report__score-panel li > span { color: #9a9085; }
-body.kv-report .decision-report__score-panel li > em { color: var(--decision-green); font-style: normal; font-weight: 800; text-align: right; }
+body.kv-report .decision-report__score-panel li > em { color: var(--decision-green); font-style: normal; font-weight: 800; text-align: right; white-space: nowrap; }
+body.kv-report .decision-report__score-panel li { grid-template-columns: 28px minmax(90px, 1fr) minmax(108px, auto); }
+body.kv-report .decision-report__score-guide,
+body.kv-report .decision-report__score-missing {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px solid var(--decision-line);
+  background: #f5f1e8;
+}
+body.kv-report .decision-report__score-guide strong,
+body.kv-report .decision-report__score-missing strong { color: var(--decision-green); font-size: 14px; }
+body.kv-report .decision-report__score-guide p,
+body.kv-report .decision-report__score-missing p { margin: 6px 0 0; font-size: 14px; }
 
 body.kv-report .decision-report__score-details,
 body.kv-report .decision-report__purchase-details,
@@ -656,6 +681,7 @@ body.kv-report .assessment-report-v1--decision > .assessment-report-v1__footer {
 }
 
 @media (max-width: 420px) {
+  body.kv-report .assessment-report-v1--decision > .assessment-report-v1__header h1 { font-size: 32px; }
   body.kv-report .assessment-report-v1--decision .decision-report__chapter-head h2 { font-size: 28px; }
   body.kv-report .decision-report__state-grid article,
   body.kv-report .decision-report__evidence-columns > section { padding: 20px 16px; }
@@ -706,6 +732,8 @@ body.kv-report .assessment-report-v1--memo > .assessment-report-v1__header {
 
 body.kv-report .assessment-report-v1--memo > .assessment-report-v1__header h1 {
   margin: 6px 0 10px;
+  font-size: 30px;
+  line-height: 1.2;
 }
 
 body.kv-report .assessment-report-v1--memo .assessment-report-v1__eyebrow {
@@ -734,6 +762,9 @@ body.kv-report .assessment-report-v1--memo .decision-memo__verdict h2 {
   color: #1f2f2a !important;
   font-size: clamp(34px, 5vw, 44px);
   line-height: 1.16;
+}
+
+body.kv-report .assessment-report-v1--memo .decision-memo__verdict h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   text-wrap: balance;
 }
 
@@ -952,6 +983,7 @@ body.kv-report .assessment-report-v1--memo > .assessment-report-v1__footer p { m
   }
 
   body.kv-report .assessment-report-v1--memo > .assessment-report-v1__header { padding-top: 18px; }
+  body.kv-report .assessment-report-v1--memo > .assessment-report-v1__header h1 { font-size: 25px; }
   body.kv-report .assessment-report-v1--memo .decision-memo__verdict h2 { font-size: 32px; }
   body.kv-report .assessment-report-v1--memo .decision-memo__verdict p { font-size: 17px; }
   body.kv-report .assessment-report-v1--memo .decision-memo__section-head h2 { font-size: 23px; }
@@ -1198,14 +1230,21 @@ body.kv-fuye-admin .deal-pay .btn-sm {
     margin-top: 0 !important;
   }
 
-  body.kv-home .hero-title,
-body.kv-home .hero-title span,
-body.kv-fuye-entry .hero h1,
-body.kv-quiz .hero h1,
-body.kv-knowledge .knowledge-hero-copy h1,
-body.kv-prompts .hero h1,
-body.kv-diagnosis-sample .diagnosis-hero h1 {
+  body.kv-home .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye-entry .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .diagnosis-hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
     line-break: anywhere !important;
+  }
+
+  body.kv-home .hero-title {
+    font-size: clamp(36px, 10.4vw, 40px) !important;
+    line-height: 1.08 !important;
   }
 }
 
@@ -1289,30 +1328,31 @@ body.kv-diagnosis-sample .diagnosis-hero h1 {
   }
 
   body.kv-home .hero-grid,
-body.kv-home .hero-copy,
-body.kv-home .hero-stance,
-body.kv-home .hero-actions,
-body.kv-home .hero-report-card,
-body.kv-home .diag-card,
-body.kv-home .hero-note,
-body.kv-fuye-entry .hero > div,
-body.kv-quiz .hero > .panel {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-
+  body.kv-home .hero-copy,
   body.kv-home .hero-title,
-body.kv-home .hero-title span {
-    box-sizing: border-box !important;
-  }
-
-  body.kv-home .hero-subtitle {
+  body.kv-home .hero-title span,
+  body.kv-home .hero-subtitle,
+  body.kv-home .hero-stance,
+  body.kv-home .hero-actions,
+  body.kv-home .hero-report-card,
+  body.kv-home .diag-card,
+  body.kv-home .hero-note,
+  body.kv-fuye-entry .hero > div,
+  body.kv-quiz .hero > .panel {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
     box-sizing: border-box !important;
+  }
+
+  body.kv-home .hero-title {
+    font-size: clamp(38px, 11.2vw, 44px) !important;
+    line-height: 1.05 !important;
+  }
+
+  body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    overflow-wrap: anywhere !important;
+    word-break: keep-all !important;
   }
 
   body.kv-home .hero-actions {
@@ -1382,7 +1422,11 @@ body.kv-report.deep-mode .eyebrow {
 }
 
 body.kv-report.deep-mode .hero h1 {
+  max-width: 760px !important;
   margin: 0 auto 16px !important;
+  font-size: clamp(36px, 4.2vw, 50px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
   text-align: center !important;
   color: var(--kv-ink) !important;
 }
@@ -1391,6 +1435,8 @@ body.kv-report.deep-mode .hero-sub {
   max-width: 720px !important;
   margin: 0 auto !important;
   color: rgba(45, 41, 38, 0.68) !important;
+  font-size: 17px !important;
+  line-height: 1.78 !important;
 }
 
 body.kv-report.report-ready .hero {
@@ -1461,6 +1507,8 @@ body.kv-report.deep-mode .deep-side p {
   z-index: 1 !important;
   margin: 0 0 22px !important;
   color: rgba(255, 250, 242, 0.74) !important;
+  font-size: 15px !important;
+  line-height: 1.82 !important;
 }
 
 body.kv-report.deep-mode .deep-side-list {
@@ -2140,11 +2188,21 @@ body.kv-report.from-miniprogram .kv-global-header {
   }
 
   body.kv-report.deep-mode .hero h1 {
+    max-width: 330px !important;
+    font-size: 28px !important;
+    line-height: 1.14 !important;
+    letter-spacing: 0 !important;
     margin-bottom: 10px !important;
+  }
+
+  body.kv-report.kv-report-bplus.deep-mode:has(#reportContainer) > .page > .hero h1 {
+    font-size: 28px !important;
   }
 
   body.kv-report.deep-mode .hero-sub {
     max-width: 320px !important;
+    font-size: 16px !important;
+    line-height: 1.65 !important;
   }
 
   body.kv-report.deep-mode .deep-side,
@@ -2419,10 +2477,7 @@ body::before {
 h1,
 h2,
 h3,
-.hero-title {
-  color: var(--kv-ink);
-}
-
+.hero-title,
 .report-header h2,
 .section-content h3,
 .cta-title,
@@ -2433,16 +2488,13 @@ h3,
 
 p,
 li,
+.hero-subtitle,
+.hero-sub,
 .section-desc,
 .cta-desc,
 .option span,
 .exec-note,
 .day-desc {
-  color: var(--kv-muted);
-}
-
-.hero-subtitle,
-.hero-sub {
   color: var(--kv-muted);
 }
 
@@ -2551,11 +2603,23 @@ body:has(.hero-report-card) .hero-copy {
 }
 
 body:has(.hero-report-card) .hero-title {
+  max-width: 760px !important;
   margin-bottom: 24px !important;
+  font-size: clamp(42px, 4.15vw, 68px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+}
+
+body:has(.hero-report-card) .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: anywhere !important;
 }
 
 body:has(.hero-report-card) .hero-subtitle {
   max-width: 650px !important;
+  font-size: 17px !important;
+  line-height: 1.82 !important;
   color: rgba(36, 27, 23, 0.68) !important;
 }
 
@@ -2736,6 +2800,13 @@ body:has(#reportContainer) .hero {
 body:has(#reportContainer) .eyebrow {
   color: var(--kv-brass-dark) !important;
   letter-spacing: .12em !important;
+}
+
+body:has(#reportContainer) h1 {
+  max-width: 900px !important;
+  font-size: clamp(30px, 3.4vw, 42px) !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0 !important;
 }
 
 .report-card {
@@ -2986,12 +3057,22 @@ body:has(#quizShell) .hero {
   text-align: left !important;
 }
 
+body:has(#quizShell) .hero h1,
+body:has(#quizShell) .hero-title {
+  max-width: 780px !important;
+  font-size: clamp(32px, 4.1vw, 48px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+}
+
 body:has(#quizShell) .panel {
   padding: 26px !important;
 }
 
 body:has(#quizShell) .hero-subtitle {
   margin-top: 16px !important;
+  font-size: 16px !important;
+  line-height: 1.78 !important;
 }
 
 body:has(#quizShell) .hero-warning {
@@ -3041,6 +3122,14 @@ body:has(.hero-card) .page,
 body:has(.search-card) .page,
 body:has(.sample-block) .page {
   max-width: 1040px !important;
+}
+
+body:has(.hero-card) .hero h1,
+body:has(.search-card) .hero h1,
+body:has(.sample-block) h1 {
+  font-size: clamp(32px, 4.2vw, 48px) !important;
+  line-height: 1.14 !important;
+  letter-spacing: 0 !important;
 }
 
 .knowledge-hero-actions {
@@ -3190,6 +3279,8 @@ body:has(.knowledge-hero-actions) .hero {
 }
 
 body:has(.knowledge-hero-actions) .hero-sub {
+  font-size: 16px !important;
+  line-height: 1.82 !important;
   max-width: 720px !important;
 }
 
@@ -3550,6 +3641,11 @@ body:has(.sample-block) .section {
   box-shadow: var(--kv-shadow-soft) !important;
 }
 
+.page > h1:first-child {
+  font-family: var(--kv-serif) !important;
+  letter-spacing: 0 !important;
+}
+
 /* 降低网页味：去掉过多的卡片浮雕 */
 .price-card,
 .pain-card,
@@ -3623,10 +3719,24 @@ body:has(.sample-block) .section {
     display: none !important;
   }
 
+  body:has(.hero-report-card) .hero-title {
+    max-width: calc(100vw - 32px) !important;
+    font-size: clamp(26px, 7.2vw, 34px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0 !important;
+  }
+
   body:has(.hero-report-card) .hero-title span {
     display: block !important;
   }
 
+  body:has(.hero-report-card) .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    white-space: normal !important;
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body:has(.hero-report-card) .hero-subtitle,
   body:has(.hero-report-card) .hero-stance {
     font-size: 14px !important;
     line-height: 1.75 !important;
@@ -3652,18 +3762,21 @@ body:has(.sample-block) .section {
   }
 
   .knowledge-hero-copy,
+  .knowledge-hero-copy h1,
+  body:has(.knowledge-hero-actions) .hero-sub,
+  .knowledge-benefit,
+  .knowledge-quick-use,
+  .knowledge-card-body {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .knowledge-hero-copy,
+.knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body:has(.knowledge-hero-actions) .hero-sub,
 .knowledge-benefit,
 .knowledge-quick-use,
 .knowledge-card-body {
-    max-width: 100% !important;
-    min-width: 0 !important;
-    overflow-wrap: anywhere !important;
-    word-break: normal !important;
-  }
-
-  body:has(.knowledge-hero-actions) .hero-sub {
-    max-width: 100% !important;
-    min-width: 0 !important;
     overflow-wrap: anywhere !important;
     word-break: normal !important;
   }
@@ -3779,6 +3892,23 @@ body:has(.sample-block) .section {
     overflow-x: hidden !important;
   }
 
+  body:has(#reportContainer) h1,
+  body:has(.sample-block) h1,
+  body:has(.hero-card) .hero h1,
+  body:has(.search-card) .hero h1 {
+    max-width: 100% !important;
+    font-size: clamp(28px, 8vw, 34px) !important;
+    line-height: 1.16 !important;
+  }
+
+  body:has(#reportContainer) h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body:has(.sample-block) h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body:has(.hero-card) .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body:has(.search-card) .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
+  }
+
   .report-header {
     padding: 36px 22px 34px !important;
   }
@@ -3787,6 +3917,9 @@ body:has(.sample-block) .section {
     max-width: 100% !important;
     font-size: clamp(25px, 7.2vw, 32px) !important;
     line-height: 1.16 !important;
+  }
+
+  .report-header h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     word-break: break-word !important;
     overflow-wrap: anywhere !important;
   }
@@ -3832,6 +3965,10 @@ body:has(.sample-block) .section {
     min-height: 38px !important;
     padding: 0 13px !important;
     font-size: 12px !important;
+  }
+
+  body:has(.hero-report-card) .hero-title {
+    font-size: clamp(25px, 7.4vw, 31px) !important;
   }
 
   body:has(.hero-report-card) .hero-actions .btn {
@@ -3992,14 +4129,24 @@ body.kv-home .hero-copy {
   max-width: 720px !important;
 }
 
+body.kv-home .hero-title {
+  max-width: 700px !important;
+  font-size: clamp(42px, 4.8vw, 68px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0 !important;
+}
+
 body.kv-home .hero-title span {
   display: block !important;
 }
 
-body.kv-home .hero-subtitle {
-  max-width: 640px !important;
+body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: anywhere !important;
 }
 
+body.kv-home .hero-subtitle,
 body.kv-home .hero-note {
   max-width: 640px !important;
 }
@@ -4014,9 +4161,17 @@ body.kv-home .section {
   padding-right: clamp(16px, 2vw, 24px) !important;
 }
 
-body.kv-home .section-head-center h2,
-body.kv-home .section h2,
-body.kv-fuye h2 {
+body.kv-home .section-head-center h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-home .section h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-report h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-articles h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   text-wrap: balance;
 }
 
@@ -4037,6 +4192,12 @@ body.kv-fuye .hero {
   align-items: center !important;
   padding-top: clamp(48px, 6vw, 78px) !important;
   padding-bottom: clamp(44px, 5vw, 70px) !important;
+}
+
+body.kv-fuye .hero h1,
+body.kv-quiz .hero h1 {
+  font-size: clamp(38px, 5vw, 62px) !important;
+  line-height: 1.08 !important;
 }
 
 body.kv-quiz .container {
@@ -4079,6 +4240,9 @@ body.kv-report .hero {
 body.kv-report .hero h1 {
   margin-left: auto !important;
   margin-right: auto !important;
+  max-width: 800px !important;
+  font-size: clamp(36px, 5vw, 58px) !important;
+  line-height: 1.08 !important;
 }
 
 body.kv-report .hero-sub {
@@ -4129,6 +4293,12 @@ body.kv-knowledge .knowledge-hero-grid {
   grid-template-columns: minmax(0, 1fr) minmax(360px, 430px) !important;
   gap: clamp(40px, 5vw, 68px) !important;
   align-items: start !important;
+}
+
+body.kv-knowledge .knowledge-hero-copy h1 {
+  max-width: 720px !important;
+  font-size: clamp(38px, 5vw, 62px) !important;
+  line-height: 1.09 !important;
 }
 
 body.kv-knowledge .hero-sub {
@@ -4207,6 +4377,13 @@ body.kv-prompts .hero-grid {
   align-items: stretch !important;
 }
 
+body.kv-prompts .hero h1 {
+  font-family: var(--kv-serif) !important;
+  max-width: 760px !important;
+  font-size: clamp(34px, 4.6vw, 56px) !important;
+  line-height: 1.08 !important;
+}
+
 body.kv-prompts .hero p {
   max-width: 760px !important;
   color: var(--kv-muted) !important;
@@ -4274,6 +4451,10 @@ body.kv-articles .hero {
   gap: clamp(32px, 5vw, 58px) !important;
 }
 
+body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+  font-size: clamp(42px, 6vw, 70px) !important;
+}
+
 body.kv-articles .grid {
   gap: 18px !important;
 }
@@ -4290,6 +4471,11 @@ body.kv-diagnosis-sample .hero {
   margin-right: auto !important;
   padding-top: 48px !important;
   padding-bottom: 48px !important;
+}
+
+body.kv-diagnosis-sample .hero h1 {
+  max-width: 780px !important;
+  font-size: clamp(36px, 5vw, 58px) !important;
 }
 
 @media (max-width: 980px) {
@@ -4433,13 +4619,33 @@ body.kv-diagnosis-sample .hero {
     padding-top: calc(var(--nav-h, 64px) + 26px) !important;
   }
 
-  body.kv-knowledge .knowledge-hero-copy .hero-sub {
-    width: 100% !important;
-    max-width: 100% !important;
+  body.kv-home .hero-title,
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1,
+  body.kv-articles h1 {
+    letter-spacing: 0 !important;
   }
 
+  body.kv-home .hero-title,
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1,
+  body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+    font-size: clamp(30px, 9vw, 38px) !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-knowledge .knowledge-hero-copy .hero-sub,
   body.kv-knowledge .knowledge-benefits,
-body.kv-knowledge .knowledge-quick-use {
+  body.kv-knowledge .knowledge-quick-use {
     width: 100% !important;
     max-width: 100% !important;
   }
@@ -4557,9 +4763,17 @@ body.kv-report .report-card {
   box-shadow: var(--kv-shadow-product) !important;
 }
 
+body.kv-home .hero-title {
+  font-size: clamp(40px, 4.35vw, 62px) !important;
+  line-height: 1.07 !important;
+  letter-spacing: 0 !important;
+}
+
+body.kv-home .hero-subtitle,
 body.kv-home .hero-note,
 body.kv-fuye .hero p,
 body.kv-quiz .hero p,
+body.kv-knowledge .hero-sub,
 body.kv-prompts .hero p,
 body.kv-diagnosis-sample .hero p,
 body.kv-articles .hero p {
@@ -4577,10 +4791,19 @@ body.kv-articles .start .btn {
   min-width: 0 !important;
 }
 
+body.kv-report .hero h1 {
+  font-size: clamp(34px, 4.3vw, 50px) !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0 !important;
+}
+
 body.kv-report .report-header h2 {
   font-size: clamp(30px, 3.25vw, 40px) !important;
   line-height: 1.18 !important;
   letter-spacing: 0 !important;
+}
+
+body.kv-report .report-header h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   overflow-wrap: anywhere !important;
 }
 
@@ -4597,6 +4820,12 @@ body.kv-report .report-section {
   box-shadow: none !important;
 }
 
+body.kv-knowledge .knowledge-hero-copy h1 {
+  font-size: clamp(36px, 4.35vw, 56px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+}
+
 body.kv-knowledge .knowledge-product-card {
   overflow: hidden !important;
 }
@@ -4604,6 +4833,12 @@ body.kv-knowledge .knowledge-product-card {
 body.kv-knowledge .knowledge-card-lead {
   font-size: 15px !important;
   line-height: 1.72 !important;
+}
+
+body.kv-prompts .hero h1 {
+  font-size: clamp(32px, 4.1vw, 50px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
 }
 
 body.kv-prompts .hero-card {
@@ -4744,6 +4979,27 @@ body.kv-prompts .card-body {
 }
 
 @media (max-width: 980px) {
+  body.kv-home .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-report .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-articles h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+  body.kv-home .hero-title,
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1,
+  body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+    max-width: 100% !important;
+  }
 
   body.kv-home .hero-report-card,
   body.kv-knowledge .knowledge-product-card,
@@ -4764,6 +5020,40 @@ body.kv-prompts .card-body {
   body.kv-articles .hero {
     padding-top: 28px !important;
     padding-bottom: 34px !important;
+  }
+
+  body.kv-home .hero-title,
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1,
+  body.kv-articles h1 {
+    letter-spacing: 0 !important;
+  }
+
+  body.kv-home .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-report .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-articles h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    text-wrap: balance !important;
+  }
+
+  body.kv-home .hero-title,
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1,
+  body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+    font-size: clamp(30px, 8.2vw, 34px) !important;
+    line-height: 1.14 !important;
   }
 
   body.kv-report .report-header {
@@ -4872,8 +5162,19 @@ body.kv-prompts .card-body {
     padding-top: calc(var(--nav-h, 64px) + 72px) !important;
   }
 
+  body.kv-home .hero-title {
+    font-size: clamp(30px, 7.6vw, 32px) !important;
+    line-height: 1.16 !important;
+    max-width: 100% !important;
+  }
+
   body.kv-home .hero-title span {
     display: inline !important;
+  }
+
+  body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
   }
 
   body.kv-home .hero-title span::after {
@@ -4885,10 +5186,26 @@ body.kv-prompts .card-body {
     display: block !important;
   }
 
+  body.kv-report .hero h1 {
+    max-width: 100% !important;
+    font-size: clamp(26px, 7vw, 30px) !important;
+    line-height: 1.18 !important;
+  }
+
+  body.kv-report .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+    text-wrap: balance !important;
+  }
+
   body.kv-report .report-header h2 {
     max-width: 100% !important;
     font-size: clamp(24px, 6.6vw, 28px) !important;
     line-height: 1.18 !important;
+  }
+
+  body.kv-report .report-header h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     white-space: normal !important;
     word-break: break-all !important;
     overflow-wrap: anywhere !important;
@@ -5065,6 +5382,10 @@ body.kv-prompts .hero-actions .btn-outline {
   box-shadow: 0 14px 34px rgba(32, 29, 24, 0.08) !important;
 }
 
+h1,
+h2,
+h3,
+.hero-title,
 .report-header h2,
 .section-content h3,
 .cta-title,
@@ -5074,16 +5395,13 @@ body.kv-prompts .hero-actions .btn-outline {
 
 p,
 li,
+.hero-subtitle,
+.hero-sub,
 .section-desc,
 .cta-desc,
 .option span,
 .exec-note,
 .day-desc {
-  color: rgba(33, 31, 28, 0.66) !important;
-}
-
-.hero-subtitle,
-.hero-sub {
   color: rgba(33, 31, 28, 0.66) !important;
 }
 
@@ -5158,8 +5476,15 @@ body:has(.hero-report-card) .hero-grid {
   gap: clamp(44px, 5vw, 82px) !important;
 }
 
+body:has(.hero-report-card) .hero-title {
+  max-width: 760px !important;
+  font-size: clamp(44px, 3.95vw, 64px) !important;
+  line-height: 1.03 !important;
+}
+
 body:has(.hero-report-card) .hero-subtitle {
   max-width: 640px !important;
+  font-size: 16.5px !important;
 }
 
 body:has(.hero-report-card) .hero-stance {
@@ -5181,6 +5506,14 @@ body.kv-diagnosis-sample .hero,
 body.kv-knowledge .knowledge-hero,
 body.kv-prompts .hero {
   min-height: auto !important;
+}
+
+body.kv-fuye .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance !important;
 }
 
 body.kv-fuye .hero-card,
@@ -5260,11 +5593,9 @@ body.kv-report.report-ready .cta-section {
   }
 
   body:has(.hero-report-card) .hero-copy,
-body:has(.hero-report-card) .hero-stance {
-    max-width: 100% !important;
-  }
-
-  body:has(.hero-report-card) .hero-subtitle {
+  body:has(.hero-report-card) .hero-title,
+  body:has(.hero-report-card) .hero-subtitle,
+  body:has(.hero-report-card) .hero-stance {
     max-width: 100% !important;
   }
 }
@@ -5288,6 +5619,16 @@ body:has(.hero-report-card) .hero-stance {
   body.kv-home .hero {
     padding-top: calc(var(--nav-h, 64px) + 34px) !important;
     padding-bottom: 30px !important;
+  }
+
+  body.kv-home .hero-title {
+    font-size: clamp(29px, 7.6vw, 32px) !important;
+    line-height: 1.14 !important;
+  }
+
+  body.kv-home .hero-subtitle {
+    font-size: 15px !important;
+    line-height: 1.78 !important;
   }
 
   body.kv-home .hero-stance {
@@ -5331,6 +5672,17 @@ body:has(.hero-report-card) .hero-stance {
     padding-bottom: 28px !important;
   }
 
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1 {
+    font-size: clamp(28px, 7.6vw, 33px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0 !important;
+  }
+
   body.kv-prompts .hero-proof,
   body.kv-home .hero-note {
     font-size: 13px !important;
@@ -5345,6 +5697,10 @@ body:has(.hero-report-card) .hero-stance {
 }
 
 /* Target 5 final containment pass: prevent mobile clipping and keep product cards readable. */
+h1,
+h2,
+h3,
+.hero-title,
 .section-head-center h2,
 .report-header h2,
 .cta-title,
@@ -5459,40 +5815,76 @@ body.kv-prompts .card-media.image-loaded .card-image {
   }
 
   body.kv-home .hero-title,
-body.kv-home .hero-title span,
-body.kv-fuye .hero h1,
-body.kv-quiz .hero h1,
-body.kv-report .hero h1,
-body.kv-knowledge .knowledge-hero-copy h1,
-body.kv-prompts .hero h1,
-body.kv-diagnosis-sample .hero h1,
-body.kv-articles h1 {
+  body.kv-home .hero-title span,
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1,
+  body.kv-articles h1,
+  body.kv-home .hero-subtitle,
+  body.kv-home .hero-note,
+  body.kv-fuye .hero-sub,
+  body.kv-quiz .hero-subtitle,
+  body.kv-quiz .hero-warning,
+  body.kv-knowledge .hero-sub,
+  body.kv-prompts .hero p,
+  body.kv-diagnosis-sample .hero p {
     display: block !important;
   }
 
-  body.kv-home .hero-subtitle,
+  body.kv-home .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-report .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-articles h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-home .hero-subtitle,
+body.kv-home .hero-note,
 body.kv-fuye .hero-sub,
 body.kv-quiz .hero-subtitle,
-body.kv-knowledge .hero-sub {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    word-break: break-all !important;
-    overflow-wrap: anywhere !important;
-    text-wrap: auto !important;
-  }
-
-  body.kv-home .hero-note,
 body.kv-quiz .hero-warning,
+body.kv-knowledge .hero-sub,
 body.kv-prompts .hero p,
 body.kv-diagnosis-sample .hero p {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
     white-space: normal !important;
     word-break: break-all !important;
     overflow-wrap: anywhere !important;
     text-wrap: auto !important;
+  }
+
+  body.kv-home .hero-title,
+  body.kv-home .hero-title span,
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-report .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1,
+  body.kv-articles:not(:where(.kv-article-index-v1)) h1,
+  body.kv-home .hero-subtitle,
+  body.kv-home .hero-note,
+  body.kv-fuye .hero-sub,
+  body.kv-quiz .hero-subtitle,
+  body.kv-quiz .hero-warning,
+  body.kv-knowledge .hero-sub,
+  body.kv-prompts .hero p,
+  body.kv-diagnosis-sample .hero p {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.kv-fuye .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .hero h1 {
+    font-size: clamp(28px, 7.4vw, 32px) !important;
+    line-height: 1.18 !important;
   }
 
   body.kv-home .hero-actions .btn,
@@ -5541,19 +5933,38 @@ body.kv-diagnosis-sample .hero p {
   }
 }
 
+body.kv-home .hero-title,
+body.kv-home .hero-title span,
 body.kv-home .section h2,
 body.kv-home .price,
+body.kv-fuye .hero h1,
 body.kv-fuye h2,
 body.kv-fuye .btn,
+body.kv-quiz .hero h1,
+body.kv-quiz h2,
 body.kv-quiz .btn,
+body.kv-report .hero h1,
 body.kv-report .report-header h2,
+body.kv-report h2,
 body.kv-report .btn,
+body.kv-knowledge .knowledge-hero-copy h1,
+body.kv-knowledge h2,
 body.kv-knowledge .btn,
+body.kv-prompts .hero h1,
 body.kv-prompts .hero-card h2,
 body.kv-prompts .card-title,
 body.kv-prompts .btn,
+body.kv-diagnosis-sample .hero h1,
 body.kv-diagnosis-sample h2,
 body.kv-diagnosis-sample .btn {
+  letter-spacing: 0 !important;
+}
+
+body.kv-quiz:has(#quizShell) .hero h1,
+body.kv-quiz:has(#quizShell) .hero-title,
+body.kv-report:has(#reportContainer) h1,
+body.kv-report.report-ready .hero h1,
+body.kv-report.deep-mode .hero h1 {
   letter-spacing: 0 !important;
 }
 
@@ -5939,12 +6350,9 @@ body.kv-prompts .card-brief {
   }
 
   body.kv-home .hero-subtitle,
-body.kv-knowledge .hero-sub {
-    word-break: normal !important;
-    overflow-wrap: break-word !important;
-  }
-
-  body.kv-prompts .hero p {
+body.kv-knowledge .hero-sub,
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero p {
     word-break: normal !important;
     overflow-wrap: break-word !important;
   }
@@ -6141,18 +6549,45 @@ body.kv-prompts .hero {
   background: linear-gradient(180deg, #fbfbf8 0%, #f3f5ef 100%) !important;
 }
 
+body.kv-home .hero-title,
+body.kv-home .hero-title span,
+body.kv-knowledge .knowledge-hero-copy h1,
+body.kv-prompts .hero h1 {
+  letter-spacing: 0 !important;
+}
+
+body.kv-home .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance;
+}
+
+body.kv-home .hero-title {
+  max-width: 720px !important;
+  font-size: clamp(40px, 3.6vw, 56px) !important;
+  line-height: 1.15 !important;
+}
+
 @media (min-width: 961px) {
   body.kv-home .hero-grid {
     grid-template-columns: minmax(0, 1.28fr) minmax(390px, 456px) !important;
     gap: clamp(44px, 4vw, 64px) !important;
   }
+
+  body.kv-home .hero-title {
+    max-width: 760px !important;
+  }
+}
+
+body.kv-knowledge .knowledge-hero-copy h1,
+body.kv-prompts .hero h1 {
+  font-size: clamp(34px, 4vw, 52px) !important;
+  line-height: 1.18 !important;
 }
 
 body.kv-home .hero-subtitle,
-body.kv-knowledge .hero-sub {
-  color: rgba(34, 32, 28, 0.72) !important;
-}
-
+body.kv-knowledge .hero-sub,
 body.kv-prompts .hero p {
   color: rgba(34, 32, 28, 0.72) !important;
 }
@@ -6231,6 +6666,15 @@ body.kv-prompts .filter-btn {
     line-break: auto !important;
   }
 
+  body.kv-home .hero-title {
+    font-size: clamp(29px, 7.4vw, 34px) !important;
+    line-height: 1.2 !important;
+  }
+
+  body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    white-space: normal !important;
+  }
+
   body.kv-home .mobile-title-break {
     display: none !important;
   }
@@ -6242,6 +6686,12 @@ body.kv-prompts .filter-btn {
   body.kv-home .hero-decision-item {
     min-height: 92px !important;
     padding: 13px 12px !important;
+  }
+
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1 {
+    font-size: clamp(28px, 7.4vw, 33px) !important;
+    line-height: 1.22 !important;
   }
 
   body.kv-home .hero-report-card,
@@ -6400,8 +6850,17 @@ body.kv-article article::before {
 }
 
 body.kv-article h1 {
+  max-width: 780px !important;
   margin: 0 0 12px !important;
   color: #20211e !important;
+  font-family: var(--kv-serif) !important;
+  font-size: clamp(34px, 5.2vw, 56px) !important;
+  line-height: 1.16 !important;
+  letter-spacing: 0 !important;
+}
+
+body.kv-article h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance !important;
 }
 
 body.kv-article .meta {
@@ -6415,6 +6874,10 @@ body.kv-article .meta {
 body.kv-article h2 {
   margin: 42px 0 14px !important;
   color: #173d32 !important;
+  font-family: var(--kv-serif) !important;
+  font-size: clamp(23px, 3vw, 31px) !important;
+  line-height: 1.32 !important;
+  letter-spacing: 0 !important;
 }
 
 body.kv-article p,
@@ -6465,11 +6928,7 @@ body.kv-article-category {
   display: block !important;
 }
 
-body.kv-article-category > h1 {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
+body.kv-article-category > h1,
 body.kv-article-category > .desc,
 body.kv-article-category > .links,
 body.kv-article-category > .kevin-article-cta,
@@ -6483,6 +6942,10 @@ body.kv-article-category > h1 {
   margin-top: 48px !important;
   margin-bottom: 8px !important;
   color: #20211e !important;
+  font-family: var(--kv-serif) !important;
+  font-size: clamp(34px, 5vw, 54px) !important;
+  line-height: 1.16 !important;
+  letter-spacing: 0 !important;
 }
 
 body.kv-article-category > .desc {
@@ -6538,7 +7001,17 @@ body.kv-public-page .page {
 
 body.kv-fuye-entry h1,
 body.kv-public-page h1 {
+  max-width: 760px !important;
   color: #20211e !important;
+  font-family: var(--kv-serif) !important;
+  font-size: clamp(36px, 5vw, 58px) !important;
+  line-height: 1.16 !important;
+  letter-spacing: 0 !important;
+}
+
+body.kv-fuye-entry h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-public-page h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance !important;
 }
 
 body.kv-fuye-entry .lead,
@@ -6930,20 +7403,29 @@ body.kv-prompts-admin table {
   }
 
   body.kv-article nav:not(.kv-site-nav),
-body.kv-article article,
-body.kv-article footer,
-body.kv-article-category > .desc,
-body.kv-article-category > .links,
-body.kv-article-category > .kevin-article-cta,
-body.kv-article-category > .back,
-body.kv-fuye-entry .page,
-body.kv-public-page .page,
-.kv-site-footer {
+  body.kv-article article,
+  body.kv-article footer,
+  body.kv-article-category > h1,
+  body.kv-article-category > .desc,
+  body.kv-article-category > .links,
+  body.kv-article-category > .kevin-article-cta,
+  body.kv-article-category > .back,
+  body.kv-fuye-entry .page,
+  body.kv-public-page .page,
+  .kv-site-footer {
     width: min(100% - 28px, 640px) !important;
   }
 
   body.kv-article article {
     padding-top: 30px !important;
+  }
+
+  body.kv-article h1,
+  body.kv-article-category > h1,
+  body.kv-fuye-entry h1,
+  body.kv-public-page h1 {
+    font-size: clamp(28px, 8vw, 36px) !important;
+    line-height: 1.22 !important;
   }
 
   body.kv-article p,
@@ -7005,7 +7487,40 @@ body[class*="kv-"] {
   text-rendering: optimizeLegibility !important;
 }
 
-body.kv-home .hero-note {
+body[class*="kv-"] h1,
+body[class*="kv-"] h2,
+body[class*="kv-"] h3,
+body[class*="kv-"] .hero-title,
+body[class*="kv-"] .section-title {
+  font-family: var(--kv-serif) !important;
+  font-weight: 850 !important;
+  letter-spacing: 0 !important;
+}
+
+body[class*="kv-"] h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] h3:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] .section-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+}
+
+body.kv-home .hero-title {
+  max-width: 720px !important;
+  font-size: clamp(38px, 4.05vw, 58px) !important;
+  line-height: 1.14 !important;
+}
+
+body:has(.hero-report-card) .hero-title {
+  max-width: 720px !important;
+  font-size: clamp(38px, 4vw, 58px) !important;
+  line-height: 1.14 !important;
+}
+
+body.kv-home .hero-subtitle,
+body.kv-home .hero-note,
+body:has(.hero-report-card) .hero-subtitle {
   font-size: 16px !important;
   line-height: 1.88 !important;
 }
@@ -7015,6 +7530,18 @@ body.kv-home .hero-actions,
 body:has(.hero-report-card) .hero-decision-grid,
 body:has(.hero-report-card) .hero-actions {
   max-width: 650px !important;
+}
+
+body.kv-knowledge .hero h1,
+body.kv-prompts .hero h1,
+body.kv-diagnosis-sample h1 {
+  max-width: 820px !important;
+  font-size: clamp(34px, 4vw, 52px) !important;
+  line-height: 1.18 !important;
+}
+
+body.kv-prompts .hero h1 {
+  max-width: 880px !important;
 }
 
 body.kv-prompts .hero,
@@ -7027,10 +7554,28 @@ body.kv-knowledge .hero-card {
   border-radius: 20px !important;
 }
 
+body.kv-article h1 {
+  max-width: 760px !important;
+  font-size: clamp(34px, 4.2vw, 48px) !important;
+  line-height: 1.22 !important;
+}
+
+body.kv-article h2 {
+  font-size: clamp(22px, 2.4vw, 28px) !important;
+  line-height: 1.38 !important;
+}
+
 body.kv-article p,
 body.kv-article li {
   font-size: 16.5px !important;
   line-height: 1.92 !important;
+}
+
+body.kv-article-category > h1,
+body.kv-fuye-entry h1,
+body.kv-public-page h1 {
+  font-size: clamp(34px, 4.2vw, 48px) !important;
+  line-height: 1.2 !important;
 }
 
 body.kv-admin h1 {
@@ -7052,27 +7597,56 @@ body.kv-admin h1 {
     gap: 24px !important;
   }
 
+  body.kv-home .hero-title,
+  body:has(.hero-report-card) .hero-title {
+    font-size: clamp(30px, 8.1vw, 36px) !important;
+    line-height: 1.2 !important;
+  }
+
   body.kv-home .hero-title span,
-body:has(.hero-report-card) .hero-title span {
+  body:has(.hero-report-card) .hero-title span {
     display: inline !important;
   }
 
   body.kv-home .hero-title span + span::before,
-body:has(.hero-report-card) .hero-title span + span::before {
+  body:has(.hero-report-card) .hero-title span + span::before {
     content: "" !important;
   }
 
+  body.kv-home .hero-subtitle,
+  body:has(.hero-report-card) .hero-subtitle {
+    font-size: 15px !important;
+    line-height: 1.78 !important;
+  }
+
+  body.kv-knowledge .hero h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample h1 {
+    font-size: clamp(30px, 8vw, 36px) !important;
+    line-height: 1.22 !important;
+  }
+
   body.kv-article article,
-body.kv-article footer,
-body.kv-article-category > .desc,
-body.kv-article-category > .links,
-body.kv-article-category > .kevin-article-cta,
-body.kv-article-category > .back {
+  body.kv-article footer,
+  body.kv-article-category > h1,
+  body.kv-article-category > .desc,
+  body.kv-article-category > .links,
+  body.kv-article-category > .kevin-article-cta,
+  body.kv-article-category > .back {
     width: min(100% - 28px, 720px) !important;
   }
 
   body.kv-article article {
     padding-top: 34px !important;
+  }
+
+  body.kv-article h1 {
+    font-size: clamp(28px, 7.2vw, 34px) !important;
+    line-height: 1.28 !important;
+  }
+
+  body.kv-article h2 {
+    font-size: clamp(21px, 5.8vw, 25px) !important;
   }
 
   body.kv-article p,
@@ -7092,9 +7666,23 @@ body.kv-home .mobile-title-break {
   display: none !important;
 }
 
+body.kv-home .hero-title,
+body:has(.hero-report-card) .hero-title {
+  max-width: 690px !important;
+  font-family: var(--kv-sans) !important;
+  font-size: clamp(36px, 3.55vw, 50px) !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+}
+
 body.kv-home .hero-title span,
 body:has(.hero-report-card) .hero-title span {
   display: block !important;
+}
+
+body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body:has(.hero-report-card) .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  white-space: normal !important;
 }
 
 body.kv-home .section-head-center h2,
@@ -7105,14 +7693,37 @@ body.kv-home .section h2 {
   font-weight: 900 !important;
 }
 
+body.kv-knowledge .hero h1,
+body.kv-prompts .hero h1,
+body.kv-diagnosis-sample h1 {
+  font-family: var(--kv-sans) !important;
+  font-size: clamp(32px, 3.45vw, 46px) !important;
+  line-height: 1.22 !important;
+  font-weight: 900 !important;
+}
+
+body.kv-article h1,
+body.kv-article-category > h1,
+body.kv-fuye-entry h1,
+body.kv-public-page h1 {
+  font-family: var(--kv-sans) !important;
+  font-weight: 900 !important;
+}
+
 @media (max-width: 720px) {
   body.kv-home .hero,
   body:has(.hero-report-card) .hero {
     padding-top: 44px !important;
   }
 
+  body.kv-home .hero-title,
+  body:has(.hero-report-card) .hero-title {
+    font-size: clamp(29px, 7.6vw, 34px) !important;
+    line-height: 1.24 !important;
+  }
+
   body.kv-home .hero-title span,
-body:has(.hero-report-card) .hero-title span {
+  body:has(.hero-report-card) .hero-title span {
     display: block !important;
   }
 
@@ -7120,6 +7731,13 @@ body:has(.hero-report-card) .hero-title span {
   body.kv-home .section h2 {
     font-size: clamp(26px, 7vw, 32px) !important;
     line-height: 1.26 !important;
+  }
+
+  body.kv-knowledge .hero h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample h1 {
+    font-size: clamp(28px, 7vw, 33px) !important;
+    line-height: 1.28 !important;
   }
 
   body.kv-prompts .header-inner {
@@ -7183,7 +7801,10 @@ body.kv-home .hero {
 }
 
 body.kv-home .hero-title {
+  max-width: 720px !important;
   margin-bottom: 22px !important;
+  font-size: clamp(38px, 3.65vw, 52px) !important;
+  line-height: 1.16 !important;
 }
 
 body.kv-home .hero-title span {
@@ -7226,10 +7847,14 @@ body.kv-prompts .hero-grid {
   gap: clamp(44px, 5vw, 72px) !important;
 }
 
-body.kv-knowledge .knowledge-hero-copy .hero-sub {
+body.kv-knowledge .knowledge-hero-copy h1,
+body.kv-prompts .hero h1 {
   max-width: 760px !important;
+  font-size: clamp(32px, 3.2vw, 44px) !important;
+  line-height: 1.22 !important;
 }
 
+body.kv-knowledge .knowledge-hero-copy .hero-sub,
 body.kv-prompts .hero p {
   max-width: 760px !important;
   font-size: 16px !important;
@@ -7265,6 +7890,11 @@ body.kv-article article {
   padding-top: 48px !important;
 }
 
+body.kv-article h1 {
+  font-size: clamp(34px, 3.7vw, 44px) !important;
+  line-height: 1.25 !important;
+}
+
 body.kv-article p,
 body.kv-article li {
   color: rgba(31, 36, 32, 0.78) !important;
@@ -7289,11 +7919,19 @@ body.kv-admin .login-wrap {
   }
 
   body.kv-home .hero-title {
+    max-width: 100% !important;
     margin-bottom: 20px !important;
+    font-size: clamp(30px, 7.2vw, 34px) !important;
+    line-height: 1.28 !important;
   }
 
   body.kv-home .hero-title span {
     display: block !important;
+  }
+
+  body.kv-home .hero-subtitle {
+    font-size: 15px !important;
+    line-height: 1.78 !important;
   }
 
   body.kv-home .hero-stance {
@@ -7315,6 +7953,13 @@ body.kv-admin .login-wrap {
     min-height: 54px !important;
   }
 
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1 {
+    font-size: clamp(28px, 6.8vw, 32px) !important;
+    line-height: 1.3 !important;
+  }
+
+  body.kv-knowledge .knowledge-hero-copy .hero-sub,
   body.kv-prompts .hero p {
     font-size: 15px !important;
     line-height: 1.76 !important;
@@ -7336,6 +7981,11 @@ body.kv-admin .login-wrap {
   body.kv-article article {
     padding-top: 38px !important;
   }
+
+  body.kv-article h1 {
+    font-size: clamp(28px, 6.8vw, 33px) !important;
+    line-height: 1.32 !important;
+  }
 }
 
 body.kv-diagnosis-sample .page {
@@ -7348,13 +7998,26 @@ body.kv-diagnosis-sample .hero {
   margin-right: auto !important;
 }
 
+body.kv-diagnosis-sample .hero h1 {
+  max-width: 760px !important;
+  font-size: clamp(34px, 3.4vw, 44px) !important;
+  line-height: 1.24 !important;
+}
+
 body.kv-diagnosis-sample .hero-sub {
   max-width: 760px !important;
+  font-size: 16px !important;
+  line-height: 1.78 !important;
 }
 
 @media (max-width: 720px) {
   body.kv-diagnosis-sample .page {
     padding-top: 32px !important;
+  }
+
+  body.kv-diagnosis-sample .hero h1 {
+    font-size: clamp(28px, 7vw, 33px) !important;
+    line-height: 1.3 !important;
   }
 }
 
@@ -7436,19 +8099,18 @@ body.kv-diagnosis-sample .diagnosis-hero-copy {
 body.kv-knowledge .knowledge-hero-copy h1,
 body.kv-prompts .hero h1,
 body.kv-diagnosis-sample .diagnosis-hero h1 {
+  max-width: 760px !important;
   margin-top: 0 !important;
   margin-bottom: 18px !important;
   color: #17221d !important;
+  font-size: clamp(38px, 4.05vw, 58px) !important;
+  line-height: 1.11 !important;
+  font-weight: 900 !important;
 }
 
 body.kv-knowledge .knowledge-hero-copy .hero-sub,
+body.kv-prompts .hero p,
 body.kv-diagnosis-sample .diagnosis-hero .hero-sub {
-  max-width: 720px !important;
-  margin-bottom: 0 !important;
-  color: rgba(31, 36, 32, 0.70) !important;
-}
-
-body.kv-prompts .hero p {
   max-width: 720px !important;
   margin-bottom: 0 !important;
   color: rgba(31, 36, 32, 0.70) !important;
@@ -7651,10 +8313,7 @@ body.kv-knowledge main > section:not(.knowledge-hero):not(.knowledge-use-map) .c
   margin-top: 14px !important;
 }
 
-body.kv-knowledge main > section h2 {
-  color: #17221d !important;
-}
-
+body.kv-knowledge main > section h2,
 body.kv-diagnosis-sample .section h2 {
   color: #17221d !important;
   font-family: var(--kv-sans) !important;
@@ -8192,7 +8851,17 @@ body.kv-admin .btn-sm {
     padding: 34px 0 42px !important;
   }
 
-  body.kv-prompts .hero p {
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .diagnosis-hero h1 {
+    max-width: 100% !important;
+    font-size: clamp(29px, 8vw, 35px) !important;
+    line-height: 1.23 !important;
+  }
+
+  body.kv-knowledge .knowledge-hero-copy .hero-sub,
+  body.kv-prompts .hero p,
+  body.kv-diagnosis-sample .diagnosis-hero .hero-sub {
     font-size: 15px !important;
     line-height: 1.76 !important;
   }
@@ -8272,10 +8941,7 @@ body.kv-fuye-entry .page {
   background: transparent !important;
 }
 
-body.kv-fuye-entry .page > h1 {
-  grid-column: 1 !important;
-}
-
+body.kv-fuye-entry .page > h1,
 body.kv-fuye-entry .page > .lead,
 body.kv-fuye-entry .page > .insight-box,
 body.kv-fuye-entry .page > .note {
@@ -8293,8 +8959,12 @@ body.kv-fuye-entry .page > .cta {
 }
 
 body.kv-fuye-entry h1 {
+  max-width: 660px !important;
   margin: 0 0 16px !important;
   color: #17221d !important;
+  font-size: clamp(42px, 5.2vw, 66px) !important;
+  line-height: 1.06 !important;
+  font-weight: 900 !important;
 }
 
 body.kv-fuye-entry h1 span {
@@ -8353,11 +9023,7 @@ body.kv-article-category {
   padding: 0 !important;
 }
 
-body.kv-article-category > h1 {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
+body.kv-article-category > h1,
 body.kv-article-category > .desc,
 body.kv-article-category > .links,
 body.kv-article-category > .kevin-article-cta,
@@ -8373,6 +9039,9 @@ body.kv-article-category > h1 {
   margin-top: clamp(52px, 6vw, 82px) !important;
   margin-bottom: 10px !important;
   color: #17221d !important;
+  font-size: clamp(44px, 5.2vw, 68px) !important;
+  line-height: 1.05 !important;
+  font-weight: 900 !important;
 }
 
 body.kv-article-category > .desc {
@@ -8439,8 +9108,11 @@ body.kv-article article {
 }
 
 body.kv-article article h1 {
+  max-width: 760px !important;
   margin-bottom: 12px !important;
   color: #17221d !important;
+  font-size: clamp(40px, 4.5vw, 58px) !important;
+  line-height: 1.13 !important;
 }
 
 body.kv-article .meta {
@@ -8452,6 +9124,7 @@ body.kv-article .meta {
 body.kv-article article h2 {
   margin-top: 42px !important;
   color: #173d32 !important;
+  font-size: clamp(25px, 2.5vw, 32px) !important;
 }
 
 body.kv-article article p {
@@ -8469,13 +9142,10 @@ body.kv-article .highlight {
   }
 
   body.kv-fuye-entry .page > .card,
-body.kv-fuye-entry .page > .lead,
-body.kv-fuye-entry .page > .insight-box,
-body.kv-fuye-entry .page > .note {
-    grid-column: auto !important;
-  }
-
-  body.kv-fuye-entry .page > h1 {
+  body.kv-fuye-entry .page > h1,
+  body.kv-fuye-entry .page > .lead,
+  body.kv-fuye-entry .page > .insight-box,
+  body.kv-fuye-entry .page > .note {
     grid-column: auto !important;
   }
 
@@ -8487,14 +9157,22 @@ body.kv-fuye-entry .page > .note {
 
 @media (max-width: 720px) {
   body.kv-fuye-entry .page,
-body.kv-article-category > .desc,
-body.kv-article-category > .links,
-body.kv-article-category > .kevin-article-cta,
-body.kv-article-category > .back,
-body.kv-article nav:not(.kv-site-nav),
-body.kv-article article,
-body.kv-article footer {
+  body.kv-article-category > h1,
+  body.kv-article-category > .desc,
+  body.kv-article-category > .links,
+  body.kv-article-category > .kevin-article-cta,
+  body.kv-article-category > .back,
+  body.kv-article nav:not(.kv-site-nav),
+  body.kv-article article,
+  body.kv-article footer {
     width: min(calc(100% - 28px), 640px) !important;
+  }
+
+  body.kv-fuye-entry h1,
+  body.kv-article-category > h1,
+  body.kv-article article h1 {
+    font-size: clamp(30px, 8.4vw, 38px) !important;
+    line-height: 1.18 !important;
   }
 
   body.kv-article-category .links a {
@@ -8553,29 +9231,31 @@ body[class*="kv-"] h1,
 body[class*="kv-"] h2,
 body[class*="kv-"] h3,
 body[class*="kv-"] .hero-title,
-body[class*="kv-"] .section-title {
-  color: var(--kv-ink) !important;
-}
-
+body[class*="kv-"] .section-title,
 body[class*="kv-"] .card-title {
   color: var(--kv-ink) !important;
   font-family: var(--kv-sans) !important;
   font-weight: 780 !important;
   letter-spacing: 0 !important;
+}
+
+body[class*="kv-"] h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] h3:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] .section-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body[class*="kv-"] .card-title {
   text-wrap: balance;
 }
 
 body[class*="kv-"] p,
 body[class*="kv-"] li,
 body[class*="kv-"] .lead,
+body[class*="kv-"] .hero-sub,
+body[class*="kv-"] .hero-subtitle,
 body[class*="kv-"] .section-desc {
   color: rgba(31, 36, 32, 0.68) !important;
   line-height: 1.82 !important;
-}
-
-body[class*="kv-"] .hero-sub,
-body[class*="kv-"] .hero-subtitle {
-  color: rgba(31, 36, 32, 0.68) !important;
 }
 
 body[class*="kv-"] .nav,
@@ -8703,6 +9383,13 @@ body.kv-home .hero {
   padding-top: clamp(66px, 8vw, 104px) !important;
 }
 
+body.kv-home .hero-title {
+  max-width: 720px !important;
+  font-size: clamp(42px, 5.1vw, 72px) !important;
+  line-height: 1.05 !important;
+  font-weight: 820 !important;
+}
+
 body.kv-home .hero-title span {
   color: #17221d !important;
 }
@@ -8714,6 +9401,8 @@ body.kv-home .hero-title span:first-child {
 body.kv-home .hero-subtitle {
   max-width: 670px !important;
   margin-top: 24px !important;
+  font-size: 17px !important;
+  line-height: 1.86 !important;
 }
 
 body.kv-home .hero-stance {
@@ -8754,7 +9443,12 @@ body.kv-home .diag-item {
   box-shadow: none !important;
 }
 
-body.kv-home .section-head-center h2 {
+body.kv-home .section-head-center h2,
+body.kv-knowledge h1,
+body.kv-prompts .hero h1,
+body.kv-diagnosis-sample h1,
+body.kv-quiz h1,
+body.kv-report .hero h1 {
   font-weight: 800 !important;
 }
 
@@ -8782,6 +9476,14 @@ body.kv-report .page {
 body.kv-knowledge .knowledge-hero-grid,
 body.kv-diagnosis-sample .diagnosis-hero-grid {
   gap: clamp(32px, 5vw, 72px) !important;
+}
+
+body.kv-knowledge .knowledge-hero-copy h1,
+body.kv-prompts .hero h1,
+body.kv-diagnosis-sample .diagnosis-hero-copy h1 {
+  max-width: 720px !important;
+  font-size: clamp(38px, 4.5vw, 64px) !important;
+  line-height: 1.1 !important;
 }
 
 body.kv-knowledge .knowledge-benefits,
@@ -8868,12 +9570,20 @@ body.kv-report .script-card {
 }
 
 body.kv-articles .page,
+body.kv-article-category > h1,
 body.kv-article-category > .desc,
 body.kv-article-category > .links,
 body.kv-article-category > .kevin-article-cta,
 body.kv-article-category > .back,
 body.kv-article-category > .kv-site-footer {
   max-width: 1120px !important;
+}
+
+body.kv-articles h1,
+body.kv-article-category > h1,
+body.kv-article article h1 {
+  font-family: var(--kv-sans) !important;
+  font-weight: 800 !important;
 }
 
 body.kv-articles .brand-mark,
@@ -8922,6 +9632,8 @@ body.kv-articles .start {
 .kevin-article-cta p {
   margin: 0 0 16px !important;
   color: rgba(31, 36, 32, 0.66) !important;
+  font-size: 14px !important;
+  line-height: 1.78 !important;
 }
 
 .article-cta-actions {
@@ -8960,11 +9672,13 @@ body.kv-articles .start {
   margin-bottom: 0 !important;
   padding-top: 14px !important;
   border-top: 1px solid rgba(23, 61, 50, 0.10) !important;
+  font-size: 13px !important;
 }
 
 .article-cta-foot strong,
 .article-cta-foot a {
   color: var(--kv-olive) !important;
+  font-weight: 800 !important;
 }
 
 .article-author-note {
@@ -9037,6 +9751,10 @@ body.kv-articles .start {
 
 body.kv-fuye-entry .page {
   border-top: 1px solid rgba(23, 61, 50, 0.08) !important;
+}
+
+body.kv-fuye-entry h1 {
+  font-weight: 800 !important;
 }
 
 body.kv-legacy .page,
@@ -9235,7 +9953,25 @@ body.kv-admin .modal {
     padding-bottom: 56px !important;
   }
 
-  body.kv-prompts .hero p {
+  body.kv-home .hero-title,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .diagnosis-hero-copy h1,
+  body.kv-quiz h1,
+  body.kv-report .hero h1,
+  body.kv-articles:not(:where(.kv-article-index-v1)) h1,
+  body.kv-article article h1,
+  body.kv-article-category > h1 {
+    font-size: clamp(30px, 8vw, 38px) !important;
+    line-height: 1.2 !important;
+  }
+
+  body.kv-home .hero-subtitle,
+  body.kv-knowledge .hero-sub,
+  body.kv-prompts .hero p,
+  body.kv-diagnosis-sample .hero-sub,
+  body.kv-report .hero-sub,
+  body.kv-quiz .hero-subtitle {
     font-size: 15px !important;
     line-height: 1.78 !important;
   }
@@ -9452,12 +10188,24 @@ body.kv-home .hero-copy {
 }
 
 body.kv-home .hero-title {
+  max-width: 760px !important;
   margin-bottom: 26px !important;
+  font-family: var(--kv-display) !important;
+  font-size: clamp(54px, 5.65vw, 82px) !important;
+  line-height: 0.98 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em !important;
 }
 
 body.kv-home .hero-title span {
   display: block !important;
   color: var(--kv-master-wine) !important;
+}
+
+body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
 
 body.kv-home .hero-title span:nth-child(3) {
@@ -9468,6 +10216,8 @@ body.kv-home .hero-subtitle {
   max-width: 720px !important;
   margin: 0 0 24px !important;
   color: rgba(40, 31, 24, 0.68) !important;
+  font-size: 18px !important;
+  line-height: 1.92 !important;
 }
 
 body.kv-home .hero-stance {
@@ -9539,17 +10289,32 @@ body.kv-quiz .hero h1,
 body.kv-knowledge .knowledge-hero-copy h1,
 body.kv-prompts .hero h1,
 body.kv-diagnosis-sample .diagnosis-hero h1 {
+  font-family: var(--kv-display) !important;
+  font-size: clamp(46px, 5vw, 72px) !important;
+  line-height: 1.04 !important;
   color: var(--kv-master-ink) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+body.kv-fuye-entry .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .diagnosis-hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+body.kv-fuye-entry .hero h1 {
+  max-width: 740px !important;
 }
 
 body.kv-fuye-entry .hero-sub,
 body.kv-quiz .hero-subtitle,
 body.kv-knowledge .hero-sub,
+body.kv-prompts .hero p,
 body.kv-diagnosis-sample .hero-sub {
-  color: rgba(40, 31, 24, 0.68) !important;
-}
-
-body.kv-prompts .hero p {
   color: rgba(40, 31, 24, 0.68) !important;
   font-size: 17px !important;
   line-height: 1.9 !important;
@@ -9685,11 +10450,7 @@ body.kv-article .kv-site-links a {
 
 body.kv-article > h1,
 body.kv-article > h2,
-body.kv-article > h3 {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
+body.kv-article > h3,
 body.kv-article > p,
 body.kv-article > ul,
 body.kv-article > ol,
@@ -9718,7 +10479,17 @@ body.kv-article > h1,
 body.kv-article article h1 {
   margin-top: clamp(62px, 7vw, 104px) !important;
   margin-bottom: 28px !important;
+  font-family: var(--kv-display) !important;
+  font-size: clamp(44px, 5vw, 72px) !important;
+  line-height: 1.08 !important;
   color: var(--kv-master-ink) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+body.kv-article > h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-article article h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  word-break: keep-all !important;
 }
 
 body.kv-article > h1::before,
@@ -9733,6 +10504,9 @@ body.kv-article article h1::before {
   border-radius: 999px !important;
   background: rgba(255, 250, 242, 0.72) !important;
   color: var(--kv-master-gold) !important;
+  font-family: var(--kv-text) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
 }
 
 body.kv-article > p,
@@ -9752,6 +10526,9 @@ body.kv-article article h2 {
   margin-top: 54px !important;
   margin-bottom: 18px !important;
   color: var(--kv-master-olive) !important;
+  font-family: var(--kv-display) !important;
+  font-size: clamp(28px, 3vw, 38px) !important;
+  line-height: 1.22 !important;
 }
 
 body.kv-article .kevin-article-cta {
@@ -9774,6 +10551,7 @@ body.kv-article-category {
   padding: 0 !important;
 }
 
+body.kv-article-category > h1,
 body.kv-article-category > .desc,
 body.kv-article-category > .links,
 body.kv-article-category > .kevin-article-cta,
@@ -9785,7 +10563,14 @@ body.kv-article-category > .kv-site-footer {
 
 body.kv-article-category > h1,
 body.kv-articles h1 {
+  font-family: var(--kv-display) !important;
   color: var(--kv-master-ink) !important;
+}
+
+body.kv-article-category > h1,
+body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+  font-size: clamp(48px, 5vw, 76px) !important;
+  line-height: 1.06 !important;
 }
 
 body.kv-admin {
@@ -9949,7 +10734,30 @@ body.kv-admin .btn-batch-del {
     padding: 34px 18px 44px !important;
   }
 
-  body.kv-prompts .hero p {
+  body.kv-home .hero-title,
+  body.kv-fuye-entry .hero h1,
+  body.kv-quiz .hero h1,
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1,
+  body.kv-diagnosis-sample .diagnosis-hero h1,
+  body.kv-article > h1,
+  body.kv-article article h1,
+  body.kv-article-category > h1,
+  body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+    font-size: clamp(34px, 10vw, 46px) !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    white-space: normal !important;
+  }
+
+  body.kv-home .hero-subtitle,
+  body.kv-fuye-entry .hero-sub,
+  body.kv-quiz .hero-subtitle,
+  body.kv-knowledge .hero-sub,
+  body.kv-prompts .hero p,
+  body.kv-diagnosis-sample .hero-sub {
     font-size: 15px !important;
     line-height: 1.82 !important;
   }
@@ -9970,13 +10778,16 @@ body.kv-admin .btn-batch-del {
     flex-wrap: wrap !important;
   }
 
+  body.kv-article > h1,
+  body.kv-article > h2,
+  body.kv-article > h3,
   body.kv-article > p,
-body.kv-article > ul,
-body.kv-article > ol,
-body.kv-article > blockquote,
-body.kv-article > .back,
-body.kv-article > .kevin-article-cta,
-body.kv-article > .kv-site-footer {
+  body.kv-article > ul,
+  body.kv-article > ol,
+  body.kv-article > blockquote,
+  body.kv-article > .back,
+  body.kv-article > .kevin-article-cta,
+  body.kv-article > .kv-site-footer {
     width: min(calc(100% - 32px), 640px) !important;
   }
 
@@ -10115,39 +10926,37 @@ body.kv-article > .kv-site-footer {
   }
 
   body.kv-home .hero-grid,
-body.kv-home .hero-copy,
-body.kv-home .hero-stance,
-body.kv-home .hero-actions,
-body.kv-home .hero-report-card,
-body.kv-home .diag-card,
-body.kv-home .hero-note,
-body.kv-fuye-entry .hero > div,
-body.kv-quiz .hero > .panel {
+  body.kv-home .hero-copy,
+  body.kv-home .hero-title,
+  body.kv-home .hero-title span,
+  body.kv-home .hero-subtitle,
+  body.kv-home .hero-stance,
+  body.kv-home .hero-actions,
+  body.kv-home .hero-report-card,
+  body.kv-home .diag-card,
+  body.kv-home .hero-note,
+  body.kv-fuye-entry .hero > div,
+  body.kv-quiz .hero > .panel {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
     box-sizing: border-box !important;
   }
 
-  body.kv-home .hero-title,
-body.kv-home .hero-title span {
-    box-sizing: border-box !important;
+  body.kv-home .hero-title {
+    font-size: clamp(36px, 10.4vw, 40px) !important;
+    line-height: 1.08 !important;
   }
 
-  body.kv-home .hero-subtitle {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  body.kv-home .hero-title,
-body.kv-home .hero-title span,
-body.kv-fuye-entry .hero h1,
-body.kv-quiz .hero h1,
-body.kv-knowledge .knowledge-hero-copy h1,
-body.kv-prompts .hero h1,
-body.kv-diagnosis-sample .diagnosis-hero h1 {
+  body.kv-home .hero-title:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye-entry .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-quiz .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .diagnosis-hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
     line-break: anywhere !important;
   }
 
@@ -10222,7 +11031,27 @@ body.kv-fuye-entry .hero-card {
 body.kv-fuye-entry .hero h1 {
   display: grid !important;
   gap: 0 !important;
+  width: min(100%, 720px) !important;
+  max-width: 720px !important;
   margin: 0 0 26px !important;
+  font-size: clamp(54px, 5vw, 74px) !important;
+  line-height: 1.04 !important;
+}
+
+body.kv-fuye-entry .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+body.kv-fuye-entry .hero h1 span {
+  display: block !important;
+}
+
+body.kv-fuye-entry .hero h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
 
 body.kv-fuye-entry .hero-sub {
@@ -10263,6 +11092,17 @@ body.kv-fuye-entry #testimonials {
   body.kv-fuye-entry .hero {
     padding: 34px 18px 44px !important;
   }
+
+  body.kv-fuye-entry .hero h1 {
+    font-size: clamp(34px, 10vw, 42px) !important;
+    line-height: 1.12 !important;
+    width: 100% !important;
+  }
+
+  body.kv-fuye-entry .hero h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+  }
 }
 
 /* Target 21: 1999 sample headline fit */
@@ -10270,9 +11110,42 @@ body.kv-diagnosis-sample .diagnosis-hero-copy h1,
 body.kv-diagnosis-sample .diagnosis-hero h1 {
   display: grid !important;
   gap: 0 !important;
+  width: min(100%, 650px) !important;
+  max-width: 650px !important;
+  line-height: 1.04 !important;
+}
+body.kv-diagnosis-sample .diagnosis-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .diagnosis-hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+body.kv-diagnosis-sample .diagnosis-hero-copy h1 span,
+body.kv-diagnosis-sample .diagnosis-hero h1 span {
+  display: block !important;
+}
+
+body.kv-diagnosis-sample .diagnosis-hero-copy h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .diagnosis-hero h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
 
 @media (max-width: 720px) {
+  body.kv-diagnosis-sample .diagnosis-hero-copy h1,
+  body.kv-diagnosis-sample .diagnosis-hero h1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(34px, 10vw, 42px) !important;
+    line-height: 1.12 !important;
+  }
+
+  body.kv-diagnosis-sample .diagnosis-hero-copy h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-diagnosis-sample .diagnosis-hero h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+  }
 }
 
 /* Target 22: prompts headline punctuation control */
@@ -10280,8 +11153,26 @@ body.kv-prompts .hero h1 {
   display: grid !important;
   gap: 0 !important;
 }
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+body.kv-prompts .hero h1 span {
+  display: block !important;
+}
+
+body.kv-prompts .hero h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
 
 @media (max-width: 720px) {
+  body.kv-prompts .hero h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
 }
 
 /* Target 23: report page symbol cleanup */
@@ -10301,6 +11192,16 @@ body.kv-home .hero-grid {
 
 body.kv-home .hero-copy {
   max-width: 690px !important;
+}
+
+body.kv-home .hero-title {
+  max-width: 690px !important;
+  font-size: clamp(56px, 5.15vw, 78px) !important;
+  line-height: 0.98 !important;
+}
+
+body.kv-home .hero-title span {
+  max-width: 100% !important;
 }
 
 body.kv-home .hero-title span:nth-child(3) {
@@ -10347,6 +11248,16 @@ body.kv-articles .hero > div,
 body.kv-articles .side-note {
   min-width: 0 !important;
   box-sizing: border-box !important;
+}
+
+body.kv-articles h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance !important;
+}
+
+body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+  max-width: 620px !important;
+  font-size: clamp(54px, 5.1vw, 74px) !important;
+  line-height: 1.06 !important;
 }
 
 body.kv-articles .hero p {
@@ -10445,11 +11356,30 @@ body.kv-report .locked-wechat-hint {
 }
 
 @media (max-width: 720px) {
+  body.kv-home .hero-title {
+    font-size: clamp(36px, 10vw, 40px) !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  body.kv-home .hero-title span:nth-child(5):where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+  }
 
   body.kv-articles .page {
     width: calc(100% - 20px) !important;
     max-width: calc(100% - 20px) !important;
     padding: 24px 18px 54px !important;
+  }
+
+  body.kv-articles:not(:where(.kv-article-index-v1)) h1 {
+    font-size: clamp(38px, 11vw, 46px) !important;
+    line-height: 1.1 !important;
   }
 
   body.kv-articles .card {
@@ -10789,6 +11719,10 @@ body.kv-fuye-entry #method h2 {
   font-weight: 900 !important;
   line-height: 1.1 !important;
   letter-spacing: 0 !important;
+}
+
+body.kv-fuye-entry .section-head h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye-entry #method h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   word-break: normal !important;
   overflow-wrap: anywhere !important;
   text-wrap: balance !important;
@@ -10979,6 +11913,10 @@ body.kv-prompts .hero-actions .btn-outline {
     max-width: 100% !important;
     font-size: clamp(32px, 9vw, 40px) !important;
     line-height: 1.16 !important;
+  }
+
+  body.kv-fuye-entry .section-head h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye-entry #method h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     word-break: break-all !important;
     overflow-wrap: anywhere !important;
     text-wrap: auto !important;
@@ -10993,9 +11931,12 @@ body.kv-prompts .hero-actions .btn-outline {
     width: auto !important;
     max-width: 100% !important;
     font-size: clamp(28px, 7.8vw, 31px) !important;
+    justify-self: stretch !important;
+  }
+
+  body.kv-fuye-entry #method h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     word-break: keep-all !important;
     overflow-wrap: normal !important;
-    justify-self: stretch !important;
   }
 
   body.kv-fuye-entry #method .section-desc,
@@ -11953,6 +12894,10 @@ body[class*="kv-"] {
   body.kv-home .cta-left h2,
   body.kv-home .cta-left p {
     max-width: 100% !important;
+  }
+
+  body.kv-home .cta-left h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-home .cta-left p {
     overflow-wrap: break-word !important;
   }
 }
@@ -11998,6 +12943,9 @@ body.kv-quiz .result-copy h2 {
   max-width: 100% !important;
   font-size: clamp(30px, 3.1vw, 43px) !important;
   line-height: 1.12 !important;
+}
+
+body.kv-quiz .result-copy h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   word-break: normal !important;
   overflow-wrap: anywhere !important;
   text-wrap: balance !important;
@@ -12037,14 +12985,34 @@ body.kv-knowledge .knowledge-hero-grid {
 }
 
 body.kv-knowledge .knowledge-hero-copy h1 {
+  width: min(100%, 720px) !important;
+  max-width: 720px !important;
   margin-bottom: 24px !important;
+  font-family: var(--kv-display) !important;
+  font-size: clamp(58px, 5.7vw, 86px) !important;
+  line-height: 0.98 !important;
+  font-weight: 900 !important;
   color: var(--kv-master-ink) !important;
+  letter-spacing: 0 !important;
+}
+
+body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+body.kv-knowledge .knowledge-hero-copy h1 span {
+  display: inline-block !important;
+  max-width: 100% !important;
 }
 
 body.kv-knowledge .knowledge-hero-copy .hero-sub {
   max-width: 690px !important;
   margin-bottom: 0 !important;
   color: rgba(40, 31, 24, 0.68) !important;
+  font-size: 17px !important;
+  line-height: 1.92 !important;
 }
 
 body.kv-knowledge .knowledge-benefits {
@@ -12261,6 +13229,14 @@ body.kv-prompts .hero-grid {
   align-items: start !important;
 }
 
+body.kv-prompts .hero h1 {
+  width: min(100%, 620px) !important;
+  max-width: 620px !important;
+  font-size: clamp(58px, 5.8vw, 86px) !important;
+  line-height: 0.98 !important;
+  letter-spacing: 0 !important;
+}
+
 body.kv-prompts .hero p {
   max-width: 680px !important;
   font-size: 17px !important;
@@ -12296,14 +13272,23 @@ body.kv-fuye-entry .page:not(:has(.hero)) {
 }
 
 body.kv-fuye-entry .page:not(:has(.hero)) > h1 {
+  max-width: 940px !important;
   margin: 0 0 28px !important;
+  font-family: var(--kv-display) !important;
+  font-size: clamp(62px, 7.1vw, 104px) !important;
+  line-height: 0.98 !important;
+  font-weight: 900 !important;
   color: var(--kv-master-ink) !important;
+  letter-spacing: 0 !important;
 }
 
-body.kv-fuye-entry .page:not(:has(.hero)) > h1 span {
-  color: var(--kv-master-wine) !important;
+body.kv-fuye-entry .page:not(:has(.hero)) > h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  text-wrap: balance !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
 }
 
+body.kv-fuye-entry .page:not(:has(.hero)) > h1 span,
 body.kv-fuye-entry .page:not(:has(.hero)) > h1 em {
   color: var(--kv-master-wine) !important;
 }
@@ -12456,6 +13441,20 @@ body.kv-fuye-entry .page:not(:has(.hero)) .note {
     padding: 42px 0 54px !important;
   }
 
+  body.kv-knowledge .knowledge-hero-copy h1,
+  body.kv-prompts .hero h1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(42px, 12vw, 52px) !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-prompts .hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
   body.kv-knowledge .knowledge-benefits {
     grid-template-columns: 1fr !important;
   }
@@ -12522,6 +13521,11 @@ body.kv-fuye-entry .page:not(:has(.hero)) .note {
     padding: 44px 18px 68px !important;
   }
 
+  body.kv-fuye-entry .page:not(:has(.hero)) > h1 {
+    font-size: clamp(42px, 12vw, 52px) !important;
+    line-height: 1.08 !important;
+  }
+
   body.kv-fuye-entry .page:not(:has(.hero)) > .lead {
     font-size: 16px !important;
     line-height: 1.86 !important;
@@ -12565,6 +13569,9 @@ body.kv-knowledge .knowledge-hero-grid {
 }
 
 body.kv-knowledge .knowledge-hero-copy h1 {
+  max-width: 680px !important;
+  font-size: clamp(52px, 5vw, 74px) !important;
+  line-height: 1.02 !important;
   margin-bottom: 20px !important;
 }
 
@@ -12582,6 +13589,21 @@ body.kv-knowledge .knowledge-benefits {
     padding: 38px 0 50px !important;
   }
 
+  body.kv-knowledge .knowledge-hero-copy h1 {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    font-size: clamp(38px, 10.5vw, 46px) !important;
+    line-height: 1.1 !important;
+  }
+
+  body.kv-knowledge .knowledge-hero-copy h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    text-wrap: balance !important;
+  }
+
+  body.kv-knowledge .knowledge-hero-copy h1 span {
+    display: inline !important;
+  }
+
   body.kv-knowledge .knowledge-benefits {
     margin-top: 22px !important;
   }
@@ -12596,14 +13618,21 @@ body.kv-knowledge .knowledge-benefits {
   }
 
   body.kv-fuye-entry .page:not(:has(.hero)) > h1,
-body.kv-fuye-entry .page:not(:has(.hero)) > h1 em {
-    line-break: anywhere !important;
+  body.kv-fuye-entry .page:not(:has(.hero)) > h1 span,
+  body.kv-fuye-entry .page:not(:has(.hero)) > h1 em {
+    max-width: 100% !important;
   }
 
-  body.kv-fuye-entry .page:not(:has(.hero)) > h1 span {
+  body.kv-fuye-entry .page:not(:has(.hero)) > h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye-entry .page:not(:has(.hero)) > h1 span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)),
+body.kv-fuye-entry .page:not(:has(.hero)) > h1 em:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
     line-break: anywhere !important;
+    text-wrap: balance !important;
   }
 
+  body.kv-fuye-entry .page:not(:has(.hero)) > h1 span,
   body.kv-fuye-entry .page:not(:has(.hero)) > h1 em {
     display: inline !important;
   }
@@ -12612,6 +13641,11 @@ body.kv-fuye-entry .page:not(:has(.hero)) > h1 em {
 
 /* Target 34: public funnel mobile headlines need graceful punctuation, not just no overflow. */
 @media (max-width: 720px) {
+  body.kv-fuye-entry .page:not(:has(.hero)) > h1 {
+    font-size: clamp(38px, 10.4vw, 46px) !important;
+    line-height: 1.1 !important;
+    max-width: calc(100vw - 44px) !important;
+  }
 }
 
 
@@ -12714,20 +13748,31 @@ body.kv-about .about-final span {
 }
 
 body.kv-about h1 {
+  max-width: 760px !important;
   margin: 22px 0 22px !important;
+  font-family: var(--kv-display) !important;
+  font-size: clamp(62px, 7.2vw, 104px) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.01em !important;
   color: var(--about-wine) !important;
+  font-weight: 900 !important;
 }
 
 body.kv-about .about-lead {
   max-width: 700px !important;
   margin: 0 0 22px !important;
   color: var(--about-green) !important;
+  font-size: clamp(22px, 2.2vw, 30px) !important;
+  line-height: 1.45 !important;
+  font-weight: 900 !important;
 }
 
 body.kv-about .about-intro {
   max-width: 760px !important;
   margin: 0 !important;
   color: var(--about-muted) !important;
+  font-size: 17px !important;
+  line-height: 1.95 !important;
 }
 
 body.kv-about .about-principle-card {
@@ -12758,6 +13803,13 @@ body.kv-about .about-principle-card span {
 body.kv-about .about-principle-card h2 {
   margin: auto 0 34px !important;
   color: #fffaf2 !important;
+  font-family: var(--kv-display) !important;
+  letter-spacing: 0 !important;
+}
+
+body.kv-about .about-principle-card h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+  font-size: clamp(42px, 4.2vw, 66px) !important;
+  line-height: 1.02 !important;
 }
 
 body.kv-about .about-principle-card ul {
@@ -12828,18 +13880,18 @@ body.kv-about .about-connect-head h2,
 body.kv-about .about-final h2 {
   margin: 0 0 20px !important;
   color: var(--about-ink) !important;
+  font-family: var(--kv-display) !important;
+  font-size: clamp(36px, 4.2vw, 62px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0 !important;
+  font-weight: 900 !important;
 }
 
 body.kv-about .about-row p,
 body.kv-about .about-belief-list p,
 body.kv-about .about-section-head p,
-body.kv-about .about-path-grid p {
-  max-width: 840px !important;
-  margin: 0 0 16px !important;
-  color: var(--about-muted) !important;
-}
-
 body.kv-about .about-connect-head p,
+body.kv-about .about-path-grid p,
 body.kv-about .about-final p {
   max-width: 840px !important;
   margin: 0 0 16px !important;
@@ -12858,10 +13910,7 @@ body.kv-about .about-final a {
   text-underline-offset: 4px !important;
 }
 
-body.kv-about .about-row p:last-child {
-  margin-bottom: 0 !important;
-}
-
+body.kv-about .about-row p:last-child,
 body.kv-about .about-final p:last-child {
   margin-bottom: 0 !important;
 }
@@ -13015,6 +14064,8 @@ body.kv-about .about-path-grid strong {
 
 body.kv-about .about-path-grid p {
   margin: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.75 !important;
 }
 
 body.kv-about .about-final {
@@ -13095,6 +14146,12 @@ body.kv-articles .trust-link-line a {
     padding: 26px 18px 44px !important;
   }
 
+  body.kv-about h1 {
+    max-width: 100% !important;
+    font-size: clamp(52px, 13.6vw, 74px) !important;
+    line-height: 1.02 !important;
+  }
+
   body.kv-about .about-principle-card {
     min-height: auto !important;
     padding: 26px 22px !important;
@@ -13102,6 +14159,10 @@ body.kv-articles .trust-link-line a {
 
   body.kv-about .about-principle-card h2 {
     margin: 28px 0 24px !important;
+  }
+
+  body.kv-about .about-principle-card h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    font-size: clamp(34px, 9.6vw, 48px) !important;
   }
 
   body.kv-about .about-index {
@@ -13133,7 +14194,7 @@ body.kv-articles .trust-link-line a {
     min-width: 0 !important;
   }
 
-  body.kv-about .about-belief-list h3 {
+  body.kv-about .about-belief-list h3:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     word-break: normal !important;
     overflow-wrap: anywhere !important;
     text-wrap: auto !important;
@@ -13171,11 +14232,38 @@ body.kv-articles .trust-link-line a {
     padding: 24px 18px 38px !important;
   }
 
+  body.kv-about h1 {
+    font-size: clamp(48px, 13.2vw, 58px) !important;
+    line-height: 1.04 !important;
+  }
+
+  body.kv-about h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+  body.kv-about .about-lead {
+    font-size: 21px !important;
+  }
+
+  body.kv-about .about-intro,
+  body.kv-about .about-row p,
+  body.kv-about .about-belief-list p,
+  body.kv-about .about-section-head p,
   body.kv-about .about-connect-head p,
-body.kv-about .about-final p,
-body.kv-about .about-list-card li {
+  body.kv-about .about-final p,
+  body.kv-about .about-list-card li {
     font-size: 16px !important;
     line-height: 1.86 !important;
+  }
+
+  body.kv-about .about-row h2,
+  body.kv-about .about-statement h2,
+  body.kv-about .about-section-head h2,
+  body.kv-about .about-connect-head h2,
+  body.kv-about .about-final h2 {
+    font-size: clamp(34px, 10.4vw, 44px) !important;
+    line-height: 1.08 !important;
   }
 
   body.kv-about .about-belief-list div,
@@ -13247,6 +14335,13 @@ body.kv-article-category .article-category-page {
 body.kv-article-category .category-hero {
   align-items: center !important;
   margin: 42px 0 26px !important;
+}
+
+body.kv-article-category .category-hero h1 {
+  max-width: 720px !important;
+  font-size: clamp(46px, 5.8vw, 86px) !important;
+  line-height: 0.98 !important;
+  letter-spacing: 0 !important;
 }
 
 body.kv-article-category .category-note {
@@ -13394,7 +14489,11 @@ body.kv-article article {
 }
 
 body.kv-article article h1 {
+  max-width: 820px !important;
   color: #7a1f2b !important;
+  font-size: clamp(38px, 5.2vw, 68px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
   margin-bottom: 12px !important;
 }
 
@@ -13425,6 +14524,8 @@ body.kv-article .meta {
   border: 1px solid rgba(177, 126, 61, 0.22) !important;
   color: #8a612f !important;
   background: rgba(255, 250, 242, 0.78) !important;
+  font-weight: 900 !important;
+  font-size: 13px !important;
 }
 
 .article-brief-head strong {
@@ -13436,6 +14537,7 @@ body.kv-article .meta {
 
 .article-brief-grid {
   display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 12px !important;
 }
 
@@ -13457,10 +14559,14 @@ body.kv-article .meta {
 .article-brief-grid span {
   display: block !important;
   color: rgba(42, 31, 24, 0.66) !important;
+  font-size: 14px !important;
+  line-height: 1.72 !important;
 }
 
 body.kv-article article h2 {
   color: #173a34 !important;
+  font-size: 28px !important;
+  line-height: 1.32 !important;
   margin-top: 44px !important;
 }
 
@@ -13470,11 +14576,7 @@ body.kv-article article p {
   line-height: 2 !important;
 }
 
-body.kv-article > h1 {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
+body.kv-article > h1,
 body.kv-article > .article-brief,
 body.kv-article > p,
 body.kv-article > .article-geo-faq,
@@ -13490,6 +14592,10 @@ body.kv-article > h1 {
   margin-bottom: 22px !important;
   padding: 0 !important;
   color: #7a1f2b !important;
+  font-family: "Songti SC", "Noto Serif SC", serif !important;
+  font-size: clamp(42px, 5.4vw, 72px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
 }
 
 body.kv-article > p {
@@ -13534,26 +14640,42 @@ body.kv-article > p strong {
 
 .article-next-grid span {
   color: rgba(42, 31, 24, 0.62) !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
 }
 
 @media (max-width: 900px) {
   body.kv-article-category .article-category-page,
-body.kv-article nav:not(.kv-site-nav),
-body.kv-article article,
-body.kv-article > .article-brief,
-body.kv-article > p,
-body.kv-article > .article-geo-faq,
-body.kv-article > .kevin-article-cta,
-body.kv-article > .back {
+  body.kv-article nav:not(.kv-site-nav),
+  body.kv-article article,
+  body.kv-article > h1,
+  body.kv-article > .article-brief,
+  body.kv-article > p,
+  body.kv-article > .article-geo-faq,
+  body.kv-article > .kevin-article-cta,
+  body.kv-article > .back {
     width: min(100% - 28px, 680px) !important;
   }
 
   body.kv-article-category .category-hero,
-.path-map-grid,
-body.kv-article-category .featured-grid,
-body.kv-article-category .links,
-.article-next-grid {
+  .path-map-grid,
+  body.kv-article-category .featured-grid,
+  body.kv-article-category .links,
+  .article-brief-grid,
+  .article-next-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  body.kv-article-category .category-hero h1 {
+    max-width: 100% !important;
+    font-size: clamp(34px, 10.4vw, 46px) !important;
+    line-height: 1.08 !important;
+  }
+
+  body.kv-article-category .category-hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    overflow-wrap: anywhere !important;
+    word-break: keep-all !important;
+    text-wrap: balance !important;
   }
 
   body.kv-article-category .article-category-page,
@@ -13594,7 +14716,12 @@ body.kv-article-category .links,
     border-radius: 24px !important;
   }
 
+  body.kv-article article h1 {
+    font-size: clamp(34px, 11vw, 48px) !important;
+  }
+
   body.kv-article > h1 {
+    font-size: clamp(34px, 11vw, 48px) !important;
     margin-top: 24px !important;
   }
 
@@ -13652,6 +14779,8 @@ body.kv-article .kevin-article-cta.article-next-step > p {
   max-width: 760px !important;
   margin-bottom: 12px !important;
   color: rgba(42, 31, 24, 0.64) !important;
+  font-size: 14px !important;
+  line-height: 1.75 !important;
 }
 
 body.kv-article .article-next-grid {
@@ -13685,12 +14814,16 @@ body.kv-article .article-next-grid span {
 body.kv-article .kevin-article-cta.article-next-step .article-cta-foot {
   margin-top: 8px !important;
   padding-top: 9px !important;
+  font-size: 12.5px !important;
+  line-height: 1.55 !important;
 }
 
 body.kv-article .kevin-article-cta.article-next-step .article-cta-foot strong {
   display: inline !important;
   margin: 0 !important;
   color: #173a34 !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
 }
 
 @media (max-width: 900px) {
@@ -13727,6 +14860,8 @@ body.kv-article .kevin-article-cta.article-next-step .article-cta-foot strong {
   body.kv-article .kevin-article-cta.article-next-step .article-cta-foot {
     margin-top: 6px !important;
     padding-top: 7px !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
   }
 }
 
@@ -13759,6 +14894,7 @@ body.kv-article-category .all-articles .article-title {
 /* 2026-07-10 conversion pass: preserve the visual system, improve first-time comprehension. */
 body.kv-home .hero-subtitle strong {
   color: var(--kv-olive);
+  font-weight: 900;
 }
 
 body.kv-home .hero-cta-note {
@@ -14000,11 +15136,16 @@ body.kv-articles .editorial-lens-grid b {
 body.kv-articles .editorial-lens-grid p {
   margin: 12px 0 20px;
   color: rgba(42, 31, 24, 0.66);
+  font-size: 14px;
+  line-height: 1.75;
 }
 
 body.kv-articles .editorial-lens-grid span {
   margin-top: auto;
   color: var(--kv-brass-dark);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.5;
 }
 
 @media (max-width: 900px) {
@@ -14070,10 +15211,26 @@ body.kv-article-category .all-articles .article-help {
     gap: clamp(44px, 3.5vw, 64px) !important;
   }
 
-  body.kv-home .hero-copy {
+  body.kv-home .hero-copy,
+  body.kv-home .hero-title {
     width: 100% !important;
     max-width: 760px !important;
     min-width: 0 !important;
+  }
+
+  body.kv-home .hero-title {
+    font-size: clamp(50px, 3.55vw, 58px) !important;
+    line-height: 1.03 !important;
+  }
+
+  body.kv-home .hero-title span {
+    max-width: 100% !important;
+  }
+
+  body.kv-home .hero-title span:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
   }
 
   body.kv-home .hero-report-card {
@@ -14090,10 +15247,16 @@ body.kv-article-category .all-articles .article-help {
     align-items: start !important;
   }
 
-  body.kv-home .hero-copy {
+  body.kv-home .hero-copy,
+  body.kv-home .hero-title {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
+  }
+
+  body.kv-home .hero-title {
+    font-size: clamp(46px, 4.6vw, 52px) !important;
+    line-height: 1.02 !important;
   }
 
   body.kv-home .hero-report-card {

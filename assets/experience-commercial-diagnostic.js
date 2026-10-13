@@ -122,7 +122,7 @@
           opt('大概知道方向，但人群和问题都比较泛', '可以继续收窄，但不能马上做重产品。', { problem_clarity: 38 }),
           opt('能说清一类人和一个高频问题', '已经具备低成本验证基础。', { problem_clarity: 68 }),
           opt('能说清具体人群、具体问题和触发场景', '问题清晰度较强，可以进入更明确的交付设计。', { problem_clarity: 88 })
-        ], valueHint: '19.9 元完整自动报告会据此梳理是否适合继续验证' },
+        ], valueHint: '19.9 元个人经验路径报告会据此梳理是否适合继续验证' },
         { id: 'caseCount', label: '你能拿出几个真实案例说明自己解决过类似问题？', type: 'seg', dimensions: ['experience_depth','evidence_assets'], opts: [
           opt('暂时没有能讲清的案例', '没有案例就先不要收费。', { experience_depth: 15, evidence_assets: 8 }),
           opt('有1-2个能讲清的问题案例', '有一点基础，但还不够稳定。', { experience_depth: 48, evidence_assets: 42 }),
@@ -132,8 +132,8 @@
         { id: 'caseCountDetailed', label: '你能否写出 3 个真实案例？', type: 'seg', dimensions: ['experience_depth','evidence_assets'], opts: [
           opt('写不出来', '当前最该做的是案例萃取，不是收费或包装。', { experience_depth: 12, evidence_assets: 8 }),
           opt('能写1个案例', '开始有素材，但还不足以稳定判断路径。', { experience_depth: 36, evidence_assets: 30 }),
-          opt('能写3个真实案例', '具备生成完整自动报告和进行低成本验证的基础。', { experience_depth: 72, evidence_assets: 62 }),
-          opt('能写5个以上，并包含结果或反馈', '案例质量较好，可以进一步判断交付边界，以及是否适合预约职业经验资产一对一诊断。', { experience_depth: 90, evidence_assets: 84 })
+          opt('能写3个真实案例', '具备生成个人经验路径报告和进行低成本验证的基础。', { experience_depth: 72, evidence_assets: 62 }),
+          opt('能写5个以上，并包含结果或反馈', '案例质量较好，可以进一步判断交付边界，以及是否适合预约经验价值评估。', { experience_depth: 90, evidence_assets: 84 })
         ], valueHint: '不是问你经历多不多，而是能不能把经历讲成案例' },
         { id: 'bestCaseDescription', label: '你最强的一个案例能被别人看懂到什么程度？', type: 'seg', dimensions: ['problem_clarity','evidence_assets'], opts: [
           opt('只能自己讲感觉', '客户还看不到判断依据。', { problem_clarity: 18, evidence_assets: 14 }),
@@ -212,7 +212,7 @@
         { id: 'deliveryPreference', label: '如果做最小交付，你最自然的形式是什么？', type: 'seg', dimension: 'delivery_feasibility', opts: [
           opt('我还不确定', '交付形态不清，先别收费。', { delivery_feasibility: 18 }),
           opt('一份报告、清单或自学材料', '适合低价信息产品或自学包验证。', { delivery_feasibility: 62 }),
-          opt('一次 45-60 分钟问题诊断', '适合边界清楚的职业经验资产一对一诊断。', { delivery_feasibility: 70 }),
+          opt('一次 45-60 分钟问题诊断', '适合边界清楚的经验价值评估。', { delivery_feasibility: 70 }),
           opt('一个模板、工具或 SOP', '适合做工具型小产品。', { delivery_feasibility: 68 }),
           opt('一个边界清楚的小服务包', '适合用交付结果验证商业化。', { delivery_feasibility: 76 })
         ], valueHint: '判断第一版产品假设' },
@@ -220,11 +220,11 @@
           opt('没有', '知识还没有变成交付物。', { delivery_feasibility: 10, evidence_assets: 12 }),
           opt('有零散材料', '需要先整理成交付说明。', { delivery_feasibility: 34, evidence_assets: 34 }),
           opt('有清单、模板、SOP、报告或流程', '已经能进入小交付验证。', { delivery_feasibility: 68, evidence_assets: 64 }),
-          opt('有标准交付说明和验收标准', '交付边界较清楚，可以进一步判断定价，以及是否适合预约职业经验资产一对一诊断。', { delivery_feasibility: 88, evidence_assets: 78 })
+          opt('有标准交付说明和验收标准', '交付边界较清楚，可以进一步判断定价，以及是否适合预约经验价值评估。', { delivery_feasibility: 88, evidence_assets: 78 })
         ], valueHint: '知识不是产品，能交付的东西才是产品' },
         { id: 'careerVsProductization', label: '你现在最想解决哪类问题？', type: 'seg', dimensions: ['problem_clarity','reality_constraints'], opts: [
           opt('我主要想找工作、跳槽、转行', '这是职业再定位问题，不应直接商业化。', { problem_clarity: 42, reality_constraints: 46 }),
-          opt('我想判断经验能否变成副业', '适合用完整自动报告先梳理路径与现实条件。', { problem_clarity: 58, reality_constraints: 58 }),
+          opt('我想判断经验能否变成副业', '适合用个人经验路径报告先梳理路径与现实条件。', { problem_clarity: 58, reality_constraints: 58 }),
           opt('内容、咨询、知识产品和工具都想做', '方向过载，需要先裁剪第一路径。', { problem_clarity: 36, reality_constraints: 45 }),
           opt('我已经有交付，想标准化和产品化', '适合判断交付边界和产品化路径。', { problem_clarity: 72, reality_constraints: 68 }),
           opt('我已经有客户，想优化定价和增长', '已经进入经营系统判断。', { problem_clarity: 78, reality_constraints: 70 })
@@ -1407,7 +1407,7 @@
       return '这份报告只能帮你做职业和经验资产初筛，不能替你决定离职、转行或创业。先看主业现金流和可迁移能力，再判断是否需要后续定制判断。';
     }
     if (decision.status === 'organization_complexity') {
-      return '你的问题涉及组织权责和公司节奏，19.9 元完整自动报告只做初步梳理。只有在你能补齐关键相关方、可控动作和决策成本后，才考虑是否适合预约职业经验资产一对一诊断。';
+      return '你的问题涉及组织权责和公司节奏，19.9 元个人经验路径报告只做初步梳理。只有在你能补齐关键相关方、可控动作和决策成本后，才考虑是否适合预约经验价值评估。';
     }
     return '先按这份报告做 7 天验证或低价试单。如果验证后仍卡在路径、案例、定价或交付边界，再考虑后续定制判断。';
   }
@@ -1472,7 +1472,7 @@
     if (preference.indexOf('诊断') !== -1 && scores.problem_clarity < 60) {
       add(
         '想做诊断但问题不够清楚',
-        '你倾向做职业经验资产一对一诊断，但帮谁解决什么还不够窄。',
+        '你倾向做经验价值评估，但帮谁解决什么还不够窄。',
         '咨询卖的是判断，不是聊天。问题不窄，诊断会变成陪聊。',
         '先写清一个人群、一个触发场景和一个具体问题。'
       );
@@ -1698,7 +1698,7 @@
       recommendSelfStudy99: selfStudy99,
       recommendPrompt99: prompt99,
       recommendConsult699: consult699,
-      reportReason: report99 ? '这份报告已经给出第一轮路径判断，接下来先按验证清单补真实反馈。' : '当前更需要先补案例和问题，暂时不用购买 19.9 元完整自动报告。',
+      reportReason: report99 ? '这份报告已经给出第一轮路径判断，接下来先按验证清单补真实反馈。' : '当前更需要先补案例和问题，暂时不用购买 19.9 元个人经验路径报告。',
       selfStudyReason: selfStudy99 ? '一人公司海外源头库适合先补底层逻辑，避免为知识本身花大钱。' : '你已经更需要具体路径判断，而不是继续泛学。',
       promptReason: prompt99 ? '做图提示词库适合把表达、素材或模板验证做得更快。' : '当前不是缺做图或表达工具，而是缺案例、需求或交付判断。',
       consultReason: consult699 ? '你已经具备进入定制判断的基础，可以继续判断路径、案例、定价和交付边界。' : '当前更适合先按这份报告做本轮验证，再判断是否需要后续定制判断。'
@@ -1922,17 +1922,17 @@
     if (informationGaps && informationGaps[0]) reasons.push('信息不足：' + informationGaps[0]);
     if (disqualificationRulesHit && disqualificationRulesHit[0]) reasons.push('劝退：' + disqualificationRulesHit[0].label);
     if (productFit.recommendConsult699) reasons.push('推荐 699');
-    else if (productFit.recommendReport99) reasons.push('可考虑 19.9 元完整自动报告');
+    else if (productFit.recommendReport99) reasons.push('可考虑 19.9 元个人经验路径报告');
     if (productFit.recommendSelfStudy99) reasons.push('可推荐 99 自学');
     if (productFit.recommendPrompt99) reasons.push('可推荐 99 提示词');
 
-    var nextMessage = '先查看 19.9 元完整自动报告，再根据验证结果判断下一步。';
+    var nextMessage = '先查看 19.9 元个人经验路径报告，再根据验证结果判断下一步。';
     if (bucket === 'reject_now') nextMessage = '先劝退，不要收 699。让客户补 3 个案例和真实问题。';
     if (bucket === 'case_extract') nextMessage = '让客户先做案例萃取，补齐证据后再判断是否继续做测评或咨询。';
     if (bucket === 'self_study_99') nextMessage = '建议先看一人公司海外源头库补底层逻辑，不要直接做高成本投入。';
     if (bucket === 'prompt_library_99') nextMessage = '如果客户已有具体表达或素材任务，可推荐做图提示词库辅助验证。';
-    if (bucket === 'paid_trial') nextMessage = '建议先做低价试单，记录反馈，暂不直接推荐职业经验资产一对一诊断。';
-    if (bucket === 'consult_699') nextMessage = '先核对案例、反馈和付费信号，再判断是否适合预约职业经验资产一对一诊断。';
+    if (bucket === 'paid_trial') nextMessage = '建议先做低价试单，记录反馈，暂不直接推荐经验价值评估。';
+    if (bucket === 'consult_699') nextMessage = '先核对案例、反馈和付费信号，再判断是否适合预约经验价值评估。';
     if (bucket === 'career_reposition') nextMessage = '先聊职业再定位，不要直接推个人 IP 或做图提示词库。请客户补充主业、现金流和下一步选择成本。';
     if (bucket === 'manual_review') nextMessage = '这是组织复杂问题，先问清老板、权责、资源和可控动作；不要让自动报告给唯一方案。';
 
@@ -1950,8 +1950,14 @@
   }
 
   function computeCommercialDiagnostic(input) {
-    input = input || {};
-    input.d = input.d || {};
+    input = Object.assign({}, input || {});
+    input.d = Object.assign({}, input.d || {});
+    // Keep an explicit screening choice unless the customer explicitly changes
+    // their goal in the deep questionnaire. Do not mutate the submitted facts.
+    var screening = input.quizAnswers || {};
+    if (screening[5] === 'E' && !text(input.d.careerVsProductization)) {
+      input.d.careerVsProductization = '暂不产品化，先处理主业、找工作或职业方向';
+    }
     var scores = scoreDimensions(input.d);
     var decision = decide(input, scores);
     var nextStep = buildNextStep(decision);

@@ -1501,7 +1501,7 @@
         : '但还没有外部证据证明它真的被别人需要')
       : '但还缺一件能说清的真实案例';
 
-    return {
+    var judgement = {
       version: VERSION,
       packed: pack,
       dimensionScores: scores,
@@ -1571,6 +1571,51 @@
       informationGaps: pack.informationGaps || [],
       actionStatus: status
     };
+    return status === 'career_reposition_first' ? alignCareerJudgement(judgement, d) : judgement;
+  }
+
+  // A career choice changes the entire advice contract, not just its heading.
+  function alignCareerJudgement(j, d) {
+    var field = text(d.industry) ? '你填写的「' + text(d.industry) + '」领域' : '你考虑的领域';
+    j.stage = '职业方向核对期';
+    j.stageWhy = '你明确选择先处理主业或职业方向。本报告据此梳理岗位要求与经历证据，不用市场成交来衡量你的职业价值。';
+    j.direction.reason = '依据是你本次选择暂不产品化、先处理职业方向；工作年限本身不能证明适合哪个岗位。';
+    j.conclusion = '目前先核对职业选择与可迁移经验。已有材料支持到哪一步，就判断到哪一步。';
+    j.primaryGap = {label:'目标岗位与经历证据的对应关系',score:null,why:'行业和年限不足以证明岗位匹配，需要把具体职责、本人动作、实际结果与目标岗位要求逐项对应。'};
+    j.secondaryGap = null;
+    j.gap = {level:'moderate',headline:'当前需要核对',primary:j.primaryGap,secondary:null,all:[j.primaryGap]};
+    j.missingFacts = [{text:'尚需核对目标岗位或主业问题、对应的实际工作要求，以及哪些经历能提供证据；这些信息没有确认前，不作岗位适配或离职建议。'}];
+    j.assets = {
+      established: j.facts.map(function(fact) { return {label:'本次提供的线索（自述）',text:fact.text}; }),
+      notYet: [{label:'岗位适配结论待核对',why:'需将目标岗位的具体要求与本人经历逐项对应，不能只看年限。'}, {label:'现实条件待核对',why:'还需结合时间、精力及转换成本，才能判断行动边界。'}]
+    };
+    j.validation = {
+      sentence:'本周先选定' + field + '的一个目标岗位或主业问题，完成一张“要求—经历—证据—缺口”对照表。',
+      who:'了解该岗位实际工作的人',question:'我的哪段经历符合哪些具体要求，还缺什么证据',times:1,
+      how:'找一位了解该岗位的人核对：这个岗位最重要的两项任务是什么？我的经历能证明哪项能力？还有哪处不能确认？',
+      record:'记录对方的具体修改意见，区分事实、对方判断和仍待验证的部分。',
+      pass:['明确一个目标岗位或主业问题及其两项具体要求。','至少一段本人经历能对应其中一项要求，并写清本人动作与实际结果。','收到一条能修正对照表的具体反馈，或明确仍缺什么证据。'],
+      stop:['只有泛泛鼓励，没有具体岗位要求：继续补信息，不据此投入培训或离职。','经历无法对应目标要求：先调整目标或补证据，不把经验年限当作能力证明。']
+    };
+    j.dontDoNow = [{text:'不把离职、转行、做内容或卖服务当作必经步骤',why:'当前选择是职业方向核对；高成本决定需要岗位事实和个人现实条件支持。'}];
+    j.firstDelivery = {defer:true,reason:'本轮先形成职业判断材料，不设计付费产品',gapText:'目标岗位要求与可核对的经历证据',lead:'完成一张要求、经历、证据和缺口对照表，请熟悉岗位的人核对并修订。',note:'这个材料用于帮助你判断下一步，不承诺求职、升职或转行结果。'};
+    j.decisionSignals = [
+      {if:'岗位要求和本人经历已有明确对应，并得到具体反馈',then:'继续做低成本岗位沟通或主业内的小范围尝试，记录新的证据。'},
+      {if:'关键职责存在经验缺口或现实条件无法承受',then:'暂缓高成本转换，先补关键能力、信息或缩小目标。'},
+      {if:'你以后明确决定探索产品化',then:'重新确认目标并收集对应需求证据，不沿用本轮职业判断作为商业可行性结论。'}
+    ];
+    j.sevenDayPlan = [
+      {day:'第1天',task:'写下一个目标岗位或主业问题，以及你最需要弄清的决定。'},
+      {day:'第2天',task:'找一份真实岗位说明或当前工作要求，标出两项核心任务。'},
+      {day:'第3天',task:'整理一段本人经历：背景、本人动作、结果；没有材料的地方标为待核实。'},
+      {day:'第4天',task:'把经历逐项对应岗位要求，列出证据和缺口。'},
+      {day:'第5天',task:'请一位熟悉岗位的人核对，不要求对方替你决定。'},
+      {day:'第6天',task:'依据具体反馈修订；暂时联系不到人就保留未核实标记。'},
+      {day:'第7天',task:'决定继续低成本验证、补证据或调整目标，并记下理由。'}
+    ].map(function(step) { return {day:step.day,title:'职业方向核对',action:step.task}; });
+    j.thirtyDay = {question:'30天后是否值得继续这个职业方向',verdict:'依据新增岗位信息、经历证据和现实条件决定，不用销售或付费信号作为门槛。',continueWhen:['岗位核心要求已有明确证据支持。','尝试成本在你的时间、精力和现金流承受范围内。'],stopWhen:['关键要求持续无法核实，或反馈与原判断冲突。','现实成本明显超过可承受范围。']};
+    j.scripts = {}; j.stopRules = ['没有充分依据前，不作离职或重投入决定。'];
+    return j;
   }
 
   function actionReason(status, gaps, causeProfile) {

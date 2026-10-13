@@ -108,7 +108,7 @@
 </style>
 <link rel="stylesheet" href="/assets/kevin-public-system.css?v=20261009-thorough-final">
 
-  <link rel="stylesheet" href="/assets/kevin-ui-v1.css?v=20261009-thorough-final" />
+  <link rel="stylesheet" href="/assets/kevin-ui-v1.css?v=20261013-layout-contract" />
   <style id="career-transition-page">
   body.kv-question-v1 .hero{grid-template-columns:minmax(0,1fr) minmax(290px,340px);gap:clamp(34px,5vw,64px);align-items:start;padding:clamp(46px,5vw,66px) 0 52px}
   body.kv-question-v1 .hero>div,body.kv-question-v1 .hero .side{min-width:0}
@@ -166,7 +166,7 @@
     body.kv-question-v1 .links{grid-template-columns:1fr}
   }
   </style>
-<link rel="stylesheet" href="/assets/kevin-site-header.css?v=20260725">
+<link rel="stylesheet" href="/assets/kevin-site-header.css?v=mobile-nav-20261012">
 <script data-kevin-clarity="xtbdlvfb1x">
 (function(c,l,a,r,i){
   var h=String(c.location&&c.location.hostname||"").toLowerCase();
@@ -181,7 +181,13 @@
   else c.addEventListener("load",function(){setTimeout(boot,0)},{once:true});
 })(window,document,"clarity","script","xtbdlvfb1x");
 </script>
-<link rel="stylesheet" href="/assets/kevin-reading.css?v=20261009-thorough-final">
+<link rel="stylesheet" href="/assets/kevin-reading.css?v=20261013-layout-contract">
+  <link rel="stylesheet" href="/assets/kevin-service-contact.css?v=20261012">
+<style data-search-discovery="20261012">.discovery-related{max-width:760px;margin:36px auto;padding:24px 16px;border-top:1px solid #d8d6d1;box-sizing:border-box}.discovery-related h2{margin:0 0 14px;font-size:22px}.discovery-related ul{padding-left:20px;margin:0}.discovery-related li{margin:10px 0;line-height:1.7}.discovery-related a{color:inherit;text-decoration:underline;text-underline-offset:3px}.discovery-related p{font-size:14px;color:#666;margin:0 0 12px}
+html body.kv-article.kv-editorial-v1 .kv-editorial-reading .article-brief .article-brief-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 28px!important}
+html body.kv-article.kv-editorial-v1 .kv-editorial-reading .article-brief .article-brief-grid>p{display:grid!important;grid-template-columns:80px minmax(0,1fr)!important;gap:12px!important;align-items:start;min-width:0;margin:0!important;padding:0.7rem 0!important;border-left:0!important}
+.article-brief-grid b{min-width:0;max-width:80px}.article-brief-grid span{display:block;min-width:0;overflow-wrap:anywhere}.article-brief-grid a{overflow-wrap:anywhere}
+@media(max-width:600px){html body.kv-article.kv-editorial-v1 .kv-editorial-reading .article-brief .article-brief-grid{grid-template-columns:minmax(0,1fr)!important}html body.kv-article.kv-editorial-v1 .kv-editorial-reading .article-brief .article-brief-grid>p{grid-template-columns:72px minmax(0,1fr)!important}}</style>
 </head>
 <body data-domestic-ai-answer="v1" data-kevin-ui="v1" data-ui-template="question" class="kv-question-v1" data-reading-template="question" data-kv-nav-runtime="v1">
 <header class="kv-global-header" data-kv-nav="public">
@@ -197,18 +203,19 @@
       <a href="/">首页</a>
       <a href="/method/experience-asset-assessment/">判断方法</a>
       <a href="/cases/">真实案例</a>
+      <a href="/develop-9800/#example-title" data-track="click_model_nav">我的模型样例</a>
       <a href="/articles/">经验洞察</a>
       <div class="kv-global-header__products">
         <button class="kv-global-header__product-trigger" type="button">产品</button>
         <div class="kv-global-header__product-panel">
           <a href="/knowledge/">一人公司海外源头库</a>
-          <a href="/prompts/">做图提示词库</a>
+<a href="/prompts/">做图提示词库</a>
         </div>
       </div>
       <a href="/about/">关于 Kevin</a>
-      <a href="/#products">服务与价格</a>
+      <a data-track="click_pricing_nav" href="/pricing/">服务与价格</a>
     </nav>
-    <a class="kv-global-header__cta" href="/fuye/quiz/">
+    <a class="kv-global-header__cta" href="/quiz/">
       <span class="kv-global-header__cta-full">免费测一下</span>
       <span class="kv-global-header__cta-short">免费测评</span>
     </a>
@@ -218,11 +225,12 @@
         <a href="/">首页</a>
         <a href="/method/experience-asset-assessment/">判断方法</a>
         <a href="/cases/">真实案例</a>
+        <a href="/develop-9800/#example-title" data-track="click_model_nav">我的模型样例</a>
         <a href="/articles/">经验洞察</a>
         <a href="/knowledge/">一人公司海外源头库</a>
-        <a href="/prompts/">做图提示词库</a>
+<a href="/prompts/">做图提示词库</a>
         <a href="/about/">关于 Kevin</a>
-        <a href="/#products">服务与价格</a>
+        <a data-track="click_pricing_nav" href="/pricing/">服务与价格</a>
       </nav>
     </details>
   </div>
@@ -285,18 +293,16 @@
   </section>
 
   <section class="search-section" data-search-block="consultation-observation">
-    <article class="case-observation">
-      <div>
-        <span class="case-observation__label">证据说明</span>
-        <h2>本页暂无可公开的完整职业转型案例</h2>
-      </div>
-      <div>
-        <p>因此这里不使用拼接、虚构或无法核对的故事来证明某条路径一定有效。页面只提供判断顺序：先看现实约束，再盘点可迁移经验，最后用一次低成本行动验证相邻方向。</p>
-        <p>当真实咨询案例达到可公开、可脱敏且经过本人授权的条件后，再补充具体观察。在此之前，不把方法写成结果承诺。</p>
-        <p class="case-boundary">没有公开案例，不等于方法无效；它意味着当前证据只能支持自我检查和低成本验证，不能支持“照做就能转型成功”的结论。</p>
-      </div>
-    </article>
-  </section>
+  <article class="case-observation">
+    <div><span class="case-observation__label">真实咨询中的判断</span><h2>转不转行之前，先给现实条件排序</h2></div>
+    <div>
+      <p>可以先看<a href="https://kevinsolo.cn/cases/#career-constraints">这则真实咨询案例</a>：面对职业兴趣与家庭责任，先区分兴趣、能力、资格和现实约束，再设计不辞职的低风险验证。</p>
+      <p>这里不使用拼接、虚构或无法核对的故事来证明某条路径一定有效。</p>
+      <p class="case-boundary">案例呈现的是咨询中完成的判断与行动设计，不代表客户已经转型成功或取得收入结果。它支持你理解判断过程，不能支持“照做就能转型成功”的结论。</p>
+    </div>
+  </article>
+</section>
+
 
   <section class="search-section" data-search-block="today-actions">
     <div class="search-section__head">
@@ -332,15 +338,18 @@
 </section>
 <section class="cta">
   <div><strong>先做一次免费经验路径测评</strong><p>用8道题梳理经验，获得自我分析参考。</p></div>
-  <div class="btns"><a class="btn primary" data-cta-role="primary" href="/fuye/quiz/">免费开始测评</a><a class="btn" href="/diagnosis-sample/">了解1999元方向服务</a></div>
+  <div class="btns"><a class="btn primary" data-cta-role="primary" href="/quiz/">免费开始测评</a><a class="btn" href="/diagnosis-sample/" data-track="service_cta_click" data-product="assessment_1999" data-placement="page_end" data-target="details">了解1999元方向服务</a></div>
+
+<div class="kv-service-contact"><p>如果你也在考虑“35岁以后职业转型怎么办”，可通过企业微信了解经验价值评估，结合自己的经历确认方向。进入后说“了解1999”。</p><a href="https://work.weixin.qq.com/kfid/kfcdeee6e0a57a6c662" data-track="service_cta_click" data-product="assessment_1999" data-placement="question_footer" data-target="wecom">通过企业微信了解经验价值评估</a></div>
 </section>
 <section class="section"><h2>继续看相关问题</h2><div class="links"><a href="/questions/work-ten-years-lost/">工作十几年后不知道下一步怎么办</a><a href="/questions/experience-value-assessment/">如何判断自己的经验有没有市场价值</a></div></section>
+<section class="discovery-related" aria-label="相关主题阅读"><h2>延伸阅读</h2><p>职业与方向</p><ul><li><a href="/articles/career-transition">35岁以后想转型，先拆经验再找方向</a></li><li><a href="/questions/midlife-unemployment-next-step/">中年失业后下一步怎么办</a></li></ul></section>
 <nav class="kv-question-return" aria-label="问题阅读导航"><a href="/questions/">返回职业经验资产问题库</a></nav>
 <footer class="footer kv-editorial-footer">Kevin 彭峥｜职业经验资产顾问｜帮你省钱、省时间、少走弯路</footer>
 </div>
-<script src="/assets/kevin-analytics.js?v=20260713" defer></script>
+<script src="/assets/kevin-analytics.js?v=20261012" defer></script>
 
-  <script src="/assets/kevin-ui-v1.js?v=20261009-thorough-final" defer></script>
+  <script src="/assets/kevin-ui-v1.js?v=mobile-nav-20261012" defer></script>
 <footer data-kevin-icp aria-label="网站备案信息" style="padding:24px 12px;text-align:center;font-size:12px;line-height:1.6;color:#6b7280;background:transparent">
   <span style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px">
     <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:26px;color:inherit;text-decoration:none">鄂ICP备2026039968号-1</a>

@@ -16,7 +16,7 @@ Kevin 不承诺快速赚钱，不把AI工具当作品牌主定位，不替客户
 ## 服务与独立商品
 
 1. 免费经验路径测评：8题初步识别当前方向、表达、交付和验证卡点。
-2. 19.9元个人经验完整路径报告：根据测评输入自动生成与交付，不含Kevin人工审核，不验证商业潜力或预测收入。
+2. 19.9元个人经验路径报告：根据测评输入自动生成与交付，不含Kevin人工审核，不验证商业潜力或预测收入。
 3. 99元一人公司海外源头库：365天访问现有海外源头内容及中文整理；独立销售，不含人工咨询，不是人工服务的前置购买。入口：https://kevinsolo.cn/knowledge/
 4. 99元做图提示词库：一次付费买断，浏览、说明与复制提示词，不含代生成图片。人工核对付款后发个人兑换码，非付款自动解锁。入口：https://kevinsolo.cn/prompts/
 5. 1999元一对一诊断：结合真实经历与现实条件帮助确定方向，不含产品开发。服务说明：https://kevinsolo.cn/diagnosis-sample/
@@ -389,7 +389,7 @@ Kevin 不承诺快速赚钱，不把AI工具当作品牌主定位，不替客户
 
 ## 官方行动入口
 
-- 免费经验路径测评：https://kevinsolo.cn/fuye/quiz/
+- 免费经验路径测评：https://kevinsolo.cn/quiz/
 - 经验价值重构模型：https://kevinsolo.cn/method/experience-asset-assessment/
 - 职业经验资产问题库：https://kevinsolo.cn/questions/
 - 职业经验资产一对一诊断说明：https://kevinsolo.cn/diagnosis-sample/

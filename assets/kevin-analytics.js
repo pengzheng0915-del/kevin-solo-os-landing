@@ -119,7 +119,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
           keepalive: true
-        }).then(function () { return true; }).catch(function () { return false; });
+        }).then(function (response) { return Boolean(response && response.ok); }).catch(function () { return false; });
       } catch (error) {
         return Promise.resolve(false);
       }
@@ -127,7 +127,11 @@
 
     function defaultEventForLink(link) {
       var href = link.getAttribute('href') || '';
-      if (href.indexOf('/fuye/quiz/') === 0) return 'click_quiz';
+      if (href.indexOf('/quiz/') === 0) return 'click_quiz';
+      if (href.indexOf('/pricing/') === 0) return 'click_pricing_nav';
+      if (href.indexOf('/diagnosis-sample/') === 0) return 'click_diagnosis';
+      if (href.indexOf('/develop-9800/') === 0) return 'click_develop_9800';
+      if (href.indexOf('https://work.weixin.qq.com/kfid/') === 0) return 'click_wechat';
       if (href.indexOf('/tools/video/') === 0) return 'click_video_tool';
       if (href.indexOf('/tools/paiban/') === 0) return 'click_paiban_tool';
       if (href === '#wechat') return 'click_wechat';
@@ -140,10 +144,20 @@
         if (!target) return;
         var eventName = target.getAttribute('data-track') || defaultEventForLink(target);
         if (!eventName) return;
-        track(eventName, {
-          label: (target.textContent || '').trim().slice(0, 120),
-          href: target.getAttribute('href') || ''
-        });
+        if (eventName === 'service_cta_click') {
+          track(eventName, {
+            product: target.getAttribute('data-product') || '',
+            placement: target.getAttribute('data-placement') || '',
+            target: target.getAttribute('data-target') || ''
+          });
+          return;
+        }
+        var href = target.getAttribute('href') || '';
+        // External destinations and personal query parameters are never sent.
+        if (!href.startsWith('/') || href.startsWith('//') || /[?]|kfid|openid|token|session|phone/i.test(href)) href = '';
+        var label = (target.textContent || '').trim().slice(0, 120);
+        if (containsSensitiveSource(label)) label = '';
+        track(eventName, { label: label, href: href });
       });
       track('pageview', { title: document.title || '' });
     }

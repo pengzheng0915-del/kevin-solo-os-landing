@@ -1309,7 +1309,7 @@
         summaryGrid.appendChild(article);
       });
       var unlock = createElement(documentValue, 'section', 'v3-free-summary-unlock');
-      unlock.appendChild(createElement(documentValue, 'small', '', '19.9 元完整自动报告会继续提供更完整的整理与行动建议'));
+      unlock.appendChild(createElement(documentValue, 'small', '', '19.9 元个人经验路径报告会继续提供更完整的整理与行动建议'));
       unlock.appendChild(createElement(documentValue, 'p', '', presentation.freeSummary.unlockItems.join('、')));
       summaryGrid.appendChild(unlock);
       panel.appendChild(summaryGrid);
@@ -1669,7 +1669,7 @@
       }
       (buttons||[]).forEach(function(item){var button=createElement(doc,'button','btn '+(item.primary?'btn-primary':'btn-outline'),item.label);button.type='button';button.addEventListener('click',item.action);box.appendChild(button);});
       container.appendChild(box);
-      var hero=doc.querySelector('.hero h1');if(hero)hero.textContent='19.9 元完整自动报告';
+      var hero=doc.querySelector('.hero h1');if(hero)hero.textContent='19.9 元个人经验路径报告';
       var sub=doc.getElementById('heroSub');if(sub)sub.textContent='按真实经历完成判断，购买后自动生成，不含人工审核。';
       var eyebrow=doc.querySelector('.hero .eyebrow');if(eyebrow)eyebrow.textContent='深度测评';
     }

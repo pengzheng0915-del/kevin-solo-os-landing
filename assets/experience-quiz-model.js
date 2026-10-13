@@ -250,12 +250,12 @@
       recommendConsult: true
     },
     consult_ready: {
-      label: '可以考虑预约职业经验资产一对一诊断',
+      label: '可以考虑预约经验价值评估',
       headline: '可以进一步了解人工方向判断',
       summary: '你的回答提供了一些经验与需求线索。如果仍有具体方向取舍，可了解1999元服务；是否适配还需结合真实经历由Kevin确认。',
       reason: '选择题提供的是线索，不是已核实的事实。需要结合真实经历与材料，才能进一步判断服务是否适配。',
       avoid: '不要再长期免费答疑，也不要在没有交付边界时直接放大。',
-      sevenDayAction: '整理 3 个代表性案例和当前最卡的问题，作为预约职业经验资产一对一诊断前的材料。',
+      sevenDayAction: '整理 3 个代表性案例和当前最卡的问题，作为预约经验价值评估前的材料。',
       recommend99: true,
       recommendConsult: true
     }
@@ -305,7 +305,7 @@
   }
 
   function pickBottleneckAxis(axisScores) {
-    const entries = Object.entries(axisScores || {});
+    const entries = Object.entries(axisScores || {}).filter(([key, value]) => key !== 'deliveryFit' && value != null);
     if (!entries.length) return 'direction';
     const min = Math.min.apply(null, entries.map(([, value]) => Number(value) || 0));
     const lows = entries.filter(([, value]) => (Number(value) || 0) === min).map(([key]) => key);
@@ -349,9 +349,12 @@
     baseQuestions.forEach((q) => {
       const picked = answerMap[q.axis];
       const opt = q.opts.find((item) => item.v === picked) || q.opts[0];
-      rawScore += opt.score || 0;
-      maxScore += Math.max.apply(null, q.opts.map((item) => item.score || 0));
-      axisScores[q.axis] = opt.score || 0;
+      // A preferred direction is categorical, not evidence of readiness.
+      if (q.axis !== 'deliveryFit') {
+        rawScore += opt.score || 0;
+        maxScore += Math.max.apply(null, q.opts.map((item) => item.score || 0));
+      }
+      axisScores[q.axis] = q.axis === 'deliveryFit' ? null : (opt.score || 0);
       typeKeys.forEach((key) => {
         scores[key] += Number(opt.types[key]) || 0;
       });
@@ -397,8 +400,8 @@
       headline: base.headline,
       summary: base.summary,
       reason: base.reason,
-      bottleneck: bottleneck.name,
-      bottleneckDesc: bottleneck.desc,
+      bottleneck: status === 'career_first' ? '职业目标与经历证据待核对' : bottleneck.name,
+      bottleneckDesc: status === 'career_first' ? '先选定一个主业或求职问题，整理与它相关的经历和结果，核对这些经验能支持什么岗位要求。当前不以商业需求验证作为必经步骤。' : bottleneck.desc,
       avoid: base.avoid,
       sevenDayAction: base.sevenDayAction,
       recommend99: base.recommend99,

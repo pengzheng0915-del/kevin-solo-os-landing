@@ -1,13 +1,13 @@
 {
-  "date": "2026-10-09",
+  "date": "2026-10-13",
   "source": "https://kevinsolo.cn/",
-  "release": "/srv/kevinsolo/releases/reading-layout-20261009-8e08d",
-  "scope": "Complete deployed public directory; no app, database, credentials or private files",
+  "release": "/srv/kevinsolo/releases/layout-reading-20261013-du",
+  "scope": "Deployed public regular files only; no app, database, credentials, private files or symlinks",
   "files": [
     {
       "path": "404.html",
-      "bytes": 6094,
-      "sha256": "783b36e3cfa56393bf741c9aaf28e13cab7b13aaf41ae2a4a3e7e12f86aa3c43"
+      "bytes": 6110,
+      "sha256": "60da11195916c67aa22308162e1bc2977ffc596059fc9224310d041116b84c26"
     },
     {
       "path": "985511f6d70546b9b468e5cc9c4a5c69.txt",
@@ -26,923 +26,923 @@
     },
     {
       "path": "about/index.html",
-      "bytes": 22101,
-      "sha256": "5d60becf49065e34d1e3134ddbab840863dde47580e4be09649beae14f18d226"
+      "bytes": 23406,
+      "sha256": "b331cee264905dcd646595f4f3f3a8345ba9ae06c9e62bbfb7f7131c0f3776fb"
     },
     {
       "path": "acquisition/index.html",
-      "bytes": 5036,
-      "sha256": "61a6aa3ae33bc67062401915aa49efd540ddde454e6362b74b4a528d31a4c87c"
+      "bytes": 5026,
+      "sha256": "943bada9a55c7a20fd5767d644342977745060fcfa6b4947a62b791d65d12b28"
     },
     {
       "path": "articles/ai-will-end-the-internet.html",
-      "bytes": 14145,
-      "sha256": "3389b185fcf24700d2d50c617c0b69f2a72952ab38d48a048916c309ba90d1cd"
+      "bytes": 16412,
+      "sha256": "0f887e61c98dc3b932c8817cc40e733fa3b0ddd80a186fa35f90489a24aa1cc2"
     },
     {
       "path": "articles/career-transition.html",
-      "bytes": 25812,
-      "sha256": "dfafe11703df7e62c1badfb34fcb916e316153fc55ce8b7c77ab821936a6b8f2"
+      "bytes": 27261,
+      "sha256": "31053b0795e2dacd13deaab63723ba6e8899e4907da60bbb504bb3837eb62394"
     },
     {
       "path": "articles/cognitive-upgrade.html",
-      "bytes": 59033,
-      "sha256": "64629ba7a23e10a2cd0d93e588b931addaa10a1f4282257f9ca619a4aaa25ab4"
+      "bytes": 59806,
+      "sha256": "9a60291e28d3d72b59efbd63fc650d209b985878c0a76af0acb69f398f719553"
     },
     {
       "path": "articles/commercialization.html",
-      "bytes": 23216,
-      "sha256": "72082fe38d31f318865ca7cbb8e26e1bba0edcbdb6c5dd557470508d28e8fe05"
+      "bytes": 24366,
+      "sha256": "cbffbdc01e1c9bb7bc9d55a3dec2901ffabb9dddc299f9e5031ea60e3906b3a3"
     },
     {
       "path": "articles/experience-new-path.html",
-      "bytes": 17087,
-      "sha256": "2f68de98ca758bd5855862a032f8e30eaa6bc5e1bbdbe993b260890e0670bb9c"
+      "bytes": 18944,
+      "sha256": "bc574a601fa31752a15d0926bd51d7281f5774c3b5b9e14d367302762b7851ec"
     },
     {
       "path": "articles/experience-to-method-example/index.html",
-      "bytes": 18605,
-      "sha256": "e7f47a3b0a84ee08a55d34ffba5472e61345a073132ed610c0a2fe8da7700e36"
+      "bytes": 22092,
+      "sha256": "8d2c0f7985be1d054232c6974dcdffaac0e23ad585834dd6d3eee815a460fb92"
     },
     {
       "path": "articles/experience-to-product.html",
-      "bytes": 17005,
-      "sha256": "a5bde376060d30e9aff911711d290006cf76f60c6ce7e743bd9e56a03425e2e5"
+      "bytes": 19103,
+      "sha256": "565f763e59d4f76e4b350be8bf17a09f8b250e4650e4c818cbc21b1aa00f768c"
     },
     {
       "path": "articles/get-mad-at-where-you-are-in-life-to-get-ahead-of-99-of-people.html",
-      "bytes": 16772,
-      "sha256": "8e9c8d427a401bd20831ad9bed346df187989d246fa3b35f014ce8fe5c8f8c1a"
+      "bytes": 18933,
+      "sha256": "59f4f41d32a0a83a4f900d7abb9530dca29acee79f4a3c1588c4eadb1b957c28"
     },
     {
       "path": "articles/get-mad-at-where-you-are-in-life.html",
-      "bytes": 14614,
-      "sha256": "75502e13e1279e03a93e8e22ec77c4be3bbce3537d79e5629c8a513091b34f46"
+      "bytes": 16484,
+      "sha256": "2e8b6654eeda8046b4b80ac3a22171cd32c0f5546e01f8d8d5ae206b00abc7ab"
     },
     {
       "path": "articles/how-60-minutes-a-day-can-change-your-life.html",
-      "bytes": 17136,
-      "sha256": "8dc75aca5485ae223048d891e1d76d4ad53904d6fb984ee9c7b4a6cf0c4f01ab"
+      "bytes": 19207,
+      "sha256": "3692c68b788d6e0e8a6b37c662411bd8d2c374ea9111f2b513e931e8d7197ed3"
     },
     {
       "path": "articles/how-average-people-will-get-rich-with-ai.html",
-      "bytes": 15544,
-      "sha256": "a7b655c0543ccc869c12e09687dc8c73f861d6db9793709cfc16c13e0e6c685f"
+      "bytes": 15740,
+      "sha256": "6112a4db23c8136fe7bcf03eed2cb8cefe68aa4eae11ae79db66a04db0dff130"
     },
     {
       "path": "articles/how-cheap-dopamine-prevents-you-from-becoming-high-value.html",
-      "bytes": 16044,
-      "sha256": "c1f2b313d81f3664596860c80125dd1dff47ce6f5c93fa750c6e0a535bf6bf6e"
+      "bytes": 17919,
+      "sha256": "5f89020d39bfdddd1ef7a8b1d0daf4b02aee5a866bbb4262d5798c5d39b6bb67"
     },
     {
       "path": "articles/how-i-read-books-for-maximum-intelligence-5-minute-habit.html",
-      "bytes": 16491,
-      "sha256": "f5c88015306567a932c57e1bec0ca54e16e051a6555385ad57ffd29c9f798347"
+      "bytes": 18395,
+      "sha256": "c72c4a4c37c4ec4a671b2015b6223f3fce31effa441f647763dab3b6f85218bd"
     },
     {
       "path": "articles/how-i-remember-everything-i-learn.html",
-      "bytes": 15317,
-      "sha256": "b541132a325b08858d5d445a8cad30345632e853b9de308c66470974fa770307"
+      "bytes": 17131,
+      "sha256": "68caa7eba69d60f4adc89cf66c87cfc994a7c997eb863c83431fef80f679e694"
     },
     {
       "path": "articles/how-my-startup-made-759900-in-6-months-without-launching.html",
-      "bytes": 15840,
-      "sha256": "787f0c18f099f8b6ff7d6a5b97644daf6fc40c0cebd7297e50170969d34f28e3"
+      "bytes": 16036,
+      "sha256": "ddb4fcc7a0fd7dd1f5fefd82cbfc5c1401ef741c305c800a5f22c4d2b92bcb71"
     },
     {
       "path": "articles/how-smart-creators-make-money-the-build-teach-earn-method.html",
-      "bytes": 15379,
-      "sha256": "95371444427fbd6e6df25ba37dc58efd1f59465fe02d5692932b4ed5d7c95258"
+      "bytes": 15575,
+      "sha256": "65523472981802a48189f7fd51385fd9bb2a9bb7657550899c2111cbb42ab452"
     },
     {
       "path": "articles/how-smart-creators-will-make-money-in-2026-youre-early.html",
-      "bytes": 14914,
-      "sha256": "f7279c11a464c538a07064a93d2f1681b1be7eede45a7905f39e02fea6a1d054"
+      "bytes": 15110,
+      "sha256": "f2e183b2b6a37c0a851c7ac78fe21b22b75ef6ddca255509ff8bc839a35fbe3f"
     },
     {
       "path": "articles/how-to-actually-grow-on-social-media-what-they-dont-tell-you.html",
-      "bytes": 14849,
-      "sha256": "b27dfdd939d352e3bc9abf4941747c88d86cc808f42f24db5b91f2c42a2b64ea"
+      "bytes": 16722,
+      "sha256": "4389db2347011d53f856d025078337929705252a860cbacc23bf761aba289a4a"
     },
     {
       "path": "articles/how-to-actually-make-1-million-with-ai.html",
-      "bytes": 15828,
-      "sha256": "781fb932af66cf8081168be4e3ad0660ab4ef3de349183b089557429def98988"
+      "bytes": 16024,
+      "sha256": "34a907434a0c174e756ad8f275ceedeaa23eb600239c3ad2874c427345cfd145"
     },
     {
       "path": "articles/how-to-attack-your-big-goals-achieve-them-in-2-3-months.html",
-      "bytes": 15859,
-      "sha256": "f08a02b62b775d0889c28b6dbeec7cdb20a12eca23719247230ee28b6ffebdd1"
+      "bytes": 17799,
+      "sha256": "e347a2a3d7fcd8ae7dda18f560f4f4c846b65eca754d01fede180a6ae17b01cc"
     },
     {
       "path": "articles/how-to-be-more-disagreeable-create-a-reality-distortion-field.html",
-      "bytes": 16806,
-      "sha256": "d37209d993d16c4c41f2683f5c8f6734b87caec140ab4fb1cac1b5f4835ca9d0"
+      "bytes": 18747,
+      "sha256": "734fc1fe6534aa4c9576f3dd76690455dc3533ad30cb4740417ba7631069359a"
     },
     {
       "path": "articles/how-to-be-more-productive-than-99-of-people-how-to-get-out-of-a-rut.html",
-      "bytes": 14895,
-      "sha256": "297ce217c834d7dae341216a11c57e5e75f3a5ad68ce1485a595aede16a6eb56"
+      "bytes": 16853,
+      "sha256": "b52a75dfe3aea201b772d6078e34f851396d648f01d8a60e00befaaa8ce03613"
     },
     {
       "path": "articles/how-to-become-a-millionaire-in-your-20s.html",
-      "bytes": 15026,
-      "sha256": "3fbf73e48dc571e34c2cc10015f019c8f897a1834fdc783d4cf252ec796b53eb"
+      "bytes": 15222,
+      "sha256": "8f40b9564de7f99184ad9965d5b968cb17a055ef8a7e9ac2445eaa07c1dee462"
     },
     {
       "path": "articles/how-to-become-the-main-character-of-your-life.html",
-      "bytes": 16897,
-      "sha256": "4c0b0120b35c76c3aa253eea81841ae9d607c14c022c623bd590cb1b95f96921"
+      "bytes": 18898,
+      "sha256": "622ab872cb017673c9bb7a6491b200d378c2524151586c8195f289d344162b20"
     },
     {
       "path": "articles/how-to-become-the-top-1-percent-in-any-skill.html",
-      "bytes": 16625,
-      "sha256": "7635bdb774a245f471a49a80fbc2f0b1fb75f5e60734de93c09caf9f4a7c4d6e"
+      "bytes": 18504,
+      "sha256": "078cf50f7ebc6fbab035dba6b14ad7906dd25441eff12cfdec417a02b6a69116"
     },
     {
       "path": "articles/how-to-build-a-better-personal-brand-than-99-of-people.html",
-      "bytes": 16553,
-      "sha256": "ac3857c17566d4c5017fd5682693fa10666183b61b8075c89b50a40184044e87"
+      "bytes": 18572,
+      "sha256": "45b60fa414bf9f8481aedcedf229746011458c31f77310993368e6b2f33b3a2f"
     },
     {
       "path": "articles/how-to-copy-your-way-to-success-instead-of-mediocrity.html",
-      "bytes": 16466,
-      "sha256": "f6491faeeba049e7eca1610216ec2f05c4cf91ebd5156506b7deef7e4d49bc2c"
+      "bytes": 18499,
+      "sha256": "8ac500e5ac4ab9ee9f34926aa5c256a802e2ddb9c40aa37e66ad4ea62684064f"
     },
     {
       "path": "articles/how-to-create-a-life-of-meaning-money-impact-as-fast-as-humanly-possible.html",
-      "bytes": 15584,
-      "sha256": "f908102ee076432ef0718c91c1c0c764b4ce47b7f624fef711b2d4271993c619"
+      "bytes": 17423,
+      "sha256": "bfb6861c474b6becb39341c1146adfac7ef0455503100b9351205de00c13a299"
     },
     {
       "path": "articles/how-to-create-your-niche-of-one-become-nicheless.html",
-      "bytes": 15632,
-      "sha256": "a85ee4b6fcbef92d2aa03f07086aa06002807f8af387f696cb9ad53d5aebcb92"
+      "bytes": 17506,
+      "sha256": "15f47c4b2dfea1a008c1413da961e93bac42d9d77dfd2339adf140262252ca42"
     },
     {
       "path": "articles/how-to-discover-and-pursue-your-lifes-work.html",
-      "bytes": 16103,
-      "sha256": "89166293b3c4fd97dcf5cabbb585ea92e88d1eeaaf703353286e1af75c5a2c64"
+      "bytes": 18055,
+      "sha256": "7c978372c6bc0d569144380bfcbb52ab0e49a5af900b22381475186936076742"
     },
     {
       "path": "articles/how-to-escape-beginner-hell-as-a-creator.html",
-      "bytes": 16519,
-      "sha256": "c1e1801e5c32ae743e4c23ae702b356b7c75e5de2a4ac9a8f1030ebf05b8678d"
+      "bytes": 18655,
+      "sha256": "8602b4434340d81ad590dc3ab1765830a729dba1df01a45d2f9e5d851568acc4"
     },
     {
       "path": "articles/how-to-finally-stop-caring-what-other-people-think.html",
-      "bytes": 15364,
-      "sha256": "9b718c382d80339a3279c850ec3066bec37c7d6ab0598380b2be240bc24b6e10"
+      "bytes": 17364,
+      "sha256": "13ea6779dcaacb3473f2faeaf319cc72270c5c5e0d56e1cdf39cc01e01ed005e"
     },
     {
       "path": "articles/how-to-focus-for-12-hours-a-day-on-your-purpose.html",
-      "bytes": 14990,
-      "sha256": "3b3eed63d46aa425138e14a1b0ebdd958f127a52f7bde49f160578489ef63324"
+      "bytes": 17382,
+      "sha256": "d1dc24d55bda460a5ce54d01f141c564c5ad72ac553eeb2ad5ce9cac9ebc845f"
     },
     {
       "path": "articles/how-to-get-what-you-want-out-of-life.html",
-      "bytes": 14575,
-      "sha256": "7d12be7116fd8353a751a7ec7b80a03205e72ebfef5e610c9c68ebd6cc899b6a"
+      "bytes": 16550,
+      "sha256": "5c475771314ade5ceadfd0d2747cbb53aee94ff3ec405c60166fcd4214e23549"
     },
     {
       "path": "articles/how-to-join-the-top-1-of-intelligence-full-guide.html",
-      "bytes": 14572,
-      "sha256": "2d742f0748548d2138551fed502f790707aa11378874d50c91986f2168af47dd"
+      "bytes": 16574,
+      "sha256": "c9881c72474f526fa40fc15fa1ab4df64fc077f2d1206a277d284edbcd86b967"
     },
     {
       "path": "articles/how-to-launch-into-a-completely-new-life.html",
-      "bytes": 15432,
-      "sha256": "9b697d96524c6b03f643b35bfe6c3459337d7d23bcad88b1e352c2b0845b5bf7"
+      "bytes": 17273,
+      "sha256": "ac2f001c60105bd860068b2d9fa85bd9d3e555496294dc657fd86848c5ea2141"
     },
     {
       "path": "articles/how-to-learn-anything-10x-faster-than-anyone-with-ai.html",
-      "bytes": 14712,
-      "sha256": "12a292d7bf08e0d1f977729b5d9e974f850baed2c4328190edcaeff48ed6ccb8"
+      "bytes": 16598,
+      "sha256": "86d0d6c224013675b5cd3588bb8a8b00b619453124537b7c1ec213e8206d09bd"
     },
     {
       "path": "articles/how-to-make-1-million-a-year-as-a-digital-writer.html",
-      "bytes": 14186,
-      "sha256": "57dfbf0fa3f9e395acb758134c5f161ddcd0deca93c3fd77af1bd7689feb5841"
+      "bytes": 14384,
+      "sha256": "8cf1b593af57fb93d167c258e68ba1797e9d1ed4cb282fe5c6592560092332ca"
     },
     {
       "path": "articles/how-to-make-money-as-a-creative-on-the-internet.html",
-      "bytes": 15103,
-      "sha256": "8b081d933cb24fe371b855800c077832679f6099b37df8d0d7311986f9db0532"
+      "bytes": 15299,
+      "sha256": "fed24d6d2e3f855f3739b38af9cfb107509efb5448f918611041f2c925b8f7e7"
     },
     {
       "path": "articles/how-to-make-the-greatest-comeback-of-your-life.html",
-      "bytes": 16387,
-      "sha256": "5a156e7911694de92146f26197ddfa9b1c7a87e328858325a02a0fb909300906"
+      "bytes": 18342,
+      "sha256": "adbc7bf0c8c75796dffe6bc28c5f032e56874c6510f61c701171ef13048f7ffa"
     },
     {
       "path": "articles/how-to-master-your-focus.html",
-      "bytes": 16672,
-      "sha256": "11351478ec268175a8d0dc501d82be1223711d9479e0d1a41669a585ab96d55d"
+      "bytes": 18978,
+      "sha256": "a018fb2b0a8a6b2d4027521b46f0a277867fbefa6fab048feba64f149e32302b"
     },
     {
       "path": "articles/how-to-network-with-millionaires-and-build-a-name-for-yourself.html",
-      "bytes": 15716,
-      "sha256": "a969e3035ef0a9aec64e8471391c4eca3b3253cb73530e7f4643997038117208"
+      "bytes": 17581,
+      "sha256": "0ec38e24d2679ab6e3eac761ce69a712ac3a7694b6dabf3b4f8738c05c1eb77f"
     },
     {
       "path": "articles/how-to-not-end-up-mediocre.html",
-      "bytes": 14294,
-      "sha256": "751763a22a3a7f8e97fa4ebd0be40fe5480c6a622afba2330ad456df6a23c821"
+      "bytes": 16166,
+      "sha256": "74a57e0edfef8764317a406abba542f468f8bfe0f30ad7c4eeabca3b698b9e23"
     },
     {
       "path": "articles/how-to-profit-from-solving-your-own-problems.html",
-      "bytes": 13789,
-      "sha256": "708426a5f27db356be0a8d97654b51513864b78e2cea19c1048183de7550c564"
+      "bytes": 13985,
+      "sha256": "d78284db07f46596f00bb705033f8bf72d9268098ab629ecec1c4b84e57a8e9a"
     },
     {
       "path": "articles/how-to-remember-everything-you-read-with-ai.html",
-      "bytes": 15768,
-      "sha256": "15cac211b6ecab3c19a156f2a6fb79bb8750be7a34a193716cb9589f99078c96"
+      "bytes": 17644,
+      "sha256": "bfff58f65bebd2c6927229066bb5584dd27d8ee8f4d4917a96e2f0a4743fee56"
     },
     {
       "path": "articles/how-to-reset-your-life-in-7-days.html",
-      "bytes": 16615,
-      "sha256": "050aaf1b4b3a163588aa6c59ae8f7bac4a10e82d588719d8f752090c8cf0941c"
+      "bytes": 18361,
+      "sha256": "96eaeaa77abfe043ec3807f2b6945249f4b5b2952775ade586ff3265d376e315"
     },
     {
       "path": "articles/how-to-think-like-a-genius-the-map-of-all-knowledge.html",
-      "bytes": 16569,
-      "sha256": "0267f2178a048239bf2ea8ce482c6f3383d1bde37da3fd07ee38288bab3e20f0"
+      "bytes": 18664,
+      "sha256": "4022490e7b149eb97f91b34e3ad2ef5c843e71aa1f39886df971ff27434eec5d"
     },
     {
       "path": "articles/how-to-think-originally.html",
-      "bytes": 15140,
-      "sha256": "52aa7551455ea654144c51a28003601705040be914281558c338d451ad0a207e"
+      "bytes": 17021,
+      "sha256": "7685a3e49623c62023675b14eed13a548c3a0cdcdc93a753b53554ae21e80cb6"
     },
     {
       "path": "articles/how-to-thrive-with-multiple-interests.html",
-      "bytes": 15781,
-      "sha256": "48b2e7a72704254a0b0e109c0cc383293901cc0d15e3e194720c1feec62236f2"
+      "bytes": 17644,
+      "sha256": "18755432ce61a283cb006c9cd46228eda34c1e1c0149b191909b65c9cf42c397"
     },
     {
       "path": "articles/how-to-unfck-your-life-evidence-based.html",
-      "bytes": 16420,
-      "sha256": "7d1f9bf0a9d06a82934cfb292a020238331e71064a48d1fb01fb25ef3814ee1e"
+      "bytes": 18416,
+      "sha256": "637df593939390eadd6ca34ac38c2b19967e32e5d85e04ee8f84af8f8979a8d9"
     },
     {
       "path": "articles/human-3-0-a-map-to-reach-the-top-1.html",
-      "bytes": 16345,
-      "sha256": "e70666efc56dd0a5b1d9b8271cebdc7d85df315d724771f3203242025170cfff"
+      "bytes": 18402,
+      "sha256": "9970641f8107efb9c412bef93162205872c23647963ae26c2a509d1670a429c5"
     },
     {
       "path": "articles/i-brainwashed-myself-into-being-confident.html",
-      "bytes": 16360,
-      "sha256": "d27ac5c8a194f8f15ed46f17133b61a533861c4c5568fc5f3a10e72b256ea0aa"
+      "bytes": 18217,
+      "sha256": "4bdfacfe73af351d7a947c8887ce43d8c9a3e1bc9eaa20ae03dac4e4892b161b"
     },
     {
       "path": "articles/i-discovered-a-way-to-learn-10x-faster-reality-metabolism-universal-thinking.html",
-      "bytes": 14872,
-      "sha256": "ad97d4a13fd8bd3aece6c355820edab55e5379010783cf0b9b57f610132e5bc0"
+      "bytes": 16991,
+      "sha256": "e452239643a3c6b5d7b3b1050ec45062ce5bf46adb3fadad7bac2444fcca7bc1"
     },
     {
       "path": "articles/i-failed-at-7-online-business-models-and-turned-it-into-a-full-time-creative-income.html",
-      "bytes": 16395,
-      "sha256": "00d4eab05afa3a392c30f28b457ebf2f909739660050478e5e9a714a13e6298a"
+      "bytes": 16591,
+      "sha256": "70b5a6ec385aeecc0cf5f1946d65af43be1b79c22a94a5b4074c47516c81b9a0"
     },
     {
       "path": "articles/i-had-to-learn-these-high-income-skills-if-i-wanted-to-make-money.html",
-      "bytes": 14044,
-      "sha256": "28b58c643048df662e8a9e5c9702e91297218a6bde5804c32168403b9573322f"
+      "bytes": 14240,
+      "sha256": "9f915978eb53aa197236910861955dd44953593fa88e2c63071354beb271f2ef"
     },
     {
       "path": "articles/ideas-are-the-new-oil-how-more-people-get-rich-in-the-digital-era.html",
-      "bytes": 16235,
-      "sha256": "564d70088c2c829861d2eddee57298a942b366bd56f38583467aa150640e23ba"
+      "bytes": 18207,
+      "sha256": "14b785fe6ffc9eacffc646700529a6372a9f776b3b65fcb953e618d57e11cd9d"
     },
     {
       "path": "articles/if-you-are-smart-you-have-100000-trapped-in-your-head.html",
-      "bytes": 16807,
-      "sha256": "3ae85ead50b0fcc53b83c62156cbd1ee12e6160ea6f265bdc9703283904e8276"
+      "bytes": 18648,
+      "sha256": "aedb72d6ad551b78929ea6a7f2e47b92eeb72fea3f910144ccb6a39054b2c2af"
     },
     {
       "path": "articles/if-you-are-valuable-turn-yourself-into-a-business-with-5-repeatable-steps.html",
-      "bytes": 14596,
-      "sha256": "62e060da3ecdfacac2b3b6a442efde64ce6f59195fa20d208908e5cd6fbee16c"
+      "bytes": 16692,
+      "sha256": "3fb00ed88473e50dce60f97ad02087e07edfb3e839e53e1c40621decef9d0498"
     },
     {
       "path": "articles/if-you-feel-lost-understand-these-3-phases-of-life.html",
-      "bytes": 15827,
-      "sha256": "e9d589bc7c45dbca085e4879e3b10cf3bf59a7743fa8349f3343921411dbce84"
+      "bytes": 17953,
+      "sha256": "4fba5618f33997acc04d79c6dccbc515b05f9b18d2644d24b13c097568db12e3"
     },
     {
       "path": "articles/if-youre-young-start-this-new-type-of-business.html",
-      "bytes": 16071,
-      "sha256": "58a0a0b6433e916466cc12e4ceb01bdf1788545063617f1dbc10c3f47291be8e"
+      "bytes": 18096,
+      "sha256": "bf8893beb12faad2fb0e7239259d34e724bbdbf9554b46e0dd478157e63238ba"
     },
     {
       "path": "articles/im-28-heres-what-i-would-tell-my-18-year-old-self.html",
-      "bytes": 16089,
-      "sha256": "6a02ad90fa07168c53692e5a152078d05536f54e08429a9e88f92297f3df018f"
+      "bytes": 17806,
+      "sha256": "672775412c4cc58519bad668269aaccf32e000db46b660558573bee6d68fff98"
     },
     {
       "path": "articles/index.html",
-      "bytes": 25807,
-      "sha256": "79a520d368fbf55ab877d4f26d561230f13cff9b94e754c2c87b34b9f2a02538"
+      "bytes": 38767,
+      "sha256": "142c42f47e49a476af76c6676325dc20b822bba8db6d0c94e9547dfeced70494"
     },
     {
       "path": "articles/learn-ai-to-10x-any-other-skill-full-beginner-guide.html",
-      "bytes": 14336,
-      "sha256": "9d1f9bc676e718381220223ffc7ad95897bfe37cc3faba8ad3d038f011dc590f"
+      "bytes": 16202,
+      "sha256": "bf42bee127c492473ca45ca25a8e541d26468945364a59b8f3f4f193252890ca"
     },
     {
       "path": "articles/learn-these-skills-if-you-want-to-thrive-in-2022.html",
-      "bytes": 15945,
-      "sha256": "cb716022d5d905b413360441d5c8ade6373b1e0a7cefc2addb329dad660bf5f1"
+      "bytes": 17799,
+      "sha256": "322ec388dced54f7debd5f11cdfd0711b61a329b3de0fdf507d700018cbed2e8"
     },
     {
       "path": "articles/learn-this-skill-if-you-want-to-stay-relevant-in-10-years.html",
-      "bytes": 16012,
-      "sha256": "d29be1e9e818c05418652e47744d7267464efac02acd53b425cb99176901e17a"
+      "bytes": 16208,
+      "sha256": "c3aa9d860cc6d3f3bb6629493416c7015b6702b2274a23791a294c90779032a6"
     },
     {
       "path": "articles/learn-this-skill-if-you-want-to-survive-the-next-10-years.html",
-      "bytes": 17574,
-      "sha256": "9124f143cce3978e5c6cb95a1df1e4f2a7af310c30a26023991348479d3784a3"
+      "bytes": 19840,
+      "sha256": "11d6cfdc3058cc14e1cc4053db48e1d7ce0b8018cb8e29226df2854f5196ad7c"
     },
     {
       "path": "articles/learn-this-skill-if-you-want-to-thrive-in-the-next-10-years.html",
-      "bytes": 15791,
-      "sha256": "08d3cf10a199c20146d245048e1cb3ea77c4ecc2d3b13e027cbdc4c94c6bff78"
+      "bytes": 17932,
+      "sha256": "e386acaee5e19d7496d5247c2ab0e04291a87c6ef549f5d76d1a0e4b88313224"
     },
     {
       "path": "articles/life-is-a-game-heres-how-you-play-it.html",
-      "bytes": 16272,
-      "sha256": "ce3e09db7ab2bd0c32ab63d3f641ab6c9df9e114baffca6aa3d1f5c2fa2196ec"
+      "bytes": 18128,
+      "sha256": "0e1ab01d833106040773c28f0d3646bb10f41e8bf671e2d30278eac726497933"
     },
     {
       "path": "articles/life-is-a-video-game-you-cant-escape-the-matrix.html",
-      "bytes": 16385,
-      "sha256": "6d119d049727089aa17650efd96737560036f3ee5b90010fab9de09f15d810eb"
+      "bytes": 18499,
+      "sha256": "fb384a5c961e523458d3c7fa7c72746c9c5f8b8d95f67c725feea88dcf1da538"
     },
     {
       "path": "articles/life-is-hard-get-used-to-it-the-way-to-mental-mastery.html",
-      "bytes": 16625,
-      "sha256": "4672dac2e7410ea5848f2cb51981564a16a853cb05e7350d1df22989cdaadfe7"
+      "bytes": 18481,
+      "sha256": "547c9bc5b0d21f797932af462913710989516e10c180c48bea830c9d1a3917b2"
     },
     {
       "path": "articles/life-lessons-learned-from-a-decade-of-failures.html",
-      "bytes": 15965,
-      "sha256": "cd4acbce110c94db1a0aa441779554c4319b5dfc771d386e448e30e9f9426877"
+      "bytes": 17851,
+      "sha256": "b6c2c2c79f96ca0ca635b3786854cf70e29235e5d40a4478a4eea681762becb1"
     },
     {
       "path": "articles/make-millions-with-your-mind-turn-your-knowledge-into-a-business.html",
-      "bytes": 15650,
-      "sha256": "fc630e55fd472e9d0143e46c9cd93ba910f238c4b1e8f2bfb63595a562abda27"
+      "bytes": 15846,
+      "sha256": "3473714ec1f7fb312c6e8c1041e6934132d8734e9d356004f28bbc5854535257"
     },
     {
       "path": "articles/making-money-is-spiritual-if-you-learn-these-unethical-skills.html",
-      "bytes": 15730,
-      "sha256": "1fe5ffc17d7b99f62cfe58e162ae668424f353df526006a5be8ee362d00d049f"
+      "bytes": 15926,
+      "sha256": "9d9c9eecb62a07286acc56d6666e22454e23323c7a1ebbbdbe0cc95cce6511dc"
     },
     {
       "path": "articles/mental-aesthetics-how-to-build-a-beautiful-mind.html",
-      "bytes": 15181,
-      "sha256": "bd6b6db60d4f26207d97ba94fbbf241ac6e4a07674de070c9d939197bf094aaf"
+      "bytes": 15377,
+      "sha256": "e9442fbab6ba4da5d12498a5018e40952fab603dba580614f750ba9f36884471"
     },
     {
       "path": "articles/mental-minimalism-stop-thinking-start-doing.html",
-      "bytes": 16089,
-      "sha256": "8c40b14828b1501debdc71ba34906c0474c4d4057fe687e271d17dcc81c19e13"
+      "bytes": 17934,
+      "sha256": "2ab1e01a9d026a6c473f7cf1c08fa68204cfacad3c3dcf0454ef990a85e4078b"
     },
     {
       "path": "articles/most-people-are-lost-how-to-ruin-your-life-fast.html",
-      "bytes": 16758,
-      "sha256": "813cd4aa7833099b6b0c5c48daf9fb75dad9dbe28cbfaa5670fa5142e88dd4a5"
+      "bytes": 18628,
+      "sha256": "d17c75f088385a161a44b145d5615563ab6213e63ee1befec1ee18012ba63204"
     },
     {
       "path": "articles/my-1-million-productivity-framework-the-4-hour-workday.html",
-      "bytes": 16543,
-      "sha256": "f2b6c9bbe49479105d396b8a8c722851c7a397fd4964306be793c732c7ccff7d"
+      "bytes": 18416,
+      "sha256": "61e9b973df90136f795180f66962fc153f13027f7a60f6e2ec9d2535777dad3d"
     },
     {
       "path": "articles/my-story-the-untold-truth-of-dan-koe.html",
-      "bytes": 16747,
-      "sha256": "fc847050c4a5a7b72c94776816282e0a80333b6b6417684ac16a1ebaec2ac957"
+      "bytes": 18653,
+      "sha256": "0b69f4f70bc8e7865119527a9079ec03ed69fc8529f0e1fe506f4696273b0360"
     },
     {
       "path": "articles/niche-down-is-terrible-advice-for-smart-people.html",
-      "bytes": 15373,
-      "sha256": "b5b0fa7410170cb7a77e1415ce813b11bf0f74b9941ce491835c48c39a76dbdf"
+      "bytes": 17186,
+      "sha256": "afc5240c73f93c707e52ef85d81e2365ca2074d3881066b1310ec665f5de5034"
     },
     {
       "path": "articles/one-person-business.html",
-      "bytes": 30328,
-      "sha256": "b0eb4259810f44db8ed48d385801819d0d451754486ea19b91348f204249f529"
+      "bytes": 31601,
+      "sha256": "182fe3dd8658de79a3314ab28eaab3b8298f46a1ca76dc1c4cc9dd617b41b529"
     },
     {
       "path": "articles/opinion-the-best-online-business-niche.html",
-      "bytes": 16013,
-      "sha256": "20dff12f82a34f8e3aea6747d0f056f83c433e067abd2460096c15a74c6aab57"
+      "bytes": 18121,
+      "sha256": "e2c4e0d83f716ba380bced931ef1e5a320165825476f01b3725e45805f5f7a34"
     },
     {
       "path": "articles/reading-change-your-life-with-one-simple-habit.html",
-      "bytes": 15054,
-      "sha256": "66dc0d10718282d40f77b2d6ebdd0c84dadbe92223a2aa2d73f6f1ad0610cd2e"
+      "bytes": 16925,
+      "sha256": "36cec55ca5214c77e475b9c09aca2337b05e0c46bf199b8fdaff25bcf1327320"
     },
     {
       "path": "articles/self-discipline-is-easy-actually.html",
-      "bytes": 16506,
-      "sha256": "095f8c05d56b84976143eb1684e099c9a518018fb51ee406a67b7bc3545302e2"
+      "bytes": 18358,
+      "sha256": "58c2ddaa28f894f08614a3986cdaac063fde3a8d06df4025e18d719e03383c4a"
     },
     {
       "path": "articles/self-improvers-are-creating-their-own-career-heres-how.html",
-      "bytes": 16043,
-      "sha256": "a9060f17d3312569fdac2e1298c3e2f240a6d2aebdb1067f22d12e6998af93c8"
+      "bytes": 17892,
+      "sha256": "a42fb4b8f06f8892dbf4a46ae41576c59732663dc6b2b6eb1c637ddcb493d22c"
     },
     {
       "path": "articles/social-capital-the-currency-of-the-new-rich.html",
-      "bytes": 16270,
-      "sha256": "c542adb73688c71f4812f390afb1007be9a98bd25c05d9eb93052ee1a3235659"
+      "bytes": 18122,
+      "sha256": "2ee48cae14c063e138b60090db5c526fdbc09d7b8ba2dc00047be7ff6bb7e34d"
     },
     {
       "path": "articles/society-is-a-behavior-system-how-to-escape-the-matrix.html",
-      "bytes": 15884,
-      "sha256": "22c8043c5190c1436b99f07d868c344fd5ab98b531d276d7ae37b3a78e90206a"
+      "bytes": 17857,
+      "sha256": "9680bc2ae817b9ef1db63107e13dff9778a5c70eb90a5eb7182a5e8e9d181b50"
     },
     {
       "path": "articles/stop-caring-so-much-its-ruining-your-life.html",
-      "bytes": 16526,
-      "sha256": "5e1adfafec52ec52ac3bdcd23c63c9b5ba559f96fb82e33603897df9f072a057"
+      "bytes": 18349,
+      "sha256": "f6d1ce3846a4d449bdfff50ffbd2a478aebfa2614b732b9c05515603c6e2af4d"
     },
     {
       "path": "articles/successful-people-dont-ask-for-advice-why-99-of-people-fail.html",
-      "bytes": 16461,
-      "sha256": "c226c3ac0bc55ad053dc59be3216ae4af2294f06ef87d22cfb950f591a23c79e"
+      "bytes": 18310,
+      "sha256": "8d93d1d92b8466f06af8df4267587f43eca2d8eb24fa16ccae8299b986cc3bd6"
     },
     {
       "path": "articles/the-1-million-dollar-creative-how-to-monetize-your-interests.html",
-      "bytes": 15192,
-      "sha256": "aedade106775ce86243080a6c203fd36559ae1e459cd75f10b1e82dcdabd6041"
+      "bytes": 15388,
+      "sha256": "f4cf44902717b891d542a256e05aa1a833f9003e6b675987ca862ce3fca37f3c"
     },
     {
       "path": "articles/the-1-million-dollar-skill-stack-learn-in-this-order.html",
-      "bytes": 14709,
-      "sha256": "1076dc600a70fbaafdc2388d11603f502eab3e36d55b0610abc02efe23213711"
+      "bytes": 14907,
+      "sha256": "912b99e58218c2e8f376a4056907b27ae43d3b6433c537792725e5d1bfb1905c"
     },
     {
       "path": "articles/the-1-million-product-how-to-package-market-your-knowledge.html",
-      "bytes": 14396,
-      "sha256": "b587906600fc56201ac9a3ee7079a2e8453604278e0400584dc216203c2f30d9"
+      "bytes": 16112,
+      "sha256": "f4005eae977f00285abdaa46b4bedae98399f7f98294019cb985acd42d1d8087"
     },
     {
       "path": "articles/the-3-habit-morning-routine-to-end-procrastination.html",
-      "bytes": 14285,
-      "sha256": "a3cf52bf5f1b14a49e3b0b3541c5f4dcb687c82fc1797a2f4ae2d36ffa87d917"
+      "bytes": 16295,
+      "sha256": "9cf5eb7e8a860d9984d466d751d7d801b525835ac550677ab6ee64c793189857"
     },
     {
       "path": "articles/the-3-part-daily-routine-for-maximum-productivity.html",
-      "bytes": 16491,
-      "sha256": "4df699fd1532e0bf71b3989ddeb5f9643f7722767bf4af171b4d9f1831bebd56"
+      "bytes": 18367,
+      "sha256": "f5c0df23e487a5b03c233e16de21fcaecc56eee8e7a44feaa0e318ed108fc1e0"
     },
     {
       "path": "articles/the-3-stages-of-monetization-why-most-creators-are-actually-broke.html",
-      "bytes": 15853,
-      "sha256": "43dafa3aff6360b0a4479a4efe8f5a1ffe5d24fb0895d03808e49e3d7972c302"
+      "bytes": 16049,
+      "sha256": "1f9d12a4143b2d922239598749d4285bb694888b369f971bbaf81c31f4f513d0"
     },
     {
       "path": "articles/the-4-hour-workday-focused-work-changed-my-life.html",
-      "bytes": 15241,
-      "sha256": "4229e89e0b91c6c32b9e5183972a7b95bb0b2430596cc75eabfcb56fda079169"
+      "bytes": 17065,
+      "sha256": "0d7504cbafc59911734bdf4d17e2467dbf194237f508ce3a0e8f12962e2f284b"
     },
     {
       "path": "articles/the-7-digital-career-paths-from-zero-experience-to-advanced.html",
-      "bytes": 14397,
-      "sha256": "beaa793faebb5904af17008e37931b775f0ab6bdabc5ad7f0eb5449d31506697"
+      "bytes": 16291,
+      "sha256": "279737cd71fad7d75d785d3140d18debbdbabb7f9d8d92449967ef7700434409"
     },
     {
       "path": "articles/the-7-traits-of-the-irreplaceable-how-to-secure-your-future.html",
-      "bytes": 15933,
-      "sha256": "be01b82f3220a26777b4cbbe0f92064527627657f2ad4f8a0358e58832e61ab2"
+      "bytes": 16129,
+      "sha256": "c89cb49d5990883d7624678be1be579c8f19da894234f183b8f72c8642d41817"
     },
     {
       "path": "articles/the-80-hour-myth-why-were-addicted-to-being-busy.html",
-      "bytes": 16417,
-      "sha256": "e8a3fc1818209799650816786acd4f3631e592965072c05439f15ae2c6cc5c5e"
+      "bytes": 18214,
+      "sha256": "3011e7bc3d90a0828b018b5c472e77d7ce7934ebdf01c8e98311021916bdcfa3"
     },
     {
       "path": "articles/the-age-of-the-generalist-how-to-thrive-with-multiple-interests.html",
-      "bytes": 16147,
-      "sha256": "e76c9a949120f4693d068751b17c06f538b221c80a671e7e518e9f0f36797ea8"
+      "bytes": 18003,
+      "sha256": "e4bef1d94c150dc835e18ba2d052894d30a6e21ee8471e536771a103a6d59a43"
     },
     {
       "path": "articles/the-anti-niche-why-being-nicheless-makes-you-irreplaceable.html",
-      "bytes": 15367,
-      "sha256": "146358955ff3a061fa3fdae82bd475db1dcf594eb0404c7cfc7515da76ef6f29"
+      "bytes": 17209,
+      "sha256": "6e0821a8e478147a016b13d07341624eeae325c3285ae4bc60de0cebca3c6fb1"
     },
     {
       "path": "articles/the-art-of-focus-official-book-summary-by-the-author-dan-koe.html",
-      "bytes": 17371,
-      "sha256": "16cd6dd3d96f7a2bd842e32c2f8f231890d59d6925fc2f2f9723d2a315aeb45a"
+      "bytes": 19201,
+      "sha256": "99f4eb08328fa421f92f7a2c5f435e86592f79f469fd8f68fd80f227381f4535"
     },
     {
       "path": "articles/the-art-of-self-architecture-how-to-change-who-you-are.html",
-      "bytes": 15789,
-      "sha256": "07b61ce1ab0829992cc6b9dd78451231b62ea01688e7057f550023047a9a46d1"
+      "bytes": 17788,
+      "sha256": "580b4f4e437aa77bccc864994afd75fd0c7ce8300d22fb4f20fdb383c0e25ffb"
     },
     {
       "path": "articles/the-best-one-person-business-for-smart-people-2025.html",
-      "bytes": 16300,
-      "sha256": "d69f149fefb1878e4267922cf298d54588132844a4ac4efe9abf461f0993be97"
+      "bytes": 18343,
+      "sha256": "b269188106f1590ec35d5bf80f7e0ba417c9b4156c75aec00cfc0d91c54c747e"
     },
     {
       "path": "articles/the-best-online-business-model-to-make-1-million-in-2023.html",
-      "bytes": 15621,
-      "sha256": "43bb8df20106ca7c3e23335d4db13274c3e210e11b29816383d566152e20afee"
+      "bytes": 17890,
+      "sha256": "ee85947222f494f50b19041e289911cfa8adcc7025952ee5011adba7469a61a7"
     },
     {
       "path": "articles/the-best-way-to-grow-on-social-media-from-zero-followers-experience.html",
-      "bytes": 14436,
-      "sha256": "b283e98bc3429f56f2e690522f61107b2af9943f54474931a4b6f0825cc7b6ef"
+      "bytes": 16310,
+      "sha256": "37ec0290f4a9a9a8c8f0a47707d4ea418cfe81988203ab033bede86c832c4004"
     },
     {
       "path": "articles/the-creator-economy-is-a-giant-ponzi-scheme.html",
-      "bytes": 16603,
-      "sha256": "cab7f0a022cd8315fcac6ab5f1cdbb44828fcf28026bd6994648eea0bf29b7ad"
+      "bytes": 18458,
+      "sha256": "634c0d139ef46208e779ebb46a4ee1ecdc471f9591743598c40e8a42da824ca1"
     },
     {
       "path": "articles/the-cure-to-a-mediocre-life-become-multidimensionally-jacked.html",
-      "bytes": 16531,
-      "sha256": "ab675dbcb05462c5a3e4b501d32c0b67132a558c146f1127b0d68a62a0d2849a"
+      "bytes": 18368,
+      "sha256": "9fb638b95b8915578ce16997bfc33ce618685043cbda34f944ee1e44c937db18"
     },
     {
       "path": "articles/the-cure-to-caring-what-people-think.html",
-      "bytes": 16559,
-      "sha256": "263df0acf46239d6be8fd201f523ddeb5608fe6d60d9f5c3560026f94ebc63fd"
+      "bytes": 18451,
+      "sha256": "c9fa3306a994d3c3c253ab8e29a426ff501c30bffb64a35ee4aac2515ac2c2ae"
     },
     {
       "path": "articles/the-daily-routine-that-changed-my-life-4-focus-habits.html",
-      "bytes": 16685,
-      "sha256": "ef1ecadf7ee2cdcfb628e0bb749424a6d8145a7360d759bc459fa1e47afad6b3"
+      "bytes": 18529,
+      "sha256": "40a77b796a69fee94a3b7d4068b054eff83f1f585d9792d52d576f8704ee50a4"
     },
     {
       "path": "articles/the-death-of-the-personal-brand-and-what-comes-next.html",
-      "bytes": 16233,
-      "sha256": "b5c253a0552a0a222d238dc4840ae12029f67f6d0e927a0665d251b03fc52a02"
+      "bytes": 18257,
+      "sha256": "ac5d98333b919f39ce6fb7078afafa52c809f6d1b2a777f17d803a24a6bbf0b9"
     },
     {
       "path": "articles/the-death-of-thoughtful-creation-how-to-get-ahead-of-everyone-else.html",
-      "bytes": 15839,
-      "sha256": "3256d275aec984567e32cd09e0d800b1705d339004c5300336083a2ff39fbb33"
+      "bytes": 17670,
+      "sha256": "ddc2096285b706533496f8b7ef692a3ffff56823cec7eadc7bc4b21e5b957677"
     },
     {
       "path": "articles/the-deep-work-routine-that-changed-my-life.html",
-      "bytes": 16959,
-      "sha256": "ff8c1c244936fde37eeafa7c47d457387aca43e7bd30220cf0a06430b7a957c7"
+      "bytes": 18842,
+      "sha256": "2b33b35d473620ff26ec54ec2904a79e2dbdab7f96227c1b0f45cea7699eebe3"
     },
     {
       "path": "articles/the-dopamine-epidemic-how-society-failed-to-think-long-term.html",
-      "bytes": 16453,
-      "sha256": "9ba2309bd5a50bfcc357c79dabf2db6ae1f8d7f37af8e3d61d81c95a10e40cf2"
+      "bytes": 18279,
+      "sha256": "8407b7c29b46e0ec6af65b130f1c8e6f8ca7701151bdb46c8cb7cab6618b4a39"
     },
     {
       "path": "articles/the-fastest-way-create-a-new-life-a-12-month-plan.html",
-      "bytes": 14233,
-      "sha256": "56eaca023d0b67cebc5daec945579a71b97a345979f6ad6c329805da06325311"
+      "bytes": 16269,
+      "sha256": "d779caf02b7ae02f3c24c26d5a461e0923207b9f9c505033281d51244377d4cf"
     },
     {
       "path": "articles/the-flow-state-turn-life-into-an-addictive-video-game.html",
-      "bytes": 16439,
-      "sha256": "5a9c4dec012f37acaf1c2a0aa6067318e6f22474dab40e26914750b6c1dc21cd"
+      "bytes": 18329,
+      "sha256": "d77bfd6432186bbdfd107cf92c948a45c74b735140d414a7c517724f63511e5f"
     },
     {
       "path": "articles/the-focus-formula-how-to-take-control-of-your-life.html",
-      "bytes": 14253,
-      "sha256": "fb30363496ab28cd8a82eb29eb44ada46a160f8bf477cf7af3546a80c501640d"
+      "bytes": 16080,
+      "sha256": "6f79956805b3d20a70b33575b1757ea9a4c1fddc8e44279da93ebb8612ee51c5"
     },
     {
       "path": "articles/the-future-of-creators-how-to-build-an-audience-in-2025.html",
-      "bytes": 16656,
-      "sha256": "86efd01a177f948a16fc0cfa608a33b6500822ec5d91ee3951b940d92e424abf"
+      "bytes": 18562,
+      "sha256": "e1c18a21229eda8192367db75e885b0cea4a3898599099f197a63a6e9467b91d"
     },
     {
       "path": "articles/the-future-of-productivity-a-daily-routine-to-organize-your-uncertain-life.html",
-      "bytes": 16440,
-      "sha256": "ebd8e05c154265917deef6a255a4baf128f15c037ab8143fe9d6007edc89c59d"
+      "bytes": 18163,
+      "sha256": "abf5b3720fce4550f436d12d755ee198a8fe843237da45a7a6ed568936748a42"
     },
     {
       "path": "articles/the-future-of-the-creator-economy-my-bold-prediction.html",
-      "bytes": 16704,
-      "sha256": "cc2045ba23d6d701dfd88238cbf181cc25b0c3572e01630a6971793595367147"
+      "bytes": 18562,
+      "sha256": "0cc4db43e711560d7abaa3ff6607f84fdd4c162af3d2f7e4259fc2228b21be42"
     },
     {
       "path": "articles/the-future-of-work-acquire-this-skill-stack.html",
-      "bytes": 17100,
-      "sha256": "e90fdfcfb0c555d5b50e62032dc20c1344d956c1c8efd0679955dda5a707d519"
+      "bytes": 19258,
+      "sha256": "8581841d00907015a8168507ab2dc64bed8850017c326c245e7e2ed8b6d3f1cc"
     },
     {
       "path": "articles/the-future-of-work-is-play-how-to-create-your-own-career.html",
-      "bytes": 15707,
-      "sha256": "9a7341f69534bf3f019b63902fe720219affd159f8acda071a73f3eb03b5a165"
+      "bytes": 17732,
+      "sha256": "d7f3e3949ac5722ffec06970231d85f1f832b6fb4ac5eae1bcb6c4d157cc7d19"
     },
     {
       "path": "articles/the-future-of-work-will-be-play.html",
-      "bytes": 15376,
-      "sha256": "e2c8f7c2aaa02243a06064a3b7e1fd4283076ca2d0602e82b8e04475da266723"
+      "bytes": 17807,
+      "sha256": "04dde1740081ee692aee4092c9161374efe2c73db925fb8f3e9c2ab1a0ec3674"
     },
     {
       "path": "articles/the-future-proof-manifesto-how-to-stay-relevant-in-the-next-10-years.html",
-      "bytes": 16590,
-      "sha256": "dbde48d5684946c72b2663b84705f058012472114925ae2e147304bbc5d6f0d6"
+      "bytes": 18435,
+      "sha256": "eaeb527dc81e80ebcb6bc458382ed591bb53898e403ba2c857c24394c6127e97"
     },
     {
       "path": "articles/the-future-proof-skill-stack-learn-in-this-order.html",
-      "bytes": 15693,
-      "sha256": "536d2a71d124f63e716fcf20dc248c28a0b0a43c35c548650852ad7126c9675a"
+      "bytes": 17683,
+      "sha256": "04aeeb0e4500ecd7c1fccd0cf84e9f633442a5fa822075748ab78c0fda4a736a"
     },
     {
       "path": "articles/the-greatest-skill-of-the-21st-century.html",
-      "bytes": 16560,
-      "sha256": "1218dca5a0ecafd19adcbbfe00497780ca6395f8853b9a0436a39d5d42b04451"
+      "bytes": 18426,
+      "sha256": "d090497a5928528b39963276d54101916093981f1fe9dbc28eb0020df5e5ff54"
     },
     {
       "path": "articles/the-meaning-crisis-how-to-do-something-that-matters.html",
-      "bytes": 15423,
-      "sha256": "a9bce5836e915f3c24f2dcd6b34bdda460b6cd12eb82d2a7fcb5741cd119cc1a"
+      "bytes": 17293,
+      "sha256": "f330e5c4358473e49a9df29dfe2d5832f998ba1c7987874606a4cbb507b018d8"
     },
     {
       "path": "articles/the-minimalist-creator-business-make-your-first-1000-in-60-days.html",
-      "bytes": 14817,
-      "sha256": "cbce4e210d98743d23f91617c02791f7648a8c8c9c49b87ebc8fbe404449a730"
+      "bytes": 15015,
+      "sha256": "1c53f777e5255700da6ed07596c6636e0190775c81a3adf0101c975187004586"
     },
     {
       "path": "articles/the-minimalist-productivity-system-6-years-of-work-in-6-months.html",
-      "bytes": 18201,
-      "sha256": "1031de0357251a32a83fe4c84697fd3e58bafbfa8e8ca286721d9a277726b5d1"
+      "bytes": 20054,
+      "sha256": "77a88479c96b4a266970386ab1ace0fddddb9a955e226a05daa916f941093809"
     },
     {
       "path": "articles/the-most-important-skill-of-the-21st-century-only-1-use-it.html",
-      "bytes": 16619,
-      "sha256": "5368167e3b210c3dcce7e1fb9a21a740a6581b076d8e611817612399415af8a7"
+      "bytes": 18607,
+      "sha256": "bc8678b0a0b203ba29027a2abc10e096d86eb354928e53dc82ba1bcebad48278"
     },
     {
       "path": "articles/the-most-profitable-niche-in-the-creator-economy-right-now.html",
-      "bytes": 13710,
-      "sha256": "b01bee25c4b53ae15883640f99cf9f1cb4dcd97fae4a7005ec3fa31b6b68fadf"
+      "bytes": 13906,
+      "sha256": "3b4d7b29562995a101fd0756739148f970592283e786395f9aaf95f8103c7daf"
     },
     {
       "path": "articles/the-most-profitable-niche-is-you-how-to-create-your-niche.html",
-      "bytes": 16007,
-      "sha256": "ce584a9aa1a146b1ae493c466dcb93aeedf391674e4c66bdb30f0d846e0d8ffd"
+      "bytes": 16203,
+      "sha256": "ecd60591ef399503f41f03458dd5c8240a442b6bef071640fce68b250a12c66f"
     },
     {
       "path": "articles/the-new-wave-of-micro-businesses-monetize-your-knowledge.html",
-      "bytes": 15605,
-      "sha256": "b425f220fcdd980a2b84101ac86c1777f62f128b30290e174a638ac2d26f52e3"
+      "bytes": 15801,
+      "sha256": "4bb5f80ad99febc8ceecb555125c177efb71dc4864aeda3c3c85f16f85f145a6"
     },
     {
       "path": "articles/the-one-person-business-model-how-to-monetize-yourself.html",
-      "bytes": 14312,
-      "sha256": "bb2b8e38d111da324ff72bc8ed6ab7e945a894f30122e5b42254b62b14379b26"
+      "bytes": 16169,
+      "sha256": "40d2060a1d0879c5ed642e7f4b3c0d352161b41ab1dd521c8c744bd03e013347"
     },
     {
       "path": "articles/the-one-person-business-revisited-turn-yourself-into-a-business.html",
-      "bytes": 15083,
-      "sha256": "97f63f3b29a7b508e6a4d35231d3efdfb38db422377a3df3a7ed2596fabf4084"
+      "bytes": 17412,
+      "sha256": "9b9d6d7e5f6cb4ad57504cb28293297eab63390100f52a3594a807f4fbac9604"
     },
     {
       "path": "articles/the-one-person-business-roadmap-99-of-creators-make-this-mistake.html",
-      "bytes": 17079,
-      "sha256": "f40d3cb9620842d82ca921c2a47499a8fb8412e74cb0f7ff7785a2a7221a8a27"
+      "bytes": 18934,
+      "sha256": "d4fff8f6ba6fcee9fb1661b1360d4b61e8abe3518cbf63baa923c45541860931"
     },
     {
       "path": "articles/the-path-of-the-npc-how-to-not-end-up-mediocre.html",
-      "bytes": 15839,
-      "sha256": "33420663d265a579389d983c1522fb0586361f61491a201079a59c6ac9af447b"
+      "bytes": 17699,
+      "sha256": "a39d21a725ff4998900c4444723c076333f021b3da80715937d99444c93fdda3"
     },
     {
       "path": "articles/the-power-of-being-alone-how-to-be-yourself.html",
-      "bytes": 16826,
-      "sha256": "19ac7f5f7a1ca88383e0f3b0a1032543b5a3ca6e1b66ba57de34020f55454068"
+      "bytes": 18816,
+      "sha256": "dbb31accbe2ea24b587fbbf2eedd8b0b8e9ae1e0c12f9c86dc82fcf53e549a46"
     },
     {
       "path": "articles/the-power-of-long-walks-daily-walks-will-change-your-life.html",
-      "bytes": 16459,
-      "sha256": "a673a0bd6eb9646919f7f03e833884d038e196a5984482d14b7f4a0ec2b3efb6"
+      "bytes": 18310,
+      "sha256": "9a1592542e7cb34bff219b8af8daf3e4d4ac861fe1615a0732a04f9e6e11e99c"
     },
     {
       "path": "articles/the-rise-of-the-value-creator-a-new-career-path.html",
-      "bytes": 16002,
-      "sha256": "0b9f55c90a5f7afe164d3e77b9d029c1d73560aa7a89ce6c8639dacb6da0a22a"
+      "bytes": 18111,
+      "sha256": "5cbccd9ce07d6dc6dde19df311b7565b6697a4dd5fde1f7da7e38a6f33c60633"
     },
     {
       "path": "articles/the-self-reliant-career-path-how-to-generate-independent-income.html",
-      "bytes": 15676,
-      "sha256": "54d551adb6f65a8a0c8605e1f9259887504e33142db432dbd272b7a50ee9a538"
+      "bytes": 15872,
+      "sha256": "27508c8c227078a28d0212192319adabda1ab48d85b1c4866e03b4697663b28a"
     },
     {
       "path": "articles/the-simple-3-point-online-business-model.html",
-      "bytes": 14154,
-      "sha256": "f96dff840433fff39110f4c23d4482a4f115c955b99aa4dd82accb9b974a4502"
+      "bytes": 16055,
+      "sha256": "9db2d34d3b409a44fde3829a76fca299aca70cf2b0abe68777c53059d5028582"
     },
     {
       "path": "articles/the-simplest-way-to-start-a-one-person-business-micro-products.html",
-      "bytes": 16408,
-      "sha256": "6df66b507c543b0ac62e68b04994cf061cfb4522179f38bf0d01f882640b8120"
+      "bytes": 18304,
+      "sha256": "0850249763e85dd6ec72da8baf77b99cb64f6272fa84c1f0674b0c7d67987ea0"
     },
     {
       "path": "articles/the-synthesizer-a-digital-career-path-for-curious-people.html",
-      "bytes": 14352,
-      "sha256": "8ab8119939a08d488256330609d3a04d9a027322944ed7c6b05e1b32a858d43c"
+      "bytes": 16185,
+      "sha256": "8d89daeac94536a2d0a3b5dc0d034688b0b1a8279c33134126619a49e3f90b78"
     },
     {
       "path": "articles/the-truth-about-money-and-how-to-make-a-ton-of-it.html",
-      "bytes": 16053,
-      "sha256": "fb43687d5b9e35068da389dfbc2e4120c075f29fe399c1fa382135b40b500a41"
+      "bytes": 16249,
+      "sha256": "53dae56d6ed23a3fd33502a6b45d63aa8ec42dc5bec8c3024708d57fd1563a53"
     },
     {
       "path": "articles/the-uncertainty-crisis-why-everyone-feels-so-lost.html",
-      "bytes": 16363,
-      "sha256": "f713d8043690a7323b2626605e814ca4af88f9196a684a8eb6e170f6928d47d2"
+      "bytes": 18162,
+      "sha256": "8f40a75d3330280c281b798b95d9d4760696aaf2115e2bec28673e3e87b1f75a"
     },
     {
       "path": "articles/the-unpleasant-truth-ai-is-coming-for-your-job.html",
-      "bytes": 14350,
-      "sha256": "a760d7af9c20b4910f735e5fbde4e9dacfaed5661b253910aff728d9fa908356"
+      "bytes": 16224,
+      "sha256": "2909a796b29b1ed2a95a4896bfd6d12efb2012d118b58d53b580e564310211e9"
     },
     {
       "path": "articles/the-value-creator-a-new-internet-career-path-for-intelligent-people.html",
-      "bytes": 16761,
-      "sha256": "23a3cb1b588676d2a5c74906cb5011f3a9e0f1063d865f0e827ae2f399c0980e"
+      "bytes": 18748,
+      "sha256": "6806904a258e6a464cd513645583b147d9394932fe6e1385ab5767b1028c4061"
     },
     {
       "path": "articles/the-value-equation-how-to-become-a-top-1-individual-fast.html",
-      "bytes": 14291,
-      "sha256": "963a01e193c6bd1451f6f56560e5fb1e0086c4130d5a3128e2fe55a28d831423"
+      "bytes": 16159,
+      "sha256": "b67ecdb2b9ac7452009da1d40fd3115464825bd0b906a64465b5ceb7a924b45a"
     },
     {
       "path": "articles/the-wisdom-in-feeling-lost-how-to-get-out-of-a-rut.html",
-      "bytes": 15789,
-      "sha256": "9b2917d9459c2d43ae0035d5c3f5f0d6ad3da14dd607eb221e2946f1e309ee7e"
+      "bytes": 17646,
+      "sha256": "ab21aee376795767ae817990c1e8a67d22a7b6b1b2a97e0a89106b1ea2b2aefa"
     },
     {
       "path": "articles/these-3-decisions-will-determine-if-you-get-rich.html",
-      "bytes": 13471,
-      "sha256": "2d792e07079a860b4f0092721dc19a1d3cf99eeb1b82e1d87e0a65c5aab1aacb"
+      "bytes": 13667,
+      "sha256": "acb1d0a0a8e90ce7e2f49b3dcd7b31a8f45361acb17aff31e3f25e9e65f6c6c2"
     },
     {
       "path": "articles/this-deep-work-strategy-made-me-700k-in-2-weeks-as-a-procrastinator.html",
-      "bytes": 16728,
-      "sha256": "439b5bd304feb52f34cdeebc54f0d92c417a16f61f4498a0507025949007dd43"
+      "bytes": 18625,
+      "sha256": "ffc256d7751a11dad406a97db36cdf2b0eea1ecb745c9019fa78f1efa7601c84"
     },
     {
       "path": "articles/this-is-why-your-life-sucks-how-to-reinvent-yourself.html",
-      "bytes": 16791,
-      "sha256": "370d0a1cbbbb8d9c5ac9970df09c583d204f477b8a53b5893cdbcb4eb20abd78"
+      "bytes": 18612,
+      "sha256": "cb2fd849dc8bf548f7286210fb7b4c54e8ab34e5569716ae8c4b9013d6704846"
     },
     {
       "path": "articles/this-single-decision-will-determine-most-of-your-life.html",
-      "bytes": 14243,
-      "sha256": "c7821096c46a73ab0b10890d2c8267efd2e7337ff09bbe19de943b54260e2f59"
+      "bytes": 16120,
+      "sha256": "69e866d12a18193439d30a117b127ef2cd72f5d79c0a68ba5f1a8aaccbb1f884"
     },
     {
       "path": "articles/value-creation-the-skill-that-built-my-one-person-business.html",
-      "bytes": 14278,
-      "sha256": "25d9a2b9322fc45d7c5312b02beffb3beb888f4894fd7aa01604e50a13f5ff3b"
+      "bytes": 16155,
+      "sha256": "340cb2b6411d3e7c549e741c4b6d819197d381099d9847c00538d7340f693868"
     },
     {
       "path": "articles/what-is-extraction.html",
-      "bytes": 16773,
-      "sha256": "6218fdb09da116ae2b5d2605db7ea7075c3920b70ffd9710db303512479785bf"
+      "bytes": 18527,
+      "sha256": "7423fd628417ca789c6653978ee6ae82ac1d9608f3877dc62f37b61540b86345"
     },
     {
       "path": "articles/what-mushrooms-taught-me-about-life-and-business.html",
-      "bytes": 14277,
-      "sha256": "56b8e42180302ffcba0bb6ca2126084b3295c75d10ae0d21b086d9720c6c4a5f"
+      "bytes": 16144,
+      "sha256": "14fcc51998c75635e07736bfa801bf4cfdd792e9eb03a05cc8e091865aff9409"
     },
     {
       "path": "articles/when-life-gets-hard-heres-how-you-push-through.html",
-      "bytes": 15277,
-      "sha256": "6551f83ce9826d63f1a88622d10284487dc9bca9daf0ab7813e8fbad83e26d39"
+      "bytes": 17672,
+      "sha256": "ffc9f89d1bc01120f2af2fd60f54901c8f4a5d15ae98e7d0b0656cf3f59055ed"
     },
     {
       "path": "articles/why-choosing-a-niche-is-stupid-for-intelligent-people.html",
-      "bytes": 15883,
-      "sha256": "6e501f7d93edfeeb3f00911137a0e8ed2f4ff213743536200842c5836b37b779"
+      "bytes": 17764,
+      "sha256": "58a24d5fa2e6f9ea299363731b9413fb48fe03fae0e85d739723e6125db47444"
     },
     {
       "path": "articles/why-fear-of-failure-is-ruining-your-life.html",
-      "bytes": 15554,
-      "sha256": "10cbf94dba8fed75c1ef111116dda87091a40252e3f4b80ec057e2e1e24de7df"
+      "bytes": 17401,
+      "sha256": "ec55d77ff1522cbbbf5ce4551ad322afd072f5bdbdde3d5ee3e9bb9a2ad91896"
     },
     {
       "path": "articles/why-micro-education-businesses-are-the-future-zero-dollars-to-start.html",
-      "bytes": 15493,
-      "sha256": "3df58c7985dd2d6aed553b8ebeffdfdc3947b1fb7a41b744939a97da91abc055"
+      "bytes": 15691,
+      "sha256": "28329d2ec3681caf589db3ed4c4790530d32cab6b9b525802b44c3f67a756b6f"
     },
     {
       "path": "articles/why-productivity-advice-is-ruining-your-life.html",
-      "bytes": 15743,
-      "sha256": "743b5db48bd98a4eeb40fe921f0c065c791ab55dd3f640ce134f9b016eee0aa7"
+      "bytes": 17615,
+      "sha256": "8e75f5478824faba96d5c368d9f345c6e148dc187b6b9e2f55d5e181c9025006"
     },
     {
       "path": "articles/why-self-help-is-ruining-your-life.html",
-      "bytes": 16574,
-      "sha256": "f0880f3731e567b7fc9e8a213fa5d641c1052dace5c9acd69a0a29acd8465432"
+      "bytes": 18527,
+      "sha256": "ab7e4b90172dfdffb9ef7e8e8a7ab1729cec55ab8123463d879a3932fbc11d9e"
     },
     {
       "path": "articles/why-you-always-feel-overwhelmed.html",
-      "bytes": 17379,
-      "sha256": "5a2a4e465ebb5ab605a97098205720b8e16eaf504d759f15bc46f2f42e47ca8c"
+      "bytes": 19258,
+      "sha256": "eb2cf465e85eda741372e83c60741b37a5781d48023a4c46787615c0eb757310"
     },
     {
       "path": "articles/why-you-cant-enjoy-life.html",
-      "bytes": 15868,
-      "sha256": "233df8e6dda7c7da98299a6f066aba61f2cfd9f2923a547d458743984fa3d905"
+      "bytes": 17733,
+      "sha256": "7876c7624319243ed760d9e9fcaead04cb3cb81df8806e824c5d0e1c7d0d989c"
     },
     {
       "path": "articles/why-you-fail-at-almost-everything-you-do.html",
-      "bytes": 17464,
-      "sha256": "fe4e87b1744df5254e15eeb0abe18e33d94cc8d88ebb433ada0849a4ef4b5204"
+      "bytes": 19782,
+      "sha256": "3d78a71958dbbebdf591a4110477dd9abbaabc13abc677bc43e8d1bb59dd1dfc"
     },
     {
       "path": "articles/why-you-struggle-to-make-money-and-7-lessons-to-change-that.html",
-      "bytes": 13572,
-      "sha256": "973e4c01e2bc237645b5ca3fa9248454833e9d9d44c979de1ac96545b5894d78"
+      "bytes": 13768,
+      "sha256": "831a6134b56d97719be0034debe898fad80e0e3c467022cb24c235096b048938"
     },
     {
       "path": "articles/why-you-wont-change-how-to-reinvent-yourself.html",
-      "bytes": 14174,
-      "sha256": "9d4017d15cdd1d97c938c3176c309d3806996d6221ed50ba9990574cab82f1f7"
+      "bytes": 16056,
+      "sha256": "0fe1ea0f38139fd1c9082aaaa3048f8955f38b8724e8c1ea72ce07eb0cc86423"
     },
     {
       "path": "articles/working-less-helps-you-make-more-money-the-4-hour-workday.html",
-      "bytes": 15450,
-      "sha256": "ea601535265186285bc64dec5b49d40fa051ad2f4e0f7499e6b326c6d3b77da3"
+      "bytes": 15646,
+      "sha256": "db2999c9263dd97770a2e64984937ba21b65edd26e34b385da891eedfa7f9ce4"
     },
     {
       "path": "articles/you-are-obligated-to-get-rich-in-your-20s.html",
-      "bytes": 15380,
-      "sha256": "40807d74ab6c3bd828df25309775a697b3ae588851698ac8460dabf15b89f42c"
+      "bytes": 15576,
+      "sha256": "22202a8a64dbee9a511f910dd31470562dc8a10d11fff3c118bd1b35c3752f89"
     },
     {
       "path": "articles/you-arent-successful-because-you-care-too-much-how-to-stop-caring.html",
-      "bytes": 16355,
-      "sha256": "9a0bd521497b9ef597ae51081e7b6c82612480b56952299624e73dbc87ba2d80"
+      "bytes": 18466,
+      "sha256": "31916d5a7f01ee23767980a18c2e10e0797ff72de1d8a5db3a40833cc0678ff4"
     },
     {
       "path": "articles/you-can-drastically-change-your-life-in-365-days-the-new-way-to-get-rich.html",
-      "bytes": 14472,
-      "sha256": "a64e3dc1bc33ed25db1b2e02eac0b63f44004f2a9fb0da17bcfbee849601db08"
+      "bytes": 16344,
+      "sha256": "8977e3495984ba6f6498a590341e4ba9efa844f880a7f1bdd8bcd5f6c6ae9e83"
     },
     {
       "path": "articles/you-can-learn-anything-in-2-weeks.html",
-      "bytes": 15172,
-      "sha256": "7f22a3e6661682ddd76f2ca3835ae846d81534d5f1547156fe022c338cc752cf"
+      "bytes": 17021,
+      "sha256": "bc908fe4c4ff47f44a44f2c98c1b09dc9b99233b5dd9faa587b2047ba0d3e674"
     },
     {
       "path": "articles/you-dont-need-a-niche-you-need-a-point-of-view.html",
-      "bytes": 15351,
-      "sha256": "8dadc63ea3c63f920c82a308796590a74b45c0647b78a9d5c3b30bd4ef5f6f0d"
+      "bytes": 17225,
+      "sha256": "7fc145b4051564b24486e792d5ace30511139a9d4c6f3f3cc61894f4d9160240"
     },
     {
       "path": "articles/you-have-100000-of-knowledge-trapped-in-your-brain.html",
-      "bytes": 16785,
-      "sha256": "2feb2f9ed664cc9474157290ebce95436920c5742a2258c4096284952d6b1884"
+      "bytes": 18874,
+      "sha256": "eeca345506a2087e33f4810a03eb02fb8f219a6286f0f725a47ab6e7efb90530"
     },
     {
       "path": "articles/you-have-about-36-months-to-make-it.html",
-      "bytes": 16126,
-      "sha256": "e82ef9a717ad6d47c6d00a73eb53d87ec70608a44197b6326e1f9cfd507f08a6"
+      "bytes": 18012,
+      "sha256": "a49b7a93a46230844f0d6dc0a1f6325a5cb5e11a7ecffba28002ceab68a15565"
     },
     {
       "path": "articles/you-need-to-be-extreme-if-you-want-your-life-to-change.html",
-      "bytes": 17409,
-      "sha256": "43d57f2ab3c79ab79e2d9a59e2c8898768c66f11c5964621381bfd6c63373e21"
+      "bytes": 19261,
+      "sha256": "fd1c76146be47099c21f4cf3bf232add55a99da2ede5c3503ceb7db17932be72"
     },
     {
       "path": "articles/you-wont-be-the-same-person-in-6-months-master-anything-fast.html",
-      "bytes": 15978,
-      "sha256": "a4ab43374996c088caf63810f6711c73ea54391fc46e5f56f6080201288e6e19"
+      "bytes": 18093,
+      "sha256": "f26751229a382f61d0fc6a77e8a36c74c34cd87a0a6e232cf7ab9c32326035f3"
     },
     {
       "path": "articles/zero-to-1-million-as-a-one-person-business-while-working-2-4-hours-per-day.html",
-      "bytes": 16679,
-      "sha256": "114a04af0b261f1f115ebb259bcdaa2e352cd1a4c04a44fa3e77f863c8840dbd"
+      "bytes": 16875,
+      "sha256": "32e7f3a939711a21eff3efffb26fae65bebd63d3adea3da6db9c33004296481d"
     },
     {
       "path": "articles/一人公司.html",
-      "bytes": 26484,
-      "sha256": "9e880f2e93898341dfd5ad4573126b9f69d7422844d364276cc60b5f91be2208"
+      "bytes": 26669,
+      "sha256": "875e12b1bb419c9df068648b669833b844ce6dbdd1ad740247ba55deb7bfedd1"
     },
     {
       "path": "articles/认知升级.html",
-      "bytes": 54822,
-      "sha256": "71b0407a7040c8512c464be08d8e75e1d87f7d7f0d288ca9ebc654e11ad20641"
+      "bytes": 55007,
+      "sha256": "3218335a6b723f307f5e86fa585e2c4da233d6d3757b045d5acd385312b2ecb3"
     },
     {
       "path": "articles/赚钱.html",
-      "bytes": 28808,
-      "sha256": "57ccb7114edb2733e2ff7407feac8403b3a9f1f90ab0b281571323940f78ee98"
+      "bytes": 28993,
+      "sha256": "2c7f08cd6559261b92dcda40adcefbc2329da3154325200413a091a2e999938e"
     },
     {
       "path": "articles/转型.html",
-      "bytes": 22052,
-      "sha256": "d4d4aa7335f43323f983773604106beef0ce1820c552c7c7deefdc94f6029f53"
+      "bytes": 22237,
+      "sha256": "907d0245a7eb3f94f20db5744becf349d4f209577ee922c5ca7e3a81d824c0b2"
     },
     {
       "path": "assets/assessment-v3/adaptive-diagnostic.js",
@@ -981,23 +981,23 @@
     },
     {
       "path": "assets/assessment-v3/integration.js",
-      "bytes": 93023,
-      "sha256": "ef6676b0cbf18d651bde535f88dce10414df1fb90b3feb8b31bbd39326d27287"
+      "bytes": 93035,
+      "sha256": "e8d3f8ce0b79281c0a8b31e5845ad6e5cf19d7101ac10dc0f72fa5a919143872"
     },
     {
       "path": "assets/assessment-v3/kevin-judgement.js",
-      "bytes": 87910,
-      "sha256": "cab5746a816b83ae00394af0fc5aa85fdc41479f3a6a6e12baed18a236bf2c76"
+      "bytes": 93315,
+      "sha256": "49f7c9b3e23d5c40fd078b68d1da80f64ceea91cb0e663e5e97f89000834f9c2"
     },
     {
       "path": "assets/assessment-v3/kevin-report-v1.js",
-      "bytes": 27459,
-      "sha256": "29219bd1efd1b6d703f835d5199e92a1bb873dc9c6359dbe75fc566289760fbe"
+      "bytes": 27936,
+      "sha256": "95d15db037c32de67dccddea9c9eb352e7bcc180bca2f1822d9af87c8361fb15"
     },
     {
       "path": "assets/assessment-v3/paid-flow-client.js",
-      "bytes": 11063,
-      "sha256": "f8fa2c29ca0d6eb89d152ce9535b9125655f11ad5298c657c5141f989db9875c"
+      "bytes": 15585,
+      "sha256": "ff2daf40bafea29422b8bc0b63cd4fe50172c3dd5e118bc92ccf05e2204fcdbc"
     },
     {
       "path": "assets/assessment-v3/paid-questionnaire-model.js",
@@ -1036,8 +1036,13 @@
     },
     {
       "path": "assets/assessment-v3/report-renderer.js",
-      "bytes": 30880,
-      "sha256": "e9c36210116d317165dda3e1df9dc79ff6ddd5e01a08020dbbf0c5c8877fb249"
+      "bytes": 27689,
+      "sha256": "c24a45a98c124cb1a30c2654caab29c274098070fcd2cc159ec84d5019af773e"
+    },
+    {
+      "path": "assets/assessment-v3/report-view.css",
+      "bytes": 6903,
+      "sha256": "f09daa1b4bc23ecd904b893c534a90bc358588dd668c1a56c2cc83ed3ef5707b"
     },
     {
       "path": "assets/assessment-v3/report.css",
@@ -1061,13 +1066,13 @@
     },
     {
       "path": "assets/experience-commercial-diagnostic.js",
-      "bytes": 118841,
-      "sha256": "aae50bb909b798aded48944dbd4998a58563d395da527f5983e77e19ee30ca39"
+      "bytes": 119203,
+      "sha256": "17f1c10d2aa07211ecab5d657faa49cba114b2db59b5ba1ab25a4cd47582383b"
     },
     {
       "path": "assets/experience-quiz-model.js",
-      "bytes": 29987,
-      "sha256": "54d1da74d4a1ba87b1c2c8aa694bda727d10ae7d25cd87d8eaa833b0db5a58a9"
+      "bytes": 30461,
+      "sha256": "f8ecb3974068ef3f22af4435c3547e28502481f99daf92055630792dc13b74e7"
     },
     {
       "path": "assets/fonts/OFL.txt",
@@ -1091,8 +1096,8 @@
     },
     {
       "path": "assets/kevin-analytics.js",
-      "bytes": 6194,
-      "sha256": "cae24bc85eb6f6338b4072c769051b4f5ef308c4cfe05651ff846ed43fbd1932"
+      "bytes": 7150,
+      "sha256": "e45fe44a2111e6a96e1e6f8fa5902f9550e14700ebbb8fa4340f408b09e338e4"
     },
     {
       "path": "assets/kevin-cases.css",
@@ -1101,8 +1106,8 @@
     },
     {
       "path": "assets/kevin-develop-9800.css",
-      "bytes": 4694,
-      "sha256": "5354a3fa45ee7f9efbd8c341435cbe7b51a1c202effa59ed4227bb6e3a20cc88"
+      "bytes": 5987,
+      "sha256": "093d6e3b5a204e3c4ec52fa8dde99b74cf7105902369869eadb02cf239091cd1"
     },
     {
       "path": "assets/kevin-enterprise-wechat-original.png",
@@ -1121,8 +1126,13 @@
     },
     {
       "path": "assets/kevin-premium.css",
-      "bytes": 382031,
-      "sha256": "91d9864a721022435bb59c0ca72c8015a5eb7dffa6f5aacdfadd6d9e4d28d6dc"
+      "bytes": 433023,
+      "sha256": "36233eabf4dd7c50ffdc8d155f5a1402bfd54afa6845ba1bdb9c4d9891742159"
+    },
+    {
+      "path": "assets/kevin-pricing.css",
+      "bytes": 6209,
+      "sha256": "cec5fc28f1f3eb336ce1d133114b1eef98767ac0720fe64be66f12849e7fcf38"
     },
     {
       "path": "assets/kevin-professional-web.jpg",
@@ -1141,33 +1151,43 @@
     },
     {
       "path": "assets/kevin-reading.css",
-      "bytes": 22231,
-      "sha256": "7e459bba6836c42c281ded96782ea5ad6e96c39e26e1a559c975f8cd45fe4168"
+      "bytes": 22703,
+      "sha256": "3ab5f945eb3838397901e88221fe8cd6830c43bbab3b57a38599b834f1c263e0"
+    },
+    {
+      "path": "assets/kevin-service-contact.css",
+      "bytes": 751,
+      "sha256": "c8cea9dbdee8d5899d85472b199a77fdbfdfcc6898e4cd852eb7f6cfc3db6ce8"
+    },
+    {
+      "path": "assets/kevin-service-delivery.css",
+      "bytes": 3516,
+      "sha256": "4fb69eed5b94d5f9d6df5db498005488730b1ac519d81e7383547d8b95230e4a"
     },
     {
       "path": "assets/kevin-site-header.css",
-      "bytes": 12191,
-      "sha256": "f5cc9fdf7f9439cd584d90b9c0956065ab0a9555694e2668663ab4a338adca79"
+      "bytes": 14657,
+      "sha256": "f8d80608d172ef7c61ca6d72594d8986ba189e2a91b1abacd35104c85c4acd2c"
     },
     {
       "path": "assets/kevin-tools.css",
-      "bytes": 12999,
-      "sha256": "1438607eace59487d2cced78604101472db78b379514d39d8314675df134f342"
+      "bytes": 14752,
+      "sha256": "65cbb23b82ae7dbb04232e4b5c6f79253cd826cd48fd071a69410536dbe64de6"
     },
     {
       "path": "assets/kevin-ui-v1.css",
-      "bytes": 170242,
-      "sha256": "2a13159e6df18c0cdfd6fbb8eb51469be7684778c5569a0d8f786eae2cd46688"
+      "bytes": 170943,
+      "sha256": "05115515401641a75b54e8e8ba8fb23cd0ee5bd6cda263819053fa67e7ad0800"
     },
     {
       "path": "assets/kevin-ui-v1.js",
-      "bytes": 8207,
-      "sha256": "06ebf42f0673f37237b76a6bc7c6e6c23d0b5fba636ce2600af94b966ed9825c"
+      "bytes": 9243,
+      "sha256": "94bb69023b50164313e7d2419e810d7562ea12d74b43227ec804ee90d4d758ea"
     },
     {
       "path": "assets/kevin-wechat-float.js",
-      "bytes": 9959,
-      "sha256": "58ebbd2d19cb57bf1ec544096506547527f51a31d43c989a4dd147f88d9d2b7f"
+      "bytes": 8620,
+      "sha256": "46461624591009471840ebbf2104ce6a1f3be726dcbedee93defa8501b1789e0"
     },
     {
       "path": "assets/knowledge-flowus-product-preview.png",
@@ -1250,14 +1270,39 @@
       "sha256": "07a1189e45421e431c56fa68a09fa0b0c22bdc52f56d70e663ed3c7d697bb23a"
     },
     {
+      "path": "assets/model-showcase/team-activation-model-circle-no-days.png",
+      "bytes": 1766846,
+      "sha256": "44886d3d69ff2f722c636244c92be307a0a844bb655881cff08f21e88d7b16cc"
+    },
+    {
+      "path": "assets/model-showcase/team-activation-model-circle-no-days.webp",
+      "bytes": 181128,
+      "sha256": "3f165e4b709a1337f7de67b4e31abf936bd94e31608b087c2aac795d89f1b2ac"
+    },
+    {
+      "path": "assets/model-showcase/work-registration.pdf",
+      "bytes": 4597124,
+      "sha256": "7dba1165557385cf064e97f0c307751e21228c30bb7fb663c47803b29761feb4"
+    },
+    {
+      "path": "assets/model-showcase/work-registration.png",
+      "bytes": 850299,
+      "sha256": "dec9c707f83e936cc6e8f57ebe3defe6780e93bf95fa18c84a8143342661c116"
+    },
+    {
+      "path": "assets/model-showcase/work-registration.webp",
+      "bytes": 199002,
+      "sha256": "3f682a55816e94bc87d9a182bbccfaa36d1de6d8ba979e3a8a626fb0ede1f4c2"
+    },
+    {
       "path": "assets/paid-diagnosis-model.js",
-      "bytes": 14927,
-      "sha256": "d83099bebedabc1e38f5908f5a3f88551c73e3e69777c2aa2d11297ac4b609dc"
+      "bytes": 14849,
+      "sha256": "6465191926f3363947f580bd393a5a16f58a21360d0d4dc28fbce961f67b3a4a"
     },
     {
       "path": "assets/prompts-app.js",
-      "bytes": 147662,
-      "sha256": "ef1af3ed0270242864fd4bfd5318f957463a73d353e5131834e962228daa81da"
+      "bytes": 151827,
+      "sha256": "a5427a92b2b147ae4f70f61cf11ac959ebf652a461bb413f8e747080b0a34782"
     },
     {
       "path": "assets/prompts-free-samples.json",
@@ -12861,8 +12906,8 @@
     },
     {
       "path": "assets/prompts-youmind.css",
-      "bytes": 50038,
-      "sha256": "40e17dac3d93025daa34faf1ea65d2a12dfc3596725a355a62db5e52e32d532e"
+      "bytes": 50945,
+      "sha256": "78aa5585966d094003e0c69600013184e62050cd5d73d3b17d862d184f566778"
     },
     {
       "path": "assets/vendor/ScrollTrigger.min.js",
@@ -12891,13 +12936,13 @@
     },
     {
       "path": "bootcamp/index.html",
-      "bytes": 5036,
-      "sha256": "61a6aa3ae33bc67062401915aa49efd540ddde454e6362b74b4a528d31a4c87c"
+      "bytes": 5026,
+      "sha256": "943bada9a55c7a20fd5767d644342977745060fcfa6b4947a62b791d65d12b28"
     },
     {
       "path": "cases/index.html",
-      "bytes": 25771,
-      "sha256": "61cbbbd28f8a8c813efec8da4112c13c3060120c9c255745e5fed9220fa47327"
+      "bytes": 26883,
+      "sha256": "d46d6afd4f62fdb01b875acd6b057f5df44f20f104bb1512e0657268779cce5e"
     },
     {
       "path": "config/prompts-catalog.mjs",
@@ -12906,8 +12951,8 @@
     },
     {
       "path": "develop-9800/index.html",
-      "bytes": 15982,
-      "sha256": "c2ca79a792e9ca94a798b37d42631cb1198d3ab39e8e6bef3978a77dbc387ada"
+      "bytes": 26133,
+      "sha256": "d97932909d1a9ec6b3f42cb43368e89653fe93bda5b7f9223d74e632163fe280"
     },
     {
       "path": "diagnosis-sample/assets/consultation-report-preview.png",
@@ -12916,48 +12961,48 @@
     },
     {
       "path": "diagnosis-sample/index.html",
-      "bytes": 35938,
-      "sha256": "cf2ff3fd8f7775efcdc4e9641ab519225c7d1eb70d5c55440d454b8c95a5c036"
+      "bytes": 39189,
+      "sha256": "9bc744ba55f9204d82175ad4ac9fea0884ad7c2469e1912af5a78492216a4365"
     },
     {
       "path": "fuye/35sui/index.html",
-      "bytes": 13093,
-      "sha256": "719a176963924593553301a5962ec00cc6b53ae3dd3ce2ccba4a26d14e659129"
+      "bytes": 13289,
+      "sha256": "ab27c363c64634ba2965ea657a2f6a6b5526e730bd3592d976dee5070c9d0b6f"
     },
     {
       "path": "fuye/admin.html",
-      "bytes": 122168,
-      "sha256": "102f1b7b5a7a509b93aa593b137d46b8b2f996e4609652a40ac516e685ad9126"
+      "bytes": 124821,
+      "sha256": "e6266b06d362e6f62121ab9b3c5c2d2eaf41dcc3c24ea8996cf55b3a806f9d60"
     },
     {
       "path": "fuye/beicai/index.html",
-      "bytes": 11572,
-      "sha256": "811abf8e16dcac463ea7af112ba9258bf34fe1a5d6e388e702cb8fd3b07dce3a"
+      "bytes": 11768,
+      "sha256": "8bc6247ecf34d46c79324b5b153dd0353a436613f87732cf38d38407509e6018"
     },
     {
       "path": "fuye/buxiang-dagong/index.html",
-      "bytes": 11821,
-      "sha256": "a13ff32014b7b21c2f934916d417f843e48fa09229dbb0178f0e2258cd69420e"
+      "bytes": 12017,
+      "sha256": "bc182eb5871451d120094787e26cad7604228a3fc72b42a3e68d0b9ec10c94f2"
     },
     {
       "path": "fuye/guide.html",
-      "bytes": 4661,
-      "sha256": "b5d4337d9f37e31258afcece5dab2d9c0a8883b486e5b0701dcd9cd054d21bdb"
+      "bytes": 4641,
+      "sha256": "4bbc4b82e2ab13de49b14e60a0f3f03dc6cf1955751800d2b2cf125d22ebfb1a"
     },
     {
       "path": "fuye/index.html",
-      "bytes": 63849,
-      "sha256": "c81cc79dd6a8369522c81a40043ef1f258fedf989436986dfc2a90a3539d3821"
+      "bytes": 64071,
+      "sha256": "478054f6fabd17d5194dce8e8be85ccdbf768cb37036bf4af231e56b8da789aa"
     },
     {
       "path": "fuye/jingyan-bianxian/index.html",
-      "bytes": 12029,
-      "sha256": "14c15187d5ff97046a1d331a653d7b91bc478a490dc548ca995bed84e90dffb9"
+      "bytes": 12225,
+      "sha256": "8479e40d81d778f1c460cf0ea2c0ab5b59efd1d6098f84606d80187635b68ae8"
     },
     {
       "path": "fuye/quiz/index.html",
-      "bytes": 63935,
-      "sha256": "6901ba179570743548e85224d43fd88de0c53a5c2046fc795aadba31da7a7326"
+      "bytes": 473,
+      "sha256": "56ee24288d4873f456fd61f6802f7da7dd0cb5ae1ea50b08e73a28f2980e4f50"
     },
     {
       "path": "google236b6dc46b3a6151.html",
@@ -12966,28 +13011,28 @@
     },
     {
       "path": "index.html",
-      "bytes": 90004,
-      "sha256": "f1d9a179c2679ffc22d5279169ff3ff7e1394cce02a95701965ba292813c583c"
+      "bytes": 92457,
+      "sha256": "3f4246ad544e7720e98081ea2dd1d8568cc591cc15b69e71df722274b199b37e"
     },
     {
       "path": "knowledge/index.html",
-      "bytes": 31299,
-      "sha256": "8c0d859c2c6e04ce95e4e7362e9b001d1b27a90789990f1a8cfbcb62469b4c2d"
+      "bytes": 32452,
+      "sha256": "c1004f56d4972721cd8696d523ce290f511a0e2fd6d2dc1874a8274a29345b09"
     },
     {
       "path": "llms-full.txt",
-      "bytes": 18527,
-      "sha256": "c03ff37669ae4db61f09d15d58656ec83fb9682e29a0178b12d487c5dd9a4b28"
+      "bytes": 18516,
+      "sha256": "ef3f7b457b032abc2e6c9a1b8b83e4e9cc156347512cf5a47ba771c9e174aa35"
     },
     {
       "path": "llms.txt",
-      "bytes": 7342,
-      "sha256": "e6d4fbe1720dfeccd6f1187df2949b0359b8a4b871502411291d0da8ca1e004b"
+      "bytes": 7331,
+      "sha256": "3ce3d432c3296744ace2626647ae96f8aadf15379ef83657055cd356555c374f"
     },
     {
       "path": "method/experience-asset-assessment/index.html",
-      "bytes": 17961,
-      "sha256": "f54836b88be07debfa2fcb699b3760dbd2d457315bea812f85feb804479b3a1e"
+      "bytes": 19692,
+      "sha256": "a42ec1144c29f9a0fc2ff8465f6cb11232ef3381af1e5cebe9cd8cb222d01860"
     },
     {
       "path": "package.json",
@@ -12996,13 +13041,18 @@
     },
     {
       "path": "preview/mobile-report-20260920/index.html",
-      "bytes": 75161,
-      "sha256": "67506bf763e3eda6b53480300dc746e7f2ea4aa6657ebf1c48b2369a320bbfcb"
+      "bytes": 75156,
+      "sha256": "c7bf758dcbaece3028920768248a6e268e650299179d18d1e8a9cb2f805390e9"
+    },
+    {
+      "path": "pricing/index.html",
+      "bytes": 20287,
+      "sha256": "f222a7b68b02a80b32f9391d5116d30188aa7700928a832028179862addc4000"
     },
     {
       "path": "privacy.html",
-      "bytes": 13772,
-      "sha256": "6d8d89fe7fed845e4cbe502359736623f62fbd1a019e3055b4ac785ad04c207b"
+      "bytes": 14014,
+      "sha256": "0f8bd908c67b15721f9bf369c37049791f0b5bbb7783dbe7a166ecc409889003"
     },
     {
       "path": "promo-1.html",
@@ -13026,13 +13076,13 @@
     },
     {
       "path": "prompts/image.html",
-      "bytes": 10263,
-      "sha256": "6909e84349570d1adace77fa5b6c99ab307bd0f24ee54a043872c7b6d9838a11"
+      "bytes": 10528,
+      "sha256": "08cad1a715ff8361aa9d515c7f060ad047dadb14f5faf210ab6da5c1090dce57"
     },
     {
       "path": "prompts/index.html",
-      "bytes": 10263,
-      "sha256": "6909e84349570d1adace77fa5b6c99ab307bd0f24ee54a043872c7b6d9838a11"
+      "bytes": 10528,
+      "sha256": "08cad1a715ff8361aa9d515c7f060ad047dadb14f5faf210ab6da5c1090dce57"
     },
     {
       "path": "prompts/previews/service-landing-page/index.html",
@@ -13041,13 +13091,13 @@
     },
     {
       "path": "prompts/video.html",
-      "bytes": 10263,
-      "sha256": "6909e84349570d1adace77fa5b6c99ab307bd0f24ee54a043872c7b6d9838a11"
+      "bytes": 10528,
+      "sha256": "08cad1a715ff8361aa9d515c7f060ad047dadb14f5faf210ab6da5c1090dce57"
     },
     {
       "path": "prompts/webpage.html",
-      "bytes": 10263,
-      "sha256": "6909e84349570d1adace77fa5b6c99ab307bd0f24ee54a043872c7b6d9838a11"
+      "bytes": 10528,
+      "sha256": "08cad1a715ff8361aa9d515c7f060ad047dadb14f5faf210ab6da5c1090dce57"
     },
     {
       "path": "prompts/wechat-pay.jpg",
@@ -13056,148 +13106,153 @@
     },
     {
       "path": "questions/35-plus-career-transition/index.html",
-      "bytes": 27968,
-      "sha256": "d8d92e4def156c994446ec017a37b4410941946ef04329f21d871895de60a6b0"
+      "bytes": 30194,
+      "sha256": "20b99981cee4344e84be7c18795de7829df2018b1233c4c78b5571c82f669b3d"
     },
     {
       "path": "questions/can-make-money-but-fit/index.html",
-      "bytes": 13969,
-      "sha256": "30a6c8cf4cd57d771cd075bcbff9024e0635318de939789e46d91caf419ed542"
+      "bytes": 16468,
+      "sha256": "b572a2ad43089b08839d9399025d585d62fb728a6701c6da9368b53c1fa122cd"
     },
     {
       "path": "questions/cannot-find-what-i-want/index.html",
-      "bytes": 14197,
-      "sha256": "dcd3047f5f01484112de27ae881d92fe163d2503bd89a00b9498addad3c45af9"
+      "bytes": 16985,
+      "sha256": "d458b324e2c897456c91bbd1921120266877e710b102c4ed532222b323187521"
     },
     {
       "path": "questions/career-experience-assets/index.html",
-      "bytes": 19242,
-      "sha256": "ba6a002677bc540cb91d7a2830e82b95f75b00fde3da18187ee5e8eda44652cf"
+      "bytes": 21573,
+      "sha256": "aa8fa7ba9d0df06672566731f2bb9b4444ee4172d328d54126a44e7845fc7a68"
     },
     {
       "path": "questions/experience-expression/index.html",
-      "bytes": 19320,
-      "sha256": "527c33ce9cbd50a4556a356c5e768a573d87d3331dfc2ad21a473e6c857d0afc"
+      "bytes": 21767,
+      "sha256": "53334aa55826273dd98487cf1733c97fa8101972bad8574f5af45a532ad966fc"
     },
     {
       "path": "questions/experience-to-consulting/index.html",
-      "bytes": 19330,
-      "sha256": "856d1e28e34400dee7d3719adf93f28381d6ff11ebc61704dd23255a9c20efed"
+      "bytes": 21666,
+      "sha256": "3db61cdd6c8723947e08b7fcb54f1a45c84b02bdbec8e1b972bbf7a0ff1cb863"
     },
     {
       "path": "questions/experience-to-product/index.html",
-      "bytes": 19381,
-      "sha256": "50e6cf57592fdfac6e28c55498278202d301563c511dfe87b13c9382e5f2569e"
+      "bytes": 21866,
+      "sha256": "f3c48b1e9a059938ec7c782804bf4304f5c7ae4a29d363676e7299bb17e3eb64"
     },
     {
       "path": "questions/experience-value-assessment/index.html",
-      "bytes": 27819,
-      "sha256": "63031f0f86d0a252c5a8e53dbde8c9412ace80e117d56cc220afc01e02a9e386"
+      "bytes": 30390,
+      "sha256": "b6d386326b0eb886423b8bfbd572ffd1cab78d5dde0fb87c804156ba854a0dd7"
     },
     {
       "path": "questions/free-experience-path-assessment/index.html",
-      "bytes": 19908,
-      "sha256": "a0295dcde6201b0cdc55b2c1889c4e62143d047c87ae6b092c6662061fb5908e"
+      "bytes": 22154,
+      "sha256": "c2a1e365592e5ebe9f75c45be11fd5f8088eab2e829afe8d2b131e11c7e7d349"
     },
     {
       "path": "questions/how-to-find-strengths/index.html",
-      "bytes": 15235,
-      "sha256": "9958a720c878b61aa706ed9f8d7665ff47bda08cc64a8ea38a1c696595ffc336"
+      "bytes": 18018,
+      "sha256": "781dba336a237e5d4ade884f437780b0721f5f40dc7910c51afdfa3a275e5b9c"
     },
     {
       "path": "questions/how-to-find-talent/index.html",
-      "bytes": 14335,
-      "sha256": "a268654eea687ea3294bbeabe2d6ba5b8f05d7e48a57b4c92bf67c3cb3b425c3"
+      "bytes": 16791,
+      "sha256": "59855318aabcc521cf84ebc2d946ec823e765b69fbabdff6df5fb16002fab9da"
     },
     {
       "path": "questions/how-to-find-transferable-skills/index.html",
-      "bytes": 13943,
-      "sha256": "f68873893c6bd00a455f281a23f431c4d9b63e06a6fcc56cae8bddd10d879e60"
+      "bytes": 16753,
+      "sha256": "e0500c26faa4778aecc08417daab818cfa5a6c24fc7659515018a4f5b0bf441a"
     },
     {
       "path": "questions/index.html",
-      "bytes": 21096,
-      "sha256": "4c6a6d04c1f11d2462e3a1cc499747200f2a28620a1ecf909c169e107c02d2cb"
+      "bytes": 23296,
+      "sha256": "f34d08c3fa268bcd418800b5b79153435787b7c70d50f2876ecc30638961cef7"
     },
     {
       "path": "questions/job-duties-to-evidence/index.html",
-      "bytes": 15349,
-      "sha256": "88accb3d2db3501a0b2b36fe4b3b21a1c8c1df9aa902c47e66b2eacdabc3a38d"
+      "bytes": 18038,
+      "sha256": "24ada82e16ae73b917bd3910502a7f2791cb097ab97e0c506aeb30a6a8661e5a"
     },
     {
       "path": "questions/low-cost-validation/index.html",
-      "bytes": 19238,
-      "sha256": "48d57b923724b8c24f276c101f9b972d24a5abc84e3c3f43eceb4f85276a6989"
+      "bytes": 22100,
+      "sha256": "3f79c9be16c0641226cebf5bba7125906fd630f226de9120d4ec20d451a00251"
     },
     {
       "path": "questions/manager-laid-off-next-step/index.html",
-      "bytes": 14099,
-      "sha256": "0d44e245fe1cad197e7ec3e076289e8dcba72338ddcd933d1a15bba1714df0aa"
+      "bytes": 16580,
+      "sha256": "1cbc6ae3b96deccd58ce0375aef2f32b86e8a4c01ecc3272c0041d6f4f1a6bcf"
     },
     {
       "path": "questions/midlife-unemployment-next-step/index.html",
-      "bytes": 19902,
-      "sha256": "7fe596d9f82809630cfa4fec1ef3d1cd33e645b611e0101a54f2a0c9533d6499"
+      "bytes": 22146,
+      "sha256": "9991050afb88dcfadd8b9de803f0b90e3fd4f359f22b08814e14d029943715bd"
     },
     {
       "path": "questions/no-core-competence-after-years/index.html",
-      "bytes": 14409,
-      "sha256": "7b7339f8b9f944e522dbdb187e372a785d5de3293e302223e4dbde7119397ebb"
+      "bytes": 16906,
+      "sha256": "828a930e23db032dad5a255bf0df47ce7c46cfc2abc2aabea944b80e38e88d67"
     },
     {
       "path": "questions/not-suitable-for-personal-ip/index.html",
-      "bytes": 19979,
-      "sha256": "f372473b25b8cdca7caa719f9f9eb668d1ed6213d9c0cffa2f44de0a9e7984af"
+      "bytes": 22611,
+      "sha256": "cba16b0cc661c830a9a5c9cb120f3e0f0f5b1ebf9c4e73a6ba523fd662081243"
     },
     {
       "path": "questions/one-person-company-fit/index.html",
-      "bytes": 19417,
-      "sha256": "749be49239074a358dc6ec18d5afb12edd6be326e942ffe9db85e3173c48116e"
+      "bytes": 22146,
+      "sha256": "c4dcefdb4ed483b3d9eefe903550aff7577179a1dd6e9279e41eda3584ae51f4"
     },
     {
       "path": "questions/quit-or-side-project-first/index.html",
-      "bytes": 14380,
-      "sha256": "1435c66db5ed0337c48883d9c061bee90e84e23cbe272c971bdd494fd865259f"
+      "bytes": 16945,
+      "sha256": "f201e8e32d1b44e27c84a199a65d3486c63ccb78263c970812c09ae23492e430"
     },
     {
       "path": "questions/save-money-before-course/index.html",
-      "bytes": 19345,
-      "sha256": "c3caf2b23a5711dbb67c4cdf6e5ce5e54293763a024e99e62a08975e0dd9c263"
+      "bytes": 21687,
+      "sha256": "27d86ee5838a422377c90e383b28f62d3085fd0d1ad94355f8c11adc884958a8"
     },
     {
       "path": "questions/second-growth-curve/index.html",
-      "bytes": 19216,
-      "sha256": "335cfcf1c794b761db3b784d65821ac94ff688469b15ce8c70754dbd9b4ae3d3"
+      "bytes": 21773,
+      "sha256": "a9bb1be53d363046829f31ba4c83c9e46384693318e8f570d80ab66eb44d1822"
     },
     {
       "path": "questions/side-business-fit/index.html",
-      "bytes": 19398,
-      "sha256": "5e45c539825acb9146a7183df4b7d6f16fdbf43ed36676c06cacbd22fc40c984"
+      "bytes": 21720,
+      "sha256": "8a6da5bb7bb3d3cb7d9c58079b1b3d88c90293046a92304f75e8dd512fabca97"
     },
     {
       "path": "questions/strength-assessment-useful/index.html",
-      "bytes": 14214,
-      "sha256": "44477c39e6172862710cb2042b5c420b55eb431b6bac6c72fa06db14475d7449"
+      "bytes": 16902,
+      "sha256": "fd30bc1c8f61bcd58a9f9978257d43b317fec278d47ed15a5b0516bc20cc8aae"
     },
     {
       "path": "questions/value-after-leaving-company/index.html",
-      "bytes": 14246,
-      "sha256": "fba675ba9fddbffa3e2f484c7e17ec1124628a4f0df8e445098acadd7e3d2a2d"
+      "bytes": 16814,
+      "sha256": "58157b0fc5a65a4f30fe53c4ca533d0ea2971e2477b077ea171db1bcf3a232cc"
     },
     {
       "path": "questions/what-work-fits-me/index.html",
-      "bytes": 16216,
-      "sha256": "dd4e644bbf4493ede0b59f79a69006f80ae353ccf182f8d4a57e89f6491a6a8b"
+      "bytes": 18637,
+      "sha256": "a9619b5e12d8d8caf775645b343df314576c5116a95ab033114111e5c845325f"
     },
     {
       "path": "questions/work-ten-years-lost/index.html",
-      "bytes": 27777,
-      "sha256": "71394c512502bd8d378cbb8853a612135131a1509d764dc517ba4d1c26c45741"
+      "bytes": 30239,
+      "sha256": "7e5889b175e92781c05cc4448622a17036881666349bb041635c1237ce595b59"
+    },
+    {
+      "path": "quiz/index.html",
+      "bytes": 68269,
+      "sha256": "47efbd125c66235ff45f533a6e3728ebd55b4cfbd65b078c507374bf257bf947"
     },
     {
       "path": "report/index.html",
-      "bytes": 291826,
-      "sha256": "88d5e43da8a3d92c1450ca26a1fc80be7ee4345db151e360d6bb495a0c7367c1"
+      "bytes": 262525,
+      "sha256": "867800f5bf913d7ffc1269f5dcac2bebbffde17e70729b0a2b762dda6cdcd848"
     },
     {
       "path": "robots.txt",
@@ -13206,8 +13261,8 @@
     },
     {
       "path": "sitemap.xml",
-      "bytes": 5589,
-      "sha256": "f53d73723f6e4015ff35409ccb79882bc433684d21ad83d3f491ff7e79e8520f"
+      "bytes": 27278,
+      "sha256": "249e1c89bce7e62a567598a8bfad50c38c285f25e54a59aa2dc56339e1536663"
     }
   ]
 }

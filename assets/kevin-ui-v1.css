@@ -6085,7 +6085,7 @@ body.kv-diagnosis-sample.kv-diagnosis-bplus .kv-case-judgement > div b {
     padding: 0 0 52px !important;
   }
 
-  body.kv-diagnosis-sample.kv-diagnosis-bplus .diagnosis-hero h1 {
+  body.kv-diagnosis-sample.kv-diagnosis-bplus .diagnosis-hero h1:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     line-break: auto !important;
   }
 
@@ -6447,6 +6447,9 @@ body.kv-tools-v1[data-kevin-ui="v1"] #tool-list .kt-tool-row h2 {
   font-size: clamp(30px, 2.55vw, 36px) !important;
   font-weight: 650 !important;
   line-height: 1.16 !important;
+}
+
+body.kv-tools-v1[data-kevin-ui="v1"] #tool-list .kt-tool-row h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
   white-space: nowrap;
 }
 
@@ -6685,6 +6688,9 @@ body.kv-article-category-v1[data-kevin-ui="v1"] .all-articles .links a:hover .ar
 
   body.kv-tools-v1[data-kevin-ui="v1"] #tool-list .kt-tool-row h2 {
     font-size: 30px !important;
+  }
+
+  body.kv-tools-v1[data-kevin-ui="v1"] #tool-list .kt-tool-row h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     white-space: normal;
   }
 
@@ -6718,6 +6724,9 @@ body.kv-question-v1 .stop-block > div > .search-kicker {
   body.kv-fuye-entry.kv-conversion-v1 .page > .two-cta > .cta-block h2 {
     font-size: 22px !important;
     line-height: 1.35 !important;
+  }
+
+  body.kv-fuye-entry.kv-conversion-v1 .page > .two-cta > .cta-block h2:where(:not(body[data-reading-template]:not([data-reading-template="home"]):not([data-reading-template="prompts"]) *)) {
     overflow-wrap: anywhere;
     word-break: normal;
   }

@@ -24,6 +24,50 @@
   function invalid(){throw new PaidFlowError('INVALID_PAID_RESPONSE');}
   function object(v){return v&&typeof v==='object'&&!Array.isArray(v);}
   function keys(v,allowed,required){if(!object(v)||Object.keys(v).some(k=>allowed.indexOf(k)<0)||(required||allowed).some(k=>!Object.prototype.hasOwnProperty.call(v,k)))invalid();}
+  function safeReportValue(value,depth){
+    if(depth>12)invalid();
+    if(typeof value==='string'){if(value.length>12000)invalid();return;}
+    if(typeof value==='number'){if(!Number.isFinite(value))invalid();return;}
+    if(value===null||typeof value==='boolean')return;
+    if(Array.isArray(value)){if(value.length>200)invalid();value.forEach(x=>safeReportValue(x,depth+1));return;}
+    if(!object(value))invalid();
+    Object.keys(value).forEach(k=>{if(['__proto__','constructor','prototype','password','apiKey','providerMetadata','answerSnapshot','normalizedAnswers'].includes(k))invalid();safeReportValue(value[k],depth+1);});
+  }
+  function presentation(value){
+    var fields=['schemaVersion','origin','goal','facts','stage','paths','serviceHypothesis','sevenDay','scripts','decisionRules','thirtyDay','help','cost','boundaries','scores','coverage'];
+    keys(value,fields,fields.filter(k=>k!=='origin'));
+    if(value.schemaVersion!=='assessment-customer-presentation-v1')invalid();
+    safeReportValue(value,0);
+    var goal=value.goal;
+    keys(goal,['question','intent','matchStatus','answer','canAnswer','cannotAnswer','clarifications']);
+    if(!['time_allocation','career','internal','defer','clarification','commercial'].includes(goal.intent)
+      ||!['partial','insufficient','matched'].includes(goal.matchStatus)
+      ||!['question','answer'].every(k=>typeof goal[k]==='string'&&goal[k].trim())
+      ||!['canAnswer','cannotAnswer','clarifications'].every(k=>Array.isArray(goal[k])&&goal[k].every(x=>typeof x==='string')))invalid();
+    if(!Array.isArray(value.facts)||!object(value.stage)||!object(value.paths)||!object(value.serviceHypothesis)
+      ||!object(value.sevenDay)||!Array.isArray(value.sevenDay.steps)||!Array.isArray(value.sevenDay.worksheet)
+      ||!Array.isArray(value.sevenDay.constraints)||!object(value.decisionRules)||!object(value.thirtyDay)
+      ||!Array.isArray(value.thirtyDay.steps)||!object(value.help)||!object(value.cost)||!Array.isArray(value.boundaries))invalid();
+    var kinds=['moments','interview','trialInvite','rejectionFollowup'];
+    if(!Array.isArray(value.scripts)||value.scripts.length!==4)invalid();
+    value.scripts.forEach(x=>{keys(x,['kind','status','scenario','audience','purpose','body','conditions']);
+      if(!kinds.includes(x.kind)||!['available','needs_input','not_applicable'].includes(x.status)
+        ||!['scenario','audience','purpose','body'].every(k=>typeof x[k]==='string')||!Array.isArray(x.conditions)
+        ||x.conditions.some(t=>typeof t!=='string')||(x.status==='available'&&!x.body.trim()))invalid();});
+    if(new Set(value.scripts.map(x=>x.kind)).size!==4)invalid();
+    if(!Array.isArray(value.coverage)||value.coverage.length!==16||new Set(value.coverage.map(x=>x.id)).size!==16
+      ||value.coverage.some(x=>!/^0[1-9]$|^1[0-6]$/.test(x.id)||typeof x.label!=='string'||typeof x.reason!=='string'||typeof x.status!=='string'))invalid();
+    var scores=value.scores;
+    keys(scores,['status','scaleVersion','basis','items','note']);
+    if(!['available','insufficient'].includes(scores.status)||!Array.isArray(scores.items)||typeof scores.note!=='string')invalid();
+    if(scores.status==='available'){
+      if(!scores.scaleVersion||scores.items.length!==6||new Set(scores.items.map(x=>x.key)).size!==6)invalid();
+      scores.items.forEach(x=>{keys(x,['key','label','raw','max','percent']);if(!reportScoreKeys.includes(x.key)
+        ||!['raw','max','percent'].every(k=>typeof x[k]==='number'&&Number.isFinite(x[k]))||x.raw<0||x.max<=0||x.raw>x.max
+        ||Math.abs(x.percent-Math.round(x.raw/x.max*1000)/10)>.001)invalid();});
+    }else if(scores.items.length)invalid();
+    return value;
+  }
   function session(id){if(typeof id!=='string'||!SID.test(id))throw new PaidFlowError('INVALID_SESSION');return id;}
   function detectPaidFlow(location){try{var p=new URL(location.href).searchParams;return p.get('from')==='miniprogram'&&p.get('flow')==='miniapp_paid_report_v1'&&p.get('assessment_version')==='assessment-v3-adaptive-v1';}catch(e){return false;}}
   function stable(v){if(Array.isArray(v))return v.map(stable);if(!object(v))return v;var out={};Object.keys(v).sort().forEach(k=>out[k]=stable(v[k]));return out;}
@@ -73,14 +117,16 @@
     var documentValue=b.assessment_v3_report_document,memo=documentValue&&documentValue.decisionMemo;
     if(b.session_id!==id||b.access_granted!==true||b.access_source!=='payment'||b.paid!==1||(b.measurement_code!==null&&!MEASUREMENT_CODE.test(b.measurement_code))||b.assessment_v3_report_status!=='ready'||!object(documentValue)||documentValue.schemaVersion!=='assessment-report-v1'||!object(documentValue.modules)||(memo!==undefined&&(!object(memo)||!['assessment-decision-memo-v1','assessment-decision-memo-v2'].includes(memo.schemaVersion))))invalid();
     if(Object.prototype.hasOwnProperty.call(b,'result_scores')){keys(b.result_scores,reportScoreKeys);if(reportScoreKeys.some(k=>!Number.isFinite(Number(b.result_scores[k]))))invalid();}
-    keys(documentValue,['schemaVersion','inputFingerprint','decisionMemo','modules'],['schemaVersion','modules']);
+    keys(documentValue,['schemaVersion','inputFingerprint','decisionMemo','modules','presentation','scoreSnapshot'],['schemaVersion','modules']);
+    if(documentValue.presentation!==undefined)presentation(documentValue.presentation);
+    if(documentValue.scoreSnapshot!==undefined){var score=documentValue.scoreSnapshot;keys(score,['scaleVersion','source','raw','max']);keys(score.raw,reportScoreKeys);keys(score.max,reportScoreKeys);if(typeof score.scaleVersion!=='string'||typeof score.source!=='string'||reportScoreKeys.some(k=>typeof score.raw[k]!=='number'||!Number.isFinite(score.raw[k])||typeof score.max[k]!=='number'||!Number.isFinite(score.max[k])||score.max[k]<=0||score.raw[k]<0||score.raw[k]>score.max[k]))invalid();}
     if(memo){
       keys(memo,memo.schemaVersion==='assessment-decision-memo-v2'?['schemaVersion','verdict','decisionBasis','known','unknown','action','boundary']:['schemaVersion','verdict','known','unknown','action','boundary']);
       if(memo.schemaVersion==='assessment-decision-memo-v2'){
         if(!Array.isArray(memo.decisionBasis)||memo.decisionBasis.length<1||memo.decisionBasis.length>4)invalid();
         memo.decisionBasis.forEach(item=>{
-          keys(item,['label','fact','effect','sourceFields','evidenceRefs']);
-          if(!['label','fact','effect'].every(field=>typeof item[field]==='string'&&item[field].trim())||!Array.isArray(item.sourceFields)||item.sourceFields.length<1||item.sourceFields.some(field=>typeof field!=='string'||!field.trim())||!Array.isArray(item.evidenceRefs)||item.evidenceRefs.some(id=>typeof id!=='string'||!id.trim()))invalid();
+          keys(item,['label','fact','effect','sourceFields','evidenceRefs'],['label','fact','effect']);
+          if(!['label','fact','effect'].every(field=>typeof item[field]==='string'&&item[field].trim())||(item.sourceFields!==undefined&&(!Array.isArray(item.sourceFields)||item.sourceFields.some(field=>typeof field!=='string'||!field.trim())))||(item.evidenceRefs!==undefined&&(!Array.isArray(item.evidenceRefs)||item.evidenceRefs.some(id=>typeof id!=='string'||!id.trim()))))invalid();
         });
       }
     }

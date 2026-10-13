@@ -1,492 +1,217 @@
 (function(root, factory) {
-  var api = factory();
+  var api = factory(root);
   if (typeof module === 'object' && module.exports) module.exports = api;
   root.KevinAssessmentReportRenderer = api;
-}(typeof globalThis !== 'undefined' ? globalThis : this, function() {
+}(typeof globalThis !== 'undefined' ? globalThis : this, function(root) {
   'use strict';
-
-  function escapeHtml(value) {
-    return String(value == null ? '' : value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
+  var keys = ['content', 'consulting', 'knowledge', 'template', 'service', 'coaching'];
+  var labels = ['内容表达', '咨询服务', '知识产品', '模板工具', '标准服务', '陪跑辅导'];
+  var moduleLabels = ['是否建议现在做', '为什么这样判断', '最大误判与暂缓事项', '信息不足提醒', '优先、备用与暂缓路径', '第一版服务假设', '七天验证清单', '四类沟通话术', '自行研究的方法', '人工方向诊断', '深度服务准备条件', '真实卡点', '试错成本', '六维路径倾向', '现状与验证比较', '验证后的三十天'];
+  var scriptKinds = ['moments', 'interview', 'trialInvite', 'rejectionFollowup'];
+  var scriptNames = ['朋友圈验证文案', '私聊访谈话术', '低价试单邀请', '被拒绝后的追问'];
+  function arr(value) { return Array.isArray(value) ? value.filter(Boolean) : []; }
+  function str(value) { return typeof value === 'string' ? value.trim() : ''; }
+  function escapeHtml(value) { return String(value == null ? '' : value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+  function txt(value, fallback) { return escapeHtml(str(value) || fallback || ''); }
+  function para(value, cls) { return str(value) ? '<p' + (cls ? ' class="' + cls + '"' : '') + '>' + txt(value) + '</p>' : ''; }
+  function bullets(values, empty) { var items = arr(values); return items.length ? '<ul>' + items.map(function(item) { return '<li>' + txt(typeof item === 'string' ? item : item.text || item.label || item.statement) + '</li>'; }).join('') + '</ul>' : para(empty || '历史报告未保存这项内容，当前不能补作个性化判断。', 'krv-muted'); }
+  function dl(entries) { return '<dl class="krv-dl">' + entries.filter(function(item) { return str(item[1]); }).map(function(item) { return '<div><dt>' + txt(item[0]) + '</dt><dd>' + txt(item[1]) + '</dd></div>'; }).join('') + '</dl>'; }
+  function status(value) { return ({ available: '有依据', present: '有依据', self_reported: '本次自述', hypothesis: '待验证假设', conditional: '满足条件后', needs_input: '资料不足', insufficient: '资料不足', not_applicable: '当前不适用', missing: '资料不足', partial: '部分可回答', historical: '历史已有内容' })[value] || '待核对'; }
+  function badge(value) { return '<span class="krv-status">' + txt(status(value)) + '</span>'; }
+  function chapter(id, n, title, body) { return '<section class="krv-chapter" id="report-' + id + '" data-report-block="' + id + '"><header class="krv-chapter-head"><span>' + n + '</span><h2>' + title + '</h2></header>' + body + '</section>'; }
+  function unique(values) { var seen = Object.create(null); return arr(values).filter(function(v) { var key = str(typeof v === 'string' ? v : v.text); if (!key || seen[key]) return false; seen[key] = true; return true; }); }
+  function missingLabel(value) {
+    if (str(value.label)) return value.label;
+    var name = ({ case: '真实事件的背景、动作和结果', external_result: '可核对的外部结果', demand: '真实需求或求助信号', payment: '真实付费证据', repeat_delivery: '重复交付或复购证据' })[value.field];
+    if (value.reason === 'incident_not_structured') return '真实事件尚未形成完整事实链';
+    if (name) return name + (value.reason === 'explicitly_absent' ? '：本次回答明确表示暂时没有' : '：本次回答尚未提供');
+    return /[一-鿿]/.test(value.reason || '') ? value.reason : '本次回答有一项关键信息需要补充';
   }
-
-  function text(value, fallback) {
-    var clean = typeof value === 'string' ? value.trim() : '';
-    return escapeHtml(clean || fallback || '');
-  }
-
-  function reportTitle(value, fallback) {
-    var clean = typeof value === 'string' ? value.trim() : '';
-    clean = clean
-      .replace(/<\/span>\s*<span\b[^>]*>/gi, ' ')
-      .replace(/<\/?span\b[^>]*>/gi, '')
-      .replace(/个人经验\s+个人经验/g, '个人经验')
-      .trim();
-    return text(clean, fallback || '19.9 元完整自动报告');
-  }
-
-  function list(values, renderItem, emptyText) {
-    var items = Array.isArray(values) ? values.filter(Boolean) : [];
-    if (!items.length) return '<p class="assessment-report-v1__empty">' + text(emptyText, '本次回答中没有更多可确认信息。') + '</p>';
-    return '<ul class="assessment-report-v1__list">' + items.map(renderItem).join('') + '</ul>';
-  }
-
-  function uniqueFacts(values, limit) {
-    var seen = Object.create(null);
-    return (Array.isArray(values) ? values : []).filter(function(item) {
-      if (!item || typeof item !== 'object') return false;
-      var source = typeof item.sourceQuote === 'string' ? item.sourceQuote : '';
-      var value = source || (typeof item.text === 'string' ? item.text : '');
-      var key = value.replace(/\s+/g, '').trim();
-      if (!key || seen[key]) return false;
-      seen[key] = true;
-      return true;
-    }).slice(0, limit || 6);
-  }
-
-  function missingInformationLabel(entry) {
-    var item = entry && typeof entry === 'object' ? entry : {};
-    var label = typeof item.label === 'string' ? item.label.trim() : '';
-    if (/[一-鿿]/.test(label)) return label;
-    var reason = typeof item.reason === 'string' ? item.reason.trim() : '';
-    var field = typeof item.field === 'string' ? item.field.trim() : '';
-    var fieldLabels = {
-      case: '真实事件的背景、动作和结果',
-      external_result: '可核对的外部结果',
-      demand: '真实需求或求助信号',
-      payment: '真实付费证据',
-      repeat_delivery: '重复交付或复购证据'
+  // A display adapter only: it preserves saved prose and never reasons over customer answers.
+  function historicalPresentation(documentValue, options) {
+    var m = documentValue.modules || {}, memo = documentValue.decisionMemo || {};
+    var summary = m.executiveSummary || {}, asset = m.assetAssessment || {}, stage = m.stageDiagnosis || {}, task = m.validationTask || {}, action = memo.action || {}, bounds = m.boundaries || {};
+    var verdict = memo.verdict || {}, priority = m.priorityPath || {};
+    var savedFacts = unique(arr(m.understoodFacts).concat(arr(memo.known)));
+    var facts = savedFacts.map(function(item) { return { text: item.text, interpretation: '', limitation: item.limitation || '' }; });
+    arr(memo.decisionBasis).forEach(function(item) { facts.push({ text: item.fact, interpretation: item.effect, limitation: '' }); });
+    var steps = arr(task.steps).map(function(step) { return { title: step, action: '', doneWhen: '' }; });
+    arr(m.actionChecklist).forEach(function(item) { steps.push({ title: item.text, action: '', doneWhen: item.doneWhen }); });
+    arr(action.steps).forEach(function(step) { if (!steps.some(function(item) { return item.title === step; })) steps.push({ title: step }); });
+    var unknown = arr(memo.unknown).map(function(item) { return [item.text, item.impact].filter(Boolean).join('；'); });
+    unknown = unique(unknown.concat(arr(bounds.missingInformation).map(missingLabel), arr(stage.gaps).map(function(item) { return item.label; })));
+    var boundaryText = arr(bounds.cautions).map(function(item) { return item.statement || item.text; }).concat(arr(bounds.hypotheses).map(function(item) { return item.label || item.description || item.text; }), [memo.boundary, bounds.intro]);
+    return { schemaVersion: 'assessment-customer-presentation-v1', origin: 'historical_adapter',
+      goal: { question: '', answer: [verdict.label, verdict.statement, summary.explanation].filter(Boolean).join('。'), cannotAnswer: unknown }, facts: facts,
+      stage: { label: (stage.stage || summary.stage || {}).label, bottleneck: (stage.bottleneck || summary.bottleneck || {}).label, meaning: [asset.explanation, (asset.primary || summary.primaryAsset || {}).label, (asset.primary || {}).description, (summary.primaryAsset || {}).description, stage.explanation].filter(Boolean).join('；') },
+      paths: { primary: { title: priority.label, reason: priority.explanation || priority.rationale }, deferred: arr(m.deferredPaths).map(function(item) { return { title: item.label, reason: item.explanation || item.rationale }; }) },
+      serviceHypothesis: { status: 'needs_input', missing: ['历史报告未保存服务对象、问题、交付物及价格假设。'] },
+      sevenDay: { steps: steps, worksheet: arr(action.worksheet), notes: [task.intro, task.goal, task.script, task.completionCriteria, action.title, action.why, action.doneWhen, action.stopRule, summary.nextStep].filter(Boolean) },
+      scripts: scriptKinds.map(function(kind) { return { kind: kind, status: 'needs_input', scenario: '历史报告未保存独立的场景、对象与对外沟通正文。', conditions: [] }; }),
+      decisionRules: { continue: action.doneWhen || task.completionCriteria, stop: action.stopRule }, thirtyDay: { status: 'needs_input' }, help: {}, cost: {}, boundaries: unique(boundaryText),
+      scores: historicalScores(options.resultScores, options.quizModel || root.KevinQuizModel),
+      coverage: moduleLabels.map(function(label, index) { return { id: String(index + 1).padStart(2, '0'), label: label, status: [1,2,3,4,5,7,12,14,15].indexOf(index + 1) >= 0 ? 'historical' : 'needs_input', reason: [1,2,3,4,5,7,12,14,15].indexOf(index + 1) >= 0 ? '保留已保存判断、事实与行动；缺项就近说明。' : '历史报告未保存该项的完整内容。' }; }),
+      legacyExtras: { strengths: arr(stage.strengths).concat(summary.primaryStrength ? [summary.primaryStrength] : []), candidates: arr(asset.candidates).filter(function(item) { return item.id !== (asset.primary || {}).id; }), confirmed: arr(bounds.confirmed).filter(function(item) { return !savedFacts.some(function(fact) { return fact.text === item.text; }); }), conflicts: arr(bounds.conflicts) }
     };
-    if (reason === 'incident_not_structured') return '真实事件尚未形成完整事实链';
-    if (fieldLabels[field] && reason === 'explicitly_absent') return fieldLabels[field] + '：本次回答明确表示暂时没有';
-    if (fieldLabels[field] && reason === 'not_provided') return fieldLabels[field] + '：本次回答尚未提供';
-    if (fieldLabels[field]) return fieldLabels[field] + '仍需补充';
-    var reasonLabels = {
-      explicitly_absent: '本次回答明确表示暂时没有相关证据',
-      not_provided: '本次回答未提供相关信息'
-    };
-    if (reasonLabels[reason]) return reasonLabels[reason];
-    if (/[一-鿿]/.test(reason)) return reason;
-    if (/[一-鿿]/.test(field)) return field;
-    return '本次回答仍有一项关键信息需要补充';
   }
-
-  function section(number, title, body, modifier) {
-    return '<section class="assessment-report-v1__section assessment-report-v1__section--' + text(modifier || number) + '">' +
-      '<header class="assessment-report-v1__section-head"><span>' + text(number) + '</span><h2>' + text(title) + '</h2></header>' +
-      '<div class="assessment-report-v1__section-body">' + body + '</div></section>';
+  function historicalScores(source, model) {
+    return { status: 'historical', items: keys.map(function(key, i) { return { key: key, label: labels[i], raw: source && source[key], max: model && model.typeMax && model.typeMax[key] }; }), basis: '原始分 ÷ 该路径量表上限', note: '历史评分使用当前量表定义。缺少量表上限时不换算比例。' };
   }
-
-  function labelled(label, value, state) {
-    if (!value) return '';
-    return '<article class="assessment-report-v1__metric' + (state ? ' is-' + text(state) : '') + '"><small>' +
-      text(label) + '</small><strong>' + text(value) + '</strong></article>';
-  }
-
-  function reportHeader(options) {
-    var time = text(options.time);
-    var reportIdentity = options.reportId ? '报告编号 ' + text(options.reportId) : '本次报告';
-    return '<header class="assessment-report-v1__header"><p class="assessment-report-v1__eyebrow">个人经验决策报告</p><h1>' +
-      reportTitle(options.title, '19.9 元完整自动报告') + '</h1><div class="assessment-report-v1__meta">' +
-      (time ? '<span>' + time + '</span>' : '') + '<span>' + reportIdentity + '</span></div></header>';
-  }
-
-  function renderExecutiveSummary(value) {
-    var item = value || {};
-    var asset = item.primaryAsset || {};
-    var stage = item.stage || {};
-    var strength = item.primaryStrength || {};
-    var bottleneck = item.bottleneck || {};
-    return '<p class="assessment-report-v1__lead">' + text(item.explanation, asset.description || '先从已经确认的事实开始。') + '</p>' +
-      '<div class="assessment-report-v1__metrics">' +
-      labelled('当前经验资产', asset.label || asset.description, 'confirmed') +
-      labelled('当前阶段', stage.label, 'confirmed') +
-      labelled('当前优势', strength.label, 'confirmed') +
-      labelled('核心卡点', bottleneck.label, 'missing') +
-      labelled('下一步', item.nextStep, 'action') + '</div>';
-  }
-
-  function renderFacts(values) {
-    return list(uniqueFacts(values, 6), function(item) {
-      return '<li><span class="assessment-report-v1__state is-confirmed">已确认</span><p>' + text(item && item.text) + '</p></li>';
-    }, '本次回答中没有更多可确认信息。');
-  }
-
-  function renderAssets(value) {
-    var item = value || {};
-    var primary = item.primary || {};
-    var candidates = Array.isArray(item.candidates) ? item.candidates : [];
-    var html = '<p>' + text(item.explanation, '经验资产判断仍需后续验证。') + '</p>';
-    html += labelled('当前主线', primary.label || primary.description, primary.status === 'hypothesis_only' ? 'hypothesis' : 'confirmed');
-    html += list(candidates.filter(function(candidate) { return candidate && candidate.id !== primary.id; }), function(candidate) {
-      return '<li><span class="assessment-report-v1__state is-hypothesis">待验证</span><p><strong>' +
-        text(candidate.label) + '</strong>' + (candidate.description ? '<br>' + text(candidate.description) : '') + '</p></li>';
-    }, '当前先聚焦一条经验主线，不并行扩展其他方向。');
-    return html;
-  }
-
-  function renderStage(value) {
-    var item = value || {};
-    var html = '<p>' + text(item.explanation) + '</p><div class="assessment-report-v1__metrics">';
-    html += labelled('阶段', item.stage && item.stage.label, 'confirmed');
-    html += labelled('核心卡点', item.bottleneck && item.bottleneck.label, 'missing');
-    html += '</div><div class="assessment-report-v1__columns"><div><h3>当前优势</h3>';
-    html += list(item.strengths, function(entry) { return '<li><p>' + text(entry && entry.label) + '</p></li>'; }, '尚未形成稳定优势结论。');
-    html += '</div><div><h3>关键缺口</h3>';
-    html += list(item.gaps, function(entry) { return '<li><p>' + text(entry && entry.label) + '</p></li>'; }, '当前没有额外缺口。');
-    html += '</div></div>';
-    return html;
-  }
-
-  function renderPriorityPath(value) {
-    var item = value || {};
-    return '<article class="assessment-report-v1__priority"><span>当前只推进这一条</span><h3>' +
-      text(item.label) + '</h3><p>' + text(item.explanation, item.rationale) + '</p></article>';
-  }
-
-  function renderDeferredPaths(values) {
-    return list(values, function(item) {
-      return '<li><span class="assessment-report-v1__state is-deferred">暂缓</span><p><strong>' + text(item && item.label) +
-        '</strong><br>' + text(item && item.explanation, item && item.rationale) + '</p></li>';
-    }, '本次没有额外需要暂缓的路径。');
-  }
-
-  function renderValidationTask(value, actionLabel) {
-    var item = value || {};
-    var html = '<article class="assessment-report-v1__task"><small>当前行动</small><h3>' + text(actionLabel, item.goal || item.title) + '</h3><p>' +
-      text(item.intro) + '</p>';
-    if (item.script) html += '<details class="decision-report__script-details"><summary>查看可直接使用的话术</summary><blockquote>' + text(item.script) + '</blockquote></details>';
-    html += list(item.steps, function(step) { return '<li><p>' + text(step) + '</p></li>'; }, '按行动清单完成当前验证。');
-    if (item.completionCriteria) html += '<div class="assessment-report-v1__done"><strong>完成标准</strong><p>' + text(item.completionCriteria) + '</p></div>';
-    return html + '</article>';
-  }
-
-  function renderChecklist(values) {
-    return list(values, function(item, index) {
-      return '<li class="assessment-report-v1__check"><span>' + text(item && item.order, index + 1) + '</span><div><p>' +
-        text(item && item.text) + '</p>' + (item && item.doneWhen ? '<small>做到什么算完成：' + text(item.doneWhen) + '</small>' : '') + '</div></li>';
-    }, '当前没有额外行动项。');
-  }
-
-  function renderBoundaries(value) {
-    var item = value || {};
-    var html = '<p>' + text(item.intro, '以下边界用于避免把线索写成已经成立的结论。') + '</p>';
-    html += '<div class="assessment-report-v1__boundary-grid">';
-    html += '<article class="is-confirmed"><h3>已确认</h3>' + list(item.confirmed, function(entry) { return '<li><p>' + text(entry && entry.text) + '</p></li>'; }) + '</article>';
-    html += '<article class="is-hypothesis"><h3>仍是假设</h3>' + list(item.hypotheses, function(entry) { return '<li><p>' + text(entry && (entry.label || entry.description || entry.text)) + '</p></li>'; }) + '</article>';
-    html += '<article class="is-missing"><h3>仍缺信息</h3>' + list(item.missingInformation, function(entry) { return '<li><p>' + text(missingInformationLabel(entry)) + '</p></li>'; }) + '</article>';
-    html += '</div>';
-    if (item.conflicts && item.conflicts.length) {
-      html += '<div class="assessment-report-v1__conflicts"><h3>需要先核对的矛盾回答</h3>' + list(item.conflicts, function(entry) { return '<li><p>' + text(entry && entry.text) + '</p></li>'; }) + '</div>';
-    }
-    html += list(item.cautions, function(entry) { return '<li><p>' + text(entry && (entry.statement || entry.text)) + '</p></li>'; }, '结论仅适用于本次回答所覆盖的事实。');
-    return html;
-  }
-
-  function reportFooter(boundary) {
-    return '<footer class="assessment-report-v1__footer"><strong>Kevin 彭峥</strong><span>职业经验资产顾问</span><p>本报告基于你的测评回答自动生成，用于支持下一步验证，不构成收入或结果承诺。</p></footer>';
-  }
-
-  function uniqueMemoItems(values) {
-    var seen = Object.create(null);
-    return (Array.isArray(values) ? values : []).filter(function(item) {
-      var key = String(item && item.text || '').replace(/\s+/g, '').trim();
-      if (!key || seen[key]) return false;
-      seen[key] = true;
-      return true;
+  function scoreItems(scores) {
+    return keys.map(function(key, i) {
+      var saved = arr(scores.items).find(function(item) { return item.key === key; }) || {};
+      var rawPresent = saved.raw !== null && saved.raw !== undefined && saved.raw !== '' && Number.isFinite(Number(saved.raw));
+      var maxPresent = saved.max !== null && saved.max !== undefined && saved.max !== '' && Number.isFinite(Number(saved.max)) && Number(saved.max) > 0;
+      var raw = rawPresent ? Number(saved.raw) : null, max = maxPresent ? Number(saved.max) : null;
+      var ratio = rawPresent && maxPresent ? raw / max : null;
+      return { key: key, label: str(saved.label) || labels[i], raw: raw, max: max, ratio: ratio, percent: ratio === null ? null : Math.round(ratio * 100) };
     });
   }
-
-  function memoSection(block, title, intro, body) {
-    return '<section class="decision-memo__section decision-memo__section--' + text(block) + '" data-report-block="' + text(block) + '">' +
-      '<header class="decision-memo__section-head"><h2>' + text(title) + '</h2>' +
-      (intro ? '<p>' + text(intro) + '</p>' : '') + '</header>' + body + '</section>';
+  function radar(items) {
+    function point(i, ratio, radius) { var angle = (-90 + i * 60) * Math.PI / 180; return [(200 + Math.cos(angle) * radius * Math.max(0, Math.min(1, ratio))).toFixed(1), (180 + Math.sin(angle) * radius * Math.max(0, Math.min(1, ratio))).toFixed(1)]; }
+    function polygon(ratio) { return items.map(function(_, i) { return point(i, ratio, 112).join(','); }).join(' '); }
+    var html = '<svg class="krv-radar" role="img" aria-label="六维路径倾向雷达图" viewBox="0 0 400 360"><title>六维路径倾向雷达图</title><desc>原始分占各路径量表上限的比例，用于比较本次答卷的倾向。</desc>';
+    [0.25, 0.5, 0.75, 1].forEach(function(ratio) { html += '<polygon class="krv-radar-grid" points="' + polygon(ratio) + '"/>'; });
+    items.forEach(function(_, i) { var p = point(i, 1, 112); html += '<line class="krv-radar-grid" x1="200" y1="180" x2="' + p[0] + '" y2="' + p[1] + '"/>'; });
+    html += '<polygon class="krv-radar-shape" points="' + items.map(function(item, i) { return point(i, item.ratio, 112).join(','); }).join(' ') + '"/>';
+    items.forEach(function(item, i) { var p = point(i, 1, 148), x = Number(p[0]); var anchor = Math.abs(x - 200) < 8 ? 'middle' : x < 200 ? 'end' : 'start'; html += '<text class="krv-radar-label" x="' + p[0] + '" y="' + p[1] + '" text-anchor="' + anchor + '"><tspan x="' + p[0] + '">' + txt(item.label) + '</tspan><tspan x="' + p[0] + '" dy="18">' + item.percent + '%</tspan></text>'; });
+    return html + '</svg>';
   }
-
-  function renderMemoKnown(values) {
-    var items = uniqueMemoItems(values);
-    if (!items.length) return '<p class="decision-memo__empty">本次回答还没有形成可用于判断的完整事实。</p>';
-    return '<ol class="decision-memo__known">' + items.map(function(item) {
-      return '<li><span>已确认</span><div><p>' + text(item && item.text) + '</p>' +
-        (item && item.limitation ? '<small>' + text(item.limitation) + '</small>' : '') + '</div></li>';
-    }).join('') + '</ol>';
+  function renderScores(scores) {
+    scores = scores || {};
+    var items = scoreItems(scores), complete = items.every(function(item) { return item.ratio !== null; });
+    var ranked = items.slice().sort(function(a, b) { return a.ratio === null ? b.ratio === null ? 0 : 1 : b.ratio === null ? -1 : b.ratio - a.ratio; });
+    var html = '<div class="krv-scores"><h3>六维路径倾向</h3><p>来自前面选择题的路径倾向。它不能单独证明经验价值、真实需求或可收费；最高分也不等于现在应出售这项服务。</p>';
+    html += complete ? radar(items) : para('雷达图暂不绘制：六个维度没有全部读取时，不用 0 分补齐缺失项。', 'krv-muted');
+    html += '<ol class="krv-score-list" aria-label="路径得分与量表上限">' + ranked.map(function(item) { return '<li data-score-key="' + item.key + '"><strong>' + txt(item.label) + '</strong><span class="krv-track">' + (item.ratio !== null ? '<i style="width:' + Math.max(0, Math.min(100, item.ratio * 100)) + '%"></i>' : '') + '</span><span class="krv-score-value">' + (item.percent === null ? '未读取' : item.percent + '%') + '<small>' + (item.raw !== null ? item.raw + ' / ' + (item.max === null ? '上限未读取' : item.max) : '原始分未读取') + '</small></span></li>'; }).join('') + '</ol>';
+    return html + '<p class="krv-scale"><strong>怎样读分数：</strong>原始分 ÷ 该路径量表上限，四舍五入显示百分比。它不是能力分、商业价值、收入或成功概率。</p>' + para(scores.note, 'krv-muted') + '</div>';
   }
-
-  function renderMemoBasis(values) {
-    var items = Array.isArray(values) ? values.filter(Boolean).slice(0, 4) : [];
-    if (!items.length) return '<p class="decision-memo__empty">本次材料还没有形成可解释的判断依据。</p>';
-    return '<ol class="decision-memo__basis">' + items.map(function(item) {
-      return '<li><span>' + text(item && item.label) + '</span><div><p>' + text(item && item.fact) + '</p>' +
-        '<small><strong>因此：</strong>' + text(item && item.effect) + '</small></div></li>';
-    }).join('') + '</ol>';
-  }
-
-  function renderMemoUnknown(values) {
-    var items = uniqueMemoItems(values);
-    if (!items.length) return '<p class="decision-memo__empty">当前没有额外需要补充的关键信息。</p>';
-    return '<ol class="decision-memo__unknown">' + items.map(function(item) {
-      var state = item && item.reason === 'explicitly_absent' ? '本次明确没有' : '目前尚未提供';
-      return '<li><span>' + state + '</span><div><h3>' + text(item && item.text) + '</h3>' +
-        (item && item.impact ? '<p>' + text(item.impact) + '</p>' : '') + '</div></li>';
-    }).join('') + '</ol>';
-  }
-
-  function countLabel(value) {
-    return ({ 1: '一', 2: '二', 3: '三', 4: '四', 5: '五', 6: '六' })[value] || String(value || '');
-  }
-
-  function renderMemoAction(value) {
-    var action = value || {};
-    var steps = Array.isArray(action.steps) ? action.steps.filter(Boolean) : [];
-    var worksheet = Array.isArray(action.worksheet) ? action.worksheet.filter(Boolean) : [];
-    var stepsHtml = '<ol class="decision-memo__steps">' + steps.map(function(step, index) {
-      return '<li><span>' + (index + 1) + '</span><p>' + text(step) + '</p></li>';
-    }).join('') + '</ol>';
-    var worksheetHtml = '<section class="decision-memo__worksheet"><h3>照着回答这' + countLabel(worksheet.length) + '个问题</h3><ol>' +
-      worksheet.map(function(item, index) {
-        return '<li><span>' + (index + 1) + '</span><div><strong>' + text(item && item.label) + '</strong><p>' + text(item && item.prompt) + '</p></div></li>';
-      }).join('') + '</ol></section>';
-    return '<div class="decision-memo__action"><p class="decision-memo__action-why">' + text(action.why) + '</p>' +
-      stepsHtml + worksheetHtml + '<div class="decision-memo__outcomes"><article><span>做到什么算完成</span><p>' +
-      text(action.doneWhen) + '</p></article><article><span>什么时候停止</span><p>' + text(action.stopRule) + '</p></article></div></div>';
-  }
-
-  function renderDecisionMemo(documentValue, options) {
-    var memo = documentValue.decisionMemo || {};
-    var verdict = memo.verdict || {};
-    return '<article class="assessment-report-v1 assessment-report-v1--decision assessment-report-v1--memo">' + reportHeader(options) +
-      '<section class="decision-memo__verdict" data-report-block="verdict"><span>当前结论</span><h2>' + text(verdict.label) +
-      '</h2><p>' + text(verdict.statement) + '</p></section>' +
-      (memo.schemaVersion === 'assessment-decision-memo-v2'
-        ? memoSection('basis', '本次判断依据', '每一项都说明你的回答怎样影响了结论。', renderMemoBasis(memo.decisionBasis))
-        : '') +
-      memoSection('known', '我们确认了什么', '只保留会改变本次判断的回答事实。', renderMemoKnown(memo.known)) +
-      memoSection('unknown', '目前还不能确定什么', '“尚未提供”和“明确没有”是两种不同状态。', renderMemoUnknown(memo.unknown)) +
-      memoSection('action', '接下来只做这一件事', '完成后再重新判断，不并行扩大投入。',
-        '<h3 class="decision-memo__action-title">' + text(memo.action && memo.action.title) + '</h3>' + renderMemoAction(memo.action)) +
-      '<footer class="assessment-report-v1__footer"><strong>判断边界</strong><p>' + text(memo.boundary) +
-      '</p><span>Kevin 彭峥｜职业经验资产顾问</span></footer></article>';
-  }
-
-  function chapterHeader(title, intro) {
-    return '<header class="decision-report__chapter-head"><h2>' + text(title) + '</h2>' +
-      (intro ? '<p>' + text(intro) + '</p>' : '') + '</header>';
-  }
-
-  function normalizedScores(source) {
-    var paths = [
-      { key: 'content', label: '内容表达', max: 26 },
-      { key: 'consulting', label: '咨询服务', max: 32 },
-      { key: 'knowledge', label: '知识产品', max: 27 },
-      { key: 'template', label: '模板工具', max: 28 },
-      { key: 'service', label: '标准服务', max: 29 },
-      { key: 'coaching', label: '陪跑辅导', max: 26 }
-    ];
-    var scores = source && typeof source === 'object' ? source : {};
-    return paths.map(function(path) {
-      var raw = Number(scores[path.key]);
-      var score = Number.isFinite(raw) ? Math.max(0, Math.min(path.max, raw)) : 0;
-      return { key: path.key, label: path.label, percent: Math.round(score / path.max * 100) };
-    });
-  }
-
-  function renderRadarChart(values) {
-    var center = 180;
-    var radius = 112;
-    var labelRadius = 148;
-
-    function point(index, percent, targetRadius) {
-      var angle = (-90 + index * 60) * Math.PI / 180;
-      var distance = targetRadius * Math.max(0, Math.min(100, percent)) / 100;
-      return {
-        x: center + Math.cos(angle) * distance,
-        y: center + Math.sin(angle) * distance
-      };
-    }
-
-    function points(percent, targetRadius) {
-      return values.map(function(_, index) {
-        var item = point(index, percent, targetRadius);
-        return item.x.toFixed(1) + ',' + item.y.toFixed(1);
-      }).join(' ');
-    }
-
-    var grids = [25, 50, 75, 100].map(function(level) {
-      return '<polygon class="decision-report__radar-grid" points="' + points(level, radius) + '"></polygon>';
+  function renderScripts(scripts) {
+    return scriptKinds.map(function(kind, i) {
+      var item = arr(scripts).find(function(script) { return script.kind === kind; }) || { status: 'needs_input' };
+      var available = ['available', 'needs_input'].indexOf(item.status) >= 0 && str(item.body);
+      var id = 'report-script-' + i;
+      return '<article class="krv-script" data-script-kind="' + kind + '"><h3>' + scriptNames[i] + ' ' + badge(item.status) + '</h3>' + dl([['场景', item.scenario], ['对象', item.audience], ['目的', item.purpose]]) +
+        '<p class="krv-muted"><strong>适用条件：</strong>' + txt(arr(item.conditions).join('；'), '请先补齐场景与对象，不能直接发出邀请。') + '</p>' +
+        (available ? (item.status === 'needs_input' ? para('这是一份待填写草案。请先补齐方括号内的信息、核对条件，再向对方发送。', 'krv-muted') : '') + '<blockquote id="' + id + '" class="krv-script-body">' + txt(item.body) + '</blockquote><div class="krv-copy-row"><span id="' + id + '-status" role="status" aria-live="polite">使用前请核对真实情况。</span><button type="button" data-copy-script="' + id + '">复制话术</button></div>' : para('当前未提供可直接发送的正文；适用条件成立后再使用。', 'krv-muted')) + '</article>';
     }).join('');
-    var axes = values.map(function(_, index) {
-      var edge = point(index, 100, radius);
-      return '<line class="decision-report__radar-axis" x1="' + center + '" y1="' + center + '" x2="' + edge.x.toFixed(1) + '" y2="' + edge.y.toFixed(1) + '"></line>';
-    }).join('');
-    var shapePoints = values.map(function(item, index) {
-      var valuePoint = point(index, item.percent, radius);
-      return valuePoint.x.toFixed(1) + ',' + valuePoint.y.toFixed(1);
-    }).join(' ');
-    var nodes = values.map(function(item, index) {
-      var valuePoint = point(index, item.percent, radius);
-      return '<circle class="decision-report__radar-node" cx="' + valuePoint.x.toFixed(1) + '" cy="' + valuePoint.y.toFixed(1) + '" r="4"></circle>';
-    }).join('');
-    var labels = values.map(function(item, index) {
-      var labelPoint = point(index, 100, labelRadius);
-      var anchor = Math.abs(labelPoint.x - center) < 8 ? 'middle' : (labelPoint.x < center ? 'end' : 'start');
-      var baselineShift = labelPoint.y < center - 80 ? -6 : (labelPoint.y > center + 80 ? 4 : 0);
-      return '<text class="decision-report__radar-label" x="' + labelPoint.x.toFixed(1) + '" y="' + (labelPoint.y + baselineShift).toFixed(1) + '" text-anchor="' + anchor + '">' +
-        '<tspan x="' + labelPoint.x.toFixed(1) + '">' + text(item.label) + '</tspan>' +
-        '<tspan class="decision-report__radar-value" x="' + labelPoint.x.toFixed(1) + '" dy="16">' + item.percent + '%</tspan></text>';
-    }).join('');
-
-    return '<svg class="decision-report__radar" role="img" aria-label="六维路径倾向雷达图。这是六条路径的相对倾向，不是能力、商业价值或成功概率。" viewBox="0 0 360 360">' +
-      '<title>六维路径倾向雷达图</title><desc>这是六条路径的相对倾向，不是能力、商业价值或成功概率。</desc>' +
-      '<g>' + grids + axes + '</g><polygon class="decision-report__radar-shape" points="' + shapePoints + '"></polygon>' +
-      nodes + labels + '</svg>';
   }
-
-  function renderScoreChart(source) {
-    var scoreKeys = ['content', 'consulting', 'knowledge', 'template', 'service', 'coaching'];
-    var hasScore = source && typeof source === 'object' && scoreKeys.some(function(key) {
-      return source[key] !== '' && source[key] !== null && source[key] !== undefined && Number.isFinite(Number(source[key]));
-    });
-    if (!hasScore) {
-      return '<section class="decision-report__score-panel"><div><span>六维路径倾向</span><h3>本次未读取到六维评分</h3><p>不使用 0 分代替缺失数据；其它判断仍只依据本次报告中已有的回答材料。</p></div></section>';
-    }
-    var values = normalizedScores(source);
-    var ranked = values.slice().sort(function(a, b) { return b.percent - a.percent; });
-    var rows = ranked.map(function(item, index) {
-      return '<li><span>' + String(index + 1).padStart(2, '0') + '</span><strong>' + text(item.label) +
-        '</strong><em>' + item.percent + '%</em></li>';
-    }).join('');
-    return '<section class="decision-report__score-panel"><div class="decision-report__score-intro"><span>六维路径倾向</span><h3>这是相对匹配度，不是能力分数</h3><p>数值来自前面 8 道选择题，用来比较六条可能路径；不能单独证明经验价值或市场需求。</p></div><div class="decision-report__score-visual">' + renderRadarChart(values) + '<ol>' + rows + '</ol></div></section>';
+  function renderReportDocument(documentValue, options) {
+    documentValue = documentValue || {}; options = options || {};
+    var p = documentValue.presentation && documentValue.presentation.schemaVersion === 'assessment-customer-presentation-v1' ? documentValue.presentation : historicalPresentation(documentValue, options);
+    var g = p.goal || {}, stage = p.stage || {}, paths = p.paths || {}, hypothesis = p.serviceHypothesis || {}, week = p.sevenDay || {}, rules = p.decisionRules || {}, month = p.thirtyDay || {}, help = p.help || {}, cost = p.cost || {}, extras = p.legacyExtras || {};
+    var title = str(options.title).replace(/<\/?span\b[^>]*>/gi, '').replace(/个人经验\s*个人经验/g, '个人经验');
+    var html = '<article class="krv-report" data-report-template="customer-presentation-v1"><header class="krv-header"><p class="krv-eyebrow">KEVIN · 个人经验完整路径报告</p><h1>' + txt(title, '个人经验完整路径报告') + '</h1><p class="krv-meta">' + txt(options.time) + (options.time ? ' · ' : '') + (options.reportId ? '报告编号 ' + txt(String(options.reportId)) : '本次报告') + '</p><p class="krv-muted">先读问题与判断，再看依据、路径和行动。信息不足的部分会明确保留。</p></header>';
+    html += '<nav class="krv-nav" aria-label="报告章节导航">' + [['goal','你的问题'],['evidence','判断依据'],['paths','路径取舍'],['action','本周行动'],['followup','复盘下一步']].map(function(item) { return '<a href="#report-' + item[0] + '">' + item[1] + '</a>'; }).join('') + '</nav>';
+    html += chapter('goal', '01', '先回答你的问题', '<h3>你的原问题</h3>' + para(g.question || '历史报告未保存独立的原问题，不能据此声称已回答你的完整取舍。') + '<div class="krv-lead">' + para(g.answer || '当前材料不足，暂不能形成完整判断。') + '</div>' + (arr(g.canAnswer).length ? '<h3>这份报告能回答</h3>' + bullets(g.canAnswer) : '') + (arr(g.cannotAnswer).length ? '<h3>目前还不能确定</h3>' + bullets(g.cannotAnswer) : '') + (arr(g.clarifications).length ? '<h3>需要补充的问题</h3>' + bullets(g.clarifications) : ''));
+    var evidence = arr(p.facts).map(function(item) { return '<article class="krv-evidence">' + dl([['你的回答', item.text], ['本次解释', item.interpretation], ['仍待核对', item.limitation]]) + '</article>'; }).join('') || para('本次回答中没有更多可确认信息。', 'krv-muted');
+    evidence += dl([['经验主线与阶段', stage.label], ['真实卡点', stage.bottleneck], ['怎样理解', stage.meaning]]) + (arr(extras.strengths).length ? '<h3>当前优势</h3>' + bullets(extras.strengths) : '') + (arr(extras.candidates).length ? '<h3>其它经验线索</h3>' + bullets(extras.candidates) : '') + (arr(extras.confirmed).length ? '<h3>已保存的其它事实</h3>' + bullets(extras.confirmed) : '') + (arr(extras.conflicts).length ? '<h3>需要先核对的矛盾回答</h3>' + bullets(extras.conflicts) : '');
+    html += chapter('evidence', '02', '这个判断从哪里来', evidence);
+    function route(label, value) { value = value || {}; return '<article class="krv-route"><h3>' + label + '</h3>' + para(value.title || (!value.reason ? '历史报告未保存该路径的独立判断。' : '')) + para(value.reason) + '</article>'; }
+    html += chapter('paths', '03', '六条路径，怎样取舍', renderScores(p.scores) + route('第一优先', paths.primary) + route('备用方式与启动条件', paths.backup) + '<h3>暂缓方向</h3>' + (arr(paths.deferred).length ? arr(paths.deferred).map(function(item) { return route(txt(item.title), { reason: item.reason }); }).join('') : para('本次没有额外需要暂缓的路径。')) + '<h3>投入与试错成本</h3>' + dl([['做一次验证', cost.trial], ['维持现状', cost.unchanged], ['怎样比较', cost.comparison]]) + (!cost.trial && !cost.comparison ? para('历史报告未保存可核对的成本比较，不估算收入或机会成本。', 'krv-muted') : ''));
+    html += chapter('hypothesis', '04', '第一版服务假设', badge(hypothesis.status) + dl([['服务对象', hypothesis.audience], ['具体问题', hypothesis.problem], ['第一交付物', hypothesis.deliverable], ['验证价格', hypothesis.price], ['交付边界', hypothesis.boundary]]) + (arr(hypothesis.missing).length ? '<h3>推进前需要补齐</h3>' + bullets(hypothesis.missing) : ''));
+    var actionHtml = arr(week.constraints).length ? dl(week.constraints.map(function(item) { return [item.label, item.value]; })) : '';
+    actionHtml += '<ol class="krv-schedule">' + arr(week.steps).map(function(item, i) { return '<li><span>' + txt(item.day, String(i + 1)) + '</span><div><h3>' + txt(item.title) + '</h3>' + para(item.action) + (item.doneWhen ? '<p class="krv-muted">做到什么算完成：' + txt(item.doneWhen) + '</p>' : '') + '</div></li>'; }).join('') + '</ol>';
+    if (!arr(week.steps).length) actionHtml += para('历史报告未保存七天安排，暂不编排新的个性化计划。', 'krv-muted');
+    if (arr(week.notes).length) actionHtml += '<h3>原报告的任务与完成标准</h3>' + bullets(week.notes);
+    if (arr(week.worksheet).length) actionHtml += '<h3>随手留一张核对记录</h3><p class="krv-muted">以下问题仅供你自行记录；本页不会提交或保存你的填写内容。</p>' + dl(week.worksheet.map(function(item) { return [item.label, item.prompt]; }));
+    html += chapter('action', '05', '接下来七天，完成一次核对', actionHtml + '<h3>按场景选择沟通话术</h3>' + renderScripts(p.scripts));
+    html += chapter('followup', '06', '用什么信号决定下一步', dl([['继续', rules.continue], ['调整', rules.adjust], ['暂停', rules.stop]]) + ((!rules.continue && !rules.stop) ? para('历史报告未保存继续、调整与停止条件，不能替你补作结论。', 'krv-muted') : '') + '<h3>验证成立后的三十天</h3>' + badge(month.status) + para(month.condition || '历史报告未保存三十天推进的启动条件。') + '<ol class="krv-schedule">' + arr(month.steps).map(function(item) { return '<li><span>' + txt(item.period) + '</span><div>' + para(item.action) + para(item.passSignal, 'krv-muted') + '</div></li>'; }).join('') + '</ol>');
+    html += chapter('help', '07', '需要外部帮助时，怎样选', dl([['自行研究', help.selfService], ['人工方向诊断', help.personalized], ['深度服务的准备条件', help.readiness], ['服务边界', help.purchaseBoundary]]) + ((!help.selfService && !help.personalized) ? para('历史报告未保存当时的完整服务建议；不根据旧文档自动增加购买要求。', 'krv-muted') : '') + '<h3>完整使用边界</h3>' + bullets(p.boundaries, '本报告根据测评回答自动形成初步判断；不证明市场需求、真实付费或稳定收益。'));
+    var coverage = arr(p.coverage);
+    html += '<details class="krv-appendix"><summary>查看完整内容清单与评分口径</summary><p class="krv-muted">原十六项逐项保留状态；资料不足与当前不适用也会说明原因。</p><ol class="krv-coverage">' + moduleLabels.map(function(label, i) { var id = String(i + 1).padStart(2, '0'), item = coverage.find(function(v) { return v.id === id; }) || {}; var section = ({ goal: 'goal', facts: 'evidence', stage: 'evidence', boundaries: 'help', paths: 'paths', cost: 'paths', scores: 'paths', serviceHypothesis: 'hypothesis', sevenDay: 'action', scripts: 'action', thirtyDay: 'followup', help: 'help' })[item.section]; return '<li data-coverage-id="' + id + '"><strong>' + id + ' ' + txt(item.label || label) + '</strong>' + badge(item.status) + (section ? '<a href="#report-' + section + '">查看正文</a>' : '') + para(['insufficient','needs_input','missing','not_applicable'].indexOf(item.status) >= 0 ? item.reason || '本次未提供完整内容，请补充材料后重新判断。' : '状态与适用条件已在正文说明。', 'krv-muted') + '</li>'; }).join('') + '</ol>' + para(/^(linked_screening|frozen_screening)$/.test((p.scores || {}).basis) ? '评分来自与本报告关联的初筛答卷。' : (p.scores || {}).basis === 'unavailable' ? '当前冻结材料没有完整评分口径。' : (p.scores || {}).basis) + para((p.scores || {}).scaleVersion ? '量表版本：' + (p.scores || {}).scaleVersion : '', 'krv-muted') + '</details>';
+    return html + '<footer class="krv-footer"><strong>Kevin 彭峥｜职业经验资产顾问</strong><p>本报告用于帮助你核对事实、缩小取舍和安排验证。最终选择由你决定。</p><a href="#report-goal">返回开头</a></footer></article>';
   }
-
-  function renderScoreDetails(source) {
-    var scoreKeys = ['content', 'consulting', 'knowledge', 'template', 'service', 'coaching'];
-    var hasScore = source && typeof source === 'object' && scoreKeys.some(function(key) {
-      return source[key] !== '' && source[key] !== null && source[key] !== undefined && Number.isFinite(Number(source[key]));
-    });
-    if (!hasScore) return '';
-    return renderScoreChart(source);
-  }
-
-  function renderStateGrid(modules) {
-    var summary = modules.executiveSummary || {};
-    var stage = summary.stage || (modules.stageDiagnosis || {}).stage || {};
-    var asset = summary.primaryAsset || (modules.assetAssessment || {}).primary || {};
-    var bottleneck = summary.bottleneck || (modules.stageDiagnosis || {}).bottleneck || {};
-    return '<div class="decision-report__state-grid">' +
-      '<article><span>当前经验线索</span><h3>' + text(asset.label || asset.description, '当前材料不足') + '</h3><p>只表示本次回答中已经出现的线索，不代表经验已经产品化。</p></article>' +
-      '<article class="is-current"><span>当前阶段</span><h3>' + text(stage.label, '当前材料不足，暂不判断') + '</h3><p>' + text(summary.explanation, '先补充具体事件，再判断经验是否成立。') + '</p></article>' +
-      '<article><span>核心卡点</span><h3>' + text(bottleneck.label, '仍需补充事实与证据') + '</h3><p>未提及不等于不存在；写不出来也不等于没有经验。</p></article></div>';
-  }
-
-  function renderFactsPanel(modules) {
-    var facts = Array.isArray(modules.understoodFacts) ? modules.understoodFacts : [];
-    var assets = modules.assetAssessment || {};
-    var stage = modules.stageDiagnosis || {};
-    return '<div class="decision-report__evidence-columns"><section><h3>已确认的回答线索</h3>' +
-      renderFacts(facts) + '</section><section><h3>经验资产判断</h3>' + renderAssets(assets) +
-      '</section><section><h3>阶段与缺口</h3>' + renderStage(stage) + '</section></div>';
-  }
-
-  function renderPathPanel(modules, scores) {
-    var priority = modules.priorityPath || {};
-    var boundaries = modules.boundaries || {};
-    return '<div class="decision-report__path-layout"><section><h3>当前优先路径</h3>' + renderPriorityPath(priority) +
-      '<div class="decision-report__deferred"><h3>暂不建议并行推进</h3>' + renderDeferredPaths(modules.deferredPaths) +
-      '</div></section>' + renderScoreChart(scores) + '</div><div class="decision-report__boundary-panel">' + renderBoundaries(boundaries) + '</div>';
-  }
-
-  function renderActionSteps(values) {
-    var items = Array.isArray(values) ? values.filter(Boolean) : [];
-    if (!items.length) return '<p class="assessment-report-v1__empty">当前材料不足，暂时没有可交付的行动清单。</p>';
-    return '<ol class="decision-report__steps">' + items.map(function(item, index) {
-      return '<li class="decision-report__step"><span>' + text(item.order, index + 1) + '</span><div><h3>' +
-        text(item.text) + '</h3>' + (item.doneWhen ? '<p>做到什么算完成：' + text(item.doneWhen) + '</p>' : '') + '</div></li>';
-    }).join('') + '</ol>';
-  }
-
-  function renderPurchaseGuidance() {
-    return '<div class="decision-report__purchase-groups">' +
-      '<article><span>报告边界</span><div><strong>19.9 元自动报告</strong><h3>自动生成，不含Kevin人工审核</h3><p>这是初步判断，不验证商业潜力，不预测收入，也不代表任何人工服务资格已经通过。</p></div></article>' +
-      '<article><span>独立自助商品</span><div><strong>99 元 · 365天</strong><h3>一人公司海外源头库</h3><p>用于阅读现有海外源头内容与中文整理；不包含人工咨询，也不是人工服务的前置购买。</p></div></article>' +
-      '<article><span>人工服务</span><div><strong>1999 元</strong><h3>帮助你确定方向</h3><p>结合真实经历、意愿与现实条件作出取舍，不包含产品开发；具体安排购买前确认。</p></div><div><strong>9800 元</strong><h3>按约定开发你的产品／模型</h3><p>Kevin本人一对一参与，具体知识或能力模型、方法论、SOP等成果形式与范围按约定，不默认全部包含；购买前由Kevin人工确认适配与范围，自动报告不会批准资格。</p></div></article></div>';
-  }
-
-  function renderSummary(modules) {
-    var summary = modules.executiveSummary || {};
-    var stage = summary.stage || (modules.stageDiagnosis || {}).stage || {};
-    var bottleneck = summary.bottleneck || (modules.stageDiagnosis || {}).bottleneck || {};
-    var asset = summary.primaryAsset || (modules.assetAssessment || {}).primary || {};
-    var next = summary.nextStep;
-    if (!next || next === bottleneck.label) {
-      next = (modules.priorityPath || {}).label || ((modules.validationTask || {}).steps || [])[0] ||
-        (modules.validationTask || {}).goal || '先补充一件具体事件';
-    }
-    return '<div class="decision-report__summary"><div class="decision-report__verdict-band"><div><span>当前阶段</span><h3>' +
-      text(stage.label || bottleneck.label, '当前材料不足，暂不做确定判断') + '</h3><p>' +
-      text(summary.explanation, '本次回答不足以形成完整结论，先补充具体事件和可核对证据。') +
-      '</p></div><div><span>当前只做一件事</span><strong>' + text(next) + '</strong></div></div>' +
-      '<div class="assessment-report-v1__metrics">' +
-      labelled('经验主线', asset.label || asset.description, 'confirmed') +
-      labelled('当前缺口', bottleneck.label, 'missing') + '</div></div>';
-  }
-
-  function renderEvidenceBlock(modules, scores) {
-    var stage = modules.stageDiagnosis || {};
-    var priority = modules.priorityPath || {};
-    return '<div class="decision-report__evidence-columns"><section><h3>系统确认了什么</h3>' +
-      renderFacts(modules.understoodFacts) + '</section><section><h3>为什么这样判断</h3><p>' +
-      text(stage.explanation, '当前判断仅基于本次回答中可追溯的事实。') + '</p><h3>为什么先走这条路</h3>' +
-      renderPriorityPath(priority) + '</section></div>' + renderScoreDetails(scores);
-  }
-
-  function renderGapBlock(modules) {
-    var boundaries = modules.boundaries || {};
-    var stage = modules.stageDiagnosis || {};
-    var missing = Array.isArray(boundaries.missingInformation) && boundaries.missingInformation.length
-      ? boundaries.missingInformation
-      : stage.gaps;
-    var html = '<p class="decision-report__boundary-intro">当前缺口按本次回答标注；未提及不等于不存在。</p>' +
-      '<div class="decision-report__gap-grid"><section><h3>还不能确定</h3>' +
-      list(missing, function(entry) { return '<li><p>' + text(missingInformationLabel(entry)) + '</p></li>'; }, '当前没有额外缺口。') +
-      '</section><section><h3>暂时不要做</h3>' + renderDeferredPaths(modules.deferredPaths) + '</section></div>';
-    if (boundaries.conflicts && boundaries.conflicts.length) {
-      html += '<div class="assessment-report-v1__conflicts"><h3>需要先核对的矛盾回答</h3>' +
-        list(boundaries.conflicts, function(entry) { return '<li><p>' + text(entry && entry.text) + '</p></li>'; }) + '</div>';
-    }
-    html += '<div class="decision-report__cautions"><h3>判断边界</h3>' +
-      list(boundaries.cautions, function(entry) { return '<li><p>' + text(entry && (entry.statement || entry.text)) + '</p></li>'; }, '结论仅适用于本次回答所覆盖的事实。') + '</div>';
-    return html;
-  }
-
-  function renderDecisionDocument(documentValue, options) {
-    var modules = (documentValue && documentValue.modules) || {};
-    var settings = options || {};
-    var task = modules.validationTask || {};
-    return '<article class="assessment-report-v1 assessment-report-v1--decision">' + reportHeader(settings) +
-      '<section class="decision-report__chapter" data-report-block="judgement">' +
-        chapterHeader('核心判断', '先看系统理解了什么，以及当前只需要做哪一件事。') + renderSummary(modules) + '</section>' +
-      '<section class="decision-report__chapter" data-report-block="evidence">' +
-        chapterHeader('判断依据', '只保留会改变阶段、路径或行动的客户事实。') + renderEvidenceBlock(modules, settings.resultScores) + '</section>' +
-      '<section class="decision-report__chapter" data-report-block="gap">' +
-        chapterHeader('当前缺口', '明确哪些事情还不能下结论，以及为什么暂缓其他路径。') + renderGapBlock(modules) + '</section>' +
-      '<section class="decision-report__chapter" data-report-block="action">' +
-        chapterHeader('一个行动', '先完成这一轮最小验证，再根据新证据选择继续、调整或停止。') +
-        '<div class="decision-report__task-panel">' + renderValidationTask(task, (modules.priorityPath || {}).label) + '</div>' +
-        '<details class="decision-report__purchase-details"><summary>查看购买建议与服务边界</summary>' + renderPurchaseGuidance() + '</details></section>' +
-      reportFooter() + '</article>';
-  }
-
-  return {
-    escapeHtml: escapeHtml,
-    renderReportDocument: function renderReportDocument(documentValue, options) {
-      if (documentValue && documentValue.decisionMemo && ['assessment-decision-memo-v1','assessment-decision-memo-v2'].includes(documentValue.decisionMemo.schemaVersion)) {
-        return renderDecisionMemo(documentValue, options || {});
+  function bindCopyActions(container, environment) {
+    if (!container || container.__kevinReportCopyBound) return;
+    container.__kevinReportCopyBound = true;
+    var env = environment || root;
+    container.addEventListener('click', async function(event) {
+      var button = event.target && event.target.closest && event.target.closest('[data-copy-script]');
+      if (!button || !container.contains(button)) return;
+      var id = button.getAttribute('data-copy-script');
+      if (!/^report-script-[0-3]$/.test(id)) return;
+      var body = container.querySelector('#' + id), statusNode = container.querySelector('#' + id + '-status');
+      if (!body) return;
+      try {
+        if (!env.navigator || !env.navigator.clipboard) throw new Error('clipboard unavailable');
+        await env.navigator.clipboard.writeText(body.textContent);
+        if (statusNode) statusNode.textContent = '话术已复制，请先核对真实情况再使用。';
+      } catch (error) {
+        if (env.document && env.getSelection) { var range = env.document.createRange(); range.selectNodeContents(body); var selection = env.getSelection(); selection.removeAllRanges(); selection.addRange(range); }
+        if (statusNode) statusNode.textContent = '请选中话术正文后使用复制操作。';
       }
-      return renderDecisionDocument(documentValue, options);
+    });
+  }
+  function bindReportInteractions(container, environment) {
+    if (!container) return;
+    if (container.__kevinReportInteractionsCleanup) container.__kevinReportInteractionsCleanup();
+    bindCopyActions(container, environment);
+    var env = environment || root;
+    var report = container.querySelector('.krv-report');
+    var nav = report && report.querySelector('.krv-nav');
+    if (!nav || !env.addEventListener) return;
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#report-"]'));
+    var chapters = Array.prototype.slice.call(report.querySelectorAll('.krv-chapter'));
+    var mapping = { hypothesis: 'paths', help: 'followup' };
+    var current = '', frame = null;
+    function setCurrent(section) {
+      var target = '#report-' + (mapping[section] || section);
+      if (current === target) return;
+      current = target;
+      links.forEach(function(link) {
+        var active = link.getAttribute('href') === target;
+        link.classList.toggle('is-active', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+        if (active) {
+          var box = nav.getBoundingClientRect(), item = link.getBoundingClientRect();
+          if (item.left < box.left + 8) nav.scrollLeft += item.left - box.left - 8;
+          else if (item.right > box.right - 8) nav.scrollLeft += item.right - box.right + 8;
+        }
+      });
     }
-  };
+    function measure() {
+      var header = env.document && env.document.querySelector('.kv-global-header');
+      var headerBox = header && header.getBoundingClientRect();
+      var position = header && env.getComputedStyle(header).position;
+      var top = headerBox && (position === 'sticky' || position === 'fixed') ? Math.max(0, headerBox.bottom) : 0;
+      report.style.setProperty('--krv-nav-top', top + 'px');
+      report.style.setProperty('--krv-nav-offset', (top + nav.offsetHeight + 24) + 'px');
+    }
+    function update() {
+      frame = null;
+      if (!report.isConnected) { cleanup(); return; }
+      measure();
+      // Read the chapter entering the upper reading area, including anchor landings
+      // while the site's header switches between its initial and scrolled states.
+      var readingLine = nav.getBoundingClientRect().bottom + Math.min(150, env.innerHeight * 0.2);
+      var active = chapters[0];
+      chapters.forEach(function(chapter) { if (chapter.getBoundingClientRect().top <= readingLine) active = chapter; });
+      if (active) setCurrent(active.getAttribute('data-report-block'));
+    }
+    function schedule() {
+      if (frame === null) frame = env.requestAnimationFrame(update);
+    }
+    function onClick(event) {
+      var link = event.target.closest && event.target.closest('a[href^="#report-"]');
+      if (link && report.contains(link)) setCurrent(link.getAttribute('href').slice(8));
+    }
+    function cleanup() {
+      env.removeEventListener('scroll', schedule);
+      env.removeEventListener('resize', schedule);
+      env.removeEventListener('hashchange', schedule);
+      report.removeEventListener('click', onClick);
+      if (frame !== null) env.cancelAnimationFrame(frame);
+      if (container.__kevinReportInteractionsCleanup === cleanup) delete container.__kevinReportInteractionsCleanup;
+    }
+    env.addEventListener('scroll', schedule, { passive: true });
+    env.addEventListener('resize', schedule, { passive: true });
+    env.addEventListener('hashchange', schedule);
+    report.addEventListener('click', onClick);
+    container.__kevinReportInteractionsCleanup = cleanup;
+    update();
+    return cleanup;
+  }
+  return { escapeHtml: escapeHtml, renderReportDocument: renderReportDocument, bindCopyActions: bindCopyActions, bindReportInteractions: bindReportInteractions };
 }));

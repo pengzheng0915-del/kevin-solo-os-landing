@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="kevin-nonessential-tracking" content="disabled">
 <script>
 (function scrubLegacyReportPassword() {
   var urlParams = new URLSearchParams(window.location.search);
@@ -28,8 +27,8 @@
 })();
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>经验路径测评与完整自动报告 | Kevin 彭峥</title>
-<meta name="description" content="8 题提供自我分析框架；补充真实经历后可先看免费测评摘要，19.9 元完整自动报告自愿购买、自动生成，不含 Kevin 人工审核。">
+<title>个人经验完整路径报告 | Kevin 彭峥</title>
+<meta name="description" content="8 题判断类型，4 组深度追问，先生成免费测评摘要；个人经验完整路径报告会继续给出判断依据、产品假设卡、7 天验证清单和沟通话术。">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://kevinsolo.cn/report/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%232D2926'/><text x='50' y='72' text-anchor='middle' font-size='56' font-weight='bold' fill='white' font-family='system-ui'>K</text></svg>" />
@@ -48,8 +47,8 @@ a{color:inherit;text-decoration:none}
 .page{max-width:var(--max);margin:0 auto;padding:32px 24px 0}
 .hero{padding:12px 0 32px}
 .eyebrow{font-size:13px;font-weight:700;color:var(--accent-deep);letter-spacing:.06em;margin-bottom:8px}
-h1{margin-bottom:14px}
-.hero-sub{color:var(--muted)}
+h1{font-size:clamp(28px,4vw,36px);line-height:1.18;margin-bottom:14px}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.6}
 .step{display:none}.step.active{display:block}
 #stepReport{scroll-margin-top:70px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;border-radius:999px;padding:14px 24px;font-size:15px;font-weight:700;transition:transform .18s ease,box-shadow .18s ease}
@@ -64,7 +63,7 @@ h1{margin-bottom:14px}
 .progress-text{font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap}
 .progress-bar{flex:1;height:4px;background:var(--line);border-radius:2px;overflow:hidden}
 .progress-fill{height:100%;background:var(--accent);width:0%;transition:width .3s ease}
-.q-title{margin-bottom:6px}
+.q-title{font-size:21px;font-weight:700;margin-bottom:6px}
 .q-help{color:var(--muted);font-size:14px;margin-bottom:18px}
 .options{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
 .option{border:1px solid var(--line);border-radius:14px;padding:14px 18px;cursor:pointer;transition:all .18s ease;background:var(--card)}
@@ -108,22 +107,6 @@ h1{margin-bottom:14px}
 .continue-row{display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-top:20px}
 .continue-row .skip-link{font-size:13px;color:var(--muted);cursor:pointer;text-decoration:underline}
 .field-hint{font-size:12px;color:var(--muted);margin-top:2px}
-/* 规格 §7：漏填就地反馈 */
-.ksj-field-error{margin:2px 0 0;font-size:13px;font-weight:700;color:#B3261E;line-height:1.6}
-.deep-field.has-error input:not([type="range"]),.deep-field.has-error select{border-color:#B3261E;box-shadow:0 0 0 2px rgba(179,38,30,.12)}
-.deep-field.has-error label{color:#B3261E}
-.deep-field.has-error .seg-group,.deep-field.has-error .chip-group{border-radius:12px;box-shadow:0 0 0 2px rgba(179,38,30,.12)}
-/* 规格 §7：置灰但仍可点击 —— 点击后给出就地红字提示，而不是让用户点了没反应 */
-#deepForm .continue-row .btn-primary.is-incomplete{opacity:.5;filter:grayscale(.35)}
-/* 规格 §8：未完成测评恢复入口 */
-.ksj-resume{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin:0 0 20px;padding:14px 18px;border:1px solid rgba(85,98,79,.22);border-radius:16px;background:rgba(85,98,79,.06)}
-/* 与本文件其他 hidden 组件同一约定：没有这条，display:flex 会盖掉 [hidden]，恢复条会对所有访客常显 */
-.ksj-resume[hidden]{display:none!important}
-.ksj-resume__copy{display:flex;flex-direction:column;gap:3px;min-width:0}
-.ksj-resume__copy strong{font-size:15px;color:var(--text)}
-.ksj-resume__copy span{font-size:13px;color:var(--muted);line-height:1.6}
-.ksj-resume__actions{display:flex;gap:10px;flex-wrap:wrap}
-@media(max-width:640px){.ksj-resume__actions{width:100%}.ksj-resume__actions .btn{flex:1 1 0}}
 .step-note{text-align:center;color:var(--muted);font-size:13px;padding:8px 0 16px;line-height:1.5}
 
 /* Report Card */
@@ -297,23 +280,13 @@ h1{margin-bottom:14px}
 .locked-free-summary h3,.locked-free-summary p{margin:0;color:var(--text);line-height:1.75}
 .locked-free-summary h3{font-size:22px;line-height:1.45}
 .locked-free-summary p{font-size:15px}
-.locked-free-summary-v1{margin:16px 0;line-break:strict;word-break:normal;overflow-wrap:break-word}
 .locked-availability{padding:17px;border:1px solid rgba(85,98,79,.18);border-radius:16px;background:rgba(255,255,255,.64)}
 .locked-availability[hidden]{display:none!important}
 .locked-availability small{display:block;margin-bottom:5px;font-size:12px;color:var(--muted)}
 .locked-availability strong{display:block;font-size:17px;color:var(--text)}
-.locked-availability p{margin:7px 0 0;color:var(--muted)}
+.locked-availability p{margin:7px 0 0;font-size:13px;line-height:1.7;color:var(--muted)}
 .locked-unlock,.locked-unlock>*{min-width:0;max-width:100%}
 .locked-unlock-copy,.locked-availability,.locked-report-code{overflow-wrap:anywhere}
-/* 规格 §9：付费墙明确"免费已经得到 / 19.9 继续回答"的区别 */
-.locked-plan-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0 14px}
-.locked-plan-card{padding:14px 16px;border-radius:14px;border:1px solid rgba(85,98,79,.18);background:rgba(255,255,255,.6)}
-.locked-plan-card>strong{display:block;margin-bottom:8px;font-size:13px;font-weight:800;letter-spacing:.03em}
-.locked-plan-card.is-free>strong{color:var(--olive)}
-.locked-plan-card.is-paid{border-color:rgba(176,138,90,.34);background:rgba(176,138,90,.06)}
-.locked-plan-card.is-paid>strong{color:#8A6A3B}
-.locked-plan-card .locked-report-value-list{margin:0}
-@media(max-width:680px){.locked-plan-compare{grid-template-columns:1fr}}
 .locked-report-code{font-weight:800;color:var(--text)!important}
 .locked-continuation{display:grid;gap:12px;margin:16px 0}
 .locked-continuation>.locked-report-code{margin:0;padding:0 2px}
@@ -346,7 +319,7 @@ h1{margin-bottom:14px}
 .locked-wechat-hint{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
 .locked-qr{width:168px;height:168px;border-radius:12px;margin-bottom:12px;object-fit:cover}
 .locked-wechat-id{font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px}
-.locked-small{color:var(--soft)}
+.locked-small{font-size:12px;color:var(--soft);line-height:1.65}
 .locked-copy-btn{display:block;width:100%;margin-top:12px;padding:13px 22px;border:1px solid var(--olive);background:var(--olive);color:#fff;border-radius:999px;cursor:pointer;font-size:14px;font-weight:850;font-family:inherit;box-shadow:0 12px 28px rgba(85,98,79,.18)}
 .locked-copy-btn.secondary{margin-top:8px;background:rgba(255,255,255,.86);color:var(--olive);box-shadow:none}
 .locked-copy-actions{width:100%}
@@ -369,7 +342,7 @@ body.kv-report-bplus .report-payment-btn{white-space:normal;overflow-wrap:anywhe
 .missing-report-card{max-width:860px;margin:0 auto;padding:30px 28px;border:1px solid rgba(176,138,90,.32);border-radius:22px;background:linear-gradient(180deg,#fffaf2,rgba(246,241,232,.88));box-shadow:0 18px 50px rgba(83,64,39,.09);text-align:left}
 .missing-report-grid{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:24px;align-items:center}
 .missing-report-card h3{margin:0 0 12px;font-size:26px;line-height:1.25;color:var(--text)}
-.missing-report-card p{margin:0 0 14px;color:var(--muted)}
+.missing-report-card p{margin:0 0 14px;color:var(--muted);line-height:1.85;font-size:15px}
 .missing-report-focus{margin:18px 0 0;padding:14px 16px;border-left:4px solid rgba(176,138,90,.82);border-radius:16px;background:rgba(255,255,255,.58);color:var(--text);font-size:14px;line-height:1.75}
 .missing-report-focus strong{color:var(--accent-deep)}
 .missing-report-actions{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:22px}
@@ -377,7 +350,7 @@ body.kv-report-bplus .report-payment-btn{white-space:normal;overflow-wrap:anywhe
 .missing-report-side{padding:20px 18px;border:1px solid rgba(85,98,79,.22);border-radius:18px;background:#fff;text-align:center;box-shadow:0 16px 38px rgba(83,64,39,.1)}
 .missing-report-side .locked-qr{width:154px;height:154px;margin:0 auto 12px;display:block}
 .missing-report-side-title{margin:0 0 6px;font-size:18px;font-weight:900;color:var(--text)}
-.missing-report-side p{margin:0;color:var(--muted)}
+.missing-report-side p{margin:0;color:var(--muted);font-size:13px;line-height:1.65}
 .missing-report-side .locked-copy-btn{margin-top:14px}
 .missing-report-sid{margin-top:14px;font-size:12px;color:var(--soft);word-break:break-all}
 
@@ -415,7 +388,7 @@ body.kv-report-bplus .report-payment-btn{white-space:normal;overflow-wrap:anywhe
 @media(prefers-reduced-motion:reduce){.loading-spinner,.skeleton{animation:none!important}.loading-spinner{border-top-color:var(--line);box-shadow:inset 0 0 0 3px rgba(85,98,79,.18)}}
 .welcome-box{text-align:center;padding:40px 20px}
 .welcome-box h3{font-size:20px;margin:12px 0 6px}
-.welcome-box p{color:var(--muted);margin-bottom:20px}
+.welcome-box p{color:var(--muted);font-size:14px;margin-bottom:20px}
 .welcome-input{width:100%;max-width:320px;padding:14px 18px;margin:0 auto 16px;border:1.5px solid var(--line);border-radius:14px;font-size:16px;display:block;background:var(--card);color:var(--text);text-align:center}
 .welcome-input:focus{border-color:var(--accent);outline:none}
 
@@ -461,9 +434,7 @@ body.kv-report-bplus .report-payment-btn{white-space:normal;overflow-wrap:anywhe
 .v3-evidence-list li::before{content:'';position:absolute;left:0;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
 
 /* Print */
-@media print{@page{size:A4;margin:12mm 10mm 14mm}@page{@top-center{content:none}@bottom-center{content:none}@top-left{content:none}@top-right{content:none}@bottom-left{content:none}@bottom-right{content:none}}html,body{background:#fff!important;color:#1e1a17!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{font-size:13px;line-height:1.55}header,nav,.nav,.navbar,.fixed,.sticky,[data-print-hide]{display:none!important}main,.container,.page{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;box-shadow:none!important;transform:none!important}.report-card{box-shadow:none!important;border:none!important;border-radius:0!important;padding:0!important;background:#fff!important}.section{break-inside:avoid!important;page-break-inside:avoid!important;box-shadow:none!important;background:#fff!important}h1,
-h2,
-h3{break-after:avoid!important}h4{break-after:avoid!important}img,svg{max-width:100%!important;height:auto!important;break-inside:avoid!important}[onclick]{display:none!important}}
+@media print{@page{size:A4;margin:12mm 10mm 14mm}@page{@top-center{content:none}@bottom-center{content:none}@top-left{content:none}@top-right{content:none}@bottom-left{content:none}@bottom-right{content:none}}html,body{background:#fff!important;color:#1e1a17!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{font-size:13px;line-height:1.55}header,nav,.nav,.navbar,.fixed,.sticky,[data-print-hide]{display:none!important}main,.container,.page{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;box-shadow:none!important;transform:none!important}.report-card{box-shadow:none!important;border:none!important;border-radius:0!important;padding:0!important;background:#fff!important}.section{break-inside:avoid!important;page-break-inside:avoid!important;box-shadow:none!important;background:#fff!important}h1,h2,h3,h4{break-after:avoid!important}img,svg{max-width:100%!important;height:auto!important;break-inside:avoid!important}[onclick]{display:none!important}}
 
 /* Responsive */
 @media(max-width:640px){.exec-grid{grid-template-columns:1fr}.delivery-standard{padding:18px 16px}.delivery-head{display:grid;gap:10px}.delivery-id{text-align:left}.delivery-use,.delivery-scope{grid-template-columns:1fr}.value-stage-steps{grid-template-columns:1fr}.value-stage-step{text-align:left}.dual-path{grid-template-columns:1fr}.section{flex-direction:column}.guide-line{display:none}.day-row{flex-direction:column}.cta-card{padding:20px 18px}.report-card{padding:20px 16px}.locked-preview,.locked-report-gate{padding:22px 16px;border-radius:18px}.locked-main-grid{grid-template-columns:1fr}.locked-proof-grid,.locked-personalization,.assessment-v3-paid-grid{grid-template-columns:1fr}.assessment-v3-paid-value{padding:18px 14px}.assessment-v3-paid-section:first-child{grid-column:auto}.locked-title{font-size:22px}.locked-desc{font-size:14px}.report-payment{padding:18px 14px}.locked-wechat-box{order:-1;padding:20px 16px;display:flex;flex-direction:column;align-items:center}.locked-copy-btn{order:3}.locked-qr{order:4;width:138px;height:138px;margin-top:14px}.locked-wechat-id{order:5}.locked-small{order:6}.missing-report-card{padding:22px 16px;border-radius:18px}.missing-report-grid{grid-template-columns:1fr}.missing-report-side{order:-1}.missing-report-card h3{font-size:22px}.missing-report-actions{display:grid}.missing-report-actions .btn{width:100%;min-width:0}.paid-mini-grid,.hypothesis-grid,.script-grid,.judgement-grid{grid-template-columns:1fr}.judgement-card--action{grid-column:auto;grid-template-columns:1fr}.day-item{grid-template-columns:1fr}.decision-title{font-size:19px}.v3-candidate-panel{grid-template-columns:1fr;padding:18px 14px;border-radius:14px}.v3-candidate-panel>h3,.v3-candidate-section:first-of-type{grid-column:auto}.v3-candidate-panel>h3{font-size:20px}.v3-review-badge{min-height:0}.v3-candidate-section{padding:14px}}
@@ -473,16 +444,16 @@ h3{break-after:avoid!important}h4{break-after:avoid!important}img,svg{max-width:
 @media(max-width:480px){.nav-inner{padding:0 12px}.brand{font-size:14px}.nav-back{font-size:13px}.page{padding:18px 10px 0}.report-card{padding:16px;border-radius:16px}.report-header::after{display:none!important}.report-header h2{font-size:20px}.btn-lg{padding:14px 24px;font-size:15px}}
 @media(max-width:640px){.assessment-evidence-prompt{margin:18px 12px;padding:24px 16px}.assessment-evidence-prompt h2{font-size:21px}.assessment-evidence-actions{display:grid}.assessment-evidence-actions .btn{width:100%;min-width:0}}
 </style>
-<link rel="stylesheet" href="../assets/kevin-premium.css?v=20261009-thorough-final">
-<link rel="stylesheet" href="../assets/kevin-public-system.css?v=20261009-thorough-final">
-  <link rel="stylesheet" href="../assets/kevin-ui-v1.css?v=20261009-thorough-final" />
-<link rel="stylesheet" href="../assets/assessment-v3/paid-questionnaire.css?v=assessment-input-20260926">
+<link rel="stylesheet" href="../assets/kevin-premium.css?v=20261013-layout-contract">
+<link rel="stylesheet" href="../assets/kevin-public-system.css?v=20260713-v21">
+  <link rel="stylesheet" href="../assets/kevin-ui-v1.css?v=20261013-layout-contract" />
+<link rel="stylesheet" href="../assets/assessment-v3/paid-questionnaire.css?v=20260913-evidence-v2">
 <link rel="stylesheet" href="../assets/kevin-site-header.css?v=20260725">
 <style>
 :root{--report-wine:#7A1F2B}
 .report-generation h2 .generation-title-line{display:inline}
 body.kv-report-bplus.report-ready :where(.locked-summary-meta,.locked-free-summary small,.locked-free-summary h3,.locked-free-summary p,.locked-unlock-copy>small,.locked-unlock-copy h4,.locked-unlock-copy>p,.locked-report-value-list li,.locked-availability small,.locked-availability strong,.locked-availability p,.locked-small){line-break:strict;word-break:normal;overflow-wrap:break-word}
-body.kv-report-bplus.report-ready .locked-free-summary :where(h3,p){text-wrap:pretty}
+body.kv-report-bplus.report-ready .locked-free-summary :where(h3,p),
 body.kv-report-bplus.report-ready .locked-unlock-copy>p,
 body.kv-report-bplus.report-ready .locked-report-value-list li,
 body.kv-report-bplus.report-ready .locked-availability :where(small,strong,p),
@@ -491,8 +462,6 @@ body.kv-report-bplus.report-ready .locked-unlock-copy h4{text-wrap:balance}
 body.kv-report-bplus .locked-supplement-action{
   display:flex;
   width:100%;
-  min-width:0;
-  max-width:100%;
   min-height:78px;
   margin:4px 0 22px;
   padding:16px 20px;
@@ -506,8 +475,6 @@ body.kv-report-bplus .locked-supplement-action{
   background:var(--report-wine);
   box-shadow:0 12px 28px rgba(122,31,43,.18);
   text-align:left;
-  white-space:normal;
-  overflow-wrap:anywhere;
 }
 body.kv-report-bplus .locked-supplement-action:hover{
   border-color:#681A24;
@@ -531,22 +498,30 @@ body.kv-report-bplus .locked-supplement-action:focus-visible{outline:3px solid r
   .locked-supplement-title{font-size:16px}
 }
 </style>
+<script data-kevin-clarity="xtbdlvfb1x">
+(function(c,l,a,r,i,t,y){
+  var h=String(c.location&&c.location.hostname||"").toLowerCase();
+  if(h==="localhost"||h==="127.0.0.1"||h==="::1"||h==="[::1]")return;
+  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window,document,"clarity","script",document.currentScript.dataset.kevinClarity);
+</script>
 <style>
 .paid-flow-panel { overflow-wrap: anywhere; }
 .paid-flow-panel .btn { display:block; width:100%; margin-top:16px; white-space:normal; height:auto; min-height:48px; line-height:1.5; }
 .paid-flow-feedback { display:grid; gap:10px; margin:18px 0 4px; }
-body.kv-report-bplus .paid-flow-feedback-item { display:block; width:100%; min-width:0; max-width:100%; height:auto; min-height:48px; padding:12px 14px; border:1px solid rgba(122,31,43,.22); border-radius:12px; color:#5f1a24; background:#fff8f7; font:inherit; line-height:1.55; text-align:left; white-space:normal; overflow-wrap:anywhere; word-break:break-word; cursor:pointer; }
+.paid-flow-feedback-item { width:100%; min-height:48px; padding:12px 14px; border:1px solid rgba(122,31,43,.22); border-radius:12px; color:#5f1a24; background:#fff8f7; font:inherit; line-height:1.55; text-align:left; cursor:pointer; }
 .paid-flow-feedback-item::after { content:'去修改'; display:block; margin-top:4px; color:#7A1F2B; font-size:12px; font-weight:750; }
 .paid-flow-feedback-item:focus-visible { outline:3px solid rgba(122,31,43,.22); outline-offset:2px; }
-.kv-report .toast { max-width:calc(100vw - 32px); white-space:normal; overflow-wrap:anywhere; text-align:center; border-radius:16px; }
 .paid-flow-panel h2 { line-height:1.5; font-size:24px; }
 #paidFlowPanel { padding:24px 20px !important; }
-#paidFlowPanel h2 { margin:0 0 16px; }
-@media(max-width:380px) { }
+#paidFlowPanel h2 { margin:0 0 16px; font-size:23px; line-height:1.45; }
+@media(max-width:380px) { #paidFlowPanel h2 { font-size:21px; } }
 </style>
-<link rel="stylesheet" href="/assets/kevin-reading.css?v=20261009-thorough-final">
+<link rel="stylesheet" href="../assets/assessment-v3/report-view.css?v=20261013-online-v2">
 </head>
-<body class="kv-report kv-conversion-v1 kv-report-bplus" data-kevin-ui="v1" data-ui-template="report" data-reading-template="report" data-kv-nav-runtime="v1">
+<body class="kv-report kv-conversion-v1 kv-report-bplus" data-kevin-ui="v1" data-ui-template="report">
 <script>
 (function () {
   var params = new URLSearchParams(window.location.search);
@@ -577,7 +552,7 @@ body.kv-report-bplus .paid-flow-feedback-item { display:block; width:100%; min-w
         </div>
       </div>
       <a href="/about/">关于 Kevin</a>
-      <a href="/#products">服务与价格</a>
+      <a href="/diagnosis-sample/">一对一诊断</a>
     </nav>
     <a class="kv-global-header__cta" href="/fuye/quiz/">
       <span class="kv-global-header__cta-full">免费测一下</span>
@@ -593,7 +568,7 @@ body.kv-report-bplus .paid-flow-feedback-item { display:block; width:100%; min-w
         <a href="/knowledge/">一人公司海外源头库</a>
         <a href="/prompts/">做图提示词库</a>
         <a href="/about/">关于 Kevin</a>
-        <a href="/#products">服务与价格</a>
+        <a href="/diagnosis-sample/">一对一诊断</a>
       </nav>
     </details>
   </div>
@@ -619,7 +594,7 @@ body.kv-report-bplus .paid-flow-feedback-item { display:block; width:100%; min-w
 <section id="assessmentEvidencePrompt" class="assessment-evidence-prompt" hidden>
   <h2>补充一段真实经历，结果会更贴近你</h2>
   <p>你目前已经完成选择题。现在也可以先看基础摘要；如果补充一件真实发生的事，我们才能更具体地判断你的经验、证据和下一步。</p>
-  <div class="assessment-evidence-rule"><strong>19.9 元完整自动报告需要至少一段具体经历作为判断依据</strong><span>公司名、人名可以模糊处理，但请保留事情背景、你的动作和实际结果。</span></div>
+  <div class="assessment-evidence-rule"><strong>个人经验完整路径报告需要至少一段具体经历作为判断依据</strong><span>公司名、人名可以模糊处理，但请保留事情背景、你的动作和实际结果。</span></div>
   <div class="assessment-evidence-actions">
     <button type="button" class="btn btn-primary" data-action="supplement-evidence">补充一段真实经历（推荐）</button>
     <button type="button" class="btn btn-outline" data-action="continue-basic-summary">先看基础摘要</button>
@@ -628,35 +603,24 @@ body.kv-report-bplus .paid-flow-feedback-item { display:block; width:100%; min-w
 
 
 <main class="page">
-<!-- ===== 未完成测评恢复入口（规格 §8） ===== -->
-<section id="ksjResumeBar" class="ksj-resume" role="status" aria-live="polite" hidden>
-  <div class="ksj-resume__copy">
-    <strong>检测到一次未完成的测评</strong>
-    <span id="ksjResumeMeta"></span>
-  </div>
-  <div class="ksj-resume__actions">
-    <button type="button" class="btn btn-primary" id="ksjResumeContinue">继续上次测评</button>
-    <button type="button" class="btn btn-outline" id="ksjResumeRestart">重新开始</button>
-  </div>
-</section>
 <!-- ===== Hero ===== -->
 <section class="hero">
-  <div class="eyebrow">经验路径测评</div>
+  <div class="eyebrow">个人经验完整路径报告</div>
   <h1 data-kv-title="feature"><span class="kv-title-line"><span class="kv-title-mobile-line">你的经验卡在方向、</span><span class="kv-title-mobile-line">表达、交付，</span></span><span class="kv-title-line">还是验证？</span></h1>
-  <p class="hero-sub" id="heroSub">8 题提供一个自我分析框架；继续补充真实信息后，可先看免费测评摘要。<br>结果用于梳理思路，不代表能力评价或商业潜力判断。</p>
+  <p class="hero-sub" id="heroSub">8 题判断类型，4 组深度追问。<br>不默认劝你做流量型个人品牌，先判断你的经验该往哪条路走。</p>
 </section>
 
 <!-- ===== Step 0: Welcome + Quiz ===== -->
 <div class="step active" id="stepQuiz">
   <div class="welcome-box" id="welcomeBox">
-    <h3>先用 8 题梳理当前情况</h3>
-    <p>8 题提供一个自我分析框架。完成后可继续用 5 步补充真实信息，先看免费测评摘要；需要更完整的自动整理与行动建议时，可自愿购买 19.9 元完整自动报告，不含 Kevin 人工审核。</p>
+    <h3>先完成 8 题表层判断</h3>
+    <p>完成 8 题后会自动进入 4 组深度追问，先生成免费测评摘要；个人经验完整路径报告会继续给出完整判断和验证动作。</p>
     <a class="btn btn-primary btn-lg" href="/fuye/quiz/">先完成 8 题免费经验路径测评</a>
   </div>
 
   <div id="quizPart" style="display:none;">
     <div class="step-note" id="quizNote" style="display:none;">
-      如果选项都不完全符合，选最接近的。<br>这些选择用于梳理当前情况，不替你下结论，也不代表能力高低。
+      如果选项都不完全符合，选最接近的。<br>如果你能一眼判断，说明你已经很清楚自己的定位和方向了。
     </div>
     <div class="quiz-top" id="quizTop" style="display:none;">
       <div class="progress-text" id="progressText">第 1 / 8 题</div>
@@ -677,28 +641,27 @@ body.kv-report-bplus .paid-flow-feedback-item { display:block; width:100%; min-w
   <div class="deep-shell">
     <aside class="deep-side" aria-label="深度测评说明">
       <div class="deep-side-label">第二步：深度追问</div>
-      <h2>不是再测一遍，是补充判断依据</h2>
-      <p>前 8 题只提供初步线索。这里补充经验、问题、证据、需求和现实条件，帮助你更具体地梳理下一步。</p>
+      <h2>不是再测一遍，是把结论做准</h2>
+      <p>前 8 题只看表层倾向。这里补充经验、问题、证据、需求和现实约束，报告会更容易判断你现在该不该继续投入。</p>
       <div class="deep-side-list">
         <div><span class="kv-data">01</span><strong>基础背景</strong><em>行业、年限、当前状态</em></div>
-        <div><span class="kv-data">02</span><strong>经验与证据</strong><em>案例、材料、外部证据</em></div>
-        <div><span class="kv-data">03</span><strong>需求与验证</strong><em>咨询、付费、验证对象</em></div>
-        <div><span class="kv-data">04</span><strong>现实条件</strong><em>时间、形式、行动意愿</em></div>
-        <div><span class="kv-data">05</span><strong>真实经历</strong><em>一件真实发生的事</em></div>
+        <div><span class="kv-data">02</span><strong>经验与问题</strong><em>案例、材料、目标人群</em></div>
+        <div><span class="kv-data">03</span><strong>需求信号</strong><em>咨询、付费、验证对象</em></div>
+        <div><span class="kv-data">04</span><strong>交付与现实</strong><em>时间、形式、行动意愿</em></div>
       </div>
-      <div class="deep-side-foot">接下来用 5 步补充真实信息，约 5 分钟。不用写漂亮话，按真实情况选最接近的一项。</div>
+      <div class="deep-side-foot">不用写漂亮话，按真实情况选最接近的一项。完成后由你决定何时生成测评摘要。</div>
     </aside>
     <section class="deep-panel" aria-label="深度测评表单">
       <div class="section-head">
-        <h2>完成 5 步信息补充</h2>
-        <p>不用证明自己很厉害。按当前能确认的事实回答，暂时不知道也可以如实说明。</p>
+        <h2>补充 4 组关键信息</h2>
+        <p>不用证明自己很厉害。真实回答，报告才不会变成泛泛建议。</p>
       </div>
       <div class="deep-progress" id="deepProgress"></div>
       <div class="deep-form" id="deepForm"></div>
       <div class="deep-free-note">
-        本步骤免费。点击生成摘要时，回答和经历会提交并保存到本站服务器，用于生成和恢复报告。请勿填写真实姓名、联系方式或客户机密；可使用代称。<a href="/privacy.html" target="_blank" rel="noopener">查看数据说明</a>。可选内容暂时没有也可以继续。
+        本步骤免费，不会跳转支付。完成全部必填项后，点击按钮生成测评摘要；可选内容暂时没有也可以继续。
       </div>
-      <button class="btn btn-primary btn-block btn-lg" id="genBtn" onclick="generateReport()" style="display:none;">生成我的测评摘要</button>
+      <button class="btn btn-primary btn-block btn-lg" id="genBtn" onclick="generateReport()" style="display:none;">生成免费测评摘要</button>
     </section>
   </div>
 </div>
@@ -711,19 +674,17 @@ body.kv-report-bplus .paid-flow-feedback-item { display:block; width:100%; min-w
 
 <div class="toast" id="toast"></div>
 
-<script src="../assets/experience-quiz-model.js?v=20260920-1"></script>
+<script src="../assets/experience-quiz-model.js"></script>
 <script src="../assets/assessment-v3/questions.js"></script>
 <script src="../assets/assessment-v3/adaptive-diagnostic.js"></script>
 <script src="../assets/assessment-v3/question-flow.js"></script>
 <script src="../assets/assessment-v3/adaptive-session.js"></script>
-<script src="../assets/assessment-v3/paid-questionnaire-model.js?v=assessment-input-20260926"></script>
-<script src="../assets/assessment-v3/paid-questionnaire-ui.js?v=assessment-input-20260926"></script>
-<script src="../assets/assessment-v3/paid-flow-client.js?v=20260913-evidence-v2"></script>
-<script src="../assets/assessment-v3/report-renderer.js?v=20260914-1"></script>
-<script src="../assets/experience-commercial-diagnostic.js?v=customer-mobile-20260920"></script>
+<script src="../assets/assessment-v3/paid-questionnaire-model.js?v=20260913-evidence-v2"></script>
+<script src="../assets/assessment-v3/paid-questionnaire-ui.js?v=20260913-evidence-v2"></script>
+<script src="../assets/assessment-v3/paid-flow-client.js?v=20261013-online-v1"></script>
+<script src="../assets/assessment-v3/report-renderer.js?v=20261013-online-v2"></script>
+<script src="../assets/experience-commercial-diagnostic.js"></script>
 <script src="../assets/paid-diagnosis-model.js"></script>
-<script src="../assets/assessment-v3/kevin-judgement.js?v=customer-mobile-20260920"></script>
-<script src="../assets/assessment-v3/kevin-report-v1.js?v=20261009-thorough-final"></script>
 <script>
 // ==================== STATE ====================
 var nickname = '';
@@ -889,13 +850,12 @@ function selectQ(v, el) {
   document.querySelectorAll('#quizQ .option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
   document.getElementById('nextBtn').disabled = false;
-  syncAssessmentProgress();
 }
 
-function prevQ() { if (currentQ > 0) { currentQ--; renderQ(); syncAssessmentProgress(); } }
+function prevQ() { if (currentQ > 0) { currentQ--; renderQ(); } }
 function nextQ() {
   if (!quizAnswers[currentQ]) return;
-  if (currentQ < TOTAL_Q - 1) { currentQ++; renderQ(); syncAssessmentProgress(); }
+  if (currentQ < TOTAL_Q - 1) { currentQ++; renderQ(); }
   else { finishQuiz(); }
 }
 
@@ -969,22 +929,10 @@ let deepGroups = isLocalV3Flow() && adaptiveDiagnosticModel
 let deepFields = deepGroups.flatMap(g => g.fields);
 const deepGroupNotes = [
   '这一组只看基础语境，不决定你厉不厉害。真实选择即可。',
-  '这一组问题较多，用于梳理案例、证据和可能帮助的人。选最接近现状，不用证明自己。',
+  '这一组问题较多，因为个人经验完整路径报告要判断案例、证据和目标人群。选最接近现状，不用证明自己。',
   '这一组用来区分“我想做”和“别人真的需要”。没有信号也没关系，报告会给保守建议。',
   '这一组用来防止报告盲目建议收费、咨询或做复杂产品。按现实状态选，不用选最体面的答案。'
 ];
-
-/* 规格 §5：深度部分统一为固定 5 步口径。
- * 深度部分统一为固定 5 步口径：基础背景 / 经验与证据 / 需求与验证 / 现实条件 / 真实经历。
- * 无论底层分组来自旧规则引擎还是 V3 自适应结构，对用户一律使用这一套名字，
- * 避免同一份测评在不同入口出现两套步骤名称。 */
-const KSJ_STEP_NAMES = ['基础背景', '经验与证据', '需求与验证', '现实条件', '真实经历'];
-
-function canonicalStepName(index) {
-  const i = Number(index);
-  if (!Number.isFinite(i) || i < 0) return KSJ_STEP_NAMES[KSJ_STEP_NAMES.length - 1];
-  return KSJ_STEP_NAMES[Math.min(i, KSJ_STEP_NAMES.length - 1)];
-}
 
 let currentGroup = 0;
 
@@ -1039,9 +987,12 @@ function prepareLocalV3Steps() {
   const panelTitle = document.querySelector('#stepDeep .section-head h2');
   const sideFoot = document.querySelector('.deep-side-foot');
 
-  if (label) label.textContent = '第二步：补充真实信息';
-  if (panelTitle) panelTitle.textContent = '完成 5 步信息补充';
-  if (sideFoot) sideFoot.textContent = '接下来用 5 步补充真实信息，约 5 分钟。不用写漂亮话，按真实情况选最接近的一项。';
+  if (label) label.textContent = '第二步：深度判断';
+  if (panelTitle) panelTitle.textContent = '完成深度测评，生成测评摘要';
+  if (sideFoot) sideFoot.textContent = '';
+  if (sideList && !sideList.querySelector('[data-v3-step="open"]')) {
+    sideList.insertAdjacentHTML('beforeend', '<div data-v3-step="open"><span>05</span><strong>真实回答</strong><em>一次只问一个关键问题</em></div>');
+  }
 }
 
 function getDeepOptionText(opt) {
@@ -1057,11 +1008,11 @@ function setDeepModeHero() {
   const eyebrow = document.querySelector('.hero .eyebrow');
   const title = document.querySelector('.hero h1');
   const sub = document.getElementById('heroSub');
-  if (eyebrow) eyebrow.textContent = '已完成 8 题基础梳理';
+  if (eyebrow) eyebrow.textContent = '已完成 8 题表层判断';
   if (title) {
     title.innerHTML = isLocalV3Flow()
-      ? '完成 5 步信息补充，<br class="mobile-report-break">生成我的测评摘要'
-      : '完成 5 步信息补充，<br class="mobile-report-break">生成我的测评摘要';
+      ? '完成深度判断，<br class="mobile-report-break">生成测评摘要'
+      : '补 4 组信息，<br class="mobile-report-break">生成免费测评摘要';
   }
   if (sub) {
     sub.innerHTML = isLocalV3Flow()
@@ -1087,11 +1038,11 @@ function enterReportReadyMode(isPaid) {
   const eyebrow = document.querySelector('.hero .eyebrow');
   const title = document.querySelector('.hero h1');
   const sub = document.getElementById('heroSub');
-  if (eyebrow) eyebrow.textContent = isPaid ? '19.9 元完整自动报告' : '免费测评摘要已生成';
+  if (eyebrow) eyebrow.textContent = isPaid ? '个人经验完整路径报告' : '免费测评摘要已生成';
   if (title) {
     title.innerHTML = isPaid
-      ? '你的 19.9 元完整自动报告'
-      : '免费测评摘要已生成';
+      ? '你的个人经验完整路径报告'
+      : '免费测评摘要已生成，<br class="mobile-report-break">可领取个人经验完整路径报告';
   }
   if (sub) {
     sub.innerHTML = isPaid
@@ -1107,11 +1058,10 @@ function showGroup(idx) {
   const saved = {...deepData};
 
   currentGroup = idx;
-  syncAssessmentProgress();
   if (isLocalV3Flow() && idx === deepGroups.length) {
     setOpenAnswersStage(true);
     document.getElementById('deepForm').innerHTML = `<div class="v3-open-step" data-v3-open-stage="true">
-      <div class="continue-row deep-submit-row"><button class="btn btn-primary btn-block btn-lg" onclick="generateReport()" style="display:none;">生成我的测评摘要</button><div class="field-hint"></div></div>
+      <div class="continue-row deep-submit-row"><button class="btn btn-primary btn-block btn-lg" onclick="generateReport()" style="display:none;">生成免费测评摘要</button><div class="field-hint"></div></div>
     </div>`;
     renderProgress();
     scrollDeepWizardTop();
@@ -1122,7 +1072,7 @@ function showGroup(idx) {
   const groupNote = deepGroupNotes[idx] || '选最接近现状的一项即可，报告会根据整体组合判断。';
   const groupDesc = g.desc || g.description || '';
   const totalSteps = deepGroups.length + (isLocalV3Flow() ? 1 : 0);
-  let html = `<div class="group-card"><div class="group-kicker">第 ${idx + 1} 步 / 共 ${totalSteps} 步</div><h3>${canonicalStepName(idx)}</h3><p class="group-desc">${groupDesc}</p><div class="group-assurance"><strong>为什么问这组</strong><span>${groupNote}</span></div>`;
+  let html = `<div class="group-card"><div class="group-kicker">第 ${idx + 1} 步 / 共 ${totalSteps} 步</div><h3>${g.title}</h3><p class="group-desc">${groupDesc}</p><div class="group-assurance"><strong>为什么问这组</strong><span>${groupNote}</span></div>`;
 
   g.fields.forEach(f => {
     const prevVal = saved[f.id] || '';
@@ -1168,19 +1118,18 @@ function showGroup(idx) {
 
   const hasNext = idx < deepGroups.length - 1 || (isLocalV3Flow() && idx === deepGroups.length - 1);
   if (hasNext) {
-    const nextLabel = '下一步';
+    const nextLabel = isLocalV3Flow() && idx === deepGroups.length - 1 ? '继续回答真实问题' : '继续下一组';
     html += `<div class="continue-row">
       ${idx > 0 ? `<button type="button" class="btn btn-outline" onclick="goPreviousGroup(${idx-1})">返回上一组</button>` : ''}
       <button class="btn btn-primary" onclick="goNextGroup(${idx+1})">${nextLabel}</button>
     </div>`;
   } else {
-    html += `<div class="continue-row deep-submit-row"><button class="btn btn-primary btn-block btn-lg" onclick="generateReport()">生成我的测评摘要</button><div class="field-hint">点击后直接生成摘要，不会跳转支付。</div></div>`;
+    html += `<div class="continue-row deep-submit-row"><button class="btn btn-primary btn-block btn-lg" onclick="generateReport()">生成免费测评摘要</button><div class="field-hint">点击后直接生成摘要，不会跳转支付。</div></div>`;
   }
 
   html += `</div>`;
   document.getElementById('deepForm').innerHTML = html;
   renderProgress();
-  refreshCurrentStepValidity();
   scrollDeepWizardTop();
 }
 
@@ -1299,122 +1248,15 @@ async function flushPendingReports() {
   writePendingReports(remain);
 }
 
-/* ============================================================
- * 规格 §7：漏填校验必须稳定、就地反馈
- *   - 必填项缺失时主按钮置灰（aria-disabled + 灰化样式，仍可点击以便给出就地提示）
- *   - 尝试继续时，在缺失字段正下方显示红字「这里还没完成」
- *   - 自动滚动并聚焦到第一个缺失字段
- *   - 不依赖短暂的全局 toast 作为唯一错误反馈
- *   - 填写完成后错误提示立即消失、按钮恢复可用
- * ============================================================ */
-const KSJ_FIELD_ERROR_TEXT = '这里还没完成';
-
-function isRequiredField(f) {
-  if (!f) return false;
-  if (f.required === false) return false;  // 明确标记可选的字段（如"适用边界"）
-  if (f.type === 'range') return false;    // 滑杆始终有默认值
-  return true;
-}
-
-function deepFieldBox(fieldId) {
-  const node = document.getElementById('df_' + fieldId);
-  return node && node.closest ? node.closest('.deep-field') : null;
-}
-
-function showFieldError(fieldId) {
-  const box = deepFieldBox(fieldId);
-  if (!box) return;
-  box.classList.add('has-error');
-  let node = box.querySelector('.ksj-field-error');
-  if (!node) {
-    node = document.createElement('p');
-    node.className = 'ksj-field-error';
-    node.setAttribute('role', 'alert');
-    node.textContent = KSJ_FIELD_ERROR_TEXT;
-    box.appendChild(node);
-  }
-}
-
-function clearFieldError(fieldId) {
-  const box = deepFieldBox(fieldId);
-  if (!box) return;
-  box.classList.remove('has-error');
-  const node = box.querySelector('.ksj-field-error');
-  if (node) node.remove();
-}
-
-function clearAllFieldErrors() {
-  document.querySelectorAll('#deepForm .deep-field.has-error').forEach(function (box) {
-    box.classList.remove('has-error');
-    const node = box.querySelector('.ksj-field-error');
-    if (node) node.remove();
-  });
-}
-
-function missingRequiredFields(fields) {
-  return (fields || []).filter(function (f) { return isRequiredField(f) && !isAnswered(f); });
-}
-
-/* 提交按钮出现时，校验范围扩大到全部步骤；否则只校验当前步骤 */
-function validationScopeFields() {
-  if (!deepGroups.length) return [];
-  const submitVisible = isLocalV3Flow()
-    ? currentGroup >= deepGroups.length
-    : currentGroup >= deepGroups.length - 1;
-  if (submitVisible) return deepFields;
-  const group = deepGroups[currentGroup];
-  return (group && group.fields) || [];
-}
-
-/* 不打断用户：只更新按钮灰化状态，并清掉已经填好的红字 */
-function refreshCurrentStepValidity() {
-  const container = document.getElementById('deepForm');
-  if (!container) return true;
-  const scope = validationScopeFields();
-  const missing = missingRequiredFields(scope);
-  const missingIds = {};
-  missing.forEach(function (f) { missingIds[f.id] = 1; });
-
-  container.querySelectorAll('.deep-field.has-error').forEach(function (box) {
-    const input = box.querySelector('input[id^="df_"], select[id^="df_"]');
-    const id = input ? input.id.replace(/^df_/, '') : '';
-    if (id && !missingIds[id]) clearFieldError(id);
-  });
-
-  const blocked = missing.length > 0;
-  container.querySelectorAll('.continue-row .btn-primary').forEach(function (button) {
-    // 只做视觉置灰：按钮仍需可点击，点击后才给出就地红字提示（§7.2）
-    button.classList.toggle('is-incomplete', blocked);
-    button.setAttribute('data-incomplete', blocked ? 'true' : 'false');
-  });
-  return !blocked;
-}
-
-function focusField(field) {
-  if (!field) return;
-  const box = deepFieldBox(field.id);
-  if (!box) return;
-  if (box.scrollIntoView) box.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  const target = box.querySelector('input:not([type="hidden"]), select, .seg-btn, .chip');
-  if (target && typeof target.focus === 'function') {
-    try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); }
-  }
-}
-
-/* 把缺失项就地标红 + 聚焦第一个；返回是否全部完成 */
-function applyMissingFeedback(missing) {
-  clearAllFieldErrors();
-  if (!missing || !missing.length) return true;
-  missing.forEach(function (f) { showFieldError(f.id); });
-  focusField(missing[0]);
-  return false;
-}
-
 function validateGroup(idx) {
   updateDeepForm();
-  const group = deepGroups[idx];
-  refreshCurrentStepValidity();
-  return applyMissingFeedback(missingRequiredFields(group && group.fields));
+  const g = deepGroups[idx];
+  const missing = g.fields.filter(f => !isAnswered(f));
+  if (missing.length) {
+    notify('请先完成：' + missing[0].label.replace(/（.*?）/g, ''));
+    return false;
+  }
+  return true;
 }
 
 function goNextGroup(nextIdx) {
@@ -1432,227 +1274,19 @@ function enterOpenAnswersStage() {
 
 function validateAllDeep() {
   updateDeepForm();
-  // 第 5 步（真实经历）由 V3 自身校验，这里只校验前 4 步的固定字段
   for (let i = 0; i < deepGroups.length; i++) {
-    if (i === currentGroup) continue;
-    const missing = missingRequiredFields(deepGroups[i].fields);
+    const missing = deepGroups[i].fields.filter(f => {
+      if (f.type === 'range') return false;
+      const v = String(deepData[f.id] || '').trim();
+      return !v;
+    });
     if (missing.length) {
       showGroup(i);
-      // showGroup 重建了 DOM，标红必须在重建之后
-      applyMissingFeedback(missingRequiredFields(deepGroups[i].fields));
+      notify('请先完成：' + missing[0].label.replace(/（.*?）/g, ''));
       return false;
     }
   }
-  const current = missingRequiredFields(validationScopeFields());
-  if (current.length) return applyMissingFeedback(current);
-  clearAllFieldErrors();
   return true;
-}
-
-/* ============================================================
- * 规格 §8：进度保存（只用 localStorage，不做登录系统）
- *   key: ks_assessment_progress_v1
- *   schema 版本号随结构变化升级；版本不匹配时整体丢弃，不做字段级兼容
- *   保存：当前阶段 / 题号 / 步骤 / 已选答案 / 已填文本 / sid
- *   不保存任何敏感凭证
- * ============================================================ */
-const KSJ_PROGRESS_KEY = 'ks_assessment_progress_v1';
-const KSJ_PROGRESS_SCHEMA = 1;
-
-function readAssessmentProgress() {
-  try {
-    const raw = localStorage.getItem(KSJ_PROGRESS_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (!parsed || parsed.schema !== KSJ_PROGRESS_SCHEMA) return null;
-    return parsed;
-  } catch (e) {
-    return null;
-  }
-}
-
-function writeAssessmentProgress(extra) {
-  try {
-    const quiz = {};
-    Object.keys(quizAnswers || {}).forEach(function (key) {
-      const value = quizAnswers[key];
-      if (value !== undefined && value !== null && String(value).trim() !== '') quiz[key] = String(value);
-    });
-    const deep = {};
-    Object.keys(deepData || {}).forEach(function (key) {
-      const value = deepData[key];
-      if (value !== undefined && value !== null && String(value).trim() !== '') deep[key] = String(value);
-    });
-    const payload = Object.assign({
-      schema: KSJ_PROGRESS_SCHEMA,
-      savedAt: Date.now(),
-      stage: quizDone ? 'deep' : 'quiz',
-      quizIndex: currentQ,
-      stepIndex: currentGroup,
-      quizAnswers: quiz,
-      deepData: deep,
-      sessionId: reportSessionId || ''
-    }, extra || {});
-    localStorage.setItem(KSJ_PROGRESS_KEY, JSON.stringify(payload));
-    return payload;
-  } catch (e) {
-    return null;
-  }
-}
-
-function syncAssessmentProgress() {
-  return writeAssessmentProgress();
-}
-
-function clearAssessmentProgress() {
-  try { localStorage.removeItem(KSJ_PROGRESS_KEY); } catch (e) {}
-  const bar = document.getElementById('ksjResumeBar');
-  if (bar) bar.hidden = true;
-}
-
-function hasMeaningfulProgress(progress) {
-  if (!progress) return false;
-  const quizCount = Object.keys(progress.quizAnswers || {}).length;
-  const deepCount = Object.keys(progress.deepData || {})
-    .filter(function (key) { return String(progress.deepData[key] || '').trim(); }).length;
-  return quizCount > 0 || deepCount > 0;
-}
-
-function assessmentProgressMeta(progress) {
-  const parts = [];
-  if (progress.stage === 'deep') {
-    const step = Math.min(Math.max(Number(progress.stepIndex) || 0, 0), KSJ_STEP_NAMES.length - 1);
-    parts.push('已完成 8 题，信息补充进行到第 ' + (step + 1) + ' 步（' + canonicalStepName(step) + '）');
-  } else {
-    parts.push('8 题作答到第 ' + (Math.min(Number(progress.quizIndex) || 0, TOTAL_Q - 1) + 1) + ' 题');
-  }
-  const savedAt = new Date(Number(progress.savedAt) || 0);
-  if (!isNaN(savedAt.getTime()) && savedAt.getTime() > 0) {
-    parts.push('保存于 ' + (savedAt.getMonth() + 1) + '/' + savedAt.getDate() + ' '
-      + String(savedAt.getHours()).padStart(2, '0') + ':' + String(savedAt.getMinutes()).padStart(2, '0'));
-  }
-  return parts.join(' · ');
-}
-
-function restoreAssessmentProgress(progress) {
-  if (!progress) return false;
-  clearAllFieldErrors();
-
-  const quiz = progress.quizAnswers || {};
-  Object.keys(quiz).forEach(function (key) {
-    const index = Number(key);
-    if (Number.isInteger(index) && index >= 0 && index < TOTAL_Q && quiz[key]) {
-      quizAnswers[index] = String(quiz[key]);
-    }
-  });
-  if (progress.deepData && typeof progress.deepData === 'object') {
-    Object.assign(deepData, progress.deepData);
-  }
-  if (progress.sessionId) {
-    reportSessionId = String(progress.sessionId);
-    try { sessionStorage.setItem('_quiz_report_sid', reportSessionId); } catch (e) {}
-  }
-  if (progress.quizIndex !== undefined) {
-    currentQ = Math.min(Math.max(Number(progress.quizIndex) || 0, 0), TOTAL_Q - 1);
-  }
-
-  const bar = document.getElementById('ksjResumeBar');
-  if (bar) bar.hidden = true;
-
-  if (progress.stage === 'deep') {
-    quizDone = true;
-    document.getElementById('quizPart').style.display = 'none';
-    document.getElementById('stepQuiz').classList.remove('active');
-    document.getElementById('stepDeep').classList.add('active');
-    if (typeof renderDeepForm === 'function') renderDeepForm();
-    const step = Math.min(Math.max(Number(progress.stepIndex) || 0, 0), deepGroups.length);
-    if (step > 0) showGroup(step);
-    document.getElementById('stepDeep').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    return true;
-  }
-
-  document.getElementById('welcomeBox').style.display = 'none';
-  document.getElementById('quizPart').style.display = '';
-  document.getElementById('quizNote').style.display = '';
-  document.getElementById('quizTop').style.display = '';
-  document.getElementById('quizNav').style.display = '';
-  document.getElementById('stepQuiz').classList.add('active');
-  renderQ();
-  syncAssessmentProgress();
-  return true;
-}
-
-/* 规格 §8 补充：走"本机已有 8 题记录，直接进深度判断"这条路时，
-   必须把本机未完成进度里的已填内容和步骤指针一并还原。
-   否则 renderDeepForm() 会 showGroup(0)，紧接着 syncAssessmentProgress()
-   用空 deepData 覆盖，用户已填内容全部丢失。
-   返回应跳转到的步骤号（0 表示没有可还原的深度进度）。 */
-function restoreSavedProgressIntoDeep() {
-  const progress = readAssessmentProgress();
-  if (!hasMeaningfulProgress(progress)) return 0;
-
-  const deep = progress.deepData || {};
-  const filledKeys = Object.keys(deep).filter(function (key) {
-    return String(deep[key] || '').trim() !== '';
-  });
-  const step = Number(progress.stepIndex);
-  const hasStep = Number.isFinite(step) && step > 0;
-  if (!filledKeys.length && !hasStep) return 0;
-
-  filledKeys.forEach(function (key) { deepData[key] = String(deep[key]); });
-
-  if (!reportSessionId && progress.sessionId) {
-    reportSessionId = String(progress.sessionId);
-    try { sessionStorage.setItem('_quiz_report_sid', reportSessionId); } catch (e) {}
-  }
-
-  if (!hasStep) return 0;
-  return Math.min(Math.max(step, 0), deepGroups.length);
-}
-
-/* 入口检测到未完成记录时，给出「继续上次测评 / 重新开始」 */
-function maybeOfferProgressResume() {
-  const bar = document.getElementById('ksjResumeBar');
-  if (!bar) return false;
-  const progress = readAssessmentProgress();
-  if (!hasMeaningfulProgress(progress)) {
-    bar.hidden = true;
-    return false;
-  }
-  const meta = document.getElementById('ksjResumeMeta');
-  if (meta) meta.textContent = assessmentProgressMeta(progress);
-  bar.hidden = false;
-  return true;
-}
-
-function bindProgressResume() {
-  const continueBtn = document.getElementById('ksjResumeContinue');
-  const restartBtn = document.getElementById('ksjResumeRestart');
-  if (continueBtn) {
-    continueBtn.addEventListener('click', function () {
-      const progress = readAssessmentProgress();
-      if (!restoreAssessmentProgress(progress)) {
-        clearAssessmentProgress();
-        notify('没有读到可以继续的记录，请重新开始。');
-      }
-    });
-  }
-  if (restartBtn) {
-    restartBtn.addEventListener('click', function () {
-      clearAssessmentProgress();
-      quizAnswers = {};
-      deepData = {};
-      currentQ = 0;
-      currentGroup = 0;
-      quizDone = false;
-      clearAllFieldErrors();
-      document.getElementById('ksjResumeBar').hidden = true;
-      document.getElementById('stepReport').style.display = 'none';
-      document.getElementById('stepDeep').classList.remove('active');
-      document.getElementById('stepQuiz').classList.add('active');
-      goQuiz();
-    });
-  }
 }
 
 function renderProgress() {
@@ -1663,7 +1297,7 @@ function renderProgress() {
     let cls = '';
     if (i < currentGroup) cls = 'done';
     else if (i === currentGroup) cls = 'active';
-    const label = canonicalStepName(i);
+    const label = i === deepGroups.length ? '真实经历' : deepGroups[i].title.replace('你的', '');
     html += `<div class="deep-progress-item ${cls}"><span class="kv-data">${i+1}</span><em>${label}</em></div>`;
   }
   document.getElementById('deepProgress').innerHTML = html;
@@ -1689,9 +1323,9 @@ function getReportTitle() {
     return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
   });
   if (rawName && rawName.length <= 8) {
-    return '<span class="report-title-line">' + safeName + '的个人经验</span><span class="report-title-line">19.9 元完整自动报告</span>';
+    return '<span class="report-title-line">' + safeName + '的个人经验</span><span class="report-title-line">个人经验完整路径报告</span>';
   }
-  return '<span class="report-title-line">你的个人经验</span><span class="report-title-line">19.9 元完整自动报告</span>';
+  return '<span class="report-title-line">你的个人经验</span><span class="report-title-line">个人经验完整路径报告</span>';
 }
 
 function getSummaryTitle() {
@@ -1775,8 +1409,8 @@ function parseAnswerKeysFromUrl() {
   var raw = String(params.get('ak') || '').trim().toUpperCase();
   if (!raw) return [];
   var joined = raw.indexOf(',') !== -1 ? raw.split(',').join('') : raw;
-  joined = joined.replace(/\s/g, '');
-  if (!/^[A-D]{5}[A-E][A-D]{2}$/.test(joined)) return [];
+  joined = joined.replace(/[^A-D]/g, '');
+  if (joined.length !== TOTAL_Q) return [];
   return joined.split('');
 }
 
@@ -1799,19 +1433,6 @@ function buildSavedQuizFromUrl() {
     diagnosticLabel: diagnostic ? diagnostic.label : ''
   };
   return JSON.stringify(saved);
-}
-
-/* 规格 §12：本地记录是否属于当前 sid。
- * 只有 sid 专属的本机记录才允许继续深度判断，避免"失效 sid 静默进入一套新测评"。 */
-function hasSidScopedQuizRecord(sid) {
-  var clean = getCleanSid(sid);
-  if (!clean) return false;
-  try {
-    return Boolean(sessionStorage.getItem('kevin_extraction_quiz_result_' + clean)
-      || localStorage.getItem('kevin_extraction_quiz_result_' + clean));
-  } catch (e) {
-    return false;
-  }
 }
 
 function readSavedQuizRaw(fallbackSid) {
@@ -1946,12 +1567,19 @@ function showDeepFromLocalQuiz(fallbackSid) {
   document.getElementById('loadStatus').classList.remove('active');
   document.getElementById('stepQuiz').classList.remove('active');
   document.getElementById('stepDeep').classList.add('active');
-  document.getElementById('heroSub').innerHTML = '你已经完成 8 题基础梳理。<br>继续用 5 步补充真实信息，再生成免费测评摘要。';
-  // 规格 §8：先还原本机未完成进度，再渲染（renderDeepForm 内部固定 showGroup(0)）
-  var resumeStep = restoreSavedProgressIntoDeep();
+  document.getElementById('heroSub').innerHTML = '你已经完成 8 题表层判断。<br>继续回答 4 组深度追问，生成免费测评摘要。';
   renderDeepForm();
-  if (resumeStep > 0) showGroup(resumeStep);
   return true;
+}
+
+function copyWechat() {
+  var value = 'kevin0915';
+  if (window._ktrack) window._ktrack('copy_wechat_report');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(value).then(function() { notify('微信号已复制：' + value); }).catch(function() { notify('微信号：' + value); });
+  } else {
+    notify('微信号：' + value);
+  }
 }
 
 function isMeasurementCode(value) {
@@ -1964,28 +1592,25 @@ function getClaimReportId() {
 
 function buildClaimReportMessage() {
   var reportId = getClaimReportId();
-  return reportId ? '19.9 元完整自动报告 + 报告编号：' + reportId : '19.9 元完整自动报告';
+  return reportId ? '个人经验完整路径报告 + 测评编号：' + reportId : '个人经验完整路径报告';
 }
 
 function copyClaimReportMessage() {
   var value = buildClaimReportMessage();
   if (window._ktrack) window._ktrack('copy_report_claim_message');
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(value).then(function() { notify('报告核对信息已复制'); }).catch(function() { notify('发送：' + value); });
+    navigator.clipboard.writeText(value).then(function() { notify('领取文案已复制'); }).catch(function() { notify('发送：' + value); });
   } else {
     notify('发送：' + value);
   }
 }
 
 function copyTextMessage(value) {
-  if (!value) {
-    notify('当前没有可复制内容');
-    return;
-  }
+  if (!value) return copyWechat();
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(value).then(function() { notify('内容已复制'); }).catch(function() { notify('请长按内容手动复制'); });
+    navigator.clipboard.writeText(value).then(function() { notify('内容已复制'); }).catch(function() { notify('微信：kevin0915'); });
   } else {
-    notify('请长按内容手动复制');
+    notify('微信：kevin0915');
   }
 }
 
@@ -2003,34 +1628,34 @@ function renderMissingReport(sid) {
   document.getElementById('stepQuiz').classList.remove('active');
   document.getElementById('stepDeep').classList.remove('active');
   document.getElementById('stepReport').style.display = 'block';
-  document.getElementById('heroSub').innerHTML = '这份报告链接暂时没有读到记录。<br>请复制当前链接并通过企业微信客服核对；如果已经付款，无需再次付款。';
+  document.getElementById('heroSub').innerHTML = '这份报告链接暂时没有读到记录。<br>别重新折腾，直接加微信，我帮你查。';
   if (window._ktrack) window._ktrack('view_missing_report');
 
   var accessParams = new URLSearchParams(window.location.search);
   var giftReturn = accessParams.get('access') === 'gift';
   var paidReturn = accessParams.get('payment') === 'success';
   if (giftReturn) {
-    document.getElementById('heroSub').innerHTML = '赠送查看资格已经保留。<br>19.9 元完整自动报告暂时没有读取成功。';
+    document.getElementById('heroSub').innerHTML = '赠送查看资格已经保留。<br>个人经验完整路径报告暂时没有读取成功。';
     var giftHtml = '';
     giftHtml += '<div class="missing-report-card">';
     giftHtml += '<div class="locked-kicker">赠送查看资格已保留</div>';
     giftHtml += '<h3>已赠送，正在重试生成</h3>';
-    giftHtml += '<p>页面暂时没有读到完整自动报告。赠送查看资格不会丢失，不需要付款。</p>';
+    giftHtml += '<p>页面暂时没有读到个人经验完整路径报告。赠送查看资格不会丢失，不需要付款。</p>';
     giftHtml += '<div class="missing-report-focus"><strong>请稍后点击重新读取；已填写内容和报告资格都会保留。</strong></div>';
-    giftHtml += '<div class="missing-report-actions"><button type="button" class="btn btn-outline" onclick="location.reload()">重新读取完整自动报告</button></div>';
+    giftHtml += '<div class="missing-report-actions"><button type="button" class="btn btn-outline" onclick="location.reload()">重新读取个人经验完整路径报告</button></div>';
     giftHtml += '</div>';
     document.getElementById('reportContainer').innerHTML = giftHtml;
     return;
   }
   if (paidReturn) {
-    document.getElementById('heroSub').innerHTML = '付款状态已经保留。<br>19.9 元完整自动报告暂时没有读取成功。';
+    document.getElementById('heroSub').innerHTML = '支付状态已经保留。<br>个人经验完整路径报告暂时没有读取成功。';
     var paidHtml = '';
     paidHtml += '<div class="missing-report-card">';
     paidHtml += '<div class="locked-kicker">付款状态已保留</div>';
     paidHtml += '<h3>已支付，正在重试生成</h3>';
-    paidHtml += '<p>页面暂时没有读到完整自动报告。你的付款状态不会丢失，不需要再次付款。</p>';
+    paidHtml += '<p>页面暂时没有读到个人经验完整路径报告。你的付款状态不会丢失，不需要再次付款。</p>';
     paidHtml += '<div class="missing-report-focus"><strong>请稍后点击重新读取；已填写内容和报告资格都会保留。</strong></div>';
-    paidHtml += '<div class="missing-report-actions"><button type="button" class="btn btn-outline" onclick="location.reload()">重新读取完整自动报告</button></div>';
+    paidHtml += '<div class="missing-report-actions"><button type="button" class="btn btn-outline" onclick="location.reload()">重新读取个人经验完整路径报告</button></div>';
     paidHtml += '</div>';
     document.getElementById('reportContainer').innerHTML = paidHtml;
     return;
@@ -2039,19 +1664,20 @@ function renderMissingReport(sid) {
   html += '<div class="missing-report-card">';
   html += '<div class="missing-report-grid">';
   html += '<div>';
-  html += '<div class="locked-kicker">链接已失效</div>';
-  html += '<h3>这份报告链接已经失效或不属于当前测评。</h3>';
-  html += '<p>有时是换了浏览器、链接不完整，或者这条记录已经不在当前测评里。你不用自己排查，也不用重新填一遍深度问题。</p>';
-  html += '<div class="missing-report-focus"><strong>你可以：</strong></div>';
+  html += '<div class="locked-kicker">需要人工确认</div>';
+  html += '<h3>报告链接没读到记录，不代表你的测评没用。</h3>';
+  html += '<p>有时是报告还没保存成功，有时是换了浏览器或链接不完整。你不用自己排查，也不用重新填一遍。</p>';
+  html += '<div class="missing-report-focus"><strong>如果报告链接打不开，加微信 kevin0915 处理。</strong></div>';
   html += '<div class="missing-report-actions">';
-  html += '<a class="btn btn-primary" href="/fuye/quiz/">重新免费做一份测评</a>';
   html += '<button type="button" class="btn btn-outline" onclick="copyCurrentReportLink()">复制当前链接</button>';
+  html += '<a class="btn btn-outline" href="/fuye/quiz/">重新做免费经验路径测评</a>';
   html += '</div>';
   html += '</div>';
   html += '<div class="missing-report-side">';
-  html += '<p class="missing-report-side-title">如果确实已经付过款</p>';
-  html += '<p>复制当前链接后，通过企业微信客服发给Kevin核对原来的报告记录。客服核对不等于再次购买。</p>';
-  html += '<a href="https://work.weixin.qq.com/kfid/kfcdeee6e0a57a6c662" class="locked-copy-btn">进入企业微信客服</a>';
+  html += '<img class="locked-qr" src="../assets/wechat-qr.jpg?v=clean-20260704" alt="微信二维码" onerror="this.style.display=\'none\'">';
+  html += '<p class="missing-report-side-title">加微信查报告</p>';
+  html += '<p>扫码或复制微信号。发当前链接，我帮你确认报告记录。</p>';
+  html += '<button type="button" onclick="copyWechat()" class="locked-copy-btn">复制微信号 kevin0915</button>';
   html += '</div>';
   html += '</div>';
   html += '</div>';
@@ -2063,9 +1689,6 @@ function updateDeepForm() {
     const el = document.getElementById('df_'+f.id);
     if (el) deepData[f.id] = el.value;
   });
-  // 规格 §7：填完立刻恢复按钮、清掉对应红字，不用等用户再点一次
-  refreshCurrentStepValidity();
-  syncAssessmentProgress();
   const paidState = window.__kevinAssessmentV3ReportIntegration;
   if (paidState && paidState.paidFlow && paidState.scheduleSave) paidState.scheduleSave();
 }
@@ -2121,9 +1744,7 @@ function serializeDiagnosticMeta(diagnostic) {
 function resetReportGenerationButtons() {
   document.querySelectorAll('#deepForm .deep-submit-row .btn-primary, #genBtn').forEach(function(button) {
     button.disabled = false;
-    button.classList.remove('is-incomplete');
-    button.setAttribute('data-incomplete', 'false');
-    button.textContent = '生成我的测评摘要';
+    button.textContent = '生成免费测评摘要';
   });
 }
 
@@ -2199,14 +1820,7 @@ function finishReportGeneration(showReport) {
 
 function failReportGeneration(message) {
   stopReportGenerationMessages();
-  // 规格 §2：本机规则判断已经渲染出摘要时，不能被后续"增强"请求的失败清掉。
-  // 否则 /api/runAssessmentV3 一旦抖动，用户连免费摘要都看不到，只能重试。
-  var rendered = document.getElementById('reportContainer');
-  if (rendered && rendered.childElementCount > 0) {
-    finishReportGeneration(true);
-    return;
-  }
-  rendered.replaceChildren();
+  document.getElementById('reportContainer').replaceChildren();
   var generation = document.getElementById('reportGeneration');
   var heading = generation && generation.querySelector('h2');
   var status = document.getElementById('reportGenerationMessage');
@@ -2370,7 +1984,7 @@ async function generateReport() {
     session_id: reportSessionId || undefined,
     version: 'report',
     answers: quizAnswers,
-    deep: deepDataWithOpenAnswers(),
+    deep: deepData,
     result_type: td.name,
     result_score: r.score,
     result_scores: Object.assign({}, r.scores, {
@@ -2406,8 +2020,6 @@ async function generateReport() {
   document.getElementById('stepDeep').classList.remove('active');
   document.getElementById('heroSub').innerHTML = '测评摘要已生成。<br>先看当前结论，再决定是否继续投入。';
   renderReport(reportData, false);
-  // 规格 §8：正式提交成功后清除"未完成进度"；查看报告所需的数据不受影响
-  clearAssessmentProgress();
   if (!window.__kevinDeferGenerationFinish) {
     finishReportGeneration(true);
     document.getElementById('stepReport').scrollIntoView({ behavior:'smooth', block:'start' });
@@ -2782,7 +2394,7 @@ function buildPathJudgement(r, d, td, validationPricing) {
       avoid: '暂不建议直接做复杂产品、追热点或把自己包装成泛泛的流量型个人品牌。'
     },
     consulting: {
-      recommended: '先做一次边界清楚的人工方向判断',
+      recommended: '先做一次边界清楚的 60 分钟职业经验资产一对一诊断',
       why: '你的价值更像判断力。先把问题、诊断流程、交付物和不包含范围讲清楚，再决定是否收费。',
       avoid: '暂不建议低价陪聊、无限答疑，或者在边界不清时直接承诺长期服务。'
     },
@@ -2830,9 +2442,7 @@ function buildWechatMessage(rd) {
 }
 
 function buildReportData(r, td, ranking) {
-  /* 第 5 步真实经历必须和深度表单同一份入参进入判断层与规则引擎，
-   * 否则免费摘要 / 19.9 报告都会把用户亲写的经历判成"没有提供"。 */
-  const d = deepDataWithOpenAnswers();
+  const d = deepData;
   const years = getYearsReference(d.years);
   const yearsLevel = getYearsLevel(d.years);
   const rate = getRateReference(d.hourlyRate);
@@ -2893,8 +2503,6 @@ function buildReportData(r, td, ranking) {
 
 function renderReport(rd, isPaid) {
   enterReportReadyMode(isPaid);
-  // 判断层需要同一份报告数据：V3 流程随后会回来改写摘要，必须复用同一次判断
-  try { window.__kevinLastReportData = rd; } catch (e) {}
   const now = new Date();
   const timeStr = now.getFullYear() + '/' + (now.getMonth()+1) + '/' + now.getDate() + ' ' + now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0');
   if (isPaid) {
@@ -3058,9 +2666,9 @@ function hasFullReportAccess(data) {
 
 function reportPaymentMarkup() {
   return '<div class="report-payment" id="reportPaymentPanel" hidden>' +
-    '<p class="report-payment-title">生成 19.9 元完整自动报告</p>' +
-    '<p class="report-payment-hint">一次购买，支付确认后根据你本次提交的回答自动生成，不含 Kevin 人工审核；当前浏览器会打开完整报告。</p>' +
-    '<button type="button" class="report-payment-btn" id="reportPaymentButton" onclick="startReportPayment()">支付 19.9 元并生成完整报告</button>' +
+    '<p class="report-payment-title">在线获取个人经验完整路径报告</p>' +
+    '<p class="report-payment-hint">一次支付 19.9 元。支付确认后，当前浏览器会自动打开个人经验完整路径报告。</p>' +
+    '<button type="button" class="report-payment-btn" id="reportPaymentButton" onclick="startReportPayment()">支付 19.9 元解锁个人经验完整路径报告</button>' +
     '<p class="report-payment-status" id="reportPaymentStatus" role="status" aria-live="polite"></p>' +
     '<div class="report-payment-qr" id="reportPaymentQr" aria-label="微信支付二维码" hidden></div>' +
     '</div>';
@@ -3100,8 +2708,8 @@ function showReportEvidenceRequired(message) {
     availability.hidden = false;
     var heading = availability.querySelector('strong');
     var detail = availability.querySelector('p');
-    if (heading) heading.textContent = '先补充真实经历，再考虑 19.9 元完整自动报告';
-    if (detail) detail.textContent = message || '请先补充一段真实经历，再生成可购买的完整自动报告。';
+    if (heading) heading.textContent = '先补充真实经历，再考虑个人经验完整路径报告';
+    if (detail) detail.textContent = message || '请先补充一段真实经历，再生成可购买的个人经验完整路径报告。';
   }
   applyAssessmentV3FreeSummary({}, {
     hasUsefulManualEvidence: false,
@@ -3243,7 +2851,7 @@ async function pollReportPayment(payment, delay) {
       if (!response.ok) throw new Error('PAYMENT_STATUS_UNAVAILABLE');
       var result = await response.json();
       if (result.paid === true || result.status === 'PAID') {
-        setReportPaymentStatus('支付已确认，正在打开 19.9 元完整自动报告…', false);
+        setReportPaymentStatus('支付已确认，正在打开个人经验完整路径报告…', false);
         if (window._ktrack) window._ktrack('payment_success');
         window.location.replace(buildReportAccessUrl(payment));
         return;
@@ -3289,7 +2897,7 @@ async function startReportPayment() {
     if (!response.ok && result.code === 'REPORT_EVIDENCE_REQUIRED') {
       button.disabled = false;
       showReportEvidenceRequired(
-        result.message || '请先补充一段真实经历，再生成可购买的完整自动报告。'
+        result.message || '请先补充一段真实经历，再生成可购买的个人经验完整路径报告。'
       );
       return;
     }
@@ -3418,99 +3026,6 @@ function finalizeReportAccessDelivery() {
   } catch(e) {}
 }
 
-/* ============================================================
- * 判断层接入（规格 §11：用户答案 → 规则判断层 → 证据映射层 → 文案模块层 → 报告组合层）
- *
- * KSJ_V1_ENABLED 是新结构的总开关：
- *   true  → 免费摘要 = 4 模块（A 当前判断 / B 为什么这样判断 / C 暂时不要做 / D 未来7天只做一件事）
- *           19.9 报告 = 8 模块
- *   false → 回退到原有结构（代码保留，便于对比与回滚）
- *
- * 免费摘要与 19.9 报告共用同一个判断对象，口径完全一致。
- * 不调用任何大模型 API —— 站点在零模型 API 的情况下同样可用。
- * ============================================================ */
-var KSJ_V1_ENABLED = true;
-
-/* 规格第 7 条：第 5 步真实经历（问题—动作—结果）属于"深度回答"，必须与深度表单
- * 用同一份入参进入判断层。它由 integration 层收在 adaptive session 里，
- * 过去没有任何地方把它并进 deepData，于是判断层的 buildCaseStory(deepData) 永远为空，
- * 报告对填了真实经历的人也说"你目前没有提供一段能说清…的真实经历"。
- *
- * 只读合并，不修改 deepData 本体；生成报告和提交保存均消费合并对象。 */
-var KSJ_OPEN_ANSWER_FIELDS = [
-  'caseOneProblem', 'caseOneAction', 'caseOneResult', 'caseBoundaryTransfer', 'nearestIncident'
-];
-
-function openAnswerDeep() {
-  var out = {};
-  function take(source) {
-    if (!source || typeof source !== 'object') return;
-    KSJ_OPEN_ANSWER_FIELDS.forEach(function (key) {
-      if (out[key]) return;
-      var value = source[key];
-      if (value === undefined || value === null) return;
-      var text = String(value).trim();
-      if (text) out[key] = text;
-    });
-  }
-  // 1) 本会话内第 5 步的回答（integration 层持有同一份 state.answers）
-  var integration = window.__kevinAssessmentV3ReportIntegration;
-  if (integration) take(integration.answers);
-  // 2) 同浏览器刷新后的草稿：integration 会把答案写进 adaptive session
-  if (Object.keys(out).length < KSJ_OPEN_ANSWER_FIELDS.length) {
-    try {
-      var sessions = window.KevinAssessmentV3AdaptiveSession;
-      var ids = [reportSessionId, sessionStorage.getItem('_quiz_report_sid'), sessionStorage.getItem('_ksid')];
-      var keys = [];
-      ids.forEach(function (id) {
-        if (!id) return;
-        var key = sessions && typeof sessions.storageKey === 'function'
-          ? sessions.storageKey(id)
-          : 'kevin:assessment-v3:adaptive:' + String(id);
-        if (key && keys.indexOf(key) === -1) keys.push(key);
-      });
-      keys.push('kevin:assessment-v3:adaptive:local-draft');
-      for (var i = 0; i < keys.length; i += 1) {
-        var raw = localStorage.getItem(keys[i]);
-        if (!raw) continue;
-        var parsed = JSON.parse(raw);
-        if (parsed) take(parsed.answers);
-        if (Object.keys(out).length >= KSJ_OPEN_ANSWER_FIELDS.length) break;
-      }
-    } catch (e) {}
-  }
-  return out;
-}
-
-function deepDataWithOpenAnswers() {
-  return Object.assign({}, deepData || {}, openAnswerDeep());
-}
-
-function buildJudgement(rd) {
-  if (!KSJ_V1_ENABLED) return null;
-  if (!rd || !window.KevinJudgement || typeof window.KevinJudgement.build !== 'function') return null;
-  if (rd.__ksjJudgement) return rd.__ksjJudgement;
-  try {
-    rd.__ksjJudgement = window.KevinJudgement.build({
-      // 再兜一层：即使 rd 是在第 5 步之前构造的，也保证真实经历进入判断对象
-      deepData: Object.assign({}, rd.d || deepData || {}, openAnswerDeep()),
-      result: rd.r || {},
-      typeData: rd.td || null,
-      quizAnswers: quizAnswers || {}
-    });
-  } catch (e) {
-    console.error('[ksj] 判断层构建失败，已回退旧结构：', e);
-    rd.__ksjJudgement = null;
-  }
-  return rd.__ksjJudgement;
-}
-
-function ensureJudgementStyles() {
-  if (window.KevinReportV1 && typeof window.KevinReportV1.ensureStyle === 'function') {
-    try { window.KevinReportV1.ensureStyle(document); } catch (e) {}
-  }
-}
-
 function renderLockedPreview(rd, timeStr) {
   enterReportReadyMode(false);
   if (window._ktrack) window._ktrack('view_locked_report');
@@ -3520,15 +3035,8 @@ function renderLockedPreview(rd, timeStr) {
   var lowestDimension = freeSummary.lowestDimension || {};
   var diagnosticHeadline = rd.diagnostic && rd.diagnostic.headline ? rd.diagnostic.headline : '';
   var summaryText = rd.assetStatus && rd.assetStatus.summary ? rd.assetStatus.summary : '当前信息更适合先做低成本验证，再决定是否继续投入。';
+  var bottleneckText = lowestDimension.label || rd.bottleneck || '当前主要瓶颈还需要通过真实反馈确认。';
   var actionText = rd.assetStatus && rd.assetStatus.nextAction ? rd.assetStatus.nextAction : '未来 7 天先完成一次真实问题访谈和最小交付假设。';
-
-  // 新：4 模块个性化免费摘要（唯一判断源，直接引用用户本次填写的真实事实）
-  var judgement = buildJudgement(rd);
-  var freeSummaryHtml = '';
-  if (judgement && window.KevinReportV1 && typeof window.KevinReportV1.renderFreeSummary === 'function') {
-    ensureJudgementStyles();
-    try { freeSummaryHtml = window.KevinReportV1.renderFreeSummary(judgement); } catch (e) { freeSummaryHtml = ''; }
-  }
 
   var html = '<div class="report-card">';
 
@@ -3539,37 +3047,28 @@ function renderLockedPreview(rd, timeStr) {
 
   html += '<div class="locked-preview">';
   html += '<div class="locked-summary-meta"><strong data-summary-label>你的个性化路径分析</strong><span>基于你已完成的测评信息</span></div>';
-  if (freeSummaryHtml) {
-    // 4 模块个性化摘要（A 当前判断 / B 为什么这样判断 / C 暂时不要做 / D 未来 7 天只做一件事）
-    html += '<div class="locked-free-summary-v1" data-ksj-host="free-summary">' + freeSummaryHtml + '</div>';
-  } else {
-    html += '<div class="locked-free-summary" aria-label="免费测评摘要">';
-    html += '<article><small>核心结论</small><h3 data-free-summary="conclusion">' + reportText(diagnosticHeadline || summaryText) + '</h3></article>';
-    html += '<article><small>当前主要瓶颈</small><p data-free-summary="bottleneck">' + reportText(lowestDimension.label || rd.bottleneck || '这一项需要你补充真实经历后再判断。') + '</p></article>';
-    html += '<article><small>未来 7 天可执行动作</small><p data-free-summary="action">' + reportText(actionText) + '</p></article>';
-    html += '</div>';
-  }
+  html += '<div class="locked-free-summary" aria-label="免费测评摘要">';
+  html += '<article><small>核心结论</small><h3 data-free-summary="conclusion">' + reportText(diagnosticHeadline || summaryText) + '</h3></article>';
+  html += '<article><small>当前主要瓶颈</small><p data-free-summary="bottleneck">' + reportText(bottleneckText) + '</p></article>';
+  html += '<article><small>未来 7 天可执行动作</small><p data-free-summary="action">' + reportText(actionText) + '</p></article>';
+  html += '</div>';
   html += '<section class="locked-continuation" id="reportFreeContinuation">';
   var measurementCode = getClaimReportId();
   if (measurementCode) html += '<p class="locked-report-code kv-data">测评编号：' + measurementCode + '</p>';
   html += '<div class="report-contact-card" id="reportContactCard" hidden>';
   html += '<small>需要 Kevin 本人进一步参与判断？（可选）</small>';
-  html += '<strong>先判断是否需要人工方向判断或专业方法开发</strong>';
+  html += '<strong>先判断是否适合职业经验资产一对一诊断</strong>';
   html += '<p>联系不等于购买。初步服务适配判断不收费，但不会免费提供完整诊断方案。</p>';
-  html += '<p>1999元帮助确定方向，不包含产品开发；9800元按实际约定开发客户自己的产品／模型，不默认全部成果形式都包含。自动报告不会批准9800资格，具体安排和范围购买前确认。</p>';
-  html += '<button type="button" class="btn" id="reportContactButton">通过企业微信了解人工服务</button>';
+  html += '<p>如果当前不需要、信息不足或不适合，我会直接告诉你不用购买。确实适合时，才会介绍 1999 元 / 60 分钟的职业经验资产一对一诊断，由你自主决定。</p>';
+  html += '<button type="button" class="btn" id="reportContactButton">咨询是否适合职业经验资产一对一诊断</button>';
   html += '<p id="reportContactStatus" role="status" aria-live="polite"></p>';
   html += '</div></section>';
   html += '<button type="button" class="btn locked-supplement-action" id="reportSupplementEvidenceButton" aria-label="补充经历，重新生成" onclick="if(window.supplementAssessmentV3Evidence)window.supplementAssessmentV3Evidence()" hidden><span class="locked-supplement-title">补充真实经历，重新生成</span><span class="locked-supplement-helper">写下一件真实发生的事，摘要会更具体</span></button>';
   if (!isMiniProgramSource()) {
     html += '<div class="locked-unlock" id="reportPaidOffer">';
-    html += '<div class="locked-unlock-copy"><small>免费测评摘要和完整自动报告的区别</small><h4>19.9 元｜生成完整自动报告</h4>';
-    html += '<div class="locked-plan-compare"><div class="locked-plan-card is-free"><strong>免费已经得到</strong><ul class="locked-report-value-list"><li>当前阶段</li><li>第一方向倾向</li><li>当前最大证据缺口</li><li>暂不建议做什么</li><li>一个 7 天验证动作</li></ul></div>';
-    html += '<div class="locked-plan-card is-paid"><strong>19.9 元完整自动报告会继续回答</strong><ul class="locked-report-value-list"><li>你手里已经成立的经验资产是什么</li><li>哪些目前还只是经历</li><li>第一优先路径</li><li>第二备选路径</li><li>明确暂缓路径</li><li>第一个最小交付假设</li><li>7 天验证脚本</li><li>验证成功 / 失败标准</li><li>30 天后是否值得继续投入</li><li>什么新证据出现后应该改变当前判断</li></ul></div></div>';
-    html += '<p>按你这次填写的内容直接判断，不加价、不续费，也不做任何虚标折扣。</p>';
-    html += '<p class="locked-small">报告帮助你减少盲目投入，但不能替代真实市场反馈，也不承诺收益。</p></div>';
+    html += '<div class="locked-unlock-copy"><small>个人经验完整路径报告将继续解锁</small><h4>19.9 元获取个人经验完整路径报告</h4><p>基于你已填写的真实经历，个人经验完整路径报告会进一步给出：</p><ul class="locked-report-value-list"><li>你的事实与证据摘要</li><li>优先路径与暂不建议的方向</li><li>关键风险与判断边界</li><li>未来 7 天验证动作</li><li>继续、调整或停止的观察信号</li></ul><p>报告帮助你减少盲目投入，但不能替代真实市场反馈，也不承诺收益。</p></div>';
     html += '<div>' + reportPaymentMarkup();
-    html += '<div class="locked-availability" id="reportPaymentAvailability"><div class="locked-evidence-requirement" hidden><small>19.9 元完整自动报告购买条件</small><strong>补充至少一段具体经历后，才可购买完整自动报告</strong><p>公司名、人名可以模糊处理，但请保留事情背景、你的动作和实际结果。</p></div><div class="locked-availability-default"><small>19.9 元完整自动报告当前状态</small><strong>暂时无法确认购买状态</strong><p>请稍后重试；如果已经付款，请联系企业微信客服核对，无需再次付款。</p></div>';
+    html += '<div class="locked-availability" id="reportPaymentAvailability"><div class="locked-evidence-requirement" hidden><small>个人经验完整路径报告购买条件</small><strong>补充至少一段具体经历后，才可购买个人经验完整路径报告</strong><p>公司名、人名可以模糊处理，但请保留事情背景、你的动作和实际结果。</p></div><div class="locked-availability-default"><small>个人经验完整路径报告当前状态</small><strong>个人经验完整路径报告在线购买暂未开放</strong><p>开放后可在本页继续获取。</p></div>';
     if (measurementCode) html += '<p class="locked-report-code kv-data">测评编号：' + measurementCode + '</p>';
     html += '</div>';
     html += '</div>';
@@ -3577,7 +3076,7 @@ function renderLockedPreview(rd, timeStr) {
   }
   html += isMiniProgramSource()
     ? '<p class="locked-small">边界：免费测评摘要只用于初步判断，当前结论仍需要通过真实市场反馈验证。</p>'
-    : '<p class="locked-small">边界：免费测评摘要用于初步梳理；19.9 元完整自动报告会提供更完整的判断与行动依据，但仍不能替代真实市场反馈，也不含 Kevin 人工审核。</p>';
+    : '<p class="locked-small">边界：免费测评摘要用于初步判断；个人经验完整路径报告会提供更完整的判断与行动依据，但仍不能替代真实市场反馈。</p>';
   html += '</div>';
 
   html += '</div>';
@@ -3589,36 +3088,17 @@ function renderLockedPreview(rd, timeStr) {
 function applyAssessmentV3FreeSummary(summary, inputSummary) {
   if (!summary || typeof summary !== 'object') return false;
   inputSummary = inputSummary && typeof inputSummary === 'object' ? inputSummary : {};
+  var conclusion = document.querySelector('[data-free-summary="conclusion"]');
+  var bottleneck = document.querySelector('[data-free-summary="bottleneck"]');
+  var action = document.querySelector('[data-free-summary="action"]');
   var label = document.querySelector('[data-summary-label]');
   var supplement = document.getElementById('reportSupplementEvidenceButton');
   var evidenceRequirement = document.querySelector('.locked-evidence-requirement');
   var availabilityDefault = document.querySelector('.locked-availability-default');
-
-  // 新：用同一个判断对象重渲 4 模块摘要（与页面首屏渲染完全同源，不引入第二套逻辑）
-  var host = document.querySelector('[data-ksj-host="free-summary"]');
-  var judgement = buildJudgement(window.__kevinLastReportData);
-  var renderedV1 = false;
-  if (host && judgement && window.KevinReportV1 && typeof window.KevinReportV1.renderFreeSummary === 'function') {
-    ensureJudgementStyles();
-    try {
-      host.innerHTML = window.KevinReportV1.renderFreeSummary(judgement);
-      renderedV1 = true;
-    } catch (e) {
-      console.error('[ksj] 摘要重渲失败，回退旧三栏：', e);
-      renderedV1 = false;
-    }
-  }
-
-  if (!renderedV1) {
-    var conclusion = document.querySelector('[data-free-summary="conclusion"]');
-    var bottleneck = document.querySelector('[data-free-summary="bottleneck"]');
-    var action = document.querySelector('[data-free-summary="action"]');
-    if (!conclusion || !bottleneck || !action) return false;
-    conclusion.textContent = summary.conclusion || conclusion.textContent;
-    bottleneck.textContent = summary.bottleneck || bottleneck.textContent;
-    action.textContent = summary.action || action.textContent;
-  }
-
+  if (!conclusion || !bottleneck || !action) return false;
+  conclusion.textContent = summary.conclusion || conclusion.textContent;
+  bottleneck.textContent = summary.bottleneck || bottleneck.textContent;
+  action.textContent = summary.action || action.textContent;
   var hasEvidence = inputSummary.hasUsefulManualEvidence !== false;
   var purchaseEligible = hasEvidence && inputSummary.fullReportPurchaseEligible !== false;
   document.documentElement.dataset.manualEvidence = hasEvidence ? 'provided' : 'absent';
@@ -3652,7 +3132,7 @@ function applyAssessmentV3FreeSummary(summary, inputSummary) {
     var methodTitle = document.createElement('strong');
     methodTitle.textContent = '这次判断是怎么来的';
     var methodText = document.createElement('p');
-    methodText.textContent = '本次判断只基于你的 8 道基础选择和深度回答生成，不补充你没有提供的经历或结果。';
+    methodText.textContent = '本次判断基于你的8道基础选择、深度回答及Kevin职业经验资产判断规则生成。系统不会补充你没有提供的经历或结果。';
     methodNote.appendChild(methodTitle);
     methodNote.appendChild(methodText);
     var facts = window.__kevinAssessmentAnalysisFacts;
@@ -3716,7 +3196,7 @@ function renderOpenQuestions(rd) {
     html += '<div style="padding:14px 16px;border:1px solid rgba(184,138,90,.22);background:rgba(255,255,255,.56);border-radius:14px;line-height:1.75;"><strong style="color:var(--accent-deep);margin-right:8px;">0' + (i+1) + '</strong>' + items[i] + '</div>';
   }
   html += '</div>';
-  html += '<p style="font-size:13px;color:var(--soft);line-height:1.7;margin-top:12px;">如果暂时不需要人工服务，也可以先按报告完成一个验证动作，再根据新证据决定下一步。</p>';
+  html += '<p style="font-size:13px;color:var(--soft);line-height:1.7;margin-top:12px;">如果你暂时不做后续定制判断，也可以。更重要的是先把第一路径、第一案例、第一交付物判断清楚，避免 30-90 天继续耗在不确定方向上。</p>';
   html += '</div></div>';
   return html;
 }
@@ -3735,9 +3215,9 @@ function renderDiagnosisCTA(rd) {
     primary = '先带着验证反馈再判断';
     tone = 'var(--accent-deep)';
   } else {
-    title = '当前先补充判断依据';
-    desc = '这些回答还不足以确定下一步。先整理一段具体经历和现有反馈，再判断是否需要人工服务。';
-    primary = '先按报告补充一段真实经历';
+    title = '你现在先别急着买咨询';
+    desc = '当前更重要的是完成经验盘点和 3 个案例拆解。等你能说清楚自己能帮谁解决什么问题，再判断是否需要后续定制判断会更值。';
+    primary = '先按报告完成经验盘点';
     tone = 'var(--olive)';
   }
 
@@ -3746,14 +3226,14 @@ function renderDiagnosisCTA(rd) {
   html += '<div style="display:inline-flex;padding:5px 10px;border-radius:999px;background:rgba(139,38,53,.08);color:' + tone + ';font-size:12px;font-weight:800;margin-bottom:10px;">定制判断不是聊天，是路径判断</div>';
   html += '<div class="cta-title">' + title + '</div>';
   html += '<p class="cta-desc">' + desc + '</p>';
-  html += '<div class="manual-service-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0;text-align:left;">';
-  html += '<div style="padding:12px;border:1px solid rgba(0,0,0,.06);border-radius:12px;background:rgba(255,255,255,.55);font-size:13px;line-height:1.6;"><strong>1999元方向服务</strong><br>方向判断 + 取舍依据 + 下一步建议，不包含产品开发</div>';
+  html += '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0;text-align:left;">';
+  html += '<div style="padding:12px;border:1px solid rgba(0,0,0,.06);border-radius:12px;background:rgba(255,255,255,.55);font-size:13px;line-height:1.6;"><strong>你会拿到</strong><br>第一路径判断 + 经验切口 + 最小交付雏形</div>';
   html += '<div style="padding:12px;border:1px solid rgba(0,0,0,.06);border-radius:12px;background:rgba(255,255,255,.55);font-size:13px;line-height:1.6;"><strong>你会避免</strong><br>继续乱学、乱发内容、乱定价、乱试方向</div>';
   html += '</div>';
   html += '<div style="padding:16px;border:1px dashed rgba(139,38,53,.25);border-radius:14px;background:rgba(255,255,255,.5);">';
   html += '<p style="font-weight:800;color:var(--text);margin-bottom:6px;">' + primary + '</p>';
-  html += '<p style="font-size:13px;color:var(--muted);line-height:1.7;">这份19.9元报告自动生成，不含Kevin人工审核，不验证商业潜力或预测收入。需要方向取舍可了解1999元服务；已经确定方向并需要开发自己的产品／模型，可了解9800元服务，具体适配与范围由Kevin人工确认。</p>';
-  html += '<div style="margin-top:10px;padding:10px 14px;border:1px dashed var(--accent-deep);background:rgba(255,255,255,.5);color:var(--accent-deep);border-radius:999px;font-size:13px;font-weight:800;display:inline-flex;">通过企业微信了解人工服务</div>';
+  html += '<p style="font-size:13px;color:var(--muted);line-height:1.7;">这份个人经验完整路径报告根据你提交的回答自动生成，不代表 Kevin 已完成人工复核。微信用于核对报告编号和处理领取问题；如果需要结合真实经历、案例和材料做个性化判断，请另行预约 1999 元职业经验资产一对一诊断。</p>';
+  html += '<div style="margin-top:10px;padding:10px 14px;border:1px dashed var(--accent-deep);background:rgba(255,255,255,.5);color:var(--accent-deep);border-radius:999px;font-size:13px;font-weight:800;display:inline-flex;">回到微信，核对报告编号</div>';
   html += '</div>';
   html += '</div></div>';
   return html;
@@ -3763,32 +3243,32 @@ function renderFullReportNextStep(rd) {
   var tier = getConsultConversionTier(rd);
   var title, desc, prepTitle, prepDesc, deliverTitle, deliverDesc, actionText, footerText;
   if (tier === 'high') {
-    title = '如果仍需要方向取舍，可以了解人工方向判断。';
-    desc = '报告已经提供初步线索；人工服务会结合真实经历、意愿和现实条件继续判断方向。';
-    prepTitle = '报告提供的是初步线索';
+    title = '如果你想继续推进，可以考虑后续定制判断。';
+    desc = '你的问题已经不是再看一份资料，而是把第一路径、第一案例、第一版交付和下一步验证动作判断清楚。';
+    prepTitle = '你已经有诊断基础';
     prepDesc = '这份报告已经记录了你的类型、卡点、时间投入、试错成本和当前状态。';
-    deliverTitle = '1999元会继续判断什么';
-    deliverDesc = '结合真实经历与现实条件，比较几条可能路径并作出取舍；不包含产品开发。';
-    actionText = '通过企业微信了解方向服务与购买安排。';
-    footerText = '是否购买由你决定；联系不等于购买，也不要求先完成测评或提交全部材料。';
+    deliverTitle = '后续会继续判断什么';
+    deliverDesc = '结合你的真实经历，继续判断第一条路径、第一段案例、第一版交付和验证动作。';
+    actionText = '回到微信，带着这份报告继续判断。';
+    footerText = '如果你已经卡了很久，不建议再自己猜 30 天。先把方向判断清楚，再投入时间和钱。';
   } else if (tier === 'mid') {
     title = '先按报告做 7 天低门槛验证，带反馈回来再判断。';
     desc = '你的方向已经有信号，但还没到可以盲目加码投入的阶段。先用真实对话、试单意向或小额付费验证这个方向是否成立。';
     prepTitle = '先验证一轮';
     prepDesc = '找 3 个真实的人聊这个方向，看对方是否愿意继续追问、给出具体问题，或愿意投入时间和小额费用。';
     deliverTitle = '验证后再判断';
-    deliverDesc = '如果仍卡在方向取舍，再结合真实经历判断是否需要1999元方向服务。';
-    actionText = '完成验证后，再决定是否了解人工服务。';
-    footerText = '先完成一轮低门槛验证，再根据真实反馈决定下一步。';
+    deliverDesc = '如果仍卡在路径、案例、定价或交付边界，再带着反馈回来判断是否需要后续定制判断。';
+    actionText = '带着验证反馈回来继续判断。';
+    footerText = '你现在不需要马上做大产品，也不需要立刻预约职业经验资产一对一诊断。先完成一轮低门槛验证，再决定是否加码。';
   } else {
-    title = '当前先补充一段真实经历。';
-    desc = '选择题提供的是线索，不能证明你没有经验。先补充具体事件，再根据新信息判断下一步。';
-    prepTitle = '先补一段真实事件';
-    prepDesc = '记录当时的问题、你的判断、采取的动作和实际结果；不会整理不等于没有经验。';
+    title = '你现在先别急着买咨询。';
+    desc = '当前最重要的是把经历和案例写清楚。没有足够素材，后续定制判断也很难判断准。';
+    prepTitle = '先补 3 个真实案例';
+    prepDesc = '写清楚你解决过什么问题、怎么做的、结果是什么。越具体，后面越容易判断。';
     deliverTitle = '什么时候再继续判断';
-    deliverDesc = '补充事实后仍有方向取舍问题，可以再了解1999元方向服务；不要求固定案例数量。';
-    actionText = '先补事实，再判断是否需要人工服务。';
-    footerText = '这一步是在补充判断依据，不是对你的能力作结论。';
+    deliverDesc = '当你能拿出 3 个案例，但仍然不知道适合做咨询、知识产品、模板工具还是服务交付时，再做定制判断更值。';
+    actionText = '先补案例，补完后再判断是否需要后续定制判断。';
+    footerText = '先别花冤枉钱。你的第一步是把素材补齐。';
   }
   var html = '<div class="cta-section"><div class="cta-divider"><span>看完报告后，你现在可以做什么</span></div>';
   html += '<div class="cta-card" style="border-color:rgba(47,111,115,.18);background:linear-gradient(160deg,rgba(47,111,115,.055),rgba(255,255,255,.72));">';
@@ -3845,7 +3325,7 @@ function getPaidPackage(rd) {
     productHypothesis: {},
     sevenDayPlan: [],
     scripts: {},
-    consultBoundary: '19.9 元完整自动报告负责初步梳理，人工服务用于结合真实经历作方向取舍。'
+    consultBoundary: '个人经验完整路径报告负责自动初筛，人工判断负责定制取舍。'
   };
 }
 
@@ -3912,7 +3392,7 @@ function renderPaidPackageDecision(rd, num) {
   var pack = getPaidPackage(rd);
   var rec = pack.recommendation || {};
   var conf = pack.confidence || {};
-  var html = '<div class="section"><div class="section-num sn-c1">' + num + '</div><div class="guide-line gl-c1"></div><div class="section-content"><div class="title-deco td-c1"></div><h3 class="sh-c1">19.9 元完整自动报告</h3>';
+  var html = '<div class="section"><div class="section-num sn-c1">' + num + '</div><div class="guide-line gl-c1"></div><div class="section-content"><div class="title-deco td-c1"></div><h3 class="sh-c1">个人经验完整路径报告</h3>';
   html += '<div class="paid-pack-kicker" data-decision-status="' + reportText(rec.status || '') + '">是否建议现在做</div>';
   html += '<div class="decision-card">';
   html += '<div class="decision-label">' + reportText(rec.label || '路径判断') + '</div>';
@@ -4201,69 +3681,8 @@ function renderUnifiedReportFailure(status) {
   return '<article class="assessment-report-v1 assessment-report-v1--failure"><section class="assessment-report-v1__failure"><span>报告暂不可用</span><h2>' + title + '</h2><p>' + message + '</p><a class="btn btn-primary" href="/report/">返回测评重新提交</a></section></article>';
 }
 
-function copyReportActionPlan(button) {
-  var plan = document.querySelector('[data-ksj-module="06"]');
-  if (!plan) return;
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(plan.innerText).then(function () { button.textContent = '7 天计划已复制'; })
-      .catch(function () { button.textContent = '请长按计划文字选择复制'; });
-  } else { button.textContent = '请长按计划文字选择复制'; }
-}
-
-function renderPaidReportV1Shell(body, timeStr) {
-  var tocItems = [
-    ['01', '一句话诊断', '当前阶段与第一优先级'],
-    ['02', '你的经验资产证据', '已经成立 / 尚未成立'],
-    ['03', '主要卡点与次要卡点', '最多两个，说明它为什么限制下一步'],
-    ['04', '路径排序', '第一优先 / 第二备选 / 暂缓'],
-    ['05', '第一个最小交付假设', '适合谁、解决什么、带走什么'],
-    ['06', '7 天验证计划', '找谁、问什么、通过标准'],
-    ['07', '什么证据会改变当前判断', '判断可以被新证据更新'],
-    ['08', '最终决定', '现在做 / 现在不做 / 何时重判']
-  ];
-  var html = '<div class="report-card">';
-  html += '<div class="report-header">';
-  html += '<h2>' + getReportTitle() + '</h2>';
-  html += '<p class="report-time kv-data">' + timeStr + '</p>';
-  html += '</div>';
-  html += '<div class="kv-report-actions"><a href="#report-module-06">直达 7 天计划</a><button type="button" onclick="copyReportActionPlan(this)">复制 7 天计划</button></div>';
-  html += '<div class="kv-full-layout">';
-  html += '<aside class="kv-report-toc" aria-label="19.9 元完整自动报告目录"><div class="kv-report-toc__label">报告目录</div>';
-  tocItems.forEach(function (item, i) {
-    html += '<a href="#report-module-' + item[0] + '" class="kv-report-toc__group"><strong><span class="kv-data">' + item[0] + '</span> ' + item[1] + '</strong><span>' + item[2] + '</span></a>';
-  });
-  var reportId = getClaimReportId();
-  if (reportId) html += '<div class="kv-report-toc__meta">报告编号<strong class="kv-data">' + reportId + '</strong></div>';
-  html += '</aside>';
-  html += '<div class="kv-report-body">';
-  html += body;
-  html += '<div class="seal-box"><div class="seal-mark">K</div><div><div class="seal-info">Kevin 彭峥</div><div class="seal-sub">Kevin 彭峥方法体系 · 规则判断生成</div></div></div>';
-  html += '<p class="report-footer-meta">本报告根据你的回答自动生成，不含 Kevin 人工审核。需要人工服务时，可通过企业微信客服了解1999元方向判断或9800元产品／模型开发；自动报告不代表服务资格已获批准。</p>';
-  html += '</div></div>';
-  html += '</div>';
-  return html;
-}
-
 function renderFullReport(rd, timeStr) {
   enterReportReadyMode(true);
-
-  // 主路径：8 模块规则报告（唯一判断源，零模型 API 依赖）
-  var judgement = buildJudgement(rd);
-  if (judgement && window.KevinReportV1 && typeof window.KevinReportV1.renderPaidReport === 'function') {
-    ensureJudgementStyles();
-    var v1Body = '';
-    try {
-      v1Body = window.KevinReportV1.renderPaidReport(judgement, { reportId: getClaimReportId(), time: timeStr });
-    } catch (e) {
-      console.error('[ksj] 8 模块报告渲染失败，回退旧结构：', e);
-      v1Body = '';
-    }
-    if (v1Body) {
-      document.getElementById('reportContainer').innerHTML = renderPaidReportV1Shell(v1Body, timeStr);
-      return;
-    }
-  }
-
   if (rd && (rd.assessmentV3ReportStatus === 'quality_failed' || rd.assessmentV3ReportStatus === 'input_unavailable')) {
     document.getElementById('reportContainer').innerHTML = renderUnifiedReportFailure(rd.assessmentV3ReportStatus);
     return;
@@ -4277,8 +3696,13 @@ function renderFullReport(rd, timeStr) {
       rd.assessmentV3ReportDocument,
       { title: getReportTitle(), time: timeStr, reportId: getClaimReportId(), resultScores: rd.resultScores || {} }
     );
+    window.KevinAssessmentReportRenderer.bindReportInteractions(document.getElementById('reportContainer'));
     return;
   }
+  // Full delivery is server-owned. Missing historical documents must never
+  // fall through to browser-side recomputation of a different report.
+  document.getElementById('reportContainer').innerHTML = renderUnifiedReportFailure('input_unavailable');
+  return;
   var r = rd.r, td = rd.td, d = rd.d, assetStatus = rd.assetStatus, bottleneck = rd.bottleneck || '';
   var yearsLabel = rd.yearsLabel || '';
   var hrs = rd.hrs || 0;
@@ -4301,7 +3725,7 @@ function renderFullReport(rd, timeStr) {
   html += '</div>';
 
   html += '<div class="kv-full-layout">';
-  html += '<aside class="kv-report-toc" aria-label="19.9 元完整自动报告目录"><div class="kv-report-toc__label">报告目录</div><div class="kv-report-toc__group is-active"><strong><span class="kv-data">01</span> 判断</strong><span>当前状态与依据</span><span>最大误判与边界</span></div><div class="kv-report-toc__group"><strong><span class="kv-data">02</span> 路径</strong><span>第一优先与备用</span><span>第一版服务假设</span></div><div class="kv-report-toc__group"><strong><span class="kv-data">03</span> 验证</strong><span>7 天清单与话术</span><span>继续、调整或停止</span></div><div class="kv-report-toc__meta">报告编号<strong class="kv-data">' + getClaimReportId() + '</strong></div></aside>';
+  html += '<aside class="kv-report-toc" aria-label="个人经验完整路径报告目录"><div class="kv-report-toc__label">报告目录</div><div class="kv-report-toc__group is-active"><strong><span class="kv-data">01</span> 判断</strong><span>当前状态与依据</span><span>最大误判与边界</span></div><div class="kv-report-toc__group"><strong><span class="kv-data">02</span> 路径</strong><span>第一优先与备用</span><span>第一版服务假设</span></div><div class="kv-report-toc__group"><strong><span class="kv-data">03</span> 验证</strong><span>7 天清单与话术</span><span>继续、调整或停止</span></div><div class="kv-report-toc__meta">报告编号<strong class="kv-data">' + getClaimReportId() + '</strong></div></aside>';
   html += '<div class="kv-report-body">';
 
   html += '<div class="exec-summary">';
@@ -4666,7 +4090,7 @@ function sampleRankText(percentile, total) { return '样本 ' + total + ' 人'; 
     document.getElementById('stepQuiz').classList.remove('active');
     document.getElementById('stepDeep').classList.remove('active');
     document.getElementById('stepReport').style.display = 'block';
-    document.getElementById('heroSub').innerHTML = '8 题提供自我分析框架，5 步补充真实信息。<br>结果用于梳理当前路径与下一步验证，不代表能力评价或商业潜力判断。';
+    document.getElementById('heroSub').innerHTML = '8 题判断类型，4 组深度追问。<br>不默认劝你做流量型个人品牌，先判断你的经验路径、转化风险和最小验证动作。';
     renderFullReport(rd, ts);
     return;
   }
@@ -4677,13 +4101,8 @@ function sampleRankText(percentile, total) { return '样本 ' + total + ' 人'; 
     document.getElementById('stepQuiz').classList.remove('active');
   }
   if (!sid) {
-    document.getElementById('loadStatus').classList.remove('active');
-    // 规格 §8：本机有未完成进度时优先给「继续上次测评 / 重新开始」入口，
-    // 不能被下面"本机已有 8 题记录"分支直接盖掉
-    bindProgressResume();
-    if (maybeOfferProgressResume()) return;
-    // 本机已有 8 题记录：本来就该走到深度判断，直接进入
     if (showDeepFromLocalQuiz('')) return;
+    document.getElementById('loadStatus').classList.remove('active');
     return;
   }
 
@@ -4694,8 +4113,7 @@ function sampleRankText(percentile, total) { return '样本 ' + total + ' 人'; 
   // Load existing report via API
   fetchReportWithRetry(apiUrl('/api/getReport?sid=' + encodeURIComponent(sid)), 3, reportRequestOptions).then(function(data) {
     if (!data || data.error) {
-      // 规格 §12：sid 读不到记录时明确告知失效，不静默进入一套新深度测评
-      if (hasSidScopedQuizRecord(sid) && showDeepFromLocalQuiz(sid)) return;
+      if (showDeepFromLocalQuiz(sid)) return;
       renderMissingReport(sid);
       return;
     }
@@ -4743,7 +4161,7 @@ function sampleRankText(percentile, total) { return '样本 ' + total + ' 人'; 
         document.getElementById('stepDeep').classList.remove('active');
         document.getElementById('stepReport').style.display = 'block';
         var isPaid = hasFullReportAccess(data);
-        document.getElementById('heroSub').innerHTML = isPaid ? '19.9 元完整自动报告已生成。<br>报告只基于你本次提交的回答，不含 Kevin 人工审核。' : '免费测评摘要已生成。<br>需要更完整的自动整理与行动建议时，可自愿购买 19.9 元完整自动报告。';
+        document.getElementById('heroSub').innerHTML = isPaid ? '8 题判断类型，4 组深度追问。<br>不默认劝你做流量型个人品牌，先判断你的经验路径、转化风险和最小验证动作。' : '免费测评摘要已生成。<br>个人经验完整路径报告会补齐产品假设卡、7 天验证清单和话术。';
         renderReport(rd, isPaid);
       }).catch(function() {
         if (window.__kevinAssessmentFollowUpPending) return;
@@ -4771,8 +4189,7 @@ function sampleRankText(percentile, total) { return '样本 ' + total + ' 人'; 
       renderDeepForm();
     }
   }).catch(function() {
-    // 规格 §12：网络或记录失败时给出明确的失效状态，不静默开始新测评
-    if (hasSidScopedQuizRecord(sid) && showDeepFromLocalQuiz(sid)) return;
+    if (showDeepFromLocalQuiz(sid)) return;
     renderMissingReport(sid);
   });
 })();
@@ -4829,13 +4246,22 @@ function sampleRankText(percentile, total) { return '样本 ' + total + ' 人'; 
 </script>
 
 <script>
+(function(){
+    if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') return;
+    var bp = document.createElement('script');
+    bp.src = location.protocol === 'https:' ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
 (function() {
   if (typeof isLocalV3Flow !== 'function' || !isLocalV3Flow()) return;
   var sources = [
     '../assets/assessment-v3/flags.js',
     '../assets/assessment-v3/evidence.js',
     '../assets/assessment-v3/rules.js',
-    '../assets/assessment-v3/integration.js?v=assessment-input-20260926'
+    '../assets/assessment-v3/integration.js?v=20260913-evidence-v2'
   ];
   function loadNext(index) {
     if (index >= sources.length) {
@@ -4852,14 +4278,10 @@ function sampleRankText(percentile, total) { return '样本 ' + total + ' 人'; 
 })();
 </script>
 
-  <script src="../assets/kevin-ui-v1.js?v=20261009-thorough-final" defer></script>
+  <script src="../assets/kevin-ui-v1.js?v=20260719" defer></script>
 <footer data-kevin-icp aria-label="网站备案信息" style="padding:24px 12px;text-align:center;font-size:12px;line-height:1.6;color:#6b7280;background:transparent">
-  <span style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 16px">
-    <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;min-height:26px;color:inherit;text-decoration:none">鄂ICP备2026039968号-1</a>
-    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=42011102006455" target="_blank" rel="noopener noreferrer" data-track="click_public_security_filing" style="display:inline-flex;align-items:center;gap:4px;min-height:26px;color:inherit;text-decoration:none"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAFEElEQVR42kXU629b9R3H8fe5+Pj4+HacOHa8uCtNI9oU2oa13QbL0tFNXKY2g0zqKEJoTB1DmxgCjQdM7AFiD9iTSkOIbeqYtKI+2MYkRFt1lJBpQCvKRe3WVr2ENE1jp2lix7GPfS4+Pue3BxXJP/DS5yt9Pl9JCAF2C4AQGVmEOFqJWKQXaPbaV8+M/vv4pz/1nI72nfu2HuzasuVt6C95niDqOCBLgAwAqSSSEALfroMkkAOBomWAD+6dPH7iqZP/ujIqnEl91jNQMiZrszpOxegMf7f/yOCesb+I4LajwmsiJAkQKOm+W3RDsmiKZYSRAc3VJ/7wxsTjT47vbboz+u0Jhf36TZ7SZ7nn7jxdd+fV/U++9/CJV185IsWUqK1JuHyGr34OK1kVGVlJocrVonfm5Xd/f7jOvv39/LjYIP2nC1QvB1SnAuq7/8gPgnM8c+gRDv7TR1z+8z8ShqvLegI9Hl0FE55FPFofvH70xamR3edGzIE8v8ieY/pwA3mNSWC1wQuRekxOPX2SvcYZ8t+6i+/tPrZn8aM3rtozZzdcfP+dVTDqOajuu4kjl5PaJ3PbeXC7RfNsA/l6HcmMEl0KcE/eJLKuG73pUPnracbubzPxxSbe/DAoJKRWDHloFawvVorhx+8fCKUYqDYpa47GPEQCH5ZcpPUG2jYT+UYLjZDKtENflweSRK0pE+1RD2wcHlu3As5ceu+H7XJ5OJPQoBNFFApkh3tpIrDu6SbYVyTx0hDGM1uQewxy27K07DYIQSFnQOnsvUuzp36yAhqJzGDD8unvcUHv5sRpA3VXiuqetQRlC+l/LexjN/Gnl9GeH6br2a28dagGxBnarNKaWsAtTRVXwHBpbk+jpnJn0aL4dY3X34zzn1dKDO0okDaS2BdqhAse7rkayfIy51++wquHouSHTDb31amUPfylS8MroKy2TKshk1q8wt77Azp+Av/oPN1/+xy5L0K7RyHMqWR3FShMXKVy8DyttsLYaIRkdRKroaIm5QiAChAzvjoub7g2GuT7eOIbFgf6eni9PIg/e4Hu6iRyOoZzoYY1kKOcKfB3OQYpkye+uUAnWcS8Q8LIrDm2AoKcEw3B3JTFnYPT/PZX23jx+RGOWpuh4TNqV+kyZd46lqSJAWR47uc6OwYmmZsEXJuwY21dAVWzvb2TzOPP+5QWLvLL4Shj43EmjttckrfwwKYvKMQqdI700a45rNlo8OsHrnHz1DVsX0fPaqimthG49Ry85iePVk//7rAz38ar+FCaYf1DQ0TzOgRVgqpKc8Ehva4L1nZDqcL025dxklkS/QlivQbpgX07tcz3P5CEEAB0Wv99bOn8gdcC10lXPpxHjQt6dw4SLDn4dgvZ0NG74khahOqpKTqBSnr7enyXanrDyCNxMzUuaffdOtl3ZnAWnbI7H3P0fJjO7xogqLcIrAYYGopmosWgvdykVaqhr+1GL+bxlm3csiVia5ooqRSxL2sj2ldR+OiF3NeSvZFMAa8eEgYqYaDgLlogQtrVOs3JRSQlApKEe6NCJCaT/3YhqxnWz0KH1S1rSopo946HLDv9ml0qtTRlmVSuQ0Sy0SQfxVtGOA7JjVlSAylkrYma1pAyvdc76l2/UY3bf6Roi6zWRvhIEdVuVONPOxfzLzn1xQc9f3bnVzb1bAotKaGbcpcaS2Ld4Hqsx7TV3MjZpamFcWemdqJvZy6UFAURuAD8Hy4iNxOfElCpAAAAAElFTkSuQmCC" width="24" height="24" alt="" aria-hidden="true" style="display:block;width:24px;height:24px;flex:0 0 auto" />鄂公网安备42011102006455号</a>
-  </span>
+  <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">鄂ICP备2026039968号-1</a>
 </footer>
-<script src="/assets/kevin-wechat-float.js?v=customer-mobile-20260920" defer></script>
 </body>
 
 </html>

@@ -158,6 +158,8 @@ const state = {
   productSecondaryStatus: '',
   viewGeneration: 0,
   viewAbortController: null,
+  viewError: '',
+  navigationFeedback: null,
   route: null,
   query: '',
   collection: 'all',
@@ -828,11 +830,13 @@ function routeNeedsFullCatalog(route = state.route) {
 }
 
 function beginViewGeneration() {
+  clearNavigationFeedback();
   window.clearTimeout(state.openDebounce);
   state.openDebounce = null;
   state.viewAbortController?.abort();
   state.viewAbortController = new AbortController();
   state.viewGeneration += 1;
+  state.viewError = '';
   return state.viewGeneration;
 }
 
@@ -842,6 +846,92 @@ function generationIsCurrent(generation) {
 
 function generationSignal(generation) {
   return generationIsCurrent(generation) ? state.viewAbortController.signal : AbortSignal.abort();
+}
+
+function navigationStatus() {
+  let status = document.querySelector('#prompt-navigation-status');
+  const main = document.querySelector('#main-content');
+  if (!status && main) {
+    status = document.createElement('div');
+    status.id = 'prompt-navigation-status';
+    status.className = 'prompt-navigation-status';
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
+    main.before(status);
+  }
+  return status;
+}
+
+function setNavigationBusy(busy) {
+  const main = document.querySelector('#main-content');
+  if (busy) {
+    main?.setAttribute('aria-busy', 'true');
+    main?.classList.add('is-loading');
+  } else {
+    main?.removeAttribute('aria-busy');
+    main?.classList.remove('is-loading');
+  }
+  app.inert = busy;
+}
+
+function showNavigationStatus(message, { reload = false } = {}) {
+  const status = navigationStatus();
+  if (!status) return;
+  const label = document.createElement('span');
+  label.textContent = message;
+  status.replaceChildren(label);
+  if (reload) {
+    const link = document.createElement('a');
+    link.className = 'button button-secondary';
+    link.href = `${location.pathname}${location.search}`;
+    link.textContent = '重新加载当前页';
+    // This link deliberately uses a native document navigation.
+    status.append(link);
+  }
+}
+
+function clearNavigationFeedback() {
+  window.clearTimeout(state.navigationFeedback?.timer);
+  state.navigationFeedback = null;
+  setNavigationBusy(false);
+  const status = document.querySelector('#prompt-navigation-status');
+  status?.replaceChildren();
+}
+
+function startNavigationFeedback(generation) {
+  if (!generationIsCurrent(generation)) return;
+  const feedback = { generation, timer: null };
+  state.navigationFeedback = feedback;
+  setNavigationBusy(true);
+  showNavigationStatus('正在加载…');
+  feedback.timer = window.setTimeout(() => {
+    if (!generationIsCurrent(generation) || state.navigationFeedback !== feedback) return;
+    showNavigationStatus('加载较慢，请稍候', { reload: true });
+  }, 3_000);
+}
+
+function finishNavigationFeedback(generation, { failed = false } = {}) {
+  if (!generationIsCurrent(generation) || state.navigationFeedback?.generation !== generation) return;
+  window.clearTimeout(state.navigationFeedback.timer);
+  state.navigationFeedback = null;
+  setNavigationBusy(false);
+  if (failed) showNavigationStatus('页面加载失败，请重新加载当前页', { reload: true });
+  else {
+    const status = document.querySelector('#prompt-navigation-status');
+    status?.replaceChildren();
+  }
+}
+
+function recordViewFailures(results, generation) {
+  if (!generationIsCurrent(generation)) return;
+  const failure = results.find((result) => result.status === 'rejected');
+  if (failure) state.viewError = failure.reason?.message || String(failure.reason);
+}
+
+function currentListingError() {
+  return state.viewError
+    || (routeSupportsProductSearch() && state.productError)
+    || (routeSupportsOpenSearch() && (state.openError || state.openCategoriesError));
 }
 
 function routeSupportsOpenSearch() {
@@ -958,8 +1048,8 @@ async function loadProductResults({ generation = state.viewGeneration } = {}) {
     }
     state.productHasMore = state.productPage < lastPage;
   } catch (error) {
-    if (!generationIsCurrent(generation) || error?.name === 'AbortError') return;
-    state.productError = error instanceof Error ? error.message : String(error);
+    if (!generationIsCurrent(generation)) return;
+    state.productError = error?.message || String(error);
     resetProductResults();
   } finally {
     if (generationIsCurrent(generation)) state.productLoading = false;
@@ -987,8 +1077,8 @@ async function ensureOpenCategories({ generation = state.viewGeneration } = {}) 
         state.openCategoriesError = '';
       })
       .catch((error) => {
-        if (generationIsCurrent(generation) && error?.name !== 'AbortError') {
-          state.openCategoriesError = error instanceof Error ? error.message : String(error);
+        if (generationIsCurrent(generation)) {
+          state.openCategoriesError = error?.message || String(error);
         }
         throw error;
       })
@@ -1036,8 +1126,8 @@ async function loadOpenResults({ generation = state.viewGeneration } = {}) {
     }
     state.openHasMore = state.openPage < lastPage;
   } catch (error) {
-    if (!generationIsCurrent(generation) || error?.name === 'AbortError') return;
-    state.openError = error instanceof Error ? error.message : String(error);
+    if (!generationIsCurrent(generation)) return;
+    state.openError = error?.message || String(error);
     resetOpenResults();
   } finally {
     if (generationIsCurrent(generation)) state.openLoading = false;
@@ -1050,17 +1140,19 @@ async function prepareOpenListing(generation = state.viewGeneration) {
     await loadOpenResults({ generation });
     return;
   }
-  await Promise.allSettled([
+  const results = await Promise.allSettled([
     ensureOpenCategories({ generation }),
     loadOpenResults({ generation })
   ]);
+  recordViewFailures(results, generation);
 }
 
 async function prepareDynamicListing(generation = state.viewGeneration) {
-  await Promise.allSettled([
+  const results = await Promise.allSettled([
     prepareOpenListing(generation),
     loadProductResults({ generation })
   ]);
+  recordViewFailures(results, generation);
 }
 
 async function loadData() {
@@ -2502,12 +2594,19 @@ function renderNotFound(message = '没有找到这个页面') {
 }
 
 function updateHeaderCurrent() {
-  document.querySelectorAll('.primary-nav a').forEach((link) => link.removeAttribute('aria-current'));
+  document.querySelectorAll('.primary-nav a').forEach((link) => {
+    link.classList.remove('active');
+    link.removeAttribute('aria-current');
+  });
   const route = state.route;
   const href = route?.kind === 'home'
     ? '/prompts/'
     : (route?.kind === 'media' ? `/prompts/${route.media}` : '');
-  if (href) document.querySelector(`.primary-nav a[href="${href}"]`)?.setAttribute('aria-current', 'page');
+  if (href) {
+    const current = document.querySelector(`.primary-nav a[href="${href}"]`);
+    current?.classList.add('active');
+    current?.setAttribute('aria-current', 'page');
+  }
 }
 
 function updateSeo(route) {
@@ -2542,13 +2641,36 @@ async function navigate(href) {
     return;
   }
   const generation = beginViewGeneration();
-  history.pushState({}, '', `${url.pathname}${url.search}`);
+  const destination = `${url.pathname}${url.search}${url.hash}`;
+  if (`${location.pathname}${location.search}${location.hash}` !== destination) {
+    history.pushState({}, '', destination);
+  }
   state.route = parseRoute(url.pathname);
   applyRouteDefaults();
-  await renderApp(generation);
+  await renderNavigation(generation, { focus: true });
+}
+
+async function renderNavigation(generation, { focus = false } = {}) {
+  updateHeaderCurrent();
+  startNavigationFeedback(generation);
+  if (focus) window.scrollTo({ top: 0, behavior: 'instant' });
+  let failed = false;
+  try {
+    await renderApp(generation);
+    if (!generationIsCurrent(generation)) return;
+    failed = Boolean(currentListingError());
+  } catch (error) {
+    if (!generationIsCurrent(generation)) return;
+    failed = true;
+    state.loadError = error?.message || String(error);
+    renderLoadError();
+  } finally {
+    finishNavigationFeedback(generation, { failed });
+  }
   if (!generationIsCurrent(generation)) return;
-  window.scrollTo({ top: 0, behavior: 'auto' });
-  document.querySelector('#main-content')?.focus({ preventScroll: true });
+  if (focus) {
+    document.querySelector('#main-content')?.focus({ preventScroll: true });
+  }
 }
 
 function syncUrlFromState({ replace = false, pathname = location.pathname } = {}) {
@@ -2976,6 +3098,8 @@ document.addEventListener('click', async (event) => {
   }
   const link = event.target.closest('a[data-nav]');
   if (link) {
+    if (event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey
+      || event.shiftKey || event.altKey || link.hasAttribute('target') || link.hasAttribute('download')) return;
     event.preventDefault();
     await navigate(link.href);
     return;
@@ -3245,7 +3369,7 @@ window.addEventListener('popstate', async () => {
   const generation = beginViewGeneration();
   state.route = parseRoute(location.pathname);
   applyRouteDefaults();
-  await renderApp(generation);
+  await renderNavigation(generation);
 });
 
 async function initializePromptsApp() {
@@ -3253,4 +3377,5 @@ async function initializePromptsApp() {
   await loadData();
 }
 
+navigationStatus();
 void initializePromptsApp();

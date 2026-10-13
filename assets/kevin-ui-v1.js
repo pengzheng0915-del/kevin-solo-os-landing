@@ -95,6 +95,29 @@ window.addEventListener('DOMContentLoaded', () => {
     panel.id = panelId;
     summary.setAttribute('aria-controls', panelId);
 
+    const menuLabel = document.createElement('b');
+    menuLabel.className = 'kv-global-header__menu-label';
+    summary.append(menuLabel);
+
+    const header = menu.closest('.kv-global-header');
+    if (header && !header.querySelector('.kv-global-header__quick-nav')) {
+      const quickNav = document.createElement('nav');
+      quickNav.className = 'kv-global-header__quick-nav';
+      quickNav.setAttribute('aria-label', '手机快捷导航');
+      [
+        ['/pricing/', '服务价格'],
+        ['/articles/', '免费学习'],
+        ['/develop-9800/#example-title', '我的模型']
+      ].forEach(([href, label]) => {
+        const source = panel.querySelector(`a[href="${href}"]`);
+        const link = source ? source.cloneNode(true) : document.createElement('a');
+        link.setAttribute('href', href);
+        link.textContent = label;
+        quickNav.append(link);
+      });
+      if (quickNav.children.length) header.append(quickNav);
+    }
+
     let mobileProducts = panel.querySelector('.kv-global-header__mobile-products');
     if (!mobileProducts) {
       const knowledgeLink = panel.querySelector('a[href="/knowledge/"]');
@@ -135,7 +158,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const updateMenuState = () => {
       summary.setAttribute('aria-expanded', String(menu.open));
-      summary.setAttribute('aria-label', menu.open ? '关闭站点菜单' : '打开站点菜单');
+      menuLabel.textContent = menu.open ? '收起菜单' : '全部菜单';
+      summary.setAttribute('aria-label', menu.open ? '收起全部菜单' : '打开全部菜单');
       body.classList.toggle('kv-menu-open', menu.open);
       if (!menu.open && mobileProducts) {
         setProductOpen(false);

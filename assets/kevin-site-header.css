@@ -510,3 +510,98 @@
     transform: none !important;
   }
 }
+
+/* Emphasize the product entry with the existing homepage accent. */
+.kv-global-header .kv-global-header__product-trigger,
+.kv-global-header .kv-global-header__mobile-product-trigger {
+  color: var(--kv-global-wine, #8b2635);
+  font-weight: 800;
+  font-style: normal;
+}
+
+
+/* Visible mobile destinations and a text label for the full menu. */
+.kv-global-header > nav.kv-global-header__quick-nav {
+  display: none !important;
+}
+
+@media (max-width: 1180px) {
+  .kv-global-header__mobile-menu > summary {
+    width: auto;
+    min-width: 98px;
+    height: 44px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    border-color: var(--kv-global-green);
+    border-radius: 999px;
+    color: var(--kv-global-green);
+  }
+
+  .kv-global-header__menu-label {
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .kv-global-header > nav.kv-global-header__quick-nav {
+    position: static;
+    width: min(100% - 32px, 1040px);
+    min-height: 0;
+    margin: 0 auto 12px;
+    padding: 0;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    border: 0;
+    background: transparent;
+  }
+
+  .kv-global-header__quick-nav a {
+    min-width: 0;
+    min-height: 44px;
+    padding: 8px 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid rgba(18, 63, 53, 0.3);
+    border-radius: 6px;
+    color: var(--kv-global-green);
+    background: var(--kv-global-paper);
+    font-size: 14px;
+    line-height: 1.35;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .kv-global-header__quick-nav a::after {
+    content: '→';
+    font-size: 15px;
+  }
+
+  .kv-global-header__quick-nav a:hover,
+  .kv-global-header__quick-nav a:focus-visible,
+  .kv-global-header__quick-nav a[aria-current='page'] {
+    color: var(--kv-global-paper);
+    background: var(--kv-global-green);
+  }
+}
+
+@media (max-width: 600px) {
+  .kv-global-header > nav.kv-global-header__quick-nav {
+    width: calc(100% - 24px);
+  }
+}
+
+@media (max-width: 360px) {
+  .kv-global-header__inner { gap: 6px; }
+  .kv-global-header__brand { gap: 6px; }
+  .kv-global-header__mark { width: 36px; height: 36px; }
+  .kv-global-header__mobile-menu > summary { min-width: 64px; padding: 0 7px; }
+  .kv-global-header__mobile-menu > summary span { display: none; }
+  .kv-global-header__menu-label { font-size: 12px; }
+}

@@ -300,3 +300,48 @@ body.kv-tool-page {
     width: min(1360px, calc(100vw - 80px));
   }
 }
+
+/* Method links share one destination and keyboard stop per process card. */
+body[data-reading-template="method"] .kt-process-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+body[data-reading-template="method"] .kt-process-card h3 a { color: inherit; }
+body[data-reading-template="method"] .kt-process-card.is-ai h3 a { color: var(--kv-on-dark-title); }
+body[data-reading-template="method"] .kt-process-card h3 a::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: var(--kt-radius);
+  content: "";
+}
+body[data-reading-template="method"] .kt-process-card .kt-process-card__more {
+  display: block;
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--kv-text-link);
+  font-size: 15px;
+  font-weight: 740;
+  line-height: 1.5;
+}
+body[data-reading-template="method"] .kt-process-card.is-ai .kt-process-card__more { color: var(--kv-on-dark-link); }
+body[data-reading-template="method"] .kt-process-card:focus-within {
+  border-color: var(--kv-green-deep);
+  outline: 3px solid var(--kv-focus-ring);
+  outline-offset: 3px;
+  transform: translateY(-2px);
+}
+body[data-reading-template="method"] .kt-process-card h3 a:focus-visible { outline: none !important; }
+@media (hover: hover) {
+  body[data-reading-template="method"] .kt-process-card:hover {
+    border-color: var(--kv-green-deep);
+    transform: translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-reading-template="method"] .kt-process-card { transition: none; }
+  body[data-reading-template="method"] .kt-process-card:hover,
+  body[data-reading-template="method"] .kt-process-card:focus-within { transform: none; }
+}
